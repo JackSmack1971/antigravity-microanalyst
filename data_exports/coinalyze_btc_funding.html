@@ -1,0 +1,1930 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    
+    <title>Bitcoin (BTC) Funding Rate</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Bitcoin aggregated funding rate and predicted funding rate chart, statistics, markets and more. Historical Bitcoin funding rate chart.">
+    <meta name="author" content="">
+    <meta name="robots" content="index">
+    <meta property="og:title" content="Bitcoin (BTC) Funding Rate">
+    <meta property="og:description" content="Bitcoin aggregated funding rate and predicted funding rate chart, statistics, markets and more. Historical Bitcoin funding rate chart.">
+    <meta property="og:image" content="https://coinalyze.net/og-image.png">
+    <meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" hreflang="x-default" href="https://coinalyze.net/bitcoin/funding-rate/">
+        
+        <link rel="alternate" hreflang="en" href="https://coinalyze.net/bitcoin/funding-rate/">
+        
+        <link rel="alternate" hreflang="fr" href="https://fr.coinalyze.net/bitcoin/funding-rate/">
+        
+        <link rel="alternate" hreflang="ru" href="https://ru.coinalyze.net/bitcoin/funding-rate/">
+        
+        <link rel="alternate" hreflang="de" href="https://de.coinalyze.net/bitcoin/funding-rate/">
+        
+        <link rel="alternate" hreflang="ko" href="https://ko.coinalyze.net/bitcoin/funding-rate/">
+        
+        <link rel="alternate" hreflang="tr" href="https://tr.coinalyze.net/bitcoin/funding-rate/">
+        
+        <link rel="alternate" hreflang="nl" href="https://nl.coinalyze.net/bitcoin/funding-rate/">
+        
+        <link rel="alternate" hreflang="pt" href="https://br.coinalyze.net/bitcoin/funding-rate/">
+        
+        <link rel="alternate" hreflang="es" href="https://es.coinalyze.net/bitcoin/funding-rate/">
+        
+        <link rel="alternate" hreflang="ja" href="https://jp.coinalyze.net/bitcoin/funding-rate/">
+        
+    
+    
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link href="/css-bundle/mainTop_dark.css?v=129" type="text/css" rel="stylesheet">
+    
+    <script src="/api/assets-info/"></script>
+    <script src="/js-bundle/mainTop,symbolPage,highcharts.js?v=348"></script>
+    <script>
+        (function () {
+            // jquery ready
+            function completed(ev) {
+                window.removeEventListener( "DOMContentLoaded", completed );
+                window.removeEventListener( "load", completed );
+                document.dispatchEvent(new Event('jqueryReady'));
+            }
+            if ( document.readyState === "complete" ||
+                ( document.readyState !== "loading" && !document.documentElement.doScroll ) ) {
+                window.setTimeout( function () {
+                    document.dispatchEvent(new Event('jqueryReady'));                
+                });
+            } else {
+                window.addEventListener( "DOMContentLoaded", completed );
+                window.addEventListener( "load", completed );
+            }            
+        })();
+    </script>
+    
+<!-- Google tag (gtag.js) -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-S5GL9D82Q3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S5GL9D82Q3');
+</script>
+
+<script async="" src="https://cdn.tolt.io/tolt.js" data-tolt="6d105422-63ad-4e66-94ef-889e704d031f"></script>
+
+
+
+
+
+
+
+<style>
+    ::-webkit-scrollbar {
+       width: 10px;
+       background-color: var(--scrollbar-color-background);
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: var(--scrollbar-thumb-color-background);
+    }
+</style>
+
+
+
+
+
+    
+
+    
+
+    
+        <script src="https://cdn.jsdelivr.net/npm/psl/dist/psl.min.js"></script></head><body class="lang-en theme-dark"><div id="wrapper-sevio-6a5e02ca-fbe0-4fbf-8db9-e7032ee9cc78" style="position: fixed; bottom: 0px; left: 50%; transform: translateX(-50%); display: inline-block; width: 728px; height: 90px; z-index: 1;">
+        <button id="close-ad-2" style="padding: 0; position: absolute; top: -10px; right: -10px; background: rgba(0,0,0,0.5); color: #fff; border: none; cursor: pointer; font-size: 14px; width: 20px; height: 20px; line-height: 20px; border-radius: 50%; display: none;">
+          X
+        </button>
+      
+        <script async="" src="https://cdn.adx.ws/scripts/loader.js"></script>
+        <div class="sevioads" data-zone="6a5e02ca-fbe0-4fbf-8db9-e7032ee9cc78" id="6a5e02ca-fbe0-4fbf-8db9-e7032ee9cc78_id_0"></div>
+        <script>
+          window.sevioads = window.sevioads || [];
+          var sevioads_preferences = [];
+          sevioads_preferences[0] = {};
+          sevioads_preferences[0].zone = "6a5e02ca-fbe0-4fbf-8db9-e7032ee9cc78";
+          sevioads_preferences[0].adType = "banner";
+          sevioads_preferences[0].inventoryId = "4e522bf1-8cd3-4e8c-9ed9-d47e83f5b99f";
+          sevioads_preferences[0].accountId = "7a73ee77-b7c3-404c-a97f-471588d6c20f";
+          sevioads.push(sevioads_preferences);
+        </script>
+      </div>
+      
+      <script>
+      (function(){
+        const adDiv = document.getElementById("wrapper-sevio-6a5e02ca-fbe0-4fbf-8db9-e7032ee9cc78");
+        const ad = document.querySelector('div[data-zone="6a5e02ca-fbe0-4fbf-8db9-e7032ee9cc78"]');
+        const closeButton = document.getElementById("close-ad-2");
+      
+        function setAdStyle() {
+          if (window.innerWidth >= 728) {
+            adDiv.style.width = "728px";
+            adDiv.style.height = "90px";
+          } else {
+            adDiv.style.width = "320px";
+            adDiv.style.height = "100px";
+          }
+        }
+      
+        closeButton.onclick = function() {
+          adDiv.style.display = "none";
+        };
+      
+        // Observe ad content loading
+        function observeAdLoad() {
+          const observer = new MutationObserver(() => {
+            if (ad && ad.innerHTML.trim().length > 0) {
+              // Show close button for all screen sizes
+              closeButton.style.display = "block";
+              observer.disconnect();
+            }
+          });
+      
+          observer.observe(ad, { childList: true, subtree: true });
+        }
+      
+        // Prevent showing close button if ad is blocked
+        function detectAdBlocker() {
+          const bait = document.createElement('div');
+          bait.className = "adsbox";
+          bait.style.height = '1px';
+          bait.style.display = 'block';
+          document.body.appendChild(bait);
+      
+          setTimeout(() => {
+            if (bait.offsetHeight === 0) {
+              closeButton.style.display = 'none'; // likely adblocker is active
+            }
+            document.body.removeChild(bait);
+          }, 50);
+        }
+      
+        setAdStyle();
+        window.addEventListener("resize", setAdStyle);
+        window.addEventListener("load", () => {
+          observeAdLoad();
+          detectAdBlocker();
+        });
+      })();
+      </script>
+
+        <!--
+        <script defer src="https://coinzillatag.com/lib/sticky.js"></script>
+        <script>window.coinzilla_sticky = window.coinzilla_sticky || [];function czilla(){coinzilla_sticky.push(arguments);}czilla('285d4d0d5f53f3146');</script>
+        -->
+    
+
+    
+
+
+
+    
+
+    
+    
+
+    
+
+
+<link rel="me" href="https://cryptodon.lol/@coinalyze">
+<link rel="me" href="https://mastodon.social/@coinalyze">
+<link rel="me" href="https://mastodon.cloud/@coinalyze">
+
+
+    
+        <script>window.REQ_KEY = '5bda388d-e5c8-48e5-b1f7-f37a7e946fc5';</script>
+        
+    <div class="body-wrapper">
+        <div class="nav-wrapper">
+            <div class="nav-desktop">
+    <div class="section-logo">
+        <a href="/"><img src="/logo-symbol.png" alt="Logo"><span class="brand-name">Coinalyze</span></a>
+    </div>
+    
+    <div class="sep"></div>
+    
+    <div class="section-search">
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12.27 12.83">
+                <defs><style>.cls-1,.cls-2{fill:none;stroke:var(--gs-search-icon-color);stroke-miterlimit:10;}.cls-2{stroke-linecap:round;}</style></defs>
+                <g id="Layer_2" data-name="Layer 2">
+                    <g id="Layer_2-2" data-name="Layer 2"><circle class="cls-1" cx="4.5" cy="4.5" r="4"></circle><line class="cls-2" x1="7.12" y1="7.68" x2="11.77" y2="12.33"></line></g>
+                </g>
+            </svg>
+        </div>
+        <div class="symbol-search-global">
+            <input type="text" placeholder="Search" autocomplete="off" autocapitalize="off" style=""><ul class="symbol-search"></ul>
+        </div>
+        <script>
+            document.addEventListener("jqueryReady", function() {
+
+                Common.globalSearch({
+                    symbolsInfo: Common.symbolsInfoForSearch,
+                    coinInfo: Common.coinInfo,
+                    jqInput: $('.symbol-search-global input'),
+                    jqUL: $('.symbol-search-global ul'),
+                    adItem: JSON.parse(`{"url":"https://partner.bybit.com/b/coinalyze","text":"Trade on ByBit, Up to <strong>$30,000 Bonus!</strong>"}`),
+                    onSelect: function (item) {                        
+                        if(item.type === 'ad') {
+                            Common.gaEvent('ad-click', 'ad-click', 'ad-click.symbol-search-menu-desktop');
+                            window.open(item.url, '_blank');
+                        } else {
+                            document.location = item.url;
+                        }
+                        
+                    }
+                });
+                
+                Common.globalSearchNoFocus({
+                    elmGlobalSearchInput: document.querySelector('.symbol-search-global>input')
+                });
+
+            });
+
+            
+        </script>
+    </div>
+    
+    <div class="section-main-items">
+        
+        <a style="color: var(--ad-free-version-text-color); border: 1px solid var(--ad-free-version-border-color); border-radius: 3px; padding:1px 5px" href="/subscription/ad-free-version/">Ad-Free Version</a>
+                            
+        
+        <a href="/">Home</a>
+
+        <a href="/markets/">Markets</a>
+
+        <a href="http://app.coinmarketman.com/hypertracker?ref=ht-coinalyze" target="_blank" rel="nofollow">Hyperliquid Data</a>
+
+        <div class="position-relative display-inline" style="z-index: 110;">
+            <a href="javascript:void(-1)" class="futures-data">Futures data</a>
+            <div class="hover-menu futures-data-hover-menu" style="position: absolute; top: 31px; z-index: 110; left: 0px;">
+                <div class="content">
+                    <ul>
+                        <li><a href="/">Aggregated data (Coins)</a></li>
+                        <li><a href="/funding-rates/">Funding Rates</a></li>
+                        <li><a href="/futures-data/">Individual charts</a></li>
+                        <li><a href="/futures-data/global-charts/">Global charts</a></li>
+                    </ul>
+                </div>
+            </div>
+            <script>
+            document.addEventListener("jqueryReady", function() {
+                Common.topHoverMenu({
+                    jqTrigger: $('.nav-desktop a.futures-data'),
+                    jqMenu: $('.nav-desktop .futures-data-hover-menu'),
+                    menuDesiredTop: 45
+                });
+            });
+            </script>
+        <div style="position: absolute; left: 0px; top: 16px; width: 128.641px; height: 15px;"></div></div>
+
+        
+            <a href="/alerts/">Alerts</a>
+                
+
+
+        <div class="position-relative display-inline" style="z-index: 110;">
+            <a href="javscript:void(-1)" class="coin-price-analysis">TA</a>
+            <div class="hover-menu coins-price-analysis-hover-menu" style="position: absolute; top: 31px; z-index: 110; left: 0px;">
+                <div class="content">
+                    <div class="coins">
+                        
+                            <a href="/bitcoin/technical-analysis/">Bitcoin</a>
+                            
+                            <a href="/ethereum/technical-analysis/">Ethereum</a>
+                            
+                            <a href="/binance-coin/technical-analysis/">BNB</a>
+                            
+                            <a href="/ripple/technical-analysis/">Ripple</a>
+                            
+                            <a href="/tron/technical-analysis/">Tron</a>
+                            
+                            <a href="/dogecoin/technical-analysis/">Dogecoin</a>
+                            
+                            <a href="/cardano/technical-analysis/">Cardano</a>
+                            
+                            <a href="/bitcoin-cash/technical-analysis/">Bitcoin Cash</a>
+                            
+                            <a href="/chainlink/technical-analysis/">Chainlink</a>
+                            
+                            <a href="/monero/technical-analysis/">Monero</a>
+                            
+                            <a href="/stellar-lumens/technical-analysis/">Stellar Lumens</a>
+                            
+                            <a href="/zcash/technical-analysis/">ZCash</a>
+                            
+                            <a href="/unus-sed-leo/technical-analysis/">UNUS SED LEO</a>
+                            
+                            <a href="/litecoin/technical-analysis/">Litecoin</a>
+                            
+                            <a href="/hedera-hashgraph/technical-analysis/">Hedera</a>
+                            
+                            <a href="/crypto-com-coin/technical-analysis/">Cronos</a>
+                            
+                            <a href="/polkadot/technical-analysis/">Polkadot</a>
+                            
+                            <a href="/ethereum-classic/technical-analysis/">Ethereum Classic</a>
+                            
+                            <a href="/algorand/technical-analysis/">Algorand</a>
+                            
+                            <a href="/cosmos/technical-analysis/">Cosmos</a>
+                            
+                            <a href="/quant/technical-analysis/">Quant</a>
+                            
+                            <a href="/vechainthor/technical-analysis/">VeChain</a>
+                            
+                            <a href="/tezos/technical-analysis/">Tezos</a>
+                            
+                            <a href="/dash/technical-analysis/">Dash</a>
+                            
+                            <a href="/the-graph/technical-analysis/">The Graph</a>
+                            
+                            <a href="/bittorrent/technical-analysis/">BitTorrent</a>
+                            
+                            <a href="/iota/technical-analysis/">Iota</a>
+                            
+                            <a href="/bitcoin-sv/technical-analysis/">Bitcoin SV</a>
+                            
+                            <a href="/basic-attention-token/technical-analysis/">Basic Attention Token</a>
+                            
+                            <a href="/chiliz/technical-analysis/">Chiliz</a>
+                            
+                            <a href="/theta/technical-analysis/">THETA</a>
+                            
+                            <a href="/decred/technical-analysis/">Decred</a>
+                            
+                            <a href="/neo/technical-analysis/">NEO</a>
+                            
+                            <a href="/decentraland/technical-analysis/">Decentraland</a>
+                            
+                            <a href="/luna/technical-analysis/">Terra</a>
+                            
+                            <a href="/golem/technical-analysis/">Golem</a>
+                            
+                            <a href="/elrond/technical-analysis/">MultiversX</a>
+                            
+                            <a href="/ftx-token/technical-analysis/">FTX Token</a>
+                            
+                            <a href="/beam/technical-analysis/">Beam</a>
+                            
+                            <a href="/qtum/technical-analysis/">Qtum</a>
+                            
+                            <a href="/zencash/technical-analysis/">Horizen</a>
+                            
+                            <a href="/ravencoin/technical-analysis/">Ravencoin</a>
+                            
+                            <a href="/0x/technical-analysis/">0x</a>
+                            
+                            <a href="/digibyte/technical-analysis/">DigiByte</a>
+                            
+                            <a href="/nano/technical-analysis/">Nano</a>
+                            
+                            <a href="/zilliqa/technical-analysis/">Zilliqa</a>
+                            
+                            <a href="/holo/technical-analysis/">Holo</a>
+                            
+                            <a href="/verge/technical-analysis/">Verge</a>
+                            
+                            <a href="/waves/technical-analysis/">Waves</a>
+                            
+                            <a href="/siacoin/technical-analysis/">Siacoin</a>
+                            
+                            <a href="/loopring/technical-analysis/">Loopring</a>
+                            
+                            <a href="/aelf/technical-analysis/">aelf</a>
+                            
+                            <a href="/iotex/technical-analysis/">IoTeX</a>
+                            
+                            <a href="/status/technical-analysis/">Status</a>
+                            
+                            <a href="/ardor/technical-analysis/">Ardor</a>
+                            
+                            <a href="/icon/technical-analysis/">Icon</a>
+                            
+                            <a href="/mask-network/technical-analysis/">Mask Network</a>
+                            
+                            <a href="/rlc/technical-analysis/">iExec RLC</a>
+                            
+                            <a href="/enjin-coin/technical-analysis/">Enjin Coin</a>
+                            
+                            <a href="/ontology/technical-analysis/">Ontology</a>
+                            
+                            <a href="/storj/technical-analysis/">Storj</a>
+                            
+                            <a href="/ark/technical-analysis/">Ark</a>
+                            
+                            <a href="/iostoken/technical-analysis/">IOST</a>
+                            
+                            <a href="/power-ledger/technical-analysis/">Power Ledger</a>
+                            
+                            <a href="/wootrade/technical-analysis/">WOO Network</a>
+                            
+                            <a href="/kyber-network/technical-analysis/">Kyber Network Crystal</a>
+                            
+                            <a href="/lisk/technical-analysis/">Lisk</a>
+                            
+                            <a href="/steem/technical-analysis/">Steem</a>
+                            
+                            <a href="/wax/technical-analysis/">WAX</a>
+                            
+                            <a href="/rif-token/technical-analysis/">RIF Token</a>
+                            
+                            <a href="/wink-tronbet/technical-analysis/">WINk</a>
+                            
+                            <a href="/bitcoin-diamond/technical-analysis/">Bitcoin Diamond</a>
+                            
+                            <a href="/funfair/technical-analysis/">FUNToken</a>
+                            
+                            <a href="/adex/technical-analysis/">AdEx</a>
+                            
+                            <a href="/wanchain/technical-analysis/">Wanchain</a>
+                            
+                            <a href="/nem/technical-analysis/">NEM</a>
+                            
+                            <a href="/omisego/technical-analysis/">OmiseGO</a>
+                            
+                            <a href="/bitcoin-gold/technical-analysis/">Bitcoin Gold</a>
+                            
+                            <a href="/augur/technical-analysis/">Augur</a>
+                            
+                            <a href="/monacoin/technical-analysis/">MonaCoin</a>
+                            
+                            <a href="/ren/technical-analysis/">Ren</a>
+                            
+                            <a href="/komodo/technical-analysis/">Komodo</a>
+                            
+                            <a href="/bitshares/technical-analysis/">BitShares</a>
+                            
+                            <a href="/v-systems/technical-analysis/">V Systems</a>
+                            
+                            <a href="/bytom/technical-analysis/">Bytom</a>
+                            
+                            <a href="/nuls/technical-analysis/">Nuls</a>
+                            
+                            <a href="/solve/technical-analysis/">SOLVE</a>
+                            
+                            <a href="/mithril/technical-analysis/">Mithril</a>
+                            
+                            <a href="/maker/technical-analysis/">Maker</a>
+                            
+                            <a href="/eos/technical-analysis/">EOS</a>
+                            
+                            <a href="/aion/technical-analysis/">Aion</a>
+                            
+                            <a href="/hedgetrade/technical-analysis/">HedgeTrade</a>
+                            
+                            <a href="/gxchain/technical-analysis/">GXChain</a>
+                            
+                            <a href="/nebulas-token/technical-analysis/">Nebulas</a>
+                            
+                            <a href="/tomochain/technical-analysis/">TomoChain</a>
+                            
+                            <a href="/fantom/technical-analysis/">Fantom</a>
+                            
+                            <a href="/matic-network/technical-analysis/">Polygon</a>
+                            
+                            <a href="/bread/technical-analysis/">Bread</a>
+                            
+                            <a href="/metaverse-etp/technical-analysis/">Metaverse ETP</a>
+                            
+                            <a href="/maidsafecoin/technical-analysis/">MaidSafeCoin</a>
+                            
+                            <a href="/qash/technical-analysis/">QASH</a>
+                            
+                            <a href="/waltonchain/technical-analysis/">Waltonchain</a>
+                            
+                            <a href="/fetch/technical-analysis/">Fetch.ai</a>
+                                                    
+                    </div>
+                    <div class="orderby">
+                        Order by: <input checked="checked" type="radio" name="coin-picker-orderby" id="coin-picker-orderby-marketcap" value="marketcap" style=""><label for="coin-picker-orderby-marketcap">Market cap</label><input type="radio" name="coin-picker-orderby" id="coin-picker-orderby-name" value="name" style=""><label for="coin-picker-orderby-name">Name</label>
+                    </div>                    
+                </div>
+            </div>            
+        <div style="position: absolute; left: 0px; top: 16px; width: 64.5625px; height: 15px;"></div></div>
+        
+        <script>
+            document.addEventListener("jqueryReady", function() {
+                                
+                
+                (function (coinsForMenu) {
+                    // make hover menu
+                    Common.topHoverMenu({
+                        jqTrigger: $('.nav-desktop .coin-price-analysis'),
+                        jqMenu: $('.nav-desktop .coins-price-analysis-hover-menu'),
+                        //menuAlign: 'right',
+                        menuDesiredTop: 45
+                    });
+                    
+                    var coinsForMenuOriginal = coinsForMenu.slice(0);
+                    $('.coins-price-analysis-hover-menu .orderby input').on('click', function () {
+                        var orderBy = $(this).val();
+                        var items = [];
+                        if(orderBy === 'marketcap') {
+                            items = coinsForMenuOriginal;
+                        } else {
+                            items = coinsForMenu.sort(function (a, b) {
+                                var nameA = a.name.toUpperCase();
+                                var nameB = b.name.toUpperCase();
+                                if (nameA < nameB) {
+                                    return -1;
+                                }
+                                if (nameA > nameB) {
+                                    return 1;
+                                }
+                                return 0;                            
+                            });
+                        }
+
+                        var html = '';
+                        for(var i=0; i<items.length; i++) {
+                            var coin = items[i];
+                            html += '<a href="/coin/' + coin.url_name + '/">' + coin.name + '</a>';
+                        }
+
+                        $('.coins-price-analysis-hover-menu .coins').html(html);
+
+                    });
+                })(JSON.parse('[{"name":"Bitcoin","url_name":"bitcoin","coin_display":"BTC"},{"name":"Ethereum","url_name":"ethereum","coin_display":"ETH"},{"name":"BNB","url_name":"binance-coin","coin_display":"BNB"},{"name":"Ripple","url_name":"ripple","coin_display":"XRP"},{"name":"Tron","url_name":"tron","coin_display":"TRX"},{"name":"Dogecoin","url_name":"dogecoin","coin_display":"DOGE"},{"name":"Cardano","url_name":"cardano","coin_display":"ADA"},{"name":"Bitcoin Cash","url_name":"bitcoin-cash","coin_display":"BCH"},{"name":"Chainlink","url_name":"chainlink","coin_display":"LINK"},{"name":"Monero","url_name":"monero","coin_display":"XMR"},{"name":"Stellar Lumens","url_name":"stellar-lumens","coin_display":"XLM"},{"name":"ZCash","url_name":"zcash","coin_display":"ZEC"},{"name":"UNUS SED LEO","url_name":"unus-sed-leo","coin_display":"LEO"},{"name":"Litecoin","url_name":"litecoin","coin_display":"LTC"},{"name":"Hedera","url_name":"hedera-hashgraph","coin_display":"HBAR"},{"name":"Cronos","url_name":"crypto-com-coin","coin_display":"CRO"},{"name":"Polkadot","url_name":"polkadot","coin_display":"DOT"},{"name":"Ethereum Classic","url_name":"ethereum-classic","coin_display":"ETC"},{"name":"Algorand","url_name":"algorand","coin_display":"ALGO"},{"name":"Cosmos","url_name":"cosmos","coin_display":"ATOM"},{"name":"Quant","url_name":"quant","coin_display":"QNT"},{"name":"VeChain","url_name":"vechainthor","coin_display":"VET"},{"name":"Tezos","url_name":"tezos","coin_display":"XTZ"},{"name":"Dash","url_name":"dash","coin_display":"DASH"},{"name":"The Graph","url_name":"the-graph","coin_display":"GRT"},{"name":"BitTorrent","url_name":"bittorrent","coin_display":"BTT"},{"name":"Iota","url_name":"iota","coin_display":"IOTA"},{"name":"Bitcoin SV","url_name":"bitcoin-sv","coin_display":"BSV"},{"name":"Basic Attention Token","url_name":"basic-attention-token","coin_display":"BAT"},{"name":"Chiliz","url_name":"chiliz","coin_display":"CHZ"},{"name":"THETA","url_name":"theta","coin_display":"THETA"},{"name":"Decred","url_name":"decred","coin_display":"DCR"},{"name":"NEO","url_name":"neo","coin_display":"NEO"},{"name":"Decentraland","url_name":"decentraland","coin_display":"MANA"},{"name":"Terra","url_name":"luna","coin_display":"LUNA"},{"name":"Golem","url_name":"golem","coin_display":"GNT"},{"name":"MultiversX","url_name":"elrond","coin_display":"EGLD"},{"name":"FTX Token","url_name":"ftx-token","coin_display":"FTT"},{"name":"Beam","url_name":"beam","coin_display":"BEAM"},{"name":"Qtum","url_name":"qtum","coin_display":"QTUM"},{"name":"Horizen","url_name":"zencash","coin_display":"ZEN"},{"name":"Ravencoin","url_name":"ravencoin","coin_display":"RVN"},{"name":"0x","url_name":"0x","coin_display":"ZRX"},{"name":"DigiByte","url_name":"digibyte","coin_display":"DGB"},{"name":"Nano","url_name":"nano","coin_display":"NANO"},{"name":"Zilliqa","url_name":"zilliqa","coin_display":"ZIL"},{"name":"Holo","url_name":"holo","coin_display":"HOT"},{"name":"Verge","url_name":"verge","coin_display":"XVG"},{"name":"Waves","url_name":"waves","coin_display":"WAVES"},{"name":"Siacoin","url_name":"siacoin","coin_display":"SC"},{"name":"Loopring","url_name":"loopring","coin_display":"LRC"},{"name":"aelf","url_name":"aelf","coin_display":"ELF"},{"name":"IoTeX","url_name":"iotex","coin_display":"IOTX"},{"name":"Status","url_name":"status","coin_display":"SNT"},{"name":"Ardor","url_name":"ardor","coin_display":"ARDR"},{"name":"Icon","url_name":"icon","coin_display":"ICX"},{"name":"Mask Network","url_name":"mask-network","coin_display":"MASK"},{"name":"iExec RLC","url_name":"rlc","coin_display":"RLC"},{"name":"Enjin Coin","url_name":"enjin-coin","coin_display":"ENJ"},{"name":"Ontology","url_name":"ontology","coin_display":"ONT"},{"name":"Storj","url_name":"storj","coin_display":"STORJ"},{"name":"Ark","url_name":"ark","coin_display":"ARK"},{"name":"IOST","url_name":"iostoken","coin_display":"IOST"},{"name":"Power Ledger","url_name":"power-ledger","coin_display":"POWR"},{"name":"WOO Network","url_name":"wootrade","coin_display":"WOO"},{"name":"Kyber Network Crystal","url_name":"kyber-network","coin_display":"KNC"},{"name":"Lisk","url_name":"lisk","coin_display":"LSK"},{"name":"Steem","url_name":"steem","coin_display":"STEEM"},{"name":"WAX","url_name":"wax","coin_display":"WAXP"},{"name":"RIF Token","url_name":"rif-token","coin_display":"RIF"},{"name":"WINk","url_name":"wink-tronbet","coin_display":"WIN"},{"name":"Bitcoin Diamond","url_name":"bitcoin-diamond","coin_display":"BCD"},{"name":"FUNToken","url_name":"funfair","coin_display":"FUN"},{"name":"AdEx","url_name":"adex","coin_display":"ADX"},{"name":"Wanchain","url_name":"wanchain","coin_display":"WAN"},{"name":"NEM","url_name":"nem","coin_display":"XEM"},{"name":"OmiseGO","url_name":"omisego","coin_display":"OMG"},{"name":"Bitcoin Gold","url_name":"bitcoin-gold","coin_display":"BTG"},{"name":"Augur","url_name":"augur","coin_display":"REP"},{"name":"MonaCoin","url_name":"monacoin","coin_display":"MONA"},{"name":"Ren","url_name":"ren","coin_display":"REN"},{"name":"Komodo","url_name":"komodo","coin_display":"KMD"},{"name":"BitShares","url_name":"bitshares","coin_display":"BTS"},{"name":"V Systems","url_name":"v-systems","coin_display":"VSYS"},{"name":"Bytom","url_name":"bytom","coin_display":"BTM"},{"name":"Nuls","url_name":"nuls","coin_display":"NULS"},{"name":"SOLVE","url_name":"solve","coin_display":"SOLVE"},{"name":"Mithril","url_name":"mithril","coin_display":"MITH"},{"name":"Maker","url_name":"maker","coin_display":"MKR"},{"name":"EOS","url_name":"eos","coin_display":"EOS"},{"name":"Aion","url_name":"aion","coin_display":"AION"},{"name":"HedgeTrade","url_name":"hedgetrade","coin_display":"HEDG"},{"name":"GXChain","url_name":"gxchain","coin_display":"GXC"},{"name":"Nebulas","url_name":"nebulas-token","coin_display":"NAS"},{"name":"TomoChain","url_name":"tomochain","coin_display":"TOMO"},{"name":"Fantom","url_name":"fantom","coin_display":"FTM"},{"name":"Polygon","url_name":"matic-network","coin_display":"MATIC"},{"name":"Bread","url_name":"bread","coin_display":"BRD"},{"name":"Metaverse ETP","url_name":"metaverse-etp","coin_display":"ETP"},{"name":"MaidSafeCoin","url_name":"maidsafecoin","coin_display":"MAID"},{"name":"QASH","url_name":"qash","coin_display":"QASH"},{"name":"Waltonchain","url_name":"waltonchain","coin_display":"WTC"},{"name":"Fetch.ai","url_name":"fetch","coin_display":"FET"}]'));
+                
+            });
+        </script>
+    </div>
+    
+    <div class="sep"></div>
+        
+    <div class="section-second-items">
+        <!--
+        <a href="/donate/">Donate</a>
+        <a href="/contact/">Contact</a>
+        <a href="/sitemap/">Sitemap</a>
+        -->
+        <div class="position-relative display-inline" style="z-index: 110;">
+            <a href="javascript:void(-1)" class="more">More</a>
+            <div class="hover-menu more-hover-menu" style="position: absolute; top: 31px; z-index: 110; left: 0px;">
+                <div class="content">
+                    <ul>
+                        <li><a href="https://api.coinalyze.net/v1/doc/">API</a></li>
+                            
+                        <li><a href="/candlestick-patterns/">Candlestick Patterns</a></li>
+                        
+                        <style>
+                            /*
+                            #blog-menu-item {
+                                padding-right: 10px;
+                            }
+                            #blog-menu-item::after {
+                                content: 'New';
+                                font-size: 12px;
+                                color: #e12c2c;
+                                position: absolute;
+                                top:10px;
+                                padding-left: 5px;
+                            }
+                            */
+                        </style>
+                        <li><a id="blog-menu-item" href="/blog/">Blog</a></li>
+                                
+
+                        
+
+                        <li><a href="/donate/">Donate</a></li>
+                        <li><a href="/contact/">Contact</a></li>
+                        <li><a href="/sitemap/">Sitemap</a></li>
+                        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+                        <li><a href="/disclaimer/">Disclaimer</a></li>
+                        <li id="theme-selection">
+                            <div>Theme:</div>
+                            <div>
+                                <form>
+                                    <input type="radio" id="theme-dark" name="theme" value="dark" checked="" style=""><label for="theme-dark">Dark</label>
+                                    <input type="radio" id="theme-light" name="theme" value="light" style=""><label for="theme-light">Light</label>
+                                    <input type="radio" id="theme-accessibility" name="theme" value="accessibility" style=""><label for="theme-accessibility">Accessibility</label>
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <script>
+            document.querySelector("#theme-selection").addEventListener('click', function (event) {
+                if (event.target && event.target.matches("input[type='radio']")) {
+                    Common.changeTheme(event.target.value, '.coinalyze.net');
+                }
+            });                
+
+            document.addEventListener("jqueryReady", function() {
+                Common.topHoverMenu({
+                    jqTrigger: $('.nav-desktop a.more'),
+                    jqMenu: $('.nav-desktop .more-hover-menu'),
+                    menuDesiredTop: 45,
+                    menuAlign: 'left'
+                });
+            });
+            </script>
+        <div style="position: absolute; left: 0px; top: 16px; width: 79.6094px; height: 15px;"></div></div>
+        
+        <!--
+        <div class="position-relative display-inline">
+            
+            <a href="javascript:void(-1)" class="share-item">
+
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="11px"
+                         height="10px" viewBox="0 0 11 10" enable-background="new 0 0 11 10" xml:space="preserve">
+                <g id="Layer_1_share">
+                </g>
+                <g id="Layer_3_share">
+                </g>
+                <g id="Layer_4_share">
+                </g>
+                <g id="Layer_2_share">
+                        <g>
+                                <g>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="var(--color-text-darker)" d="M6.929,5.174c-0.492,0-0.962-0.026-1.427,0.007
+                                                C4.876,5.225,4.237,5.256,3.628,5.396c-1.125,0.26-1.751,0.991-1.87,2.142C1.703,8.07,1.75,8.613,1.737,9.151
+                                                c-0.001,0.097-0.034,0.234-0.103,0.28C1.522,9.508,1.421,9.403,1.374,9.3C0.923,8.298,0.459,7.298,0.503,6.159
+                                                C0.53,5.451,0.639,4.761,1.013,4.14c0.427-0.708,1.07-1.133,1.833-1.406c0.952-0.34,1.942-0.403,2.94-0.41
+                                                c0.318-0.002,0.638-0.006,0.955,0.002c0.144,0.004,0.193-0.037,0.19-0.186C6.923,1.75,6.931,1.36,6.929,0.97
+                                                C6.927,0.793,6.972,0.644,7.146,0.572c0.173-0.073,0.311-0.005,0.437,0.121c0.919,0.922,1.841,1.839,2.761,2.759
+                                                c0.206,0.207,0.21,0.385,0.005,0.59C9.42,4.972,8.487,5.899,7.56,6.828C7.442,6.946,7.309,6.99,7.151,6.93
+                                                C6.995,6.868,6.929,6.744,6.929,6.577c0.002-0.391,0-0.781,0-1.171C6.929,5.335,6.929,5.267,6.929,5.174z"/>
+                                </g>
+                        </g>
+                </g>
+                </svg>
+
+                <span>Share</span>
+            </a>
+            
+            <div class="hover-menu share-hover-menu">
+                <div class="content">
+                    <ul>
+                        <li><a data-network="facebook" href="javascript:void(-1)">Share on Facebook</a></li>
+                        <li><a data-network="reddit" href="javascript:void(-1)">Share on Reddit</a></li>
+                        <li><a data-network="twitter" href="javascript:void(-1)">Share on Twitter</a></li>
+                    </ul>
+                </div>
+            </div>            
+        </div>
+        
+        <script>
+            var _sharePageTitle = encodeURIComponent(document.title);
+            document.addEventListener("jqueryReady", function() {
+                $('.nav-desktop .section-second-items .share-item').on('mouseover', function () {
+                    $(this).find('path').css('fill', 'var(--color-orange)');
+                }).on('mouseout', function () {
+                    $(this).find('path').css('fill', 'var(--color-text-darker)');
+                });
+                
+                
+                Common.topHoverMenu({
+                    jqTrigger: $('.nav-desktop .share-item'),
+                    jqMenu: $('.nav-desktop .share-hover-menu'),
+                    menuDesiredTop: 45,
+                    menuAlign: 'left'
+                });
+                
+                
+                function popupTopLeft(w, h) {
+                    // Fixes dual-screen position                         Most browsers      Firefox
+                    var dualScreenLeft = window.screenLeft !== undefined ? window.screenLeft : window.screenX;
+                    var dualScreenTop = window.screenTop !== undefined ? window.screenTop : window.screenY;
+
+                    var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+                    var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+                    var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+                    var top = ((height / 2) - (h / 2)) + dualScreenTop;
+                    
+                    return {
+                        top: top,
+                        left: left
+                    };
+                }                
+                
+                $('.share-hover-menu a').on('click', function () {
+                    var network = $(this).attr('data-network');
+                    var pageUrl = document.location.href;
+                    
+                    var url;
+                    if(network === 'facebook') {
+                        url = 'https://facebook.com/sharer/sharer.php?u=' + pageUrl;
+                    } else if(network === 'reddit') {
+                        url = 'https://www.reddit.com/submit?url=' + pageUrl + '&title=' + _sharePageTitle;
+                    } else if (network === 'twitter') {
+                        url = 'https://twitter.com/share?url=' + pageUrl + '&text=' + _sharePageTitle;
+                    }
+                    
+                    var w = 800;
+                    var h = 550;
+                    var topLeft = popupTopLeft(w, h);
+                    
+                    Common.gaEvent('share', 'share-from-topmenu', 'share-network-' + network);
+                    Common.cookie.set('user_has_shared', '1', { expires: 365, domain: '.coinalyze.net' });
+
+                    window.open(url, null, "width=" + w + ", height=" + h + ", top=" + topLeft.top + ", left=" + topLeft.left + ", location=0, menubar=0, resizeable=0, scrollbars=0, status=0, titlebar=0, toolbar=0");
+                });           
+            });
+        </script>
+        -->
+        <div class="position-relative display-inline" style="z-index: 110;">
+            <a href="javascript:void(-1)" class="language">English</a>
+            <div class="hover-menu language-hover-menu" style="position: absolute; top: 31px; z-index: 110; left: 0px;">
+                <div class="content">
+                    <ul>
+                        
+                            <li><a href="https://fr.coinalyze.net/bitcoin/funding-rate/">Français</a></li>
+                            
+                            <li><a href="https://ru.coinalyze.net/bitcoin/funding-rate/">Русский</a></li>
+                            
+                            <li><a href="https://de.coinalyze.net/bitcoin/funding-rate/">Deutsch</a></li>
+                            
+                            <li><a href="https://ko.coinalyze.net/bitcoin/funding-rate/">한국어</a></li>
+                            
+                            <li><a href="https://tr.coinalyze.net/bitcoin/funding-rate/">Türkçe</a></li>
+                            
+                            <li><a href="https://nl.coinalyze.net/bitcoin/funding-rate/">Nederlands</a></li>
+                            
+                            <li><a href="https://br.coinalyze.net/bitcoin/funding-rate/">Português (BR)</a></li>
+                            
+                            <li><a href="https://es.coinalyze.net/bitcoin/funding-rate/">Español</a></li>
+                            
+                            <li><a href="https://jp.coinalyze.net/bitcoin/funding-rate/">日本語</a></li>
+                            
+                    </ul>
+                </div>
+            </div>
+            <script>
+            document.addEventListener("jqueryReady", function() {
+                Common.topHoverMenu({
+                    jqTrigger: $('.nav-desktop a.language'),
+                    jqMenu: $('.nav-desktop .language-hover-menu'),
+                    menuDesiredTop: 45,
+                    menuAlign: 'left'
+                });
+            });
+            </script>            
+        <div style="position: absolute; left: 0px; top: 16px; width: 93.625px; height: 15px;"></div></div>
+        
+    </div>
+    <div>&nbsp;</div>
+    <div class="section-user-items">
+        
+        <a href="javascript:void(-1)" class="login">Log in</a> / <a href="javascript:void(-1)" class="singup">Sign up</a>
+        <script>
+            document.addEventListener("jqueryReady", function() {
+                $('.nav-desktop .section-user-items a.login').on('click', function () {
+                    Common.loadLoginWidget({
+                        onLoginSuccess: function () {
+                            //document.location = '/';
+                            location.reload(true);
+                        }
+                    });        
+                });
+
+
+                $('.nav-desktop .section-user-items a.singup').on('click', function () {
+                    Common.loadSignupWidget({
+                        widgetParams: {
+                            reg_from: Common.pageUrlPath(),
+                            reg_redir_to: Common.pageUrlPath(),
+                            reg_redir_showmodal: false
+                        },
+                        onSignupSuccess: function () {
+                            Common.gaEvent('signup', 'signup', 'signup.menu');
+                        }
+                    });
+                });                
+            });
+        </script>
+        
+    </div>
+</div>
+<script>
+    document.addEventListener("jqueryReady", function() {
+        //$('.nav-desktop').css('visibility', 'visible');
+    });
+</script>
+
+
+
+        
+        </div>
+
+        
+
+        <div class="main-content">
+            
+<style>
+    .phone-version .main-content {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+
+
+
+    .coin-futures-data {
+        font-size: 14px;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        box-sizing: border-box;
+        margin-bottom: 50px;
+        align-items: center;
+        max-width: 100%;
+        width: 1500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .coin-futures-data div.page-title {
+        margin: 20px 0px 32px 0px;
+        width: 100%;
+        text-align: center;
+        position: relative;        
+    }
+
+    .coin-futures-data div.back-to-coins {
+        position: absolute;
+        display: inline-flex;
+        left: 0;
+        top: 25%;
+        align-items: center;
+    }
+    .phone-version .coin-futures-data div.back-to-coins {
+        top: -25px; 
+        left:20px;
+    }
+
+
+    .coin-futures-data div.back-to-coins>a>span:first-child {
+        width: 14px;
+        height: 12px;
+        box-sizing: border-box;
+        background-image: var(--icon-arrow-left);
+        margin-right: 9px;
+    }
+    .coin-futures-data div.back-to-coins:hover>a>span:first-child {
+        width: 14px;
+        height: 12px;
+        box-sizing: border-box;
+        background-image: var(--icon-arrow-left-hover);
+    }
+
+    .coin-futures-data div.back-to-coins>a {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        color: var(--color-orange);
+    }
+    .coin-futures-data div.back-to-coins:hover>a {
+        text-decoration: none;
+        color: var(--color-orange);
+    }
+
+
+    .coin-futures-data .page-title>h1 {
+        padding: 0px;
+        margin: 0px;
+        font-size: 24px;
+        font-weight: normal;
+    }
+    .coin-futures-data .page-title>h1>strong {
+        font-weight: 900;
+    }
+
+    .coin-futures-data .navigation {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        border-bottom: 3px solid var(--coin-futures-data-hline-color);
+        margin-bottom: 30px;
+        padding-bottom: 10px;
+        text-transform: uppercase;
+        font-size: 18px;
+    }
+
+    .coin-futures-data .navigation>div {
+        margin-left: 17px;
+        margin-right: 17px;
+        text-align: center;
+    }
+
+    @media (min-width: 500px) {
+        .coin-futures-data .navigation {
+            font-size: 18px;
+            overflow-x: auto;
+        }
+    }
+    @media (max-width: 499px) {
+        .coin-futures-data .navigation {
+            font-size: 14px;
+            overflow-x: auto;
+            justify-content: flex-start;
+        }
+    }
+    @media (max-width: 320px) {
+        .coin-futures-data .navigation>div {
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+    }
+
+    .coin-futures-data .navigation>div>a {
+        text-decoration: none;
+        color: var(--color-text);
+    }
+    .coin-futures-data .navigation>div>a.active, .coin-futures-data .navigation>div>a:hover {
+        color: var(--color-orange);
+    }
+
+
+    .coin-futures-data .sections {
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+    .coin-futures-data .sections>div {
+        margin-bottom: 32px;
+    }
+    .coin-futures-data .sections>div.stats div.body {
+        border: 0px;
+    }
+    
+
+    .coin-futures-data .sections>div div.body {
+        background-color: var(--coin-futures-data-box-background-color);
+        border-radius: 8px 8px 8px 8px;
+        padding: 24px 24px;
+        border: var(--coin-futures-data-box-border);
+    }
+
+    .coin-futures-data .sections>div>h2 {
+        font-size: 14px;
+        font-weight: normal;
+        color: var(--color-text);
+        text-transform: uppercase;
+        margin: 0px 0px 12px 24px;
+    }
+    .coin-futures-data .sections>div>h2>strong {
+        font-weight: bold;
+    }
+
+
+
+    .coin-futures-data .sections .tv-chart #futures-data-tv-chart {
+        height: 700px;
+        border: 1px solid var(--tv-chart-border-color);
+    }
+    .phone-version .coin-futures-data .sections .tv-chart #futures-data-tv-chart {
+        height: 450px;
+    }
+    .phone-version .coin-futures-data .sections .tv-chart .body {
+        padding:10px;
+    }
+
+
+
+    .coin-futures-data .sections .stats h2 {
+        text-transform: none;
+        text-align: center;
+        margin-left: 0px;
+        margin-right: 0px;
+        margin-bottom: 21px;
+        font-size: 24px;
+    }
+
+    .coin-futures-data .sections .stats .body {
+        padding-top: 0px;
+        padding-bottom: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
+        background-color: inherit;
+        border-radius: 0px;
+        overflow-x: auto;
+        padding-bottom: 10px;
+        /*
+        display: flex;
+        justify-content: center;
+        */
+    }
+
+
+    .coin-futures-data #breakdown-per-exchange-chart {
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;       
+    } 
+
+
+    .coin-futures-data .sections .markets>div>div {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .coin-futures-data .sections .markets>div>div>ul {
+        box-sizing: border-box;
+        font-size: 14px;
+        width: 25%;
+        padding: 0px 21px 21px 0px;
+        margin: 0px;
+        list-style: none;
+    }
+    .phone-version .coin-futures-data .sections .markets>div>div>ul {
+        width: 100%;
+    }
+
+
+    .coin-futures-data .sections .markets>div>div>ul>li:first-child {
+        text-transform: uppercase;
+        color: var(--color-text);
+        font-size: 14px;
+        margin-bottom: 13px;
+    }
+    .coin-futures-data .sections .markets>div>div>ul>li {
+        margin: 0px 0px 8px 0px;
+    }
+
+
+    .coin-futures-data .box {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        background-color: var(--coin-futures-data-box-background-color);
+        border-radius: 8px 8px 8px 8px;
+        border: var(--coin-futures-data-box-border);
+        /* padding: 22px 24px; */
+    }
+    .coin-futures-data .box .box-title {
+        white-space: nowrap;
+        font-size: 16px;
+        text-transform: uppercase;
+        text-align: center;
+        border-bottom: 3px solid var(--coin-futures-data-box-title-border-color);
+        padding: 22px 19px;
+    }
+
+    .coin-futures-data .box .box-body {
+        padding: 10px 19px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .coin-futures-data .box .box-row {
+        font-size: 14px;
+        text-align: right;
+        padding: 6px 0px 6px 0px;
+        line-height: 14px;
+    }
+
+
+    .coin-futures-data .box.fr-type {
+        margin-right: 0px;
+        background-color: inherit;
+        border: 0px;
+    }
+    .coin-futures-data .box.fr-type .box-title, .coin-futures-data .box.fr-type .box-body {
+        padding-left: 0px;
+        padding-right: 0px;
+        border-bottom-color: transparent;
+    }
+
+    .coin-futures-data .box.fr-type .box-row {
+        text-transform: uppercase;
+        font-size: 12px;
+        line-height: 14px;
+        white-space: nowrap;
+    }
+
+    .coin-futures-data .box.coin-m {
+        background-color: var(--coin-futures-data-box-coin-m-background-color);
+    }
+    .coin-futures-data .box.coin-m .box-title {
+        border-bottom-color: var(--coin-futures-data-box-coin-m-title-border-color);
+    }
+
+    .coin-futures-data .box-margined-type {
+        text-align: center;
+        background-color: var(--coin-futures-data-box-background-color);
+        border-radius: 8px;
+        font-size: 14px;
+        line-height: 16px;
+        text-transform: uppercase;
+        margin-bottom: 18px;
+        padding: 12px 5px;
+    }
+
+    .coin-futures-data .box-margined-type.coin-m {
+        background-color: var(--coin-futures-data-box-coin-m-background-color);
+    }
+
+    /* table FR */
+
+    .coin-futures-data table.funding-rates {
+        width: 100%;
+        border-collapse:collapse;
+    }
+    .coin-futures-data table.funding-rates td.margined-type-sep {
+        width: 15px;
+    }
+
+    .coin-futures-data table.funding-rates td {
+        padding-right: 10px;
+    }
+
+    .coin-futures-data table.funding-rates tr>td:last-child {
+        padding-right: 0px;
+    }
+    .coin-futures-data .info {
+        font-style: italic;
+        padding-top: 20px;
+        font-size: 14px;
+    }
+
+    .coin-futures-data .fr-normalized-info {
+        font-size: 12px;
+        margin-top: 5px;
+        font-style: italic;
+    }
+
+    .tbnr {
+        margin-top: 5px;
+        height: 90px;
+    }
+
+    .phone-version .tbnr {
+        height: 50px;
+    }
+
+
+   /* MAXIMIZE CHART */
+   .coin-futures-data.maximize-chart{
+        width: auto;
+    }
+   .coin-futures-data.maximize-chart>div:not(.sections) {
+        display: none;
+    }
+    .coin-futures-data.maximize-chart>div.sections>div:not(.tv-chart) {
+        display: none;
+    } 
+    .coin-futures-data.maximize-chart>div.sections>div.tv-chart>*:not(.body) {
+        display: none;
+    }
+
+    .coin-futures-data.maximize-chart>div.sections>div.tv-chart>div.body>*:not(#futures-data-tv-chart) {
+        display: none;
+    }
+    .coin-futures-data.maximize-chart .tv-chart .body {
+        border-radius: 0px;
+        padding: 0px;
+        border: 1px solid #222;
+    }
+
+    .coin-futures-data.maximize-chart div.sections, 
+    .coin-futures-data.maximize-chart div.sections div.tv-chart, 
+    .coin-futures-data.maximize-chart div.sections div.tv-chart div.body,
+    .coin-futures-data.maximize-chart div.sections div.tv-chart div.body #futures-data-tv-chart{
+        height: 100%;
+    }
+    /* END MAXIMIZE CHART */
+</style>
+
+
+
+
+
+<div class="coin-futures-data">
+    
+        <div class="tbnr adwrapper">
+            
+                
+
+                    
+                        <script async="" src="https://cdn.adx.ws/scripts/loader.js"></script>
+                        <div class="sevioads" data-zone="49311513-734b-456c-a9a2-4fd0a270b225" id="49311513-734b-456c-a9a2-4fd0a270b225_id_0"></div>
+                        <script>
+                            window.sevioads = window.sevioads || [];
+                            var sevioads_preferences = [];
+                            sevioads_preferences[0] = {};
+                            sevioads_preferences[0].zone = "49311513-734b-456c-a9a2-4fd0a270b225";
+                            sevioads_preferences[0].adType = "banner";
+                            sevioads_preferences[0].inventoryId = "4e522bf1-8cd3-4e8c-9ed9-d47e83f5b99f";
+                            sevioads_preferences[0].accountId = "7a73ee77-b7c3-404c-a97f-471588d6c20f";
+                            sevioads.push(sevioads_preferences);
+                        </script>        
+                        <!--
+                        <div>
+                            <a class="" href="https://best.sng.link/Dnio2/85hez?_smtype=3" target="_blank" rel="nofollow sponsored"><img src="/best-wallet_728x90_en.jpg"></a>
+                        </div>
+                        -->
+                        
+                        
+                    
+        
+                
+        </div>
+    
+
+    <div class="page-title">
+        <h1><strong>Bitcoin</strong> (BTC)</h1>
+        <div class="back-to-coins"><a href="/"><span></span><span>Coins</span></a></div>
+    </div>
+
+    <div class="navigation">
+        <div><a href="/bitcoin/open-interest/">Open Interest</a></div>
+        <div><a class="active" href="/bitcoin/funding-rate/">Funding Rate</a></div>
+        <div><a href="/bitcoin/liquidations/">Liquidations</a></div>
+        <div><a href="/bitcoin/long-short-ratio/">Long/Short Ratio</a></div>
+        <div><a href="/bitcoin/basis/">Basis</a></div>
+    </div>
+
+    <div class="sections">
+
+        <div class="stats">
+            <h2><strong>BTC Funding Rate</strong> and <strong>Predicted</strong> Funding Rate:</h2>
+            <div class="body">
+
+                <table class="funding-rates">
+                    <tbody>
+                        <tr class="margined-type">
+                            <td></td>
+                            <td colspan="8"><div class="box-margined-type">Stablecoin margined</div></td>
+                            <td class="margined-type-sep"></td>
+                            <td colspan="7"><div class="box-margined-type coin-m">Coin Margined</div></td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="box fr-type">
+                                    <div class="box-title">&nbsp;</div>
+                                    <div class="box-body">
+                                        <div class="box-row">Current:</div>
+                                        <div class="box-row">Predicted:</div>
+                                    </div>
+                                </div>
+                            </td>
+
+                            
+                            <td>
+                                <div class="box">
+                                    <div class="box-title">Binance</div>
+                                    <div class="box-body">
+                                        <div class="box-row green">+0.0055%</div>
+                                        <div class="box-row green">+0.0052%</div>
+                                    </div>
+                                </div>
+                            </td>
+                            
+                            <td>
+                                <div class="box">
+                                    <div class="box-title">BitMEX</div>
+                                    <div class="box-body">
+                                        <div class="box-row green">+0.0100%</div>
+                                        <div class="box-row green">+0.0100%</div>
+                                    </div>
+                                </div>
+                            </td>
+                            
+                            <td>
+                                <div class="box">
+                                    <div class="box-title">Bybit</div>
+                                    <div class="box-body">
+                                        <div class="box-row red">-0.0007%</div>
+                                        <div class="box-row red">-0.0011%</div>
+                                    </div>
+                                </div>
+                            </td>
+                            
+                            <td>
+                                <div class="box">
+                                    <div class="box-title">Huobi</div>
+                                    <div class="box-body">
+                                        <div class="box-row green">+0.0100%</div>
+                                        <div class="box-row ">n/a</div>
+                                    </div>
+                                </div>
+                            </td>
+                            
+                            <td>
+                                <div class="box">
+                                    <div class="box-title">Hyperliquid</div>
+                                    <div class="box-body">
+                                        <div class="box-row green">+0.0086%</div>
+                                        <div class="box-row green">+0.0078%</div>
+                                    </div>
+                                </div>
+                            </td>
+                            
+                            <td>
+                                <div class="box">
+                                    <div class="box-title">Kraken</div>
+                                    <div class="box-body">
+                                        <div class="box-row green">+0.0045%</div>
+                                        <div class="box-row green">+0.0049%</div>
+                                    </div>
+                                </div>
+                            </td>
+                            
+                            <td>
+                                <div class="box">
+                                    <div class="box-title">OKX</div>
+                                    <div class="box-body">
+                                        <div class="box-row red">-0.0046%</div>
+                                        <div class="box-row ">n/a</div>
+                                    </div>
+                                </div>
+                            </td>
+                            
+                            <td>
+                                <div class="box">
+                                    <div class="box-title">WOO X</div>
+                                    <div class="box-body">
+                                        <div class="box-row green">+0.0074%</div>
+                                        <div class="box-row green">+0.0071%</div>
+                                    </div>
+                                </div>
+                            </td>
+                            
+
+                            <td class="margined-type-sep"></td>
+
+                            
+                            <td>
+                                <div class="box coin-m">
+                                    <div class="box-title">Binance</div>
+                                    <div class="box-body">
+                                        <div class="box-row green">+0.0100%</div>
+                                        <div class="box-row green">+0.0100%</div>
+                                    </div>
+                                </div>
+                            </td>
+                            
+                            <td>
+                                <div class="box coin-m">
+                                    <div class="box-title">BitMEX</div>
+                                    <div class="box-body">
+                                        <div class="box-row green">+0.0100%</div>
+                                        <div class="box-row green">+0.0089%</div>
+                                    </div>
+                                </div>
+                            </td>
+                            
+                            <td>
+                                <div class="box coin-m">
+                                    <div class="box-title">Bybit</div>
+                                    <div class="box-body">
+                                        <div class="box-row green">+0.0071%</div>
+                                        <div class="box-row red">-0.0010%</div>
+                                    </div>
+                                </div>
+                            </td>
+                            
+                            <td>
+                                <div class="box coin-m">
+                                    <div class="box-title">Deribit</div>
+                                    <div class="box-body">
+                                        <div class="box-row ">+0.0000%</div>
+                                        <div class="box-row ">n/a</div>
+                                    </div>
+                                </div>
+                            </td>
+                            
+                            <td>
+                                <div class="box coin-m">
+                                    <div class="box-title">Huobi</div>
+                                    <div class="box-body">
+                                        <div class="box-row green">+0.0100%</div>
+                                        <div class="box-row ">n/a</div>
+                                    </div>
+                                </div>
+                            </td>
+                            
+                            <td>
+                                <div class="box coin-m">
+                                    <div class="box-title">Kraken</div>
+                                    <div class="box-body">
+                                        <div class="box-row red">-0.0018%</div>
+                                        <div class="box-row red">-0.0034%</div>
+                                    </div>
+                                </div>
+                            </td>
+                            
+                            <td>
+                                <div class="box coin-m">
+                                    <div class="box-title">OKX</div>
+                                    <div class="box-body">
+                                        <div class="box-row green">+0.0047%</div>
+                                        <div class="box-row ">n/a</div>
+                                    </div>
+                                </div>
+                            </td>
+                            
+
+
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="fr-normalized-info">* All funding rates normalized to 8 hours.</div>
+        </div>
+
+        <div class="tv-chart">
+            <h2><strong>BTC</strong> Aggregated Funding Rate <strong>Chart</strong>:</h2>
+            <div class="body">
+                <div id="futures-data-tv-chart"><iframe id="tradingview_9cfb6" name="tradingview_9cfb6" src="blob:https://coinalyze.net/43a859f0-fcf1-4447-8eb2-9e1abef80e12" data-widget-options="symbol=BTC_AVGPRICE&amp;interval=60&amp;toolbarbg=10151e&amp;widgetbar=%7B%22details%22%3Afalse%2C%22watchlist%22%3Afalse%2C%22news%22%3Afalse%2C%22datawindow%22%3Afalse%2C%22watchlist_settings%22%3A%7B%22default_symbols%22%3A%5B%5D%7D%7D&amp;timeFrames=%5B%7B%22text%22%3A%221D%22%2C%22title%22%3A%221D%22%2C%22resolution%22%3A%225%22%2C%22description%22%3A%221%20day%22%7D%2C%7B%22text%22%3A%227D%22%2C%22title%22%3A%227D%22%2C%22resolution%22%3A%2230%22%2C%22description%22%3A%227%20days%22%7D%2C%7B%22text%22%3A%221M%22%2C%22title%22%3A%221M%22%2C%22resolution%22%3A%2260%22%2C%22description%22%3A%221%20month%22%7D%2C%7B%22text%22%3A%223M%22%2C%22title%22%3A%223M%22%2C%22resolution%22%3A%22240%22%2C%22description%22%3A%223%20months%22%7D%2C%7B%22text%22%3A%226M%22%2C%22title%22%3A%226M%22%2C%22resolution%22%3A%221D%22%2C%22description%22%3A%226%20months%22%7D%2C%7B%22text%22%3A%221Y%22%2C%22title%22%3A%221Y%22%2C%22resolution%22%3A%221D%22%2C%22description%22%3A%221%20year%22%7D%2C%7B%22text%22%3A%223Y%22%2C%22title%22%3A%223Y%22%2C%22resolution%22%3A%221W%22%2C%22description%22%3A%223%20years%22%7D%5D&amp;locale=en&amp;uid=tradingview_9cfb6&amp;clientId=0&amp;userId=0&amp;chartsStorageVer=1.0&amp;customCSS=%2Fcss-bundle%2Fchart_custom_css_27_0.css&amp;debug=false&amp;snapshotUrl=https%3A%2F%2Fcoinalyze.net%2Fsnapshot%2F&amp;timezone=UTC&amp;theme=dark" title="Financial Chart" frameborder="0" allowtransparency="true" scrolling="no" allowfullscreen="" style="display: block; width: 100%; height: 100%;">
+	</iframe></div>
+                <div class="info">
+                    
+                        <p>You can find here aggregated funding rate global (all coins) also. See the chart indicators window.</p>
+                     
+                     
+                     <p>See the indicator settings(cog icon), you can display the average funding rate weighted by open interest.</p>
+                     <p>This chart is not updated in real-time yet. For real-time charts please see the Markets page, you can find the aggregated indicators there too.</p>
+                </div>
+            </div>
+        </div>
+
+        
+        <style>
+            .ad-middle {
+                margin-top: 32px;
+                display: flex;
+                justify-content: center;
+            }
+        </style>    
+        <div class="ad-middle adwrapper">
+            
+                    
+        </div>    
+           
+    
+        <div class="markets">
+            <h2><strong>BTC</strong> Funding Rate <strong>Chart For Each Contract</strong>:</h2>
+            <div class="body">
+                <div>
+                
+                    <ul>
+                        <li>Binance</li>
+
+                        
+                            <li>
+                                <a href="/bitcoin/usd/binance/funding-rate-chart/btcusd_perp_fr/">BTC / USD Perp (BTCUSD_PERP)</a>
+                            </li>
+                        
+                            <li>
+                                <a href="/bitcoin/usdt/binance/funding-rate-chart/btcusdt_perp_fr/">BTC / USDT Perp (BTCUSDT)</a>
+                            </li>
+                            
+                    </ul>
+                
+                    <ul>
+                        <li>BitMEX</li>
+
+                        
+                            <li>
+                                <a href="/bitcoin/usd/bitmex/funding-rate-chart/btcusd_perp_fr/">BTC / USD Perp (XBTUSD)</a>
+                            </li>
+                        
+                            <li>
+                                <a href="/bitcoin/usdt/bitmex/funding-rate-chart/btcusdt_perp_fr/">BTC / USDT Perp (XBTUSDT)</a>
+                            </li>
+                            
+                    </ul>
+                
+                    <ul>
+                        <li>Bybit</li>
+
+                        
+                            <li>
+                                <a href="/bitcoin/usd/bybit/funding-rate-chart/btcusd_fr/">BTC / USD Perp (BTCUSD)</a>
+                            </li>
+                        
+                            <li>
+                                <a href="/bitcoin/usdt/bybit/funding-rate-chart/btcusdt_fr/">BTC / USDT Perp (BTCUSDT)</a>
+                            </li>
+                            
+                    </ul>
+                
+                    <ul>
+                        <li>Deribit</li>
+
+                        
+                            <li>
+                                <a href="/bitcoin/usd/deribit/funding-rate-chart/btc-perpetual_fr/">BTC / USD Perp (BTC-PERPETUAL)</a>
+                            </li>
+                            
+                    </ul>
+                
+                    <ul>
+                        <li>Huobi</li>
+
+                        
+                            <li>
+                                <a href="/bitcoin/usd/huobidm/funding-rate-chart/btcusd_perp_fr/">BTC / USD Perp (BTC-USD)</a>
+                            </li>
+                        
+                            <li>
+                                <a href="/bitcoin/usdt/huobidm/funding-rate-chart/btcusdt_perp_fr/">BTC / USDT Perp (BTC-USDT)</a>
+                            </li>
+                            
+                    </ul>
+                
+                    <ul>
+                        <li>Hyperliquid</li>
+
+                        
+                            <li>
+                                <a href="/bitcoin/usd/hyperliquid/funding-rate-chart/btc_fr/">BTC / USD Perp (BTC)</a>
+                            </li>
+                            
+                    </ul>
+                
+                    <ul>
+                        <li>Kraken</li>
+
+                        
+                            <li>
+                                <a href="/bitcoin/usd/kraken/funding-rate-chart/pf_xbtusd_fr/">BTC / USD Perp (pf_xbtusd)</a>
+                            </li>
+                        
+                            <li>
+                                <a href="/bitcoin/usd/kraken/funding-rate-chart/btcusd_perp_fr/">BTC / USD Perp (pi_xbtusd)</a>
+                            </li>
+                            
+                    </ul>
+                
+                    <ul>
+                        <li>OKX</li>
+
+                        
+                            <li>
+                                <a href="/bitcoin/usd/okx/funding-rate-chart/btcusd_perp_fr/">BTC / USD Perp (BTC-USD-SWAP)</a>
+                            </li>
+                        
+                            <li>
+                                <a href="/bitcoin/usdt/okx/funding-rate-chart/btcusdt_perp_fr/">BTC / USDT Perp (BTC-USDT-SWAP)</a>
+                            </li>
+                            
+                    </ul>
+                
+                    <ul>
+                        <li>WOO X</li>
+
+                        
+                            <li>
+                                <a href="/bitcoin/usdt/woox/funding-rate-chart/perp_btc_usdt_fr/">BTC / USDT Perp (PERP_BTC_USDT)</a>
+                            </li>
+                            
+                    </ul>
+                
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    var TV_CHART_DATA = JSON.parse(`{"coin":"BTC","symbol":"BTC_AVGPRICE","indicators":["AggregatedFundingRate","AggregatedPredictedFundingRate"],"locale":"en","tv_chart_version":"27_0","interval":60,"elmId":"futures-data-tv-chart","theme":"dark","customIndicatorsEnable":["AggregatedOpenInterest","AggregatedFundingRate","AggregatedPredictedFundingRate","AggregatedLiquidations","AggregatedVolume","AggregatedVolumeSpot","OpenInterestMarketCapRatio","AggregatedOpenInterestGlobal","AggregatedLiquidationsGlobal","AggregatedVolumeGlobal","AggregatedVolumeSpotGlobal","AggregatedFundingRateGlobal","AggregatedPredictedFundingRateGlobal","AggregatedOpenInterest_USD_Denominated","AggregatedOpenInterest_COIN_Denominated","AggregatedOpenInterestCoinAndUsdDenominated","AggregatedCVDSpot","AggregatedCvdFutsUsdDenominated","AggregatedCvdFutsCoinDenominated","AggregatedCvdFuts","AggregatedLqUsdDenominated","AggregatedLqCoinDenominated","AggregatedLqCoinAndUsdDenominated","OpenInterestMarketCapRatioGlobal","AggregatedLiquidationsProfileVisibleRangeCoinMargined","AggregatedLiquidationsProfileVisibleRangeStablecoinMargined","AggregatedOIDeltaProfileVisibleRangeCoinMargined","AggregatedOIDeltaProfileVisibleRangeStablecoinMargined","AggregatedOIDeltaProfileVisibleRangeStablecoinAndCoinMargined","AggregatedLongShortAccountsRatio"],"futuresContractsForAggregatedIndicators":[{"symbol":"BTCUSD_PERP.A","symbolOI":"BTCUSD_PERP_OI.A","symbolLQB":"BTCUSD_PERP_LQB.A","symbolLQS":"BTCUSD_PERP_LQS.A","symbolExchange":"BTCUSD_PERP","name":"BTC / USD Perp - Binance","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchangeName":"Binance","intervalOrder":1,"oiDenominatedIn":"USD","volumeDenominatedIn":"USD","marginedIn":"COIN","hasOI":true,"hasLQ":true,"exchange":"A","fc_type":"i","fc_contract_size":100,"fc_interval":"PERP"},{"symbol":"BTCUSD_QTLY.A","symbolOI":"BTCUSD_QTLY_OI.A","symbolLQB":"BTCUSD_QTLY_LQB.A","symbolLQS":"BTCUSD_QTLY_LQS.A","symbolExchange":"BTCUSD_251226","name":"BTC / USD Qtly - Binance","nameWithoutExchange":"BTC / USD Qtly","quoteCoin":"USD","exchangeName":"Binance","intervalOrder":4,"oiDenominatedIn":"USD","volumeDenominatedIn":"USD","marginedIn":"COIN","hasOI":true,"hasLQ":true,"exchange":"A","fc_type":"i","fc_contract_size":100,"fc_interval":"QTLY"},{"symbol":"BTCUSD_BIQTLY.A","symbolOI":"BTCUSD_BIQTLY_OI.A","symbolLQB":"BTCUSD_BIQTLY_LQB.A","symbolLQS":"BTCUSD_BIQTLY_LQS.A","symbolExchange":"BTCUSD_260327","name":"BTC / USD BiQtly - Binance","nameWithoutExchange":"BTC / USD BiQtly","quoteCoin":"USD","exchangeName":"Binance","intervalOrder":5,"oiDenominatedIn":"USD","volumeDenominatedIn":"USD","marginedIn":"COIN","hasOI":true,"hasLQ":true,"exchange":"A","fc_type":"i","fc_contract_size":100,"fc_interval":"BIQTLY"},{"symbol":"BTCUSDT_PERP.A","symbolOI":"BTCUSDT_PERP_OI.A","symbolLQB":"BTCUSDT_PERP_LQB.A","symbolLQS":"BTCUSDT_PERP_LQS.A","symbolExchange":"BTCUSDT","name":"BTC / USDT Perp - Binance","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchangeName":"Binance","intervalOrder":1,"oiDenominatedIn":"COIN","volumeDenominatedIn":"COIN","marginedIn":"USDT","hasOI":true,"hasLQ":true,"exchange":"A","fc_type":"l","fc_contract_size":1,"fc_interval":"PERP"},{"symbol":"BTCUSDT_QTLY.A","symbolOI":"BTCUSDT_QTLY_OI.A","symbolLQB":"BTCUSDT_QTLY_LQB.A","symbolLQS":"BTCUSDT_QTLY_LQS.A","symbolExchange":"BTCUSDT_251226","name":"BTC / USDT Qtly - Binance","nameWithoutExchange":"BTC / USDT Qtly","quoteCoin":"USDT","exchangeName":"Binance","intervalOrder":4,"oiDenominatedIn":"COIN","volumeDenominatedIn":"COIN","marginedIn":"USDT","hasOI":true,"hasLQ":true,"exchange":"A","fc_type":"l","fc_contract_size":1,"fc_interval":"QTLY"},{"symbol":"BTCUSDT_BIQTLY.A","symbolOI":"BTCUSDT_BIQTLY_OI.A","symbolLQB":"BTCUSDT_BIQTLY_LQB.A","symbolLQS":"BTCUSDT_BIQTLY_LQS.A","symbolExchange":"BTCUSDT_260327","name":"BTC / USDT BiQtly - Binance","nameWithoutExchange":"BTC / USDT BiQtly","quoteCoin":"USDT","exchangeName":"Binance","intervalOrder":5,"oiDenominatedIn":"COIN","volumeDenominatedIn":"COIN","marginedIn":"USDT","hasOI":true,"hasLQ":true,"exchange":"A","fc_type":"l","fc_contract_size":1,"fc_interval":"BIQTLY"},{"symbol":"BTCUSD_PERP.0","symbolOI":"BTCUSD_PERP_OI.0","symbolLQB":"BTCUSD_PERP_LQB.0","symbolLQS":"BTCUSD_PERP_LQS.0","symbolExchange":"XBTUSD","name":"BTC / USD Perp - BitMEX","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchangeName":"BitMEX","intervalOrder":1,"oiDenominatedIn":"USD","volumeDenominatedIn":"USD","marginedIn":"COIN","hasOI":true,"hasLQ":true,"exchange":"0","fc_type":"i","fc_contract_size":1,"fc_interval":"PERP"},{"symbol":"BTCUSDT_PERP.0","symbolOI":"BTCUSDT_PERP_OI.0","symbolLQB":"BTCUSDT_PERP_LQB.0","symbolLQS":"BTCUSDT_PERP_LQS.0","symbolExchange":"XBTUSDT","name":"BTC / USDT Perp - BitMEX","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchangeName":"BitMEX","intervalOrder":1,"oiDenominatedIn":"COIN","volumeDenominatedIn":"COIN","marginedIn":"USDT","hasOI":true,"hasLQ":true,"exchange":"0","fc_type":"l","fc_contract_size":0.000001,"fc_interval":"PERP"},{"symbol":"BTCUSDT_PERP.F","symbolOI":"BTCUSDT_PERP_OI.F","symbolLQB":"BTCUSDT_PERP_LQB.F","symbolLQS":"BTCUSDT_PERP_LQS.F","symbolExchange":"BTCF0:USTF0","name":"BTC / USDT Perp - Bitfinex","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchangeName":"Bitfinex","intervalOrder":1,"oiDenominatedIn":"COIN","volumeDenominatedIn":"COIN","marginedIn":"USDT","hasOI":true,"hasLQ":true,"exchange":"F","fc_type":"l","fc_contract_size":1,"fc_interval":"PERP"},{"symbol":"BTCUSD.6","symbolOI":"BTCUSD_OI.6","symbolLQB":"BTCUSD_LQB.6","symbolLQS":"BTCUSD_LQS.6","symbolExchange":"BTCUSD","name":"BTC / USD Perp - Bybit","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchangeName":"Bybit","intervalOrder":1,"oiDenominatedIn":"USD","volumeDenominatedIn":"USD","marginedIn":"COIN","hasOI":true,"hasLQ":true,"exchange":"6","fc_type":"i","fc_contract_size":1,"fc_interval":"PERP"},{"symbol":"BTCUSDT.6","symbolOI":"BTCUSDT_OI.6","symbolLQB":"BTCUSDT_LQB.6","symbolLQS":"BTCUSDT_LQS.6","symbolExchange":"BTCUSDT","name":"BTC / USDT Perp - Bybit","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchangeName":"Bybit","intervalOrder":1,"oiDenominatedIn":"COIN","volumeDenominatedIn":"COIN","marginedIn":"USDT","hasOI":true,"hasLQ":true,"exchange":"6","fc_type":"l","fc_contract_size":1,"fc_interval":"PERP"},{"symbol":"BTC-PERPETUAL.2","symbolOI":"BTC-PERPETUAL_OI.2","symbolLQB":"BTC-PERPETUAL_LQB.2","symbolLQS":"BTC-PERPETUAL_LQS.2","symbolExchange":"BTC-PERPETUAL","name":"BTC / USD Perp - Deribit","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchangeName":"Deribit","intervalOrder":1,"oiDenominatedIn":"USD","volumeDenominatedIn":"USD","marginedIn":"COIN","hasOI":true,"hasLQ":true,"exchange":"2","fc_type":"i","fc_contract_size":1,"fc_interval":"PERP"},{"symbol":"BTCUSD_PERP.4","symbolOI":"BTCUSD_PERP_OI.4","symbolLQB":"BTCUSD_PERP_LQB.4","symbolLQS":"BTCUSD_PERP_LQS.4","symbolExchange":"BTC-USD","name":"BTC / USD Perp - Huobi","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchangeName":"Huobi","intervalOrder":1,"oiDenominatedIn":"USD","volumeDenominatedIn":"USD","marginedIn":"COIN","hasOI":true,"hasLQ":true,"exchange":"4","fc_type":"i","fc_contract_size":100,"fc_interval":"PERP"},{"symbol":"BTCUSD_WKLY.4","symbolOI":"BTCUSD_WKLY_OI.4","symbolLQB":"BTCUSD_WKLY_LQB.4","symbolLQS":"BTCUSD_WKLY_LQS.4","symbolExchange":"BTC251219","name":"BTC / USD Wkly - Huobi","nameWithoutExchange":"BTC / USD Wkly","quoteCoin":"USD","exchangeName":"Huobi","intervalOrder":2,"oiDenominatedIn":"USD","volumeDenominatedIn":"USD","marginedIn":"COIN","hasOI":true,"hasLQ":true,"exchange":"4","fc_type":"i","fc_contract_size":100,"fc_interval":"WKLY"},{"symbol":"BTCUSD_BIWKLY.4","symbolOI":"BTCUSD_BIWKLY_OI.4","symbolLQB":"BTCUSD_BIWKLY_LQB.4","symbolLQS":"BTCUSD_BIWKLY_LQS.4","symbolExchange":"BTC251226","name":"BTC / USD BiWkly - Huobi","nameWithoutExchange":"BTC / USD BiWkly","quoteCoin":"USD","exchangeName":"Huobi","intervalOrder":3,"oiDenominatedIn":"USD","volumeDenominatedIn":"USD","marginedIn":"COIN","hasOI":true,"hasLQ":true,"exchange":"4","fc_type":"i","fc_contract_size":100,"fc_interval":"BIWKLY"},{"symbol":"BTCUSD_QTLY.4","symbolOI":"BTCUSD_QTLY_OI.4","symbolLQB":"BTCUSD_QTLY_LQB.4","symbolLQS":"BTCUSD_QTLY_LQS.4","symbolExchange":"BTC260327","name":"BTC / USD Qtly - Huobi","nameWithoutExchange":"BTC / USD Qtly","quoteCoin":"USD","exchangeName":"Huobi","intervalOrder":4,"oiDenominatedIn":"USD","volumeDenominatedIn":"USD","marginedIn":"COIN","hasOI":true,"hasLQ":true,"exchange":"4","fc_type":"i","fc_contract_size":100,"fc_interval":"QTLY"},{"symbol":"BTCUSDT_PERP.4","symbolOI":"BTCUSDT_PERP_OI.4","symbolLQB":"BTCUSDT_PERP_LQB.4","symbolLQS":"BTCUSDT_PERP_LQS.4","symbolExchange":"BTC-USDT","name":"BTC / USDT Perp - Huobi","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchangeName":"Huobi","intervalOrder":1,"oiDenominatedIn":"COIN","volumeDenominatedIn":"COIN","marginedIn":"USDT","hasOI":true,"hasLQ":true,"exchange":"4","fc_type":"l","fc_contract_size":0.001,"fc_interval":"PERP"},{"symbol":"BTC.H","symbolOI":"BTC_OI.H","symbolLQB":"BTC_LQB.H","symbolLQS":"BTC_LQS.H","symbolExchange":"BTC","name":"BTC / USD Perp - Hyperliquid","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchangeName":"Hyperliquid","intervalOrder":1,"oiDenominatedIn":"USD","volumeDenominatedIn":"USD","marginedIn":"COIN","hasOI":true,"hasLQ":false,"exchange":"H","fc_type":"l","fc_contract_size":1,"fc_interval":"PERP"},{"symbol":"pf_xbtusd.K","symbolOI":"pf_xbtusd_OI.K","symbolLQB":"pf_xbtusd_LQB.K","symbolLQS":"pf_xbtusd_LQS.K","symbolExchange":"pf_xbtusd","name":"BTC / USD Perp - Kraken","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchangeName":"Kraken","intervalOrder":1,"oiDenominatedIn":"USD","volumeDenominatedIn":"USD","marginedIn":"COIN","hasOI":true,"hasLQ":false,"exchange":"K","fc_type":"l","fc_contract_size":1,"fc_interval":"PERP"},{"symbol":"BTCUSD_PERP.K","symbolOI":"BTCUSD_PERP_OI.K","symbolLQB":"BTCUSD_PERP_LQB.K","symbolLQS":"BTCUSD_PERP_LQS.K","symbolExchange":"pi_xbtusd","name":"BTC / USD Perp - Kraken","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchangeName":"Kraken","intervalOrder":1,"oiDenominatedIn":"USD","volumeDenominatedIn":"USD","marginedIn":"COIN","hasOI":true,"hasLQ":false,"exchange":"K","fc_type":"i","fc_contract_size":1,"fc_interval":"PERP"},{"symbol":"BTCUSD_PERP.3","symbolOI":"BTCUSD_PERP_OI.3","symbolLQB":"BTCUSD_PERP_LQB.3","symbolLQS":"BTCUSD_PERP_LQS.3","symbolExchange":"BTC-USD-SWAP","name":"BTC / USD Perp - OKX","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchangeName":"OKX","intervalOrder":1,"oiDenominatedIn":"USD","volumeDenominatedIn":"USD","marginedIn":"COIN","hasOI":true,"hasLQ":true,"exchange":"3","fc_type":"i","fc_contract_size":100,"fc_interval":"PERP"},{"symbol":"BTCUSD_WKLY.3","symbolOI":"BTCUSD_WKLY_OI.3","symbolLQB":"BTCUSD_WKLY_LQB.3","symbolLQS":"BTCUSD_WKLY_LQS.3","symbolExchange":"BTC-USD-251219","name":"BTC / USD Wkly - OKX","nameWithoutExchange":"BTC / USD Wkly","quoteCoin":"USD","exchangeName":"OKX","intervalOrder":2,"oiDenominatedIn":"USD","volumeDenominatedIn":"USD","marginedIn":"COIN","hasOI":true,"hasLQ":true,"exchange":"3","fc_type":"i","fc_contract_size":100,"fc_interval":"WKLY"},{"symbol":"BTCUSD_BIWKLY.3","symbolOI":"BTCUSD_BIWKLY_OI.3","symbolLQB":"BTCUSD_BIWKLY_LQB.3","symbolLQS":"BTCUSD_BIWKLY_LQS.3","symbolExchange":"BTC-USD-251226","name":"BTC / USD BiWkly - OKX","nameWithoutExchange":"BTC / USD BiWkly","quoteCoin":"USD","exchangeName":"OKX","intervalOrder":3,"oiDenominatedIn":"USD","volumeDenominatedIn":"USD","marginedIn":"COIN","hasOI":true,"hasLQ":true,"exchange":"3","fc_type":"i","fc_contract_size":100,"fc_interval":"BIWKLY"},{"symbol":"BTCUSD_QTLY.3","symbolOI":"BTCUSD_QTLY_OI.3","symbolLQB":"BTCUSD_QTLY_LQB.3","symbolLQS":"BTCUSD_QTLY_LQS.3","symbolExchange":"BTC-USD-260327","name":"BTC / USD Qtly - OKX","nameWithoutExchange":"BTC / USD Qtly","quoteCoin":"USD","exchangeName":"OKX","intervalOrder":4,"oiDenominatedIn":"USD","volumeDenominatedIn":"USD","marginedIn":"COIN","hasOI":true,"hasLQ":true,"exchange":"3","fc_type":"i","fc_contract_size":100,"fc_interval":"QTLY"},{"symbol":"BTCUSDT_PERP.3","symbolOI":"BTCUSDT_PERP_OI.3","symbolLQB":"BTCUSDT_PERP_LQB.3","symbolLQS":"BTCUSDT_PERP_LQS.3","symbolExchange":"BTC-USDT-SWAP","name":"BTC / USDT Perp - OKX","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchangeName":"OKX","intervalOrder":1,"oiDenominatedIn":"COIN","volumeDenominatedIn":"COIN","marginedIn":"USDT","hasOI":true,"hasLQ":true,"exchange":"3","fc_type":"l","fc_contract_size":0.01,"fc_interval":"PERP"},{"symbol":"BTCUSDT_WKLY.3","symbolOI":"BTCUSDT_WKLY_OI.3","symbolLQB":"BTCUSDT_WKLY_LQB.3","symbolLQS":"BTCUSDT_WKLY_LQS.3","symbolExchange":"BTC-USDT-251219","name":"BTC / USDT Wkly - OKX","nameWithoutExchange":"BTC / USDT Wkly","quoteCoin":"USDT","exchangeName":"OKX","intervalOrder":2,"oiDenominatedIn":"COIN","volumeDenominatedIn":"COIN","marginedIn":"USDT","hasOI":true,"hasLQ":true,"exchange":"3","fc_type":"l","fc_contract_size":0.01,"fc_interval":"WKLY"},{"symbol":"BTCUSDT_BIWKLY.3","symbolOI":"BTCUSDT_BIWKLY_OI.3","symbolLQB":"BTCUSDT_BIWKLY_LQB.3","symbolLQS":"BTCUSDT_BIWKLY_LQS.3","symbolExchange":"BTC-USDT-251226","name":"BTC / USDT BiWkly - OKX","nameWithoutExchange":"BTC / USDT BiWkly","quoteCoin":"USDT","exchangeName":"OKX","intervalOrder":3,"oiDenominatedIn":"COIN","volumeDenominatedIn":"COIN","marginedIn":"USDT","hasOI":true,"hasLQ":true,"exchange":"3","fc_type":"l","fc_contract_size":0.01,"fc_interval":"BIWKLY"},{"symbol":"BTCUSDT_QTLY.3","symbolOI":"BTCUSDT_QTLY_OI.3","symbolLQB":"BTCUSDT_QTLY_LQB.3","symbolLQS":"BTCUSDT_QTLY_LQS.3","symbolExchange":"BTC-USDT-260327","name":"BTC / USDT Qtly - OKX","nameWithoutExchange":"BTC / USDT Qtly","quoteCoin":"USDT","exchangeName":"OKX","intervalOrder":4,"oiDenominatedIn":"COIN","volumeDenominatedIn":"COIN","marginedIn":"USDT","hasOI":true,"hasLQ":true,"exchange":"3","fc_type":"l","fc_contract_size":0.01,"fc_interval":"QTLY"},{"symbol":"PERP_BTC_USDT.W","symbolOI":"PERP_BTC_USDT_OI.W","symbolLQB":"PERP_BTC_USDT_LQB.W","symbolLQS":"PERP_BTC_USDT_LQS.W","symbolExchange":"PERP_BTC_USDT","name":"BTC / USDT Perp - WOO X","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchangeName":"WOO X","intervalOrder":1,"oiDenominatedIn":"COIN","volumeDenominatedIn":"COIN","marginedIn":"USDT","hasOI":true,"hasLQ":false,"exchange":"W","fc_type":"l","fc_contract_size":1,"fc_interval":"PERP"},{"symbol":"BTC-USD.8","symbolOI":"BTC-USD_OI.8","symbolLQB":"BTC-USD_LQB.8","symbolLQS":"BTC-USD_LQS.8","symbolExchange":"BTC-USD","name":"BTC / USD Perp - dYdX","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchangeName":"dYdX","intervalOrder":1,"oiDenominatedIn":"USD","volumeDenominatedIn":"USD","marginedIn":"COIN","hasOI":true,"hasLQ":false,"exchange":"8","fc_type":"l","fc_contract_size":1,"fc_interval":"PERP"}],"futuresContractsForAggregatedFundingRate":[{"symbol":"BTCUSD_PERP.A","symbolFR":"BTCUSD_PERP_FR.A","symbolExchange":"BTCUSD_PERP","name":"BTC / USD Perp - Binance","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"A","exchangeName":"Binance","fcType":"i"},{"symbol":"BTCUSDT_PERP.A","symbolFR":"BTCUSDT_PERP_FR.A","symbolExchange":"BTCUSDT","name":"BTC / USDT Perp - Binance","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchange":"A","exchangeName":"Binance","fcType":"l"},{"symbol":"BTCUSD_PERP.0","symbolFR":"BTCUSD_PERP_FR.0","symbolExchange":"XBTUSD","name":"BTC / USD Perp - BitMEX","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"0","exchangeName":"BitMEX","fcType":"i"},{"symbol":"BTCUSDT_PERP.0","symbolFR":"BTCUSDT_PERP_FR.0","symbolExchange":"XBTUSDT","name":"BTC / USDT Perp - BitMEX","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchange":"0","exchangeName":"BitMEX","fcType":"l"},{"symbol":"BTCUSD.6","symbolFR":"BTCUSD_FR.6","symbolExchange":"BTCUSD","name":"BTC / USD Perp - Bybit","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"6","exchangeName":"Bybit","fcType":"i"},{"symbol":"BTCUSDT.6","symbolFR":"BTCUSDT_FR.6","symbolExchange":"BTCUSDT","name":"BTC / USDT Perp - Bybit","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchange":"6","exchangeName":"Bybit","fcType":"l"},{"symbol":"BTC-PERPETUAL.2","symbolFR":"BTC-PERPETUAL_FR.2","symbolExchange":"BTC-PERPETUAL","name":"BTC / USD Perp - Deribit","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"2","exchangeName":"Deribit","fcType":"i"},{"symbol":"BTCUSD_PERP.4","symbolFR":"BTCUSD_PERP_FR.4","symbolExchange":"BTC-USD","name":"BTC / USD Perp - Huobi","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"4","exchangeName":"Huobi","fcType":"i"},{"symbol":"BTCUSDT_PERP.4","symbolFR":"BTCUSDT_PERP_FR.4","symbolExchange":"BTC-USDT","name":"BTC / USDT Perp - Huobi","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchange":"4","exchangeName":"Huobi","fcType":"l"},{"symbol":"BTC.H","symbolFR":"BTC_FR.H","symbolExchange":"BTC","name":"BTC / USD Perp - Hyperliquid","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"H","exchangeName":"Hyperliquid","fcType":"l"},{"symbol":"pf_xbtusd.K","symbolFR":"pf_xbtusd_FR.K","symbolExchange":"pf_xbtusd","name":"BTC / USD Perp - Kraken","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"K","exchangeName":"Kraken","fcType":"l"},{"symbol":"BTCUSD_PERP.K","symbolFR":"BTCUSD_PERP_FR.K","symbolExchange":"pi_xbtusd","name":"BTC / USD Perp - Kraken","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"K","exchangeName":"Kraken","fcType":"i"},{"symbol":"BTCUSD_PERP.3","symbolFR":"BTCUSD_PERP_FR.3","symbolExchange":"BTC-USD-SWAP","name":"BTC / USD Perp - OKX","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"3","exchangeName":"OKX","fcType":"i"},{"symbol":"BTCUSDT_PERP.3","symbolFR":"BTCUSDT_PERP_FR.3","symbolExchange":"BTC-USDT-SWAP","name":"BTC / USDT Perp - OKX","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchange":"3","exchangeName":"OKX","fcType":"l"}],"futuresContractsForAggregatedPredictedFundingRate":[{"symbol":"BTCUSD_PERP.A","symbolPFR":"BTCUSD_PERP_PFR.A","symbolExchange":"BTCUSD_PERP","name":"BTC / USD Perp - Binance","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"A","exchangeName":"Binance","fcType":"i"},{"symbol":"BTCUSDT_PERP.A","symbolPFR":"BTCUSDT_PERP_PFR.A","symbolExchange":"BTCUSDT","name":"BTC / USDT Perp - Binance","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchange":"A","exchangeName":"Binance","fcType":"l"},{"symbol":"BTCUSD_PERP.0","symbolPFR":"BTCUSD_PERP_PFR.0","symbolExchange":"XBTUSD","name":"BTC / USD Perp - BitMEX","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"0","exchangeName":"BitMEX","fcType":"i"},{"symbol":"BTCUSDT_PERP.0","symbolPFR":"BTCUSDT_PERP_PFR.0","symbolExchange":"XBTUSDT","name":"BTC / USDT Perp - BitMEX","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchange":"0","exchangeName":"BitMEX","fcType":"l"},{"symbol":"BTCUSD.6","symbolPFR":"BTCUSD_PFR.6","symbolExchange":"BTCUSD","name":"BTC / USD Perp - Bybit","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"6","exchangeName":"Bybit","fcType":"i"},{"symbol":"BTCUSDT.6","symbolPFR":"BTCUSDT_PFR.6","symbolExchange":"BTCUSDT","name":"BTC / USDT Perp - Bybit","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchange":"6","exchangeName":"Bybit","fcType":"l"},{"symbol":"BTCUSD_PERP.4","symbolPFR":"BTCUSD_PERP_PFR.4","symbolExchange":"BTC-USD","name":"BTC / USD Perp - Huobi","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"4","exchangeName":"Huobi","fcType":"i"},{"symbol":"BTCUSDT_PERP.4","symbolPFR":"BTCUSDT_PERP_PFR.4","symbolExchange":"BTC-USDT","name":"BTC / USDT Perp - Huobi","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchange":"4","exchangeName":"Huobi","fcType":"l"},{"symbol":"BTC.H","symbolPFR":"BTC_PFR.H","symbolExchange":"BTC","name":"BTC / USD Perp - Hyperliquid","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"H","exchangeName":"Hyperliquid","fcType":"l"},{"symbol":"pf_xbtusd.K","symbolPFR":"pf_xbtusd_PFR.K","symbolExchange":"pf_xbtusd","name":"BTC / USD Perp - Kraken","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"K","exchangeName":"Kraken","fcType":"l"},{"symbol":"BTCUSD_PERP.K","symbolPFR":"BTCUSD_PERP_PFR.K","symbolExchange":"pi_xbtusd","name":"BTC / USD Perp - Kraken","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"K","exchangeName":"Kraken","fcType":"i"},{"symbol":"BTCUSD_PERP.3","symbolPFR":"BTCUSD_PERP_PFR.3","symbolExchange":"BTC-USD-SWAP","name":"BTC / USD Perp - OKX","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"3","exchangeName":"OKX","fcType":"i"},{"symbol":"BTCUSDT_PERP.3","symbolPFR":"BTCUSDT_PERP_PFR.3","symbolExchange":"BTC-USDT-SWAP","name":"BTC / USDT Perp - OKX","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchange":"3","exchangeName":"OKX","fcType":"l"}],"marketsForAggregatedCVDSpot":[{"symbol":"BTCFDUSD.A","symbolExchange":"BTCFDUSD","name":"BTC / FDUSD - Binance","nameWithoutExchange":"BTC / FDUSD","quoteCoin":"FDUSD","exchangeName":"Binance","exchange":"A","selectedByDefault":false},{"symbol":"BTCUD.A","symbolExchange":"BTCUSD","name":"BTC / USD - Binance","nameWithoutExchange":"BTC / USD","quoteCoin":"USD","exchangeName":"Binance","exchange":"A","selectedByDefault":true},{"symbol":"BTCUSD.A","symbolExchange":"BTCUSDT","name":"BTC / USDT - Binance","nameWithoutExchange":"BTC / USDT","quoteCoin":"USDT","exchangeName":"Binance","exchange":"A","selectedByDefault":true},{"symbol":"BTCUSD.F","symbolExchange":"BTCUSD","name":"BTC / USD - Bitfinex","nameWithoutExchange":"BTC / USD","quoteCoin":"USD","exchangeName":"Bitfinex","exchange":"F","selectedByDefault":true},{"symbol":"BTCUSDT.F","symbolExchange":"BTCUST","name":"BTC / USDT - Bitfinex","nameWithoutExchange":"BTC / USDT","quoteCoin":"USDT","exchangeName":"Bitfinex","exchange":"F","selectedByDefault":true},{"symbol":"BTCUSD.B","symbolExchange":"BTCUSD","name":"BTC / USD - Bitstamp","nameWithoutExchange":"BTC / USD","quoteCoin":"USD","exchangeName":"Bitstamp","exchange":"B","selectedByDefault":true},{"symbol":"BTCUSDT.B","symbolExchange":"BTCUSDT","name":"BTC / USDT - Bitstamp","nameWithoutExchange":"BTC / USDT","quoteCoin":"USDT","exchangeName":"Bitstamp","exchange":"B","selectedByDefault":true},{"symbol":"sBTCUSDT.6","symbolExchange":"BTCUSDT","name":"BTC / USDT - Bybit","nameWithoutExchange":"BTC / USDT","quoteCoin":"USDT","exchangeName":"Bybit","exchange":"6","selectedByDefault":true},{"symbol":"BTCUSD.C","symbolExchange":"BTC-USD","name":"BTC / USD - Coinbase","nameWithoutExchange":"BTC / USD","quoteCoin":"USD","exchangeName":"Coinbase","exchange":"C","selectedByDefault":true},{"symbol":"BTCUSDT.C","symbolExchange":"BTC-USDT","name":"BTC / USDT - Coinbase","nameWithoutExchange":"BTC / USDT","quoteCoin":"USDT","exchangeName":"Coinbase","exchange":"C","selectedByDefault":true},{"symbol":"BTCUSD.G","symbolExchange":"btcusd","name":"BTC / USD - Gemini","nameWithoutExchange":"BTC / USD","quoteCoin":"USD","exchangeName":"Gemini","exchange":"G","selectedByDefault":true},{"symbol":"BTCUSD.K","symbolExchange":"XBT/USD","name":"BTC / USD - Kraken","nameWithoutExchange":"BTC / USD","quoteCoin":"USD","exchangeName":"Kraken","exchange":"K","selectedByDefault":true},{"symbol":"BTCUSDT.K","symbolExchange":"XBT/USDT","name":"BTC / USDT - Kraken","nameWithoutExchange":"BTC / USDT","quoteCoin":"USDT","exchangeName":"Kraken","exchange":"K","selectedByDefault":true},{"symbol":"BTCUSD.P","symbolExchange":"BTC_USDT","name":"BTC / USDT - Poloniex","nameWithoutExchange":"BTC / USDT","quoteCoin":"USDT","exchangeName":"Poloniex","exchange":"P","selectedByDefault":true}],"futuresContractsForAggregatedLongShortAccountsRatio":[{"symbol":"BTCUSD_PERP.A","symbolLSAR":"BTCUSD_PERP_GLSRA.A","symbolExchange":"BTCUSD_PERP","name":"BTC / USD Perp - Binance","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchangeName":"Binance","exchange":"A","selectedByDefault":true},{"symbol":"BTCUSDC_PERP.A","symbolLSAR":"BTCUSDC_PERP_GLSRA.A","symbolExchange":"BTCUSDC","name":"BTC / USDC Perp - Binance","nameWithoutExchange":"BTC / USDC Perp","quoteCoin":"USDC","exchangeName":"Binance","exchange":"A","selectedByDefault":true},{"symbol":"BTCUSDT_PERP.A","symbolLSAR":"BTCUSDT_PERP_GLSRA.A","symbolExchange":"BTCUSDT","name":"BTC / USDT Perp - Binance","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchangeName":"Binance","exchange":"A","selectedByDefault":true},{"symbol":"BTCUSD.6","symbolLSAR":"BTCUSD_GLSRA.6","symbolExchange":"BTCUSD","name":"BTC / USD Perp - Bybit","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchangeName":"Bybit","exchange":"6","selectedByDefault":true},{"symbol":"BTCUSDT.6","symbolLSAR":"BTCUSDT_GLSRA.6","symbolExchange":"BTCUSDT","name":"BTC / USDT Perp - Bybit","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchangeName":"Bybit","exchange":"6","selectedByDefault":true}],"coinsCategoryForAggregatedIndicators":["ALL","ALL_EXCLUDING_BTC","ALL_EXCLUDING_BTC_AND_ETH","AVALANCHE_ECOSYSTEM","BINANCE_SMART_CHAIN_ECOSYSTEM","DEFI","ETHEREUM_ECOSYSTEM","GAMING","GENERATIVE_AI","MEME","METAVERSE","NFT","POLKADOT_ECOSYSTEM","POLYGON_ECOSYSTEM","PRIVACY","SMART_CONTRACTS","SOLANA_ECOSYSTEM","STORAGE","TOKENIZED_STOCK"],"futuresContractsForAggregatedOi":[{"symbol":"BTCUSD_PERP.A","symbolOI":"BTCUSD_PERP_OI.A","symbolExchange":"BTCUSD_PERP","name":"BTC / USD Perp - Binance","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"A","exchangeName":"Binance","quoteCoinOrder":1,"fcIntervalOrder":1,"fc_interval":"PERP"},{"symbol":"BTCUSD_QTLY.A","symbolOI":"BTCUSD_QTLY_OI.A","symbolExchange":"BTCUSD_251226","name":"BTC / USD Qtly - Binance","nameWithoutExchange":"BTC / USD Qtly","quoteCoin":"USD","exchange":"A","exchangeName":"Binance","quoteCoinOrder":1,"fcIntervalOrder":4,"fc_interval":"QTLY"},{"symbol":"BTCUSD_BIQTLY.A","symbolOI":"BTCUSD_BIQTLY_OI.A","symbolExchange":"BTCUSD_260327","name":"BTC / USD BiQtly - Binance","nameWithoutExchange":"BTC / USD BiQtly","quoteCoin":"USD","exchange":"A","exchangeName":"Binance","quoteCoinOrder":1,"fcIntervalOrder":5,"fc_interval":"BIQTLY"},{"symbol":"BTCUSDT_PERP.A","symbolOI":"BTCUSDT_PERP_OI.A","symbolExchange":"BTCUSDT","name":"BTC / USDT Perp - Binance","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchange":"A","exchangeName":"Binance","quoteCoinOrder":2,"fcIntervalOrder":1,"fc_interval":"PERP"},{"symbol":"BTCUSDT_QTLY.A","symbolOI":"BTCUSDT_QTLY_OI.A","symbolExchange":"BTCUSDT_251226","name":"BTC / USDT Qtly - Binance","nameWithoutExchange":"BTC / USDT Qtly","quoteCoin":"USDT","exchange":"A","exchangeName":"Binance","quoteCoinOrder":2,"fcIntervalOrder":4,"fc_interval":"QTLY"},{"symbol":"BTCUSDT_BIQTLY.A","symbolOI":"BTCUSDT_BIQTLY_OI.A","symbolExchange":"BTCUSDT_260327","name":"BTC / USDT BiQtly - Binance","nameWithoutExchange":"BTC / USDT BiQtly","quoteCoin":"USDT","exchange":"A","exchangeName":"Binance","quoteCoinOrder":2,"fcIntervalOrder":5,"fc_interval":"BIQTLY"},{"symbol":"BTCUSD_PERP.0","symbolOI":"BTCUSD_PERP_OI.0","symbolExchange":"XBTUSD","name":"BTC / USD Perp - BitMEX","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"0","exchangeName":"BitMEX","quoteCoinOrder":1,"fcIntervalOrder":1,"fc_interval":"PERP"},{"symbol":"XBTF26.0","symbolOI":"XBTF26_OI.0","symbolExchange":"XBTF26","name":"BTC / USD Jan30 - BitMEX","nameWithoutExchange":"BTC / USD Jan30","quoteCoin":"USD","exchange":"0","exchangeName":"BitMEX","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"XBTU26.0","symbolOI":"XBTU26_OI.0","symbolExchange":"XBTU26","name":"BTC / USD Sep25 - BitMEX","nameWithoutExchange":"BTC / USD Sep25","quoteCoin":"USD","exchange":"0","exchangeName":"BitMEX","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"XBTH26.0","symbolOI":"XBTH26_OI.0","symbolExchange":"XBTH26","name":"BTC / USD Mar27 - BitMEX","nameWithoutExchange":"BTC / USD Mar27","quoteCoin":"USD","exchange":"0","exchangeName":"BitMEX","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"XBTM26.0","symbolOI":"XBTM26_OI.0","symbolExchange":"XBTM26","name":"BTC / USD Jun26 - BitMEX","nameWithoutExchange":"BTC / USD Jun26","quoteCoin":"USD","exchange":"0","exchangeName":"BitMEX","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"XBTZ25.0","symbolOI":"XBTZ25_OI.0","symbolExchange":"XBTZ25","name":"BTC / USD Dec26 - BitMEX","nameWithoutExchange":"BTC / USD Dec26","quoteCoin":"USD","exchange":"0","exchangeName":"BitMEX","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"BTCUSDT_PERP.0","symbolOI":"BTCUSDT_PERP_OI.0","symbolExchange":"XBTUSDT","name":"BTC / USDT Perp - BitMEX","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchange":"0","exchangeName":"BitMEX","quoteCoinOrder":2,"fcIntervalOrder":1,"fc_interval":"PERP"},{"symbol":"XBTUSDTH26.0","symbolOI":"XBTUSDTH26_OI.0","symbolExchange":"XBTUSDTH26","name":"BTC / USDT Mar27 - BitMEX","nameWithoutExchange":"BTC / USDT Mar27","quoteCoin":"USDT","exchange":"0","exchangeName":"BitMEX","quoteCoinOrder":2,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"XBTUSDTZ25.0","symbolOI":"XBTUSDTZ25_OI.0","symbolExchange":"XBTUSDTZ25","name":"BTC / USDT Dec26 - BitMEX","nameWithoutExchange":"BTC / USDT Dec26","quoteCoin":"USDT","exchange":"0","exchangeName":"BitMEX","quoteCoinOrder":2,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"BTCUSDT_PERP.F","symbolOI":"BTCUSDT_PERP_OI.F","symbolExchange":"BTCF0:USTF0","name":"BTC / USDT Perp - Bitfinex","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchange":"F","exchangeName":"Bitfinex","quoteCoinOrder":2,"fcIntervalOrder":1,"fc_interval":"PERP"},{"symbol":"BTCUSD.6","symbolOI":"BTCUSD_OI.6","symbolExchange":"BTCUSD","name":"BTC / USD Perp - Bybit","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"6","exchangeName":"Bybit","quoteCoinOrder":1,"fcIntervalOrder":1,"fc_interval":"PERP"},{"symbol":"BTCUSDH26.6","symbolOI":"BTCUSDH26_OI.6","symbolExchange":"BTCUSDH26","name":"BTC / USD Mar27 - Bybit","nameWithoutExchange":"BTC / USD Mar27","quoteCoin":"USD","exchange":"6","exchangeName":"Bybit","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"BTCUSDZ25.6","symbolOI":"BTCUSDZ25_OI.6","symbolExchange":"BTCUSDZ25","name":"BTC / USD Dec26 - Bybit","nameWithoutExchange":"BTC / USD Dec26","quoteCoin":"USD","exchange":"6","exchangeName":"Bybit","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"BTCUSDM26.6","symbolOI":"BTCUSDM26_OI.6","symbolExchange":"BTCUSDM26","name":"BTC / USD Jun26 - Bybit","nameWithoutExchange":"BTC / USD Jun26","quoteCoin":"USD","exchange":"6","exchangeName":"Bybit","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"BTCUSDT.6","symbolOI":"BTCUSDT_OI.6","symbolExchange":"BTCUSDT","name":"BTC / USDT Perp - Bybit","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchange":"6","exchangeName":"Bybit","quoteCoinOrder":2,"fcIntervalOrder":1,"fc_interval":"PERP"},{"symbol":"BTC-PERPETUAL.2","symbolOI":"BTC-PERPETUAL_OI.2","symbolExchange":"BTC-PERPETUAL","name":"BTC / USD Perp - Deribit","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"2","exchangeName":"Deribit","quoteCoinOrder":1,"fcIntervalOrder":1,"fc_interval":"PERP"},{"symbol":"BTC-25SEP26.2","symbolOI":"BTC-25SEP26_OI.2","symbolExchange":"BTC-25SEP26","name":"BTC / USD Sep25 - Deribit","nameWithoutExchange":"BTC / USD Sep25","quoteCoin":"USD","exchange":"2","exchangeName":"Deribit","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"BTC-26DEC25.2","symbolOI":"BTC-26DEC25_OI.2","symbolExchange":"BTC-26DEC25","name":"BTC / USD Dec26 - Deribit","nameWithoutExchange":"BTC / USD Dec26","quoteCoin":"USD","exchange":"2","exchangeName":"Deribit","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"BTC-26JUN26.2","symbolOI":"BTC-26JUN26_OI.2","symbolExchange":"BTC-26JUN26","name":"BTC / USD Jun26 - Deribit","nameWithoutExchange":"BTC / USD Jun26","quoteCoin":"USD","exchange":"2","exchangeName":"Deribit","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"BTC-27MAR26.2","symbolOI":"BTC-27MAR26_OI.2","symbolExchange":"BTC-27MAR26","name":"BTC / USD Mar27 - Deribit","nameWithoutExchange":"BTC / USD Mar27","quoteCoin":"USD","exchange":"2","exchangeName":"Deribit","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"BTC-30JAN26.2","symbolOI":"BTC-30JAN26_OI.2","symbolExchange":"BTC-30JAN26","name":"BTC / USD Jan30 - Deribit","nameWithoutExchange":"BTC / USD Jan30","quoteCoin":"USD","exchange":"2","exchangeName":"Deribit","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"BTC-19DEC25.2","symbolOI":"BTC-19DEC25_OI.2","symbolExchange":"BTC-19DEC25","name":"BTC / USD Dec19 - Deribit","nameWithoutExchange":"BTC / USD Dec19","quoteCoin":"USD","exchange":"2","exchangeName":"Deribit","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"BTCUSD_PERP.4","symbolOI":"BTCUSD_PERP_OI.4","symbolExchange":"BTC-USD","name":"BTC / USD Perp - Huobi","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"4","exchangeName":"Huobi","quoteCoinOrder":1,"fcIntervalOrder":1,"fc_interval":"PERP"},{"symbol":"BTCUSD_WKLY.4","symbolOI":"BTCUSD_WKLY_OI.4","symbolExchange":"BTC251219","name":"BTC / USD Wkly - Huobi","nameWithoutExchange":"BTC / USD Wkly","quoteCoin":"USD","exchange":"4","exchangeName":"Huobi","quoteCoinOrder":1,"fcIntervalOrder":2,"fc_interval":"WKLY"},{"symbol":"BTCUSD_BIWKLY.4","symbolOI":"BTCUSD_BIWKLY_OI.4","symbolExchange":"BTC251226","name":"BTC / USD BiWkly - Huobi","nameWithoutExchange":"BTC / USD BiWkly","quoteCoin":"USD","exchange":"4","exchangeName":"Huobi","quoteCoinOrder":1,"fcIntervalOrder":3,"fc_interval":"BIWKLY"},{"symbol":"BTCUSD_QTLY.4","symbolOI":"BTCUSD_QTLY_OI.4","symbolExchange":"BTC260327","name":"BTC / USD Qtly - Huobi","nameWithoutExchange":"BTC / USD Qtly","quoteCoin":"USD","exchange":"4","exchangeName":"Huobi","quoteCoinOrder":1,"fcIntervalOrder":4,"fc_interval":"QTLY"},{"symbol":"BTCUSDT_PERP.4","symbolOI":"BTCUSDT_PERP_OI.4","symbolExchange":"BTC-USDT","name":"BTC / USDT Perp - Huobi","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchange":"4","exchangeName":"Huobi","quoteCoinOrder":2,"fcIntervalOrder":1,"fc_interval":"PERP"},{"symbol":"BTC.H","symbolOI":"BTC_OI.H","symbolExchange":"BTC","name":"BTC / USD Perp - Hyperliquid","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"H","exchangeName":"Hyperliquid","quoteCoinOrder":1,"fcIntervalOrder":1,"fc_interval":"PERP"},{"symbol":"BTCUSD_PERP.K","symbolOI":"BTCUSD_PERP_OI.K","symbolExchange":"pi_xbtusd","name":"BTC / USD Perp - Kraken","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"K","exchangeName":"Kraken","quoteCoinOrder":1,"fcIntervalOrder":1,"fc_interval":"PERP"},{"symbol":"pf_xbtusd.K","symbolOI":"pf_xbtusd_OI.K","symbolExchange":"pf_xbtusd","name":"BTC / USD Perp - Kraken","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"K","exchangeName":"Kraken","quoteCoinOrder":1,"fcIntervalOrder":1,"fc_interval":"PERP"},{"symbol":"ff_xbtusd_251226.K","symbolOI":"ff_xbtusd_251226_OI.K","symbolExchange":"ff_xbtusd_251226","name":"BTC / USD Dec26 - Kraken","nameWithoutExchange":"BTC / USD Dec26","quoteCoin":"USD","exchange":"K","exchangeName":"Kraken","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"ff_xbtusd_260327.K","symbolOI":"ff_xbtusd_260327_OI.K","symbolExchange":"ff_xbtusd_260327","name":"BTC / USD Mar27 - Kraken","nameWithoutExchange":"BTC / USD Mar27","quoteCoin":"USD","exchange":"K","exchangeName":"Kraken","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"fi_xbtusd_251226.K","symbolOI":"fi_xbtusd_251226_OI.K","symbolExchange":"fi_xbtusd_251226","name":"BTC / USD Dec26 - Kraken","nameWithoutExchange":"BTC / USD Dec26","quoteCoin":"USD","exchange":"K","exchangeName":"Kraken","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"fi_xbtusd_260327.K","symbolOI":"fi_xbtusd_260327_OI.K","symbolExchange":"fi_xbtusd_260327","name":"BTC / USD Mar27 - Kraken","nameWithoutExchange":"BTC / USD Mar27","quoteCoin":"USD","exchange":"K","exchangeName":"Kraken","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"fi_xbtusd_260626.K","symbolOI":"fi_xbtusd_260626_OI.K","symbolExchange":"fi_xbtusd_260626","name":"BTC / USD Jun26 - Kraken","nameWithoutExchange":"BTC / USD Jun26","quoteCoin":"USD","exchange":"K","exchangeName":"Kraken","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"ff_xbtusd_260626.K","symbolOI":"ff_xbtusd_260626_OI.K","symbolExchange":"ff_xbtusd_260626","name":"BTC / USD Jun26 - Kraken","nameWithoutExchange":"BTC / USD Jun26","quoteCoin":"USD","exchange":"K","exchangeName":"Kraken","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"ff_xbtusd_251219.K","symbolOI":"ff_xbtusd_251219_OI.K","symbolExchange":"ff_xbtusd_251219","name":"BTC / USD Dec19 - Kraken","nameWithoutExchange":"BTC / USD Dec19","quoteCoin":"USD","exchange":"K","exchangeName":"Kraken","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"BTCUSD_PERP.3","symbolOI":"BTCUSD_PERP_OI.3","symbolExchange":"BTC-USD-SWAP","name":"BTC / USD Perp - OKX","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"3","exchangeName":"OKX","quoteCoinOrder":1,"fcIntervalOrder":1,"fc_interval":"PERP"},{"symbol":"BTCUSD_WKLY.3","symbolOI":"BTCUSD_WKLY_OI.3","symbolExchange":"BTC-USD-251219","name":"BTC / USD Wkly - OKX","nameWithoutExchange":"BTC / USD Wkly","quoteCoin":"USD","exchange":"3","exchangeName":"OKX","quoteCoinOrder":1,"fcIntervalOrder":2,"fc_interval":"WKLY"},{"symbol":"BTCUSD_BIWKLY.3","symbolOI":"BTCUSD_BIWKLY_OI.3","symbolExchange":"BTC-USD-251226","name":"BTC / USD BiWkly - OKX","nameWithoutExchange":"BTC / USD BiWkly","quoteCoin":"USD","exchange":"3","exchangeName":"OKX","quoteCoinOrder":1,"fcIntervalOrder":3,"fc_interval":"BIWKLY"},{"symbol":"BTCUSD_QTLY.3","symbolOI":"BTCUSD_QTLY_OI.3","symbolExchange":"BTC-USD-260327","name":"BTC / USD Qtly - OKX","nameWithoutExchange":"BTC / USD Qtly","quoteCoin":"USD","exchange":"3","exchangeName":"OKX","quoteCoinOrder":1,"fcIntervalOrder":4,"fc_interval":"QTLY"},{"symbol":"BTCUSD_BIQTLY.3","symbolOI":"BTCUSD_BIQTLY_OI.3","symbolExchange":"BTC-USD-260626","name":"BTC / USD BiQtly - OKX","nameWithoutExchange":"BTC / USD BiQtly","quoteCoin":"USD","exchange":"3","exchangeName":"OKX","quoteCoinOrder":1,"fcIntervalOrder":5,"fc_interval":"BIQTLY"},{"symbol":"BTCUSDT_PERP.3","symbolOI":"BTCUSDT_PERP_OI.3","symbolExchange":"BTC-USDT-SWAP","name":"BTC / USDT Perp - OKX","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchange":"3","exchangeName":"OKX","quoteCoinOrder":2,"fcIntervalOrder":1,"fc_interval":"PERP"},{"symbol":"BTCUSDT_WKLY.3","symbolOI":"BTCUSDT_WKLY_OI.3","symbolExchange":"BTC-USDT-251219","name":"BTC / USDT Wkly - OKX","nameWithoutExchange":"BTC / USDT Wkly","quoteCoin":"USDT","exchange":"3","exchangeName":"OKX","quoteCoinOrder":2,"fcIntervalOrder":2,"fc_interval":"WKLY"},{"symbol":"BTCUSDT_BIWKLY.3","symbolOI":"BTCUSDT_BIWKLY_OI.3","symbolExchange":"BTC-USDT-251226","name":"BTC / USDT BiWkly - OKX","nameWithoutExchange":"BTC / USDT BiWkly","quoteCoin":"USDT","exchange":"3","exchangeName":"OKX","quoteCoinOrder":2,"fcIntervalOrder":3,"fc_interval":"BIWKLY"},{"symbol":"BTCUSDT_QTLY.3","symbolOI":"BTCUSDT_QTLY_OI.3","symbolExchange":"BTC-USDT-260327","name":"BTC / USDT Qtly - OKX","nameWithoutExchange":"BTC / USDT Qtly","quoteCoin":"USDT","exchange":"3","exchangeName":"OKX","quoteCoinOrder":2,"fcIntervalOrder":4,"fc_interval":"QTLY"},{"symbol":"BTCUSDT_BIQTLY.3","symbolOI":"BTCUSDT_BIQTLY_OI.3","symbolExchange":"BTC-USDT-260626","name":"BTC / USDT BiQtly - OKX","nameWithoutExchange":"BTC / USDT BiQtly","quoteCoin":"USDT","exchange":"3","exchangeName":"OKX","quoteCoinOrder":2,"fcIntervalOrder":5,"fc_interval":"BIQTLY"},{"symbol":"PERP_BTC_USDT.W","symbolOI":"PERP_BTC_USDT_OI.W","symbolExchange":"PERP_BTC_USDT","name":"BTC / USDT Perp - WOO X","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchange":"W","exchangeName":"WOO X","quoteCoinOrder":2,"fcIntervalOrder":1,"fc_interval":"PERP"},{"symbol":"BTC-USD.8","symbolOI":"BTC-USD_OI.8","symbolExchange":"BTC-USD","name":"BTC / USD Perp - dYdX","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"8","exchangeName":"dYdX","quoteCoinOrder":1,"fcIntervalOrder":1,"fc_interval":"PERP"}],"futuresContractsForAggregatedLq":[{"symbol":"BTCUSD_PERP.A","symbolLQB":"BTCUSD_PERP_LQB.A","symbolLQS":"BTCUSD_PERP_LQS.A","symbolExchange":"BTCUSD_PERP","name":"BTC / USD Perp - Binance","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"A","exchangeName":"Binance","quoteCoinOrder":1,"fcIntervalOrder":1},{"symbol":"BTCUSD_QTLY.A","symbolLQB":"BTCUSD_QTLY_LQB.A","symbolLQS":"BTCUSD_QTLY_LQS.A","symbolExchange":"BTCUSD_251226","name":"BTC / USD Qtly - Binance","nameWithoutExchange":"BTC / USD Qtly","quoteCoin":"USD","exchange":"A","exchangeName":"Binance","quoteCoinOrder":1,"fcIntervalOrder":4},{"symbol":"BTCUSD_BIQTLY.A","symbolLQB":"BTCUSD_BIQTLY_LQB.A","symbolLQS":"BTCUSD_BIQTLY_LQS.A","symbolExchange":"BTCUSD_260327","name":"BTC / USD BiQtly - Binance","nameWithoutExchange":"BTC / USD BiQtly","quoteCoin":"USD","exchange":"A","exchangeName":"Binance","quoteCoinOrder":1,"fcIntervalOrder":5},{"symbol":"BTCUSDT_PERP.A","symbolLQB":"BTCUSDT_PERP_LQB.A","symbolLQS":"BTCUSDT_PERP_LQS.A","symbolExchange":"BTCUSDT","name":"BTC / USDT Perp - Binance","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchange":"A","exchangeName":"Binance","quoteCoinOrder":2,"fcIntervalOrder":1},{"symbol":"BTCUSDT_QTLY.A","symbolLQB":"BTCUSDT_QTLY_LQB.A","symbolLQS":"BTCUSDT_QTLY_LQS.A","symbolExchange":"BTCUSDT_251226","name":"BTC / USDT Qtly - Binance","nameWithoutExchange":"BTC / USDT Qtly","quoteCoin":"USDT","exchange":"A","exchangeName":"Binance","quoteCoinOrder":2,"fcIntervalOrder":4},{"symbol":"BTCUSDT_BIQTLY.A","symbolLQB":"BTCUSDT_BIQTLY_LQB.A","symbolLQS":"BTCUSDT_BIQTLY_LQS.A","symbolExchange":"BTCUSDT_260327","name":"BTC / USDT BiQtly - Binance","nameWithoutExchange":"BTC / USDT BiQtly","quoteCoin":"USDT","exchange":"A","exchangeName":"Binance","quoteCoinOrder":2,"fcIntervalOrder":5},{"symbol":"BTCUSD_PERP.0","symbolLQB":"BTCUSD_PERP_LQB.0","symbolLQS":"BTCUSD_PERP_LQS.0","symbolExchange":"XBTUSD","name":"BTC / USD Perp - BitMEX","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"0","exchangeName":"BitMEX","quoteCoinOrder":1,"fcIntervalOrder":1},{"symbol":"XBTF26.0","symbolLQB":"XBTF26_LQB.0","symbolLQS":"XBTF26_LQS.0","symbolExchange":"XBTF26","name":"BTC / USD Jan30 - BitMEX","nameWithoutExchange":"BTC / USD Jan30","quoteCoin":"USD","exchange":"0","exchangeName":"BitMEX","quoteCoinOrder":1,"fcIntervalOrder":1000},{"symbol":"XBTU26.0","symbolLQB":"XBTU26_LQB.0","symbolLQS":"XBTU26_LQS.0","symbolExchange":"XBTU26","name":"BTC / USD Sep25 - BitMEX","nameWithoutExchange":"BTC / USD Sep25","quoteCoin":"USD","exchange":"0","exchangeName":"BitMEX","quoteCoinOrder":1,"fcIntervalOrder":1000},{"symbol":"XBTH26.0","symbolLQB":"XBTH26_LQB.0","symbolLQS":"XBTH26_LQS.0","symbolExchange":"XBTH26","name":"BTC / USD Mar27 - BitMEX","nameWithoutExchange":"BTC / USD Mar27","quoteCoin":"USD","exchange":"0","exchangeName":"BitMEX","quoteCoinOrder":1,"fcIntervalOrder":1000},{"symbol":"XBTM26.0","symbolLQB":"XBTM26_LQB.0","symbolLQS":"XBTM26_LQS.0","symbolExchange":"XBTM26","name":"BTC / USD Jun26 - BitMEX","nameWithoutExchange":"BTC / USD Jun26","quoteCoin":"USD","exchange":"0","exchangeName":"BitMEX","quoteCoinOrder":1,"fcIntervalOrder":1000},{"symbol":"XBTZ25.0","symbolLQB":"XBTZ25_LQB.0","symbolLQS":"XBTZ25_LQS.0","symbolExchange":"XBTZ25","name":"BTC / USD Dec26 - BitMEX","nameWithoutExchange":"BTC / USD Dec26","quoteCoin":"USD","exchange":"0","exchangeName":"BitMEX","quoteCoinOrder":1,"fcIntervalOrder":1000},{"symbol":"BTCUSDT_PERP.0","symbolLQB":"BTCUSDT_PERP_LQB.0","symbolLQS":"BTCUSDT_PERP_LQS.0","symbolExchange":"XBTUSDT","name":"BTC / USDT Perp - BitMEX","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchange":"0","exchangeName":"BitMEX","quoteCoinOrder":2,"fcIntervalOrder":1},{"symbol":"XBTUSDTH26.0","symbolLQB":"XBTUSDTH26_LQB.0","symbolLQS":"XBTUSDTH26_LQS.0","symbolExchange":"XBTUSDTH26","name":"BTC / USDT Mar27 - BitMEX","nameWithoutExchange":"BTC / USDT Mar27","quoteCoin":"USDT","exchange":"0","exchangeName":"BitMEX","quoteCoinOrder":2,"fcIntervalOrder":1000},{"symbol":"XBTUSDTZ25.0","symbolLQB":"XBTUSDTZ25_LQB.0","symbolLQS":"XBTUSDTZ25_LQS.0","symbolExchange":"XBTUSDTZ25","name":"BTC / USDT Dec26 - BitMEX","nameWithoutExchange":"BTC / USDT Dec26","quoteCoin":"USDT","exchange":"0","exchangeName":"BitMEX","quoteCoinOrder":2,"fcIntervalOrder":1000},{"symbol":"BTCUSDT_PERP.F","symbolLQB":"BTCUSDT_PERP_LQB.F","symbolLQS":"BTCUSDT_PERP_LQS.F","symbolExchange":"BTCF0:USTF0","name":"BTC / USDT Perp - Bitfinex","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchange":"F","exchangeName":"Bitfinex","quoteCoinOrder":2,"fcIntervalOrder":1},{"symbol":"BTCUSD.6","symbolLQB":"BTCUSD_LQB.6","symbolLQS":"BTCUSD_LQS.6","symbolExchange":"BTCUSD","name":"BTC / USD Perp - Bybit","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"6","exchangeName":"Bybit","quoteCoinOrder":1,"fcIntervalOrder":1},{"symbol":"BTCUSDH26.6","symbolLQB":"BTCUSDH26_LQB.6","symbolLQS":"BTCUSDH26_LQS.6","symbolExchange":"BTCUSDH26","name":"BTC / USD Mar27 - Bybit","nameWithoutExchange":"BTC / USD Mar27","quoteCoin":"USD","exchange":"6","exchangeName":"Bybit","quoteCoinOrder":1,"fcIntervalOrder":1000},{"symbol":"BTCUSDZ25.6","symbolLQB":"BTCUSDZ25_LQB.6","symbolLQS":"BTCUSDZ25_LQS.6","symbolExchange":"BTCUSDZ25","name":"BTC / USD Dec26 - Bybit","nameWithoutExchange":"BTC / USD Dec26","quoteCoin":"USD","exchange":"6","exchangeName":"Bybit","quoteCoinOrder":1,"fcIntervalOrder":1000},{"symbol":"BTCUSDM26.6","symbolLQB":"BTCUSDM26_LQB.6","symbolLQS":"BTCUSDM26_LQS.6","symbolExchange":"BTCUSDM26","name":"BTC / USD Jun26 - Bybit","nameWithoutExchange":"BTC / USD Jun26","quoteCoin":"USD","exchange":"6","exchangeName":"Bybit","quoteCoinOrder":1,"fcIntervalOrder":1000},{"symbol":"BTCUSDT.6","symbolLQB":"BTCUSDT_LQB.6","symbolLQS":"BTCUSDT_LQS.6","symbolExchange":"BTCUSDT","name":"BTC / USDT Perp - Bybit","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchange":"6","exchangeName":"Bybit","quoteCoinOrder":2,"fcIntervalOrder":1},{"symbol":"BTC-PERPETUAL.2","symbolLQB":"BTC-PERPETUAL_LQB.2","symbolLQS":"BTC-PERPETUAL_LQS.2","symbolExchange":"BTC-PERPETUAL","name":"BTC / USD Perp - Deribit","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"2","exchangeName":"Deribit","quoteCoinOrder":1,"fcIntervalOrder":1},{"symbol":"BTC-25SEP26.2","symbolLQB":"BTC-25SEP26_LQB.2","symbolLQS":"BTC-25SEP26_LQS.2","symbolExchange":"BTC-25SEP26","name":"BTC / USD Sep25 - Deribit","nameWithoutExchange":"BTC / USD Sep25","quoteCoin":"USD","exchange":"2","exchangeName":"Deribit","quoteCoinOrder":1,"fcIntervalOrder":1000},{"symbol":"BTC-26DEC25.2","symbolLQB":"BTC-26DEC25_LQB.2","symbolLQS":"BTC-26DEC25_LQS.2","symbolExchange":"BTC-26DEC25","name":"BTC / USD Dec26 - Deribit","nameWithoutExchange":"BTC / USD Dec26","quoteCoin":"USD","exchange":"2","exchangeName":"Deribit","quoteCoinOrder":1,"fcIntervalOrder":1000},{"symbol":"BTC-26JUN26.2","symbolLQB":"BTC-26JUN26_LQB.2","symbolLQS":"BTC-26JUN26_LQS.2","symbolExchange":"BTC-26JUN26","name":"BTC / USD Jun26 - Deribit","nameWithoutExchange":"BTC / USD Jun26","quoteCoin":"USD","exchange":"2","exchangeName":"Deribit","quoteCoinOrder":1,"fcIntervalOrder":1000},{"symbol":"BTC-27MAR26.2","symbolLQB":"BTC-27MAR26_LQB.2","symbolLQS":"BTC-27MAR26_LQS.2","symbolExchange":"BTC-27MAR26","name":"BTC / USD Mar27 - Deribit","nameWithoutExchange":"BTC / USD Mar27","quoteCoin":"USD","exchange":"2","exchangeName":"Deribit","quoteCoinOrder":1,"fcIntervalOrder":1000},{"symbol":"BTC-30JAN26.2","symbolLQB":"BTC-30JAN26_LQB.2","symbolLQS":"BTC-30JAN26_LQS.2","symbolExchange":"BTC-30JAN26","name":"BTC / USD Jan30 - Deribit","nameWithoutExchange":"BTC / USD Jan30","quoteCoin":"USD","exchange":"2","exchangeName":"Deribit","quoteCoinOrder":1,"fcIntervalOrder":1000},{"symbol":"BTC-19DEC25.2","symbolLQB":"BTC-19DEC25_LQB.2","symbolLQS":"BTC-19DEC25_LQS.2","symbolExchange":"BTC-19DEC25","name":"BTC / USD Dec19 - Deribit","nameWithoutExchange":"BTC / USD Dec19","quoteCoin":"USD","exchange":"2","exchangeName":"Deribit","quoteCoinOrder":1,"fcIntervalOrder":1000},{"symbol":"BTCUSD_PERP.4","symbolLQB":"BTCUSD_PERP_LQB.4","symbolLQS":"BTCUSD_PERP_LQS.4","symbolExchange":"BTC-USD","name":"BTC / USD Perp - Huobi","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"4","exchangeName":"Huobi","quoteCoinOrder":1,"fcIntervalOrder":1},{"symbol":"BTCUSD_WKLY.4","symbolLQB":"BTCUSD_WKLY_LQB.4","symbolLQS":"BTCUSD_WKLY_LQS.4","symbolExchange":"BTC251219","name":"BTC / USD Wkly - Huobi","nameWithoutExchange":"BTC / USD Wkly","quoteCoin":"USD","exchange":"4","exchangeName":"Huobi","quoteCoinOrder":1,"fcIntervalOrder":2},{"symbol":"BTCUSD_BIWKLY.4","symbolLQB":"BTCUSD_BIWKLY_LQB.4","symbolLQS":"BTCUSD_BIWKLY_LQS.4","symbolExchange":"BTC251226","name":"BTC / USD BiWkly - Huobi","nameWithoutExchange":"BTC / USD BiWkly","quoteCoin":"USD","exchange":"4","exchangeName":"Huobi","quoteCoinOrder":1,"fcIntervalOrder":3},{"symbol":"BTCUSD_QTLY.4","symbolLQB":"BTCUSD_QTLY_LQB.4","symbolLQS":"BTCUSD_QTLY_LQS.4","symbolExchange":"BTC260327","name":"BTC / USD Qtly - Huobi","nameWithoutExchange":"BTC / USD Qtly","quoteCoin":"USD","exchange":"4","exchangeName":"Huobi","quoteCoinOrder":1,"fcIntervalOrder":4},{"symbol":"BTCUSDT_PERP.4","symbolLQB":"BTCUSDT_PERP_LQB.4","symbolLQS":"BTCUSDT_PERP_LQS.4","symbolExchange":"BTC-USDT","name":"BTC / USDT Perp - Huobi","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchange":"4","exchangeName":"Huobi","quoteCoinOrder":2,"fcIntervalOrder":1},{"symbol":"BTCUSD_PERP.3","symbolLQB":"BTCUSD_PERP_LQB.3","symbolLQS":"BTCUSD_PERP_LQS.3","symbolExchange":"BTC-USD-SWAP","name":"BTC / USD Perp - OKX","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"3","exchangeName":"OKX","quoteCoinOrder":1,"fcIntervalOrder":1},{"symbol":"BTCUSD_WKLY.3","symbolLQB":"BTCUSD_WKLY_LQB.3","symbolLQS":"BTCUSD_WKLY_LQS.3","symbolExchange":"BTC-USD-251219","name":"BTC / USD Wkly - OKX","nameWithoutExchange":"BTC / USD Wkly","quoteCoin":"USD","exchange":"3","exchangeName":"OKX","quoteCoinOrder":1,"fcIntervalOrder":2},{"symbol":"BTCUSD_BIWKLY.3","symbolLQB":"BTCUSD_BIWKLY_LQB.3","symbolLQS":"BTCUSD_BIWKLY_LQS.3","symbolExchange":"BTC-USD-251226","name":"BTC / USD BiWkly - OKX","nameWithoutExchange":"BTC / USD BiWkly","quoteCoin":"USD","exchange":"3","exchangeName":"OKX","quoteCoinOrder":1,"fcIntervalOrder":3},{"symbol":"BTCUSD_QTLY.3","symbolLQB":"BTCUSD_QTLY_LQB.3","symbolLQS":"BTCUSD_QTLY_LQS.3","symbolExchange":"BTC-USD-260327","name":"BTC / USD Qtly - OKX","nameWithoutExchange":"BTC / USD Qtly","quoteCoin":"USD","exchange":"3","exchangeName":"OKX","quoteCoinOrder":1,"fcIntervalOrder":4},{"symbol":"BTCUSD_BIQTLY.3","symbolLQB":"BTCUSD_BIQTLY_LQB.3","symbolLQS":"BTCUSD_BIQTLY_LQS.3","symbolExchange":"BTC-USD-260626","name":"BTC / USD BiQtly - OKX","nameWithoutExchange":"BTC / USD BiQtly","quoteCoin":"USD","exchange":"3","exchangeName":"OKX","quoteCoinOrder":1,"fcIntervalOrder":5},{"symbol":"BTCUSDT_PERP.3","symbolLQB":"BTCUSDT_PERP_LQB.3","symbolLQS":"BTCUSDT_PERP_LQS.3","symbolExchange":"BTC-USDT-SWAP","name":"BTC / USDT Perp - OKX","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchange":"3","exchangeName":"OKX","quoteCoinOrder":2,"fcIntervalOrder":1},{"symbol":"BTCUSDT_WKLY.3","symbolLQB":"BTCUSDT_WKLY_LQB.3","symbolLQS":"BTCUSDT_WKLY_LQS.3","symbolExchange":"BTC-USDT-251219","name":"BTC / USDT Wkly - OKX","nameWithoutExchange":"BTC / USDT Wkly","quoteCoin":"USDT","exchange":"3","exchangeName":"OKX","quoteCoinOrder":2,"fcIntervalOrder":2},{"symbol":"BTCUSDT_BIWKLY.3","symbolLQB":"BTCUSDT_BIWKLY_LQB.3","symbolLQS":"BTCUSDT_BIWKLY_LQS.3","symbolExchange":"BTC-USDT-251226","name":"BTC / USDT BiWkly - OKX","nameWithoutExchange":"BTC / USDT BiWkly","quoteCoin":"USDT","exchange":"3","exchangeName":"OKX","quoteCoinOrder":2,"fcIntervalOrder":3},{"symbol":"BTCUSDT_QTLY.3","symbolLQB":"BTCUSDT_QTLY_LQB.3","symbolLQS":"BTCUSDT_QTLY_LQS.3","symbolExchange":"BTC-USDT-260327","name":"BTC / USDT Qtly - OKX","nameWithoutExchange":"BTC / USDT Qtly","quoteCoin":"USDT","exchange":"3","exchangeName":"OKX","quoteCoinOrder":2,"fcIntervalOrder":4},{"symbol":"BTCUSDT_BIQTLY.3","symbolLQB":"BTCUSDT_BIQTLY_LQB.3","symbolLQS":"BTCUSDT_BIQTLY_LQS.3","symbolExchange":"BTC-USDT-260626","name":"BTC / USDT BiQtly - OKX","nameWithoutExchange":"BTC / USDT BiQtly","quoteCoin":"USDT","exchange":"3","exchangeName":"OKX","quoteCoinOrder":2,"fcIntervalOrder":5}],"futuresContractsForAggregatedVolume":[{"symbol":"BTCUSD_PERP.A","symbolExchange":"BTCUSD_PERP","name":"BTC / USD Perp - Binance","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"A","exchangeName":"Binance","quoteCoinOrder":1,"fcIntervalOrder":1,"fc_interval":"PERP"},{"symbol":"BTCUSD_QTLY.A","symbolExchange":"BTCUSD_251226","name":"BTC / USD Qtly - Binance","nameWithoutExchange":"BTC / USD Qtly","quoteCoin":"USD","exchange":"A","exchangeName":"Binance","quoteCoinOrder":1,"fcIntervalOrder":4,"fc_interval":"QTLY"},{"symbol":"BTCUSD_BIQTLY.A","symbolExchange":"BTCUSD_260327","name":"BTC / USD BiQtly - Binance","nameWithoutExchange":"BTC / USD BiQtly","quoteCoin":"USD","exchange":"A","exchangeName":"Binance","quoteCoinOrder":1,"fcIntervalOrder":5,"fc_interval":"BIQTLY"},{"symbol":"BTCUSDT_PERP.A","symbolExchange":"BTCUSDT","name":"BTC / USDT Perp - Binance","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchange":"A","exchangeName":"Binance","quoteCoinOrder":2,"fcIntervalOrder":1,"fc_interval":"PERP"},{"symbol":"BTCUSDT_QTLY.A","symbolExchange":"BTCUSDT_251226","name":"BTC / USDT Qtly - Binance","nameWithoutExchange":"BTC / USDT Qtly","quoteCoin":"USDT","exchange":"A","exchangeName":"Binance","quoteCoinOrder":2,"fcIntervalOrder":4,"fc_interval":"QTLY"},{"symbol":"BTCUSDT_BIQTLY.A","symbolExchange":"BTCUSDT_260327","name":"BTC / USDT BiQtly - Binance","nameWithoutExchange":"BTC / USDT BiQtly","quoteCoin":"USDT","exchange":"A","exchangeName":"Binance","quoteCoinOrder":2,"fcIntervalOrder":5,"fc_interval":"BIQTLY"},{"symbol":"BTCUSD_PERP.0","symbolExchange":"XBTUSD","name":"BTC / USD Perp - BitMEX","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"0","exchangeName":"BitMEX","quoteCoinOrder":1,"fcIntervalOrder":1,"fc_interval":"PERP"},{"symbol":"XBTZ25.0","symbolExchange":"XBTZ25","name":"BTC / USD Dec26 - BitMEX","nameWithoutExchange":"BTC / USD Dec26","quoteCoin":"USD","exchange":"0","exchangeName":"BitMEX","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"XBTH26.0","symbolExchange":"XBTH26","name":"BTC / USD Mar27 - BitMEX","nameWithoutExchange":"BTC / USD Mar27","quoteCoin":"USD","exchange":"0","exchangeName":"BitMEX","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"XBTM26.0","symbolExchange":"XBTM26","name":"BTC / USD Jun26 - BitMEX","nameWithoutExchange":"BTC / USD Jun26","quoteCoin":"USD","exchange":"0","exchangeName":"BitMEX","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"XBTU26.0","symbolExchange":"XBTU26","name":"BTC / USD Sep25 - BitMEX","nameWithoutExchange":"BTC / USD Sep25","quoteCoin":"USD","exchange":"0","exchangeName":"BitMEX","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"XBTF26.0","symbolExchange":"XBTF26","name":"BTC / USD Jan30 - BitMEX","nameWithoutExchange":"BTC / USD Jan30","quoteCoin":"USD","exchange":"0","exchangeName":"BitMEX","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"BTCUSDT_PERP.0","symbolExchange":"XBTUSDT","name":"BTC / USDT Perp - BitMEX","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchange":"0","exchangeName":"BitMEX","quoteCoinOrder":2,"fcIntervalOrder":1,"fc_interval":"PERP"},{"symbol":"XBTUSDTZ25.0","symbolExchange":"XBTUSDTZ25","name":"BTC / USDT Dec26 - BitMEX","nameWithoutExchange":"BTC / USDT Dec26","quoteCoin":"USDT","exchange":"0","exchangeName":"BitMEX","quoteCoinOrder":2,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"XBTUSDTH26.0","symbolExchange":"XBTUSDTH26","name":"BTC / USDT Mar27 - BitMEX","nameWithoutExchange":"BTC / USDT Mar27","quoteCoin":"USDT","exchange":"0","exchangeName":"BitMEX","quoteCoinOrder":2,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"BTCUSDT_PERP.F","symbolExchange":"BTCF0:USTF0","name":"BTC / USDT Perp - Bitfinex","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchange":"F","exchangeName":"Bitfinex","quoteCoinOrder":2,"fcIntervalOrder":1,"fc_interval":"PERP"},{"symbol":"BTCUSD.6","symbolExchange":"BTCUSD","name":"BTC / USD Perp - Bybit","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"6","exchangeName":"Bybit","quoteCoinOrder":1,"fcIntervalOrder":1,"fc_interval":"PERP"},{"symbol":"BTCUSDM26.6","symbolExchange":"BTCUSDM26","name":"BTC / USD Jun26 - Bybit","nameWithoutExchange":"BTC / USD Jun26","quoteCoin":"USD","exchange":"6","exchangeName":"Bybit","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"BTCUSDH26.6","symbolExchange":"BTCUSDH26","name":"BTC / USD Mar27 - Bybit","nameWithoutExchange":"BTC / USD Mar27","quoteCoin":"USD","exchange":"6","exchangeName":"Bybit","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"BTCUSDZ25.6","symbolExchange":"BTCUSDZ25","name":"BTC / USD Dec26 - Bybit","nameWithoutExchange":"BTC / USD Dec26","quoteCoin":"USD","exchange":"6","exchangeName":"Bybit","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"BTCUSDT.6","symbolExchange":"BTCUSDT","name":"BTC / USDT Perp - Bybit","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchange":"6","exchangeName":"Bybit","quoteCoinOrder":2,"fcIntervalOrder":1,"fc_interval":"PERP"},{"symbol":"BTC-PERPETUAL.2","symbolExchange":"BTC-PERPETUAL","name":"BTC / USD Perp - Deribit","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"2","exchangeName":"Deribit","quoteCoinOrder":1,"fcIntervalOrder":1,"fc_interval":"PERP"},{"symbol":"BTC-26JUN26.2","symbolExchange":"BTC-26JUN26","name":"BTC / USD Jun26 - Deribit","nameWithoutExchange":"BTC / USD Jun26","quoteCoin":"USD","exchange":"2","exchangeName":"Deribit","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"BTC-25SEP26.2","symbolExchange":"BTC-25SEP26","name":"BTC / USD Sep25 - Deribit","nameWithoutExchange":"BTC / USD Sep25","quoteCoin":"USD","exchange":"2","exchangeName":"Deribit","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"BTC-26DEC25.2","symbolExchange":"BTC-26DEC25","name":"BTC / USD Dec26 - Deribit","nameWithoutExchange":"BTC / USD Dec26","quoteCoin":"USD","exchange":"2","exchangeName":"Deribit","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"BTC-27MAR26.2","symbolExchange":"BTC-27MAR26","name":"BTC / USD Mar27 - Deribit","nameWithoutExchange":"BTC / USD Mar27","quoteCoin":"USD","exchange":"2","exchangeName":"Deribit","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"BTC-30JAN26.2","symbolExchange":"BTC-30JAN26","name":"BTC / USD Jan30 - Deribit","nameWithoutExchange":"BTC / USD Jan30","quoteCoin":"USD","exchange":"2","exchangeName":"Deribit","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"BTC-19DEC25.2","symbolExchange":"BTC-19DEC25","name":"BTC / USD Dec19 - Deribit","nameWithoutExchange":"BTC / USD Dec19","quoteCoin":"USD","exchange":"2","exchangeName":"Deribit","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"BTCUSD_PERP.4","symbolExchange":"BTC-USD","name":"BTC / USD Perp - Huobi","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"4","exchangeName":"Huobi","quoteCoinOrder":1,"fcIntervalOrder":1,"fc_interval":"PERP"},{"symbol":"BTCUSD_WKLY.4","symbolExchange":"BTC251219","name":"BTC / USD Wkly - Huobi","nameWithoutExchange":"BTC / USD Wkly","quoteCoin":"USD","exchange":"4","exchangeName":"Huobi","quoteCoinOrder":1,"fcIntervalOrder":2,"fc_interval":"WKLY"},{"symbol":"BTCUSD_BIWKLY.4","symbolExchange":"BTC251226","name":"BTC / USD BiWkly - Huobi","nameWithoutExchange":"BTC / USD BiWkly","quoteCoin":"USD","exchange":"4","exchangeName":"Huobi","quoteCoinOrder":1,"fcIntervalOrder":3,"fc_interval":"BIWKLY"},{"symbol":"BTCUSD_QTLY.4","symbolExchange":"BTC260327","name":"BTC / USD Qtly - Huobi","nameWithoutExchange":"BTC / USD Qtly","quoteCoin":"USD","exchange":"4","exchangeName":"Huobi","quoteCoinOrder":1,"fcIntervalOrder":4,"fc_interval":"QTLY"},{"symbol":"BTCUSDT_PERP.4","symbolExchange":"BTC-USDT","name":"BTC / USDT Perp - Huobi","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchange":"4","exchangeName":"Huobi","quoteCoinOrder":2,"fcIntervalOrder":1,"fc_interval":"PERP"},{"symbol":"BTC.H","symbolExchange":"BTC","name":"BTC / USD Perp - Hyperliquid","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"H","exchangeName":"Hyperliquid","quoteCoinOrder":1,"fcIntervalOrder":1,"fc_interval":"PERP"},{"symbol":"BTCUSD_PERP.K","symbolExchange":"pi_xbtusd","name":"BTC / USD Perp - Kraken","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"K","exchangeName":"Kraken","quoteCoinOrder":1,"fcIntervalOrder":1,"fc_interval":"PERP"},{"symbol":"pf_xbtusd.K","symbolExchange":"pf_xbtusd","name":"BTC / USD Perp - Kraken","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"K","exchangeName":"Kraken","quoteCoinOrder":1,"fcIntervalOrder":1,"fc_interval":"PERP"},{"symbol":"ff_xbtusd_251226.K","symbolExchange":"ff_xbtusd_251226","name":"BTC / USD Dec26 - Kraken","nameWithoutExchange":"BTC / USD Dec26","quoteCoin":"USD","exchange":"K","exchangeName":"Kraken","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"fi_xbtusd_251226.K","symbolExchange":"fi_xbtusd_251226","name":"BTC / USD Dec26 - Kraken","nameWithoutExchange":"BTC / USD Dec26","quoteCoin":"USD","exchange":"K","exchangeName":"Kraken","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"fi_xbtusd_260327.K","symbolExchange":"fi_xbtusd_260327","name":"BTC / USD Mar27 - Kraken","nameWithoutExchange":"BTC / USD Mar27","quoteCoin":"USD","exchange":"K","exchangeName":"Kraken","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"ff_xbtusd_260327.K","symbolExchange":"ff_xbtusd_260327","name":"BTC / USD Mar27 - Kraken","nameWithoutExchange":"BTC / USD Mar27","quoteCoin":"USD","exchange":"K","exchangeName":"Kraken","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"ff_xbtusd_251219.K","symbolExchange":"ff_xbtusd_251219","name":"BTC / USD Dec19 - Kraken","nameWithoutExchange":"BTC / USD Dec19","quoteCoin":"USD","exchange":"K","exchangeName":"Kraken","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"fi_xbtusd_260626.K","symbolExchange":"fi_xbtusd_260626","name":"BTC / USD Jun26 - Kraken","nameWithoutExchange":"BTC / USD Jun26","quoteCoin":"USD","exchange":"K","exchangeName":"Kraken","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"ff_xbtusd_260626.K","symbolExchange":"ff_xbtusd_260626","name":"BTC / USD Jun26 - Kraken","nameWithoutExchange":"BTC / USD Jun26","quoteCoin":"USD","exchange":"K","exchangeName":"Kraken","quoteCoinOrder":1,"fcIntervalOrder":1000,"fc_interval":""},{"symbol":"BTCUSD_PERP.3","symbolExchange":"BTC-USD-SWAP","name":"BTC / USD Perp - OKX","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"3","exchangeName":"OKX","quoteCoinOrder":1,"fcIntervalOrder":1,"fc_interval":"PERP"},{"symbol":"BTCUSD_WKLY.3","symbolExchange":"BTC-USD-251219","name":"BTC / USD Wkly - OKX","nameWithoutExchange":"BTC / USD Wkly","quoteCoin":"USD","exchange":"3","exchangeName":"OKX","quoteCoinOrder":1,"fcIntervalOrder":2,"fc_interval":"WKLY"},{"symbol":"BTCUSD_BIWKLY.3","symbolExchange":"BTC-USD-251226","name":"BTC / USD BiWkly - OKX","nameWithoutExchange":"BTC / USD BiWkly","quoteCoin":"USD","exchange":"3","exchangeName":"OKX","quoteCoinOrder":1,"fcIntervalOrder":3,"fc_interval":"BIWKLY"},{"symbol":"BTCUSD_QTLY.3","symbolExchange":"BTC-USD-260327","name":"BTC / USD Qtly - OKX","nameWithoutExchange":"BTC / USD Qtly","quoteCoin":"USD","exchange":"3","exchangeName":"OKX","quoteCoinOrder":1,"fcIntervalOrder":4,"fc_interval":"QTLY"},{"symbol":"BTCUSD_BIQTLY.3","symbolExchange":"BTC-USD-260626","name":"BTC / USD BiQtly - OKX","nameWithoutExchange":"BTC / USD BiQtly","quoteCoin":"USD","exchange":"3","exchangeName":"OKX","quoteCoinOrder":1,"fcIntervalOrder":5,"fc_interval":"BIQTLY"},{"symbol":"BTCUSDT_PERP.3","symbolExchange":"BTC-USDT-SWAP","name":"BTC / USDT Perp - OKX","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchange":"3","exchangeName":"OKX","quoteCoinOrder":2,"fcIntervalOrder":1,"fc_interval":"PERP"},{"symbol":"BTCUSDT_WKLY.3","symbolExchange":"BTC-USDT-251219","name":"BTC / USDT Wkly - OKX","nameWithoutExchange":"BTC / USDT Wkly","quoteCoin":"USDT","exchange":"3","exchangeName":"OKX","quoteCoinOrder":2,"fcIntervalOrder":2,"fc_interval":"WKLY"},{"symbol":"BTCUSDT_BIWKLY.3","symbolExchange":"BTC-USDT-251226","name":"BTC / USDT BiWkly - OKX","nameWithoutExchange":"BTC / USDT BiWkly","quoteCoin":"USDT","exchange":"3","exchangeName":"OKX","quoteCoinOrder":2,"fcIntervalOrder":3,"fc_interval":"BIWKLY"},{"symbol":"BTCUSDT_QTLY.3","symbolExchange":"BTC-USDT-260327","name":"BTC / USDT Qtly - OKX","nameWithoutExchange":"BTC / USDT Qtly","quoteCoin":"USDT","exchange":"3","exchangeName":"OKX","quoteCoinOrder":2,"fcIntervalOrder":4,"fc_interval":"QTLY"},{"symbol":"BTCUSDT_BIQTLY.3","symbolExchange":"BTC-USDT-260626","name":"BTC / USDT BiQtly - OKX","nameWithoutExchange":"BTC / USDT BiQtly","quoteCoin":"USDT","exchange":"3","exchangeName":"OKX","quoteCoinOrder":2,"fcIntervalOrder":5,"fc_interval":"BIQTLY"},{"symbol":"PERP_BTC_USDT.W","symbolExchange":"PERP_BTC_USDT","name":"BTC / USDT Perp - WOO X","nameWithoutExchange":"BTC / USDT Perp","quoteCoin":"USDT","exchange":"W","exchangeName":"WOO X","quoteCoinOrder":2,"fcIntervalOrder":1,"fc_interval":"PERP"},{"symbol":"BTC-USD.8","symbolExchange":"BTC-USD","name":"BTC / USD Perp - dYdX","nameWithoutExchange":"BTC / USD Perp","quoteCoin":"USD","exchange":"8","exchangeName":"dYdX","quoteCoinOrder":1,"fcIntervalOrder":1,"fc_interval":"PERP"}],"exchangesForAggregatedOIIndicatorGlobal":[{"exchange":"A","name":"Binance"},{"exchange":"F","name":"Bitfinex"},{"exchange":"0","name":"BitMEX"},{"exchange":"6","name":"Bybit"},{"exchange":"2","name":"Deribit"},{"exchange":"8","name":"dYdX"},{"exchange":"4","name":"Huobi"},{"exchange":"H","name":"Hyperliquid"},{"exchange":"K","name":"Kraken"},{"exchange":"3","name":"OKX"},{"exchange":"W","name":"WOO X"}],"exchangesForAggregatedLQIndicatorGlobal":[{"exchange":"A","name":"Binance"},{"exchange":"F","name":"Bitfinex"},{"exchange":"0","name":"BitMEX"},{"exchange":"6","name":"Bybit"},{"exchange":"2","name":"Deribit"},{"exchange":"4","name":"Huobi"},{"exchange":"3","name":"OKX"}],"exchangesForAggregatedVolumeIndicatorGlobal":[{"exchange":"A","name":"Binance"},{"exchange":"F","name":"Bitfinex"},{"exchange":"0","name":"BitMEX"},{"exchange":"6","name":"Bybit"},{"exchange":"2","name":"Deribit"},{"exchange":"8","name":"dYdX"},{"exchange":"4","name":"Huobi"},{"exchange":"H","name":"Hyperliquid"},{"exchange":"K","name":"Kraken"},{"exchange":"3","name":"OKX"},{"exchange":"W","name":"WOO X"}],"exchangesForAggregatedVolumeSpotIndicatorGlobal":[{"exchange":"A","name":"Binance"},{"exchange":"F","name":"Bitfinex"},{"exchange":"B","name":"Bitstamp"},{"exchange":"6","name":"Bybit"},{"exchange":"C","name":"Coinbase"},{"exchange":"G","name":"Gemini"},{"exchange":"K","name":"Kraken"},{"exchange":"P","name":"Poloniex"}],"exchangesForAggregatedFRIndicatorGlobal":[{"exchange":"A","name":"Binance"},{"exchange":"0","name":"BitMEX"},{"exchange":"6","name":"Bybit"},{"exchange":"2","name":"Deribit"},{"exchange":"4","name":"Huobi"},{"exchange":"H","name":"Hyperliquid"},{"exchange":"K","name":"Kraken"},{"exchange":"3","name":"OKX"}],"exchangesForAggregatedPFRIndicatorGlobal":[{"exchange":"A","name":"Binance"},{"exchange":"0","name":"BitMEX"},{"exchange":"6","name":"Bybit"},{"exchange":"4","name":"Huobi"},{"exchange":"H","name":"Hyperliquid"},{"exchange":"K","name":"Kraken"},{"exchange":"3","name":"OKX"}],"symbolsForUsdConversion":["BTCUSD.B","BTCUSD.K"]}`);
+    
+    
+    var chartWidget;
+    function buildTvChart(args) {//return;
+        var isPhoneVersion = JSON.parse('false');
+        var needLoadSetup = false;
+        
+        var datafeedConfig = {
+            supports_time: false,
+            supported_resolutions: [1, 5, 15, 30, 60*1, 60*2, 60*4, 60*6, 60*12, '1D', '1W', '1M']
+        };
+    
+        var chartSymbolsInfo = JSON.parse(JSON.stringify(Common.symbolsInfoForSearch));
+    
+        // symbols for coin average price
+        var  symbolsForCoins = {};
+        for(var i=0; i<chartSymbolsInfo.length; i++) {
+    
+            var item = chartSymbolsInfo[i];
+    
+            if( (item.market_type === 1 || item.market_type === 2) && !symbolsForCoins[item.coin]) {
+                symbolsForCoins[item.coin] = {
+                    symbol: item.coin + '_AVGPRICE',
+                    coin: item.coin,
+                    coin_display: item.coin_display,
+                    coin_name: item.coin_name,
+                    quote_coin: item.quote_coin,
+                    decimals: item.decimals,
+                    exchange_name: 'Coinalyze',
+                    name: item.coin_display + '/USD' + ' Average'
+                }
+            }
+        }
+    
+        for(var coin in symbolsForCoins) {
+            chartSymbolsInfo.push(symbolsForCoins[coin]);
+        }
+    
+        var enabled_features = ['hide_last_na_study_output', 'side_toolbar_in_fullscreen_mode', 'charting_library_single_symbol_request'];
+        var disabled_features = ['create_volume_indicator_by_default', 'header_undo_redo', 'header_symbol_search', 'symbol_search_hot_key', 'save_chart_properties_to_local_storage', 'border_around_the_chart', 'display_market_status'];
+    
+        //if(isPhoneVersion) {
+            enabled_features.push('hide_left_toolbar_by_default');
+            disabled_features.push('header_compare');
+        //}
+
+        const theme = TV_CHART_DATA.theme; 
+        const themeVariables = args.themesVariables[theme];
+
+        let chartWidgetOptions = {
+            save_load_adapter: CHART_SAVE_LOAD_ADAPTER(TV_CHART_DATA.symbol, 'aggr'),
+            snapshot_url: 'https://coinalyze.net/snapshot/',
+            symbol: TV_CHART_DATA.symbol,
+            interval: TV_CHART_DATA.interval,
+            timezone: "UTC",
+            container: TV_CHART_DATA.elmId,
+            locale: TV_CHART_DATA.locale,
+            library_path: '/chart_' + TV_CHART_DATA.tv_chart_version + '/tv_charting_library/',
+            autosize: true,
+            //debug: true,
+            theme: theme === 'dark' ? 'dark' : 'light',
+            custom_css_url: '/css-bundle/chart_custom_css_' + (theme !== 'dark' ? `theme_${theme}_` : '') + TV_CHART_DATA.tv_chart_version + '.css',
+
+            toolbar_bg: themeVariables.tv.toolbar_bg,
+            overrides: {
+                'paneProperties.backgroundType': themeVariables.tv.paneProperties.backgroundType,
+                'paneProperties.background': themeVariables.tv.paneProperties.background,
+                'paneProperties.vertGridProperties.color': themeVariables.tv.paneProperties.vertGridProperties.color,
+                'paneProperties.horzGridProperties.color': themeVariables.tv.paneProperties.horzGridProperties.color,
+                'scalesProperties.textColor': themeVariables.tv.scalesProperties.textColor,
+                'scalesProperties.lineColor': themeVariables.tv.scalesProperties.lineColor,
+
+                'mainSeriesProperties.showPriceLine': themeVariables.tv.mainSeriesProperties.showPriceLine,
+                
+                'mainSeriesProperties.candleStyle.upColor': themeVariables.tv.mainSeriesProperties.candleStyle.upColor,
+                'mainSeriesProperties.candleStyle.borderUpColor': themeVariables.tv.mainSeriesProperties.candleStyle.borderUpColor,
+                'mainSeriesProperties.candleStyle.wickUpColor': themeVariables.tv.mainSeriesProperties.candleStyle.wickUpColor,
+                'mainSeriesProperties.candleStyle.downColor': themeVariables.tv.mainSeriesProperties.candleStyle.downColor,
+                'mainSeriesProperties.candleStyle.borderDownColor': themeVariables.tv.mainSeriesProperties.candleStyle.borderDownColor,
+                'mainSeriesProperties.candleStyle.wickDownColor': themeVariables.tv.mainSeriesProperties.candleStyle.wickDownColor,
+                
+                'mainSeriesProperties.columnStyle.upColor': themeVariables.tv.mainSeriesProperties.candleStyle.upColor,
+                'mainSeriesProperties.columnStyle.downColor': themeVariables.tv.mainSeriesProperties.candleStyle.downColor,
+
+                'mainSeriesProperties.barStyle.upColor': themeVariables.tv.mainSeriesProperties.candleStyle.upColor,
+                'mainSeriesProperties.barStyle.downColor': themeVariables.tv.mainSeriesProperties.candleStyle.downColor,
+
+                'mainSeriesProperties.hollowCandleStyle.upColor': themeVariables.tv.mainSeriesProperties.candleStyle.upColor,
+                'mainSeriesProperties.hollowCandleStyle.borderUpColor': themeVariables.tv.mainSeriesProperties.candleStyle.borderUpColor,
+                'mainSeriesProperties.hollowCandleStyle.wickUpColor': themeVariables.tv.mainSeriesProperties.candleStyle.wickUpColor,
+                'mainSeriesProperties.hollowCandleStyle.downColor': themeVariables.tv.mainSeriesProperties.candleStyle.downColor,
+                'mainSeriesProperties.hollowCandleStyle.borderDownColor': themeVariables.tv.mainSeriesProperties.candleStyle.borderDownColor,
+                'mainSeriesProperties.hollowCandleStyle.wickDownColor': themeVariables.tv.mainSeriesProperties.candleStyle.wickDownColor,
+
+                'mainSeriesProperties.baselineStyle.topLineColor': themeVariables.tv.mainSeriesProperties.candleStyle.upColor,
+                'mainSeriesProperties.baselineStyle.topFillColor1': themeVariables.tv.mainSeriesProperties.candleStyle.upColor,
+                'mainSeriesProperties.baselineStyle.topFillColor2': themeVariables.tv.mainSeriesProperties.candleStyle.upColor,
+                'mainSeriesProperties.baselineStyle.bottomLineColor': themeVariables.tv.mainSeriesProperties.candleStyle.downColor,
+                'mainSeriesProperties.baselineStyle.bottomFillColor1': themeVariables.tv.mainSeriesProperties.candleStyle.downColor,
+                'mainSeriesProperties.baselineStyle.bottomFillColor2': themeVariables.tv.mainSeriesProperties.candleStyle.downColor,
+
+                'mainSeriesProperties.haStyle.upColor': themeVariables.tv.mainSeriesProperties.candleStyle.upColor,
+                'mainSeriesProperties.haStyle.wickUpColor': themeVariables.tv.mainSeriesProperties.candleStyle.upColor,
+                'mainSeriesProperties.haStyle.borderUpColor': themeVariables.tv.mainSeriesProperties.candleStyle.upColor,
+
+                'mainSeriesProperties.haStyle.downColor': themeVariables.tv.mainSeriesProperties.candleStyle.downColor,
+                'mainSeriesProperties.haStyle.wickDownColor': themeVariables.tv.mainSeriesProperties.candleStyle.downColor,
+                'mainSeriesProperties.haStyle.borderDownColor': themeVariables.tv.mainSeriesProperties.candleStyle.downColor,
+
+                'mainSeriesProperties.hlcAreaStyle.highLineColor': themeVariables.tv.mainSeriesProperties.candleStyle.upColor,
+                'mainSeriesProperties.hlcAreaStyle.lowLineColor': themeVariables.tv.mainSeriesProperties.candleStyle.downColor,
+                'mainSeriesProperties.hlcAreaStyle.highCloseFillColor': themeVariables.tv.mainSeriesProperties.hlcAreaStyle.highCloseFillColor,
+                'mainSeriesProperties.hlcAreaStyle.closeLowFillColor': themeVariables.tv.mainSeriesProperties.hlcAreaStyle.closeLowFillColor,
+
+                'mainSeriesProperties.lineStyle.color': themeVariables.tv.mainSeriesProperties.lineStyle.color,
+                'mainSeriesProperties.lineWithMarkersStyle.color': themeVariables.tv.mainSeriesProperties.lineStyle.color,
+                'mainSeriesProperties.steplineStyle.color': themeVariables.tv.mainSeriesProperties.lineStyle.color,
+                'mainSeriesProperties.hiloStyle.color': themeVariables.tv.mainSeriesProperties.hiloStyle.color,
+                'mainSeriesProperties.hiloStyle.labelColor': themeVariables.tv.mainSeriesProperties.hiloStyle.color,
+                'mainSeriesProperties.hiloStyle.borderColor': themeVariables.tv.mainSeriesProperties.hiloStyle.color,
+                
+
+            },
+
+            loading_screen: { 
+                backgroundColor: themeVariables.tv.loading_screen.backgroundColor 
+            },
+    
+            enabled_features: enabled_features,
+            disabled_features: disabled_features,
+    
+            datafeed: new ChartDatafeed(datafeedConfig, chartSymbolsInfo, TV_CHART_DATA.symbol, null, needLoadSetup, TV_CHART_DATA.symbolsForUsdConversion),
+    
+            custom_indicators_getter: function(PineJS) {
+                
+                var customIndicators = CHART_CUSTOM_INDICATORS(PineJS, {
+                        symbolCoin: TV_CHART_DATA.coin,
+                        futuresContractsForAggregatedIndicators: TV_CHART_DATA.futuresContractsForAggregatedIndicators,
+                        futuresContractsForAggregatedFundingRate: TV_CHART_DATA.futuresContractsForAggregatedFundingRate,
+                        futuresContractsForAggregatedPredictedFundingRate: TV_CHART_DATA.futuresContractsForAggregatedPredictedFundingRate,
+                        futuresContractsForAggregatedOi: TV_CHART_DATA.futuresContractsForAggregatedOi,
+                        futuresContractsForAggregatedLq: TV_CHART_DATA.futuresContractsForAggregatedLq,
+                        futuresContractsForAggregatedVolume: TV_CHART_DATA.futuresContractsForAggregatedVolume,
+                        marketsForAggregatedCVDSpot: TV_CHART_DATA.marketsForAggregatedCVDSpot,
+                        futuresContractsForAggregatedLongShortAccountsRatio: TV_CHART_DATA.futuresContractsForAggregatedLongShortAccountsRatio,
+                        
+                        coinsCategoryForAggregatedIndicators: TV_CHART_DATA.coinsCategoryForAggregatedIndicators,
+                        coinsCategorySelected: TV_CHART_DATA.coinsCategorySelected,                        
+                        exchangesForAggregatedOIIndicatorGlobal: TV_CHART_DATA.exchangesForAggregatedOIIndicatorGlobal,
+                        exchangesForAggregatedLQIndicatorGlobal: TV_CHART_DATA.exchangesForAggregatedLQIndicatorGlobal,
+                        exchangesForAggregatedVolumeIndicatorGlobal: TV_CHART_DATA.exchangesForAggregatedVolumeIndicatorGlobal,
+                        exchangesForAggregatedVolumeSpotIndicatorGlobal: TV_CHART_DATA.exchangesForAggregatedVolumeSpotIndicatorGlobal,
+                        exchangesForAggregatedFRIndicatorGlobal: TV_CHART_DATA.exchangesForAggregatedFRIndicatorGlobal,
+                        exchangesForAggregatedPFRIndicatorGlobal: TV_CHART_DATA.exchangesForAggregatedPFRIndicatorGlobal,
+                        theme: theme
+
+                }).filter(function (item) {
+
+                    return TV_CHART_DATA.customIndicatorsEnable.indexOf(item.name) >= 0;
+
+                }).map(item => {
+                    item.metainfo.is_hidden_study = false;
+                    return item;
+                });
+    
+    
+                return Promise.resolve(customIndicators);
+            },
+    
+            time_frames: [
+                {text: '1D', title: '1D', resolution: '5', description: '1 day'},
+                {text: '7D', title: '7D', resolution: '30', description: '7 days'},
+                {text: '1M', title: '1M', resolution: '60', description: '1 month'},
+                {text: '3M', title: '3M', resolution: '240', description: '3 months'},
+                {text: '6M', title: '6M', resolution: '1D', description: '6 months'},
+                {text: '1Y', title: '1Y', resolution: '1D', description: '1 year'},
+                {text: '3Y', title: '3Y', resolution: '1W', description: '3 years'}
+            ]
+    
+    
+        };
+
+        chartWidget = new TradingView.widget(chartWidgetOptions);
+        
+        chartWidget.onChartReady(function () {
+    
+            for(const indName of TV_CHART_DATA.indicators) {
+                /*
+                var inputs = [];
+                if(TV_CHART_DATA.indicatorsInputs && typeof TV_CHART_DATA.indicatorsInputs[i] !== 'undefined') {
+                    inputs = TV_CHART_DATA.indicatorsInputs[i];
+                }
+                chartWidget.chart().createStudy(TV_CHART_DATA.indicators[i], false, false, inputs);
+                */
+
+                chartWidget.chart().createStudy(window.CHART_CUSTOM_INDICATOR_DATA_BY_NAME[indName].description, false, false, {});
+            }
+            
+        });
+        
+        var __subscribedToAdFree = JSON.parse(`false`);
+        chartWidget.headerReady().then(function() {
+
+            $(chartWidget.createButton({align: 'right'}))
+                .attr('title', "Expand / Restore")
+                .addClass('header-custom-button')
+                .on('click', function (e) {
+                    try {
+                        if(__subscribedToAdFree) {
+                            var elmCoinFuturesData = document.getElementsByClassName('coin-futures-data')[0];
+                            if(window.TV_CHART_IS_MAXIMIZED === true) {
+                                elmCoinFuturesData.classList.remove('maximize-chart');
+                                window.TV_CHART_IS_MAXIMIZED = false;
+                            } else {
+                                elmCoinFuturesData.classList.add('maximize-chart');
+                                window.TV_CHART_IS_MAXIMIZED = true;
+                            }
+                        } else {
+                            
+                            tvChartWidgetShowNoticeDialogHTML({
+                                title: 'Subscribe to Ad-Free service',
+                                body: 'You have to subscribe to Ad-Free premium service in order to have access to this feature. You can subscribe <a target="_top" style="color:var(--color-orange)" href="/subscription/order/">HERE &raquo;</a>',
+                                callback: function () {}
+                            }, chartWidget);
+
+                        }
+                    } catch(e) {}
+                })
+                .append($('<span style="font-size:20px; transform: rotate(-45deg);">&rlarr;</span>'));            
+        });
+        
+    };
+    
+    
+    window.addEventListener('load', (event) => {
+        buildTvChart({
+            themesVariables: Common.themesVariables
+        });
+    });
+    
+    
+    </script>
+
+        </div>        
+    </div>
+    
+    
+
+
+    
+
+
+    
+
+
+    
+
+
+    <script>
+        // add opacity when popup-box opens
+        (function() {
+            //return;
+            const bodyWrapper = document.querySelector('.body-wrapper');
+
+            let bodyWrapperInitialOpacity = bodyWrapper.style.opacity;
+            let bodyWrapperInitialOverflowY = bodyWrapper.style.overflowY;
+
+            const observer = new MutationObserver(function(mutationList, observer) {
+                for (const mutation of mutationList) {
+                    if (mutation.type === 'childList') {
+                        for(const node of mutation.addedNodes) {
+                            if(node.nodeType !== Node.ELEMENT_NODE) {
+                                continue;
+                            }
+
+                            if( node.classList.contains('popup-box') ||  node.querySelector('.popup-box')) {
+                                bodyWrapper.style.opacity = 0.2;
+                                bodyWrapper.style.overflowY = 'hidden';
+                                break;
+                            }
+                        }
+
+                        for(const node of mutation.removedNodes) {
+                            if(node.nodeType !== Node.ELEMENT_NODE) {
+                                continue;
+                            }
+
+                            if( node.classList.contains('popup-box') ||  node.querySelector('.popup-box')) {
+                                bodyWrapper.style.opacity = bodyWrapperInitialOpacity;
+                                bodyWrapper.style.overflowY = bodyWrapperInitialOverflowY;
+                                break;
+                            }
+                        }
+
+                    }
+
+                }         
+            });
+
+            observer.observe(document.querySelector('body'), {
+                subtree: false,
+                attributes: false,
+                attributeOldValue: false,
+                characterData: false,
+                characterDataOldValue: false,
+                childList: true
+            });
+
+        })();
+
+
+        document.addEventListener("jqueryReady", function() {
+            if(Common.cookie.get('theme')) {
+                Common.cookie.remove('theme'); // remove the cookie previously set without domain
+            }
+            
+        });
+
+                
+    </script>
+
+
+
+
+<img src="https://c1.adform.net/cookie?gdpr=0&amp;gdpr_consent=&amp;us_privacy=&amp;gpp=&amp;gpp_sid=&amp;redirect_url=https%3A%2F%2Freq.adx.ws%2Fsuid%3Fbidder%3DAdForm%26gdpr%3D0%26rid%3D576414e8-7fb1-4514-a414-e87fb1c514be%26idu%3Dc419762b834605db9ba854f600a3c0ebb4638c64d08eca33e92f53d99eb7be91%26i%3DFlrtEuFsaSVO_1taJvw1nkXn08vYlBKIWsqfrBSuQlA%26uid%3D%24UID" style="display: none;"></body></html>

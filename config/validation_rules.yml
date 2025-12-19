@@ -1,0 +1,31 @@
+# config/validation_rules.yml
+
+default:
+  freshness_max_seconds: 86400  # 24 hours
+  outlier_threshold: 3.0        # 3 standard deviations
+
+price_data:
+  required_fields: 
+    - open
+    - high
+    - low
+    - close
+    - volume
+  freshness_max_seconds: 21600  # 6 hours
+  outlier_threshold: 4.0        # Higher tolerance for crypto volatility
+
+flow_data:
+  required_fields:
+    - net_flow
+  freshness_max_seconds: 86400  # Daily data
+
+onchain_data:
+  required_fields:
+    - metric_value
+  freshness_max_seconds: 86400
+
+derivatives_data:
+  required_fields:
+    - open_interest
+    - funding_rate
+  freshness_max_seconds: 3600   # 1 hour (volatile/fast moving)

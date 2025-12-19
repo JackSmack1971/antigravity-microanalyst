@@ -1,0 +1,377 @@
+[
+  {
+    "id": "f678b796-a607-4270-9d16-8240071964d6",
+    "timestamp": "2025-12-19T00:43:44.021840",
+    "context": {
+      "symbol": "BTCUSDT",
+      "regime": "unknown",
+      "price": 0.0,
+      "regime_confidence": 0.0
+    },
+    "decision": {
+      "decision": "HOLD",
+      "allocation_pct": 0.0,
+      "reasoning": "Neutral stance. | Risk Manager adjusted allocation to 0% based on unknown regime.",
+      "bull_case": "The unknown regime confirms our bullish bias. Indicators show strong confluence. ",
+      "bear_case": "Despite the unknown appearance, we see significant traps. Risk of blow-off top or liquidity grab is high. Derived metrics suggest exhaustion. {}",
+      "logs": [
+        "Bull Analyst generated support narrative.",
+        "Bear Analyst generated risk narrative.",
+        "Facilitator synthesized final signal.",
+        "Risk Manager applied deterministic constraints."
+      ]
+    },
+    "outcome": null,
+    "reflection": null
+  },
+  {
+    "id": "dbaaeb15-4b71-4d16-8475-75cb0383051c",
+    "timestamp": "2025-12-19T00:43:47.093303",
+    "context": {
+      "symbol": "BTCUSDT",
+      "regime": "unknown",
+      "price": 0.0,
+      "regime_confidence": 0.0
+    },
+    "decision": {
+      "decision": "HOLD",
+      "allocation_pct": 0.0,
+      "reasoning": "Neutral stance. | Risk Manager adjusted allocation to 0% based on unknown regime.",
+      "bull_case": "The unknown regime confirms our bullish bias. Indicators show strong confluence. ",
+      "bear_case": "Despite the unknown appearance, we see significant traps. Risk of blow-off top or liquidity grab is high. Derived metrics suggest exhaustion. {}",
+      "logs": [
+        "Bull Analyst generated support narrative.",
+        "Bear Analyst generated risk narrative.",
+        "Facilitator synthesized final signal.",
+        "Risk Manager applied deterministic constraints."
+      ]
+    },
+    "outcome": null,
+    "reflection": null
+  },
+  {
+    "id": "575bf77f-c9b1-4584-ab79-6e745c1bf318",
+    "timestamp": "2025-12-19T00:43:50.263493",
+    "context": {
+      "symbol": "BTCUSDT",
+      "regime": "unknown",
+      "price": 0.0,
+      "regime_confidence": 0.0
+    },
+    "decision": {
+      "decision": "HOLD",
+      "allocation_pct": 0.0,
+      "reasoning": "Neutral stance. | Risk Manager adjusted allocation to 0% based on unknown regime.",
+      "bull_case": "The unknown regime confirms our bullish bias. Indicators show strong confluence. ",
+      "bear_case": "Despite the unknown appearance, we see significant traps. Risk of blow-off top or liquidity grab is high. Derived metrics suggest exhaustion. {}",
+      "logs": [
+        "Bull Analyst generated support narrative.",
+        "Bear Analyst generated risk narrative.",
+        "Facilitator synthesized final signal.",
+        "Risk Manager applied deterministic constraints."
+      ]
+    },
+    "outcome": null,
+    "reflection": null
+  },
+  {
+    "id": "0afbb69f-fae7-4325-9ee1-af0c89fc9ff0",
+    "timestamp": "2025-12-19T00:45:08.194402",
+    "context": {
+      "symbol": "BTCUSDT",
+      "regime": "unknown",
+      "price": 0.0,
+      "regime_confidence": 0.0
+    },
+    "decision": {
+      "decision": "HOLD",
+      "allocation_pct": 0.0,
+      "reasoning": "Neutral stance. | Risk Manager adjusted allocation to 0% based on unknown regime.",
+      "bull_case": "The unknown regime confirms our bullish bias. Indicators show strong confluence. ",
+      "bear_case": "Despite the unknown appearance, we see significant traps. Risk of blow-off top or liquidity grab is high. Derived metrics suggest exhaustion. {}",
+      "logs": [
+        "Bull Analyst generated support narrative.",
+        "Bear Analyst generated risk narrative.",
+        "Facilitator synthesized final signal.",
+        "Risk Manager applied deterministic constraints."
+      ]
+    },
+    "outcome": null,
+    "reflection": null
+  },
+  {
+    "id": "b23a009b-e286-466b-a6d6-df90c5f655aa",
+    "timestamp": "2025-12-19T00:45:11.047729",
+    "context": {
+      "symbol": "BTCUSDT",
+      "regime": "unknown",
+      "price": 0.0,
+      "regime_confidence": 0.0
+    },
+    "decision": {
+      "decision": "HOLD",
+      "allocation_pct": 0.0,
+      "reasoning": "Neutral stance. | Risk Manager adjusted allocation to 0% based on unknown regime.",
+      "bull_case": "The unknown regime confirms our bullish bias. Indicators show strong confluence. ",
+      "bear_case": "Despite the unknown appearance, we see significant traps. Risk of blow-off top or liquidity grab is high. Derived metrics suggest exhaustion. {}",
+      "logs": [
+        "Bull Analyst generated support narrative.",
+        "Bear Analyst generated risk narrative.",
+        "Facilitator synthesized final signal.",
+        "Risk Manager applied deterministic constraints."
+      ]
+    },
+    "outcome": null,
+    "reflection": null
+  },
+  {
+    "id": "9e4e773d-8989-4429-a83e-8efb1e897a5f",
+    "timestamp": "2025-12-19T00:45:13.908057",
+    "context": {
+      "symbol": "BTCUSDT",
+      "regime": "unknown",
+      "price": 0.0,
+      "regime_confidence": 0.0
+    },
+    "decision": {
+      "decision": "HOLD",
+      "allocation_pct": 0.0,
+      "reasoning": "Neutral stance. | Risk Manager adjusted allocation to 0% based on unknown regime.",
+      "bull_case": "The unknown regime confirms our bullish bias. Indicators show strong confluence. ",
+      "bear_case": "Despite the unknown appearance, we see significant traps. Risk of blow-off top or liquidity grab is high. Derived metrics suggest exhaustion. {}",
+      "logs": [
+        "Bull Analyst generated support narrative.",
+        "Bear Analyst generated risk narrative.",
+        "Facilitator synthesized final signal.",
+        "Risk Manager applied deterministic constraints."
+      ]
+    },
+    "outcome": null,
+    "reflection": null
+  },
+  {
+    "id": "27da8ccb-b962-40f3-a128-6f92aea7ff92",
+    "timestamp": "2025-12-19T00:51:13.360984",
+    "context": {
+      "symbol": "BTCUSDT",
+      "regime": "unknown",
+      "price": 0.0,
+      "regime_confidence": 0.0
+    },
+    "decision": {
+      "decision": "HOLD",
+      "allocation_pct": 0.0,
+      "reasoning": "Neutral stance. | Risk Manager adjusted allocation to 0% based on unknown regime.",
+      "bull_case": "The unknown regime confirms our bullish bias. Indicators show strong confluence. ",
+      "bear_case": "Despite the unknown appearance, we see significant traps. Risk of blow-off top or liquidity grab is high. Derived metrics suggest exhaustion. {}",
+      "logs": [
+        "Bull Analyst generated support narrative.",
+        "Bear Analyst generated risk narrative.",
+        "Facilitator synthesized final signal.",
+        "Risk Manager applied deterministic constraints."
+      ]
+    },
+    "outcome": null,
+    "reflection": null
+  },
+  {
+    "id": "b504a776-1a6f-45d6-8b2a-b5a3581e3bed",
+    "timestamp": "2025-12-19T00:51:16.404015",
+    "context": {
+      "symbol": "BTCUSDT",
+      "regime": "unknown",
+      "price": 0.0,
+      "regime_confidence": 0.0
+    },
+    "decision": {
+      "decision": "HOLD",
+      "allocation_pct": 0.0,
+      "reasoning": "Neutral stance. | Risk Manager adjusted allocation to 0% based on unknown regime.",
+      "bull_case": "The unknown regime confirms our bullish bias. Indicators show strong confluence. ",
+      "bear_case": "Despite the unknown appearance, we see significant traps. Risk of blow-off top or liquidity grab is high. Derived metrics suggest exhaustion. {}",
+      "logs": [
+        "Bull Analyst generated support narrative.",
+        "Bear Analyst generated risk narrative.",
+        "Facilitator synthesized final signal.",
+        "Risk Manager applied deterministic constraints."
+      ]
+    },
+    "outcome": null,
+    "reflection": null
+  },
+  {
+    "id": "f47e8134-8c38-49b2-af34-c4beb95b6ade",
+    "timestamp": "2025-12-19T00:51:24.806511",
+    "context": {
+      "symbol": "BTCUSDT",
+      "regime": "unknown",
+      "price": 0.0,
+      "regime_confidence": 0.0
+    },
+    "decision": {
+      "decision": "HOLD",
+      "allocation_pct": 0.0,
+      "reasoning": "Neutral stance. | Risk Manager adjusted allocation to 0% based on unknown regime.",
+      "bull_case": "The unknown regime confirms our bullish bias. Indicators show strong confluence. ",
+      "bear_case": "Despite the unknown appearance, we see significant traps. Risk of blow-off top or liquidity grab is high. Derived metrics suggest exhaustion. {}",
+      "logs": [
+        "Bull Analyst generated support narrative.",
+        "Bear Analyst generated risk narrative.",
+        "Facilitator synthesized final signal.",
+        "Risk Manager applied deterministic constraints."
+      ]
+    },
+    "outcome": null,
+    "reflection": null
+  },
+  {
+    "id": "b56999a3-b463-41e2-9a93-fb6bc840103d",
+    "timestamp": "2025-12-19T00:54:21.164909",
+    "context": {
+      "symbol": "BTCUSDT",
+      "regime": "unknown",
+      "price": 0.0,
+      "regime_confidence": 0.0
+    },
+    "decision": {
+      "decision": "HOLD",
+      "allocation_pct": 0.0,
+      "reasoning": "Neutral stance. | Risk Manager adjusted allocation to 0% based on unknown regime.",
+      "bull_case": "The unknown regime confirms our bullish bias. Indicators show strong confluence. ",
+      "bear_case": "Despite the unknown appearance, we see significant traps. Risk of blow-off top or liquidity grab is high. Derived metrics suggest exhaustion. {}",
+      "logs": [
+        "Bull Analyst generated support narrative.",
+        "Bear Analyst generated risk narrative.",
+        "Facilitator synthesized final signal.",
+        "Risk Manager applied deterministic constraints."
+      ]
+    },
+    "outcome": null,
+    "reflection": null
+  },
+  {
+    "id": "24877ecf-6c13-4d5f-b25e-45fef414dd34",
+    "timestamp": "2025-12-19T00:54:23.665124",
+    "context": {
+      "symbol": "BTCUSDT",
+      "regime": "unknown",
+      "price": 0.0,
+      "regime_confidence": 0.0
+    },
+    "decision": {
+      "decision": "HOLD",
+      "allocation_pct": 0.0,
+      "reasoning": "Neutral stance. | Risk Manager adjusted allocation to 0% based on unknown regime.",
+      "bull_case": "The unknown regime confirms our bullish bias. Indicators show strong confluence. ",
+      "bear_case": "Despite the unknown appearance, we see significant traps. Risk of blow-off top or liquidity grab is high. Derived metrics suggest exhaustion. {}",
+      "logs": [
+        "Bull Analyst generated support narrative.",
+        "Bear Analyst generated risk narrative.",
+        "Facilitator synthesized final signal.",
+        "Risk Manager applied deterministic constraints."
+      ]
+    },
+    "outcome": null,
+    "reflection": null
+  },
+  {
+    "id": "2fce3c7f-eed4-441b-9868-7e7261eb64e0",
+    "timestamp": "2025-12-19T00:54:32.798851",
+    "context": {
+      "symbol": "BTCUSDT",
+      "regime": "unknown",
+      "price": 0.0,
+      "regime_confidence": 0.0
+    },
+    "decision": {
+      "decision": "HOLD",
+      "allocation_pct": 0.0,
+      "reasoning": "Neutral stance. | Risk Manager adjusted allocation to 0% based on unknown regime.",
+      "bull_case": "The unknown regime confirms our bullish bias. Indicators show strong confluence. ",
+      "bear_case": "Despite the unknown appearance, we see significant traps. Risk of blow-off top or liquidity grab is high. Derived metrics suggest exhaustion. {}",
+      "logs": [
+        "Bull Analyst generated support narrative.",
+        "Bear Analyst generated risk narrative.",
+        "Facilitator synthesized final signal.",
+        "Risk Manager applied deterministic constraints."
+      ]
+    },
+    "outcome": null,
+    "reflection": null
+  },
+  {
+    "id": "b8959fda-e00b-4d9c-8b11-aed4990fe2c6",
+    "timestamp": "2025-12-19T00:58:02.106292",
+    "context": {
+      "symbol": "BTCUSDT",
+      "regime": "unknown",
+      "price": 0.0,
+      "regime_confidence": 0.0
+    },
+    "decision": {
+      "decision": "HOLD",
+      "allocation_pct": 0.0,
+      "reasoning": "Neutral stance. | Risk Manager adjusted allocation to 0% based on unknown regime.",
+      "bull_case": "The unknown regime confirms our bullish bias. Indicators show strong confluence. ",
+      "bear_case": "Despite the unknown appearance, we see significant traps. Risk of blow-off top or liquidity grab is high. Derived metrics suggest exhaustion. {}",
+      "logs": [
+        "Bull Analyst generated support narrative.",
+        "Bear Analyst generated risk narrative.",
+        "Facilitator synthesized final signal.",
+        "Risk Manager applied deterministic constraints."
+      ]
+    },
+    "outcome": null,
+    "reflection": null
+  },
+  {
+    "id": "d3238be7-1e21-4b3b-9819-8ba4bf373759",
+    "timestamp": "2025-12-19T00:58:04.802212",
+    "context": {
+      "symbol": "BTCUSDT",
+      "regime": "unknown",
+      "price": 0.0,
+      "regime_confidence": 0.0
+    },
+    "decision": {
+      "decision": "HOLD",
+      "allocation_pct": 0.0,
+      "reasoning": "Neutral stance. | Risk Manager adjusted allocation to 0% based on unknown regime.",
+      "bull_case": "The unknown regime confirms our bullish bias. Indicators show strong confluence. ",
+      "bear_case": "Despite the unknown appearance, we see significant traps. Risk of blow-off top or liquidity grab is high. Derived metrics suggest exhaustion. {}",
+      "logs": [
+        "Bull Analyst generated support narrative.",
+        "Bear Analyst generated risk narrative.",
+        "Facilitator synthesized final signal.",
+        "Risk Manager applied deterministic constraints."
+      ]
+    },
+    "outcome": null,
+    "reflection": null
+  },
+  {
+    "id": "b146d730-a4aa-4b40-a64d-9168a336bd96",
+    "timestamp": "2025-12-19T00:58:13.983116",
+    "context": {
+      "symbol": "BTCUSDT",
+      "regime": "unknown",
+      "price": 0.0,
+      "regime_confidence": 0.0
+    },
+    "decision": {
+      "decision": "HOLD",
+      "allocation_pct": 0.0,
+      "reasoning": "Neutral stance. | Risk Manager adjusted allocation to 0% based on unknown regime.",
+      "bull_case": "The unknown regime confirms our bullish bias. Indicators show strong confluence. ",
+      "bear_case": "Despite the unknown appearance, we see significant traps. Risk of blow-off top or liquidity grab is high. Derived metrics suggest exhaustion. {}",
+      "logs": [
+        "Bull Analyst generated support narrative.",
+        "Bear Analyst generated risk narrative.",
+        "Facilitator synthesized final signal.",
+        "Risk Manager applied deterministic constraints."
+      ]
+    },
+    "outcome": null,
+    "reflection": null
+  }
+]

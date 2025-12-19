@@ -1,0 +1,16 @@
+[2025-12-16 20:43:27] Found 6 HTTP adapters in configuration.
+[2025-12-16 20:43:27] Starting Non-Destructive Simulation for 6 HTTP adapters...
+[2025-12-16 20:43:27] Testing Adapter: twelvedata_btcusd_hist_html | URL: https://twelvedata.com/markets/499377/crypto/coinbase-pro/btc-usd/historical-data
+[2025-12-16 20:43:29]   -> SUCCESS: Status 200
+[2025-12-16 20:43:29] Testing Adapter: bitbo_us_etf_flows_table | URL: https://bitbo.io/treasuries/etf-flows/
+[2025-12-16 20:43:31]   -> SUCCESS: Status 200
+[2025-12-16 20:43:31] Testing Adapter: coinalyze_btc_open_interest | URL: https://coinalyze.net/bitcoin/open-interest/
+[2025-12-16 20:43:32]   -> FAILURE: Status 403
+[2025-12-16 20:43:32] Testing Adapter: coinalyze_btc_funding | URL: https://coinalyze.net/bitcoin/funding-rate/
+[2025-12-16 20:43:32]   -> FAILURE: Status 403
+[2025-12-16 20:43:32] Testing Adapter: coingecko_btc_market_snapshot | URL: https://www.coingecko.com/en/coins/bitcoin
+[2025-12-16 20:43:33]   -> FAILURE: Status 403
+[2025-12-16 20:43:33] Testing Adapter: btcetffundflow_holdings_derived | URL: https://btcetffundflow.com/
+[2025-12-16 20:43:35]   -> SUCCESS: Status 200
+[2025-12-16 20:43:35] ----------------------------------------
+[2025-12-16 20:43:35] Simulation Complete. Success: 3, Failures: 3

@@ -1,0 +1,31 @@
+version: 2.0.0
+last_updated: 2025-12-17T10:30:00Z
+
+datasets:
+  btc_price_normalized:
+    description: "OHLC daily BTC/USD from Coinbase Pro via TwelveData"
+    location: "data_clean/btc_price_normalized.csv"
+    schema:
+      - {name: date, type: datetime, format: ISO8601, timezone: UTC}
+      - {name: open, type: float64, unit: USD, precision: 2}
+      - {name: high, type: float64, unit: USD, precision: 2}
+      - {name: low, type: float64, unit: USD, precision: 2}
+      - {name: close, type: float64, unit: USD, precision: 2}
+    update_frequency: "every 4 hours"
+    freshness_sla: "6 hours"
+    quality_metrics:
+      completeness: 0.98
+      accuracy_confidence: high
+    relationships:
+      - {dataset: etf_flows_normalized, join_key: date, type: "1:many"}
+      
+  etf_flows_normalized:
+    description: "US Spot BTC ETF daily flows from btcetffundflow.com"
+    schema:
+      - {name: date, type: datetime}
+      - {name: ticker, type: string, enum: [IBIT, FBTC, ARKB, BITB, ...]}
+      - {name: flow_usd, type: float64, unit: USD}
+      - {name: flow_btc, type: float64, unit: BTC}
+    constraints:
+      - {type: unique, columns: [date, ticker]}
+      - {type: not_null, columns: [date, ticker, flow_usd]}

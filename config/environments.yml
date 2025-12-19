@@ -1,0 +1,24 @@
+environments:
+  development:
+    pipeline:
+      execution_mode: async
+      max_concurrent_adapters: 5
+      retry_attempts: 3
+      timeout_seconds: 60
+    storage:
+      backend: csv_fallback
+      connection: null
+    quality:
+      min_success_rate: 0.5
+      
+  production:
+    pipeline:
+      execution_mode: async
+      max_concurrent_adapters: 10
+      retry_attempts: 5
+      timeout_seconds: 120
+    storage:
+      backend: timescaledb
+      connection: ${DATABASE_URL}
+    quality:
+      min_success_rate: 0.8
