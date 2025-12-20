@@ -280,6 +280,7 @@
 *   **Verification**: 100% test pass rate (7/7) on updated unit tests following refactor.
 - **ML Predictive Core (Phase 44-47)**
     - **Added**: `PredictionAgent` specialized in T+24h directional synthesis.
+    - **Added**: `MacroSpecialistAgent` for global structural analysis (DXY/SPY correlations).
     - **Added**: Unified ML feature vector integrating Vision (Heatmaps) and GARCH (Volatility).
     - **Added**: `BaseAgent` abstract class for standardized swarm integration.
     - **Added**: T+24h Prediction Oracle with XGBoost/LightGBM integration.

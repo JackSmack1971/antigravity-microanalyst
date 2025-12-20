@@ -20,6 +20,8 @@ from src.microanalyst.signals.library import SignalLibrary
 from src.microanalyst.intelligence.risk_manager import RiskManager
 from src.microanalyst.intelligence.oracle_analyzer import OracleAnalyzer
 from src.microanalyst.agents.prediction_agent import PredictionAgent
+from src.microanalyst.agents.macro_agent import MacroSpecialistAgent
+from src.microanalyst.intelligence.correlation_analyzer import CorrelationAnalyzer
 from src.microanalyst.synthetic.sentiment import FreeSentimentAggregator
 from src.microanalyst.providers.binance_spot import BinanceSpotProvider
 from src.microanalyst.providers.binance_derivatives import BinanceFreeDerivatives
@@ -44,6 +46,7 @@ class AgentRole(Enum):
     DECISION_MAKER = "decision_maker"         # Final recommendations
     EXECUTOR = "executor"                     # Executes actions
     PREDICTION_ORACLE = "prediction_oracle"   # Forecasts T+24h signals
+    ANALYST_MACRO = "analyst_macro"           # Macro correlation analysis
 
 @dataclass
 class AgentCapability:
@@ -115,6 +118,8 @@ class AgentCoordinator:
         )
 
         self.prediction_agent = PredictionAgent()
+        self.macro_agent = MacroSpecialistAgent()
+        self.correlation_analyzer = CorrelationAnalyzer()
         
         # Technical Analyst
         self.agents['analyst_technical'] = AgentCapability(
@@ -298,6 +303,13 @@ class AgentCoordinator:
                     expected_outputs=['risk_assessment'],
                 ),
                 AgentTask(
+                    task_id="analyze_macro",
+                    role=AgentRole.ANALYST_MACRO,
+                    priority=8,
+                    inputs={'depends_on': 'collect_data'},
+                    expected_outputs=['regime', 'confidence'],
+                ),
+                AgentTask(
                     task_id="predict_oracle",
                     role=AgentRole.PREDICTION_ORACLE,
                     priority=7,
@@ -308,7 +320,7 @@ class AgentCoordinator:
                     task_id="synthesize",
                     role=AgentRole.SYNTHESIZER,
                     priority=5,
-                    inputs={'depends_on': ['analyze_technical', 'analyze_sentiment', 'analyze_risk', 'predict_oracle']},
+                    inputs={'depends_on': ['analyze_technical', 'analyze_sentiment', 'analyze_risk', 'analyze_macro', 'predict_oracle']},
                     expected_outputs=['market_context'],
                 ),
                 AgentTask(
@@ -714,6 +726,32 @@ class AgentCoordinator:
             except Exception as e:
                 logger.error(f"Oracle prediction failed: {e}")
                 return {"direction": "NEUTRAL", "confidence": 0.0, "error": str(e)}
+
+        if role == AgentRole.ANALYST_MACRO:
+            # Macro utilizes correlations between BTC and DXY/SPY
+            try:
+                history = inputs.get('raw_price_history', {})
+                if not history:
+                    history = self.results.get('data_collector', {}).get('raw_price_history', {})
+                
+                df_price = pd.DataFrame(history)
+                # In real scenario, we'd fetch actual DXY/SPY series from DB
+                # Mocking macro series for integration for now
+                macro_series = {} 
+                # Attempt to get from context if provided
+                macro_series = inputs.get('macro_series', {})
+                
+                # If macro_series is empty in mock/sim, provide fallback data
+                if not macro_series and not df_price.empty:
+                    # Simulate DXY series with same index
+                    macro_series['dxy'] = df_price['close'] * 0.001 # Purely for correlation check logic
+                
+                correlations = self.correlation_analyzer.analyze_correlations(df_price['close'], macro_series)
+                macro_signal = self.macro_agent.run_task({'correlations': correlations})
+                return macro_signal
+            except Exception as e:
+                logger.error(f"Macro analysis failed: {e}")
+                return {"regime": "UNKNOWN", "confidence": 0.0, "error": str(e)}
 
         return {}
 

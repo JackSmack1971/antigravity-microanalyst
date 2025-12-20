@@ -373,5 +373,32 @@
     },
     "outcome": null,
     "reflection": null
+  },
+  {
+    "id": "d8f226af-223f-4813-b432-0a3d4ac88dc0",
+    "timestamp": "2025-12-20T14:33:47.116790",
+    "context": {
+      "symbol": "BTCUSDT",
+      "regime": "unknown",
+      "price": 0.0,
+      "regime_confidence": 0.0
+    },
+    "decision": {
+      "decision": "HOLD",
+      "allocation_pct": 0.0,
+      "reasoning": "Mixed signals. | Consensus logic validated.",
+      "bull_case": "[RETAIL (ThinkingLevel.BALANCED)]: Whoa, whoa, whoa! \"UNKNOWN Regime\"? \"Neutral Sentiment\"? \"Direction: NEUTRAL\"? What is this, a library? This is crypto, baby!\n\nLook, I don't care about \"unknown.\" I care about what's happening *right now*! If there's no data, it means there's no *action*. No green candles rocketing to the moon, no parabolic moves making my heart race.\n\nMy gut says this is a **HOLD** situation, but it's a nervous hold. I'm literally on the edge of my seat, waiting for something, *anything*, to give me a signal. I need some volume, some price velocity, some social media buzz! Give me a pump, a dump, I don't care, just give me *movement*!\n\nUntil then, my FOMO is on pause, but it's a very, very anxious pause. I'm ready to jump in the second I see a hint of a rocket igniting! Don't make me wait too long!",
+      "bear_case": "[WHALE (ThinkingLevel.BALANCED)]: Intent: Wait | Target: $0 | Logic: Lack of data prevents any meaningful liquidity hunt strategy; waiting for more information.",
+      "logs": [
+        "System initialized with ThinkingLevel.BALANCED thinking (Vol: 40)",
+        "Retail Agent thinking at ThinkingLevel.BALANCED level.",
+        "Institutional Agent calculated variances.",
+        "Whale Agent analyzed intent: Wait",
+        "Facilitator sided with Consensus. Fractal: None",
+        "Risk Manager applied constraints."
+      ]
+    },
+    "outcome": null,
+    "reflection": null
   }
 ]

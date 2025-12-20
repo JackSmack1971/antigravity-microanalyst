@@ -11,6 +11,7 @@ from src.microanalyst.intelligence.prompts.personas import (
     RETAIL_AGENT_PROMPT, 
     INSTITUTIONAL_AGENT_PROMPT, 
     WHALE_AGENT_PROMPT,
+    MACRO_AGENT_PROMPT,
     FACILITATOR_PROMPT
 )
 from src.microanalyst.intelligence.whale_intent import WhaleIntentEngine
@@ -42,6 +43,7 @@ class AgentState(TypedDict):
     retail_view: str
     institution_view: str
     whale_view: str
+    macro_view: str
     
     synthesis: MarketSignal
     final_decision: MarketSignal
@@ -157,11 +159,43 @@ def whale_agent_node(state: AgentState) -> Dict[str, Any]:
         "logs": [f"Whale Agent analyzed intent: {analysis.get('intent')}"]
     }
 
+def macro_agent_node(state: AgentState) -> Dict[str, Any]:
+    """Node representing the Macro Economist."""
+    regime = state.get('regime', 'neutral')
+    data = state.get('market_data', {})
+    
+    thinking_level = ThinkingLevel(state.get('thinking_level', 'BALANCED'))
+    
+    # LLM Invocation
+    llm = get_openrouter_llm()
+    if not llm:
+        return {
+             "macro_view": "[MACRO (SIM)]: Decoupling detected. (No API Key)",
+             "logs": ["Macro Agent used fallback logic."]
+        }
+
+    prompt = ChatPromptTemplate.from_messages([
+        ("system", MACRO_AGENT_PROMPT),
+        ("user", "Context: Regime={regime}, Data={data}. Analyze structural correlations.")
+    ])
+    
+    chain = prompt | llm | StrOutputParser()
+    try:
+        response = chain.invoke({"regime": regime, "data": str(data)})
+    except Exception as e:
+        response = f"Error: {e}"
+
+    return {
+        "macro_view": f"[MACRO ({thinking_level})]: {response}",
+        "logs": ["Macro Agent analyzed global correlations."]
+    }
+
 def facilitator_node(state: AgentState) -> Dict[str, Any]:
     """Synthesizes the 3-way debate into a definitive decision."""
     retail = state['retail_view']
     inst = state['institution_view']
     whale = state['whale_view']
+    macro = state['macro_view']
     regime = state['regime']
     
     # Logic: Facilitator determines the winner based on Regime Context
@@ -191,6 +225,18 @@ def facilitator_node(state: AgentState) -> Dict[str, Any]:
         winner = "Retail Momentum"
         reasoning = "Trend followers are in control. Ride the wave."
         
+    # Phase 49: Macro Integration
+    if "decoupling" in macro.lower() and "bullish" in macro.lower():
+        # Decoupling is a strong structural alpha signal
+        decision = "BUY"
+        conf = max(conf, 0.85)
+        winner = "Macro Economist"
+        reasoning = f"BTC decoupling from DXY/SPY into a structural Safe Haven. | {reasoning}"
+    elif "beta" in macro.lower() and decision == "BUY":
+        # Institutional alert: High beta risk
+        conf = min(conf, 0.6)
+        reasoning += " | WARNING: High Beta correlation with Equities adds volatility risk."
+        
     # P5: Check Confluence
     confluence_check = ConfluenceUtils().check_fractal_alignment()
     if confluence_check.get("aligned", False):
@@ -206,6 +252,14 @@ def facilitator_node(state: AgentState) -> Dict[str, Any]:
             winner += " + Confluence"
         else:
              reasoning += f" (Fractal: {alignment_type} - Divergence noted)"
+
+    # P6: Extract Confidence from Prediction Oracle (if in debate)
+    oracle_conf = 0.5
+    if "Intent:" in whale: # Mapped to Whale/Bear slot in coordination
+         try:
+             # Heuristic check for confidence in logic string or just boost if high whale confidence
+             oracle_conf = conf # Use current logic's confidence as baseline
+         except: pass
 
     signal = MarketSignal(
         decision=decision,
@@ -254,6 +308,7 @@ def create_debate_swarm_graph():
     workflow.add_node("retail", retail_agent_node)
     workflow.add_node("institution", institution_agent_node)
     workflow.add_node("whale", whale_agent_node)
+    workflow.add_node("macro", macro_agent_node)
     workflow.add_node("facilitator", facilitator_node)
     workflow.add_node("risk_manager", risk_manager_node)
     
@@ -263,7 +318,8 @@ def create_debate_swarm_graph():
     # For simplicity here: Retail -> Institution -> Whale -> Facilitator
     workflow.add_edge("retail", "institution")
     workflow.add_edge("institution", "whale")
-    workflow.add_edge("whale", "facilitator")
+    workflow.add_edge("whale", "macro")
+    workflow.add_edge("macro", "facilitator")
     workflow.add_edge("facilitator", "risk_manager")
     workflow.add_edge("risk_manager", END)
     
@@ -291,6 +347,7 @@ def run_adversarial_debate(dataset: Dict[str, Any]) -> Dict[str, Any]:
         "retail_view": "",
         "institution_view": "",
         "whale_view": "",
+        "macro_view": "",
         "logs": [f"System initialized with {t_level} thinking (Vol: {vol_score})"]
     }
     
@@ -303,5 +360,6 @@ def run_adversarial_debate(dataset: Dict[str, Any]) -> Dict[str, Any]:
         "reasoning": result["final_decision"].reasoning,
         "bull_case": result["retail_view"], # Mapping Retail to 'Bull' slot for legacy UI compat
         "bear_case": result["whale_view"],  # Mapping Whale to 'Bear' slot for legacy UI compat
+        "macro_thesis": result["macro_view"],
         "logs": result["logs"]
     }
