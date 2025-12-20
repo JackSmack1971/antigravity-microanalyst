@@ -76,7 +76,7 @@ flowchart TD
 
     E --> F[Normalization Pipeline]
     
-    subgraph "Mempry & Persistence"
+    subgraph "Memory & Persistence"
         F --> G[(microanalyst.db)]
         G --> H[Gap Filler]
     end
@@ -84,8 +84,8 @@ flowchart TD
     subgraph "Cognitive Layer"
         G --> I[Context Window]
         I --> J{Debate Swarm}
-        J -->|Bull Case| K[LLM (OpenRouter)]
-        J -->|Bear Case| L[LLM (OpenRouter)]
+        J -->|Bull Case| K["LLM (OpenRouter)"]
+        J -->|Bear Case| L["LLM (OpenRouter)"]
         K & L --> M[Facilitator Synthesis]
     end
 
