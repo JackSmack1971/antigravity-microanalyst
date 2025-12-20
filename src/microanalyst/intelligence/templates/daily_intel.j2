@@ -1,0 +1,91 @@
+# Daily Market Intelligence Report
+
+**Generated at:** {{ timestamp }}
+
+---
+
+## 🌓 Market Status: Spot & Volume
+{% if data.spot.status == "error" %}
+> [!WARNING]
+> Spot Data Error: {{ data.spot.message }}
+{% else %}
+**BTC/USD (Coinbase):**
+- **Date:** {{ data.spot.date }}
+- **Open:** ${{ "{:,.2f}".format(data.spot.open) }}
+- **High:** ${{ "{:,.2f}".format(data.spot.high) }}
+- **Low:** ${{ "{:,.2f}".format(data.spot.low) }}
+- **Close:** ${{ "{:,.2f}".format(data.spot.close) }}
+
+**Rolling 24h Volume (CoinGecko):**
+- **Value:** ${{ "{:,.1f}B".format(data.spot_turnover / 1e9) }}
+{% endif %}
+
+---
+
+## 🧩 Institutional Intelligence (ETF Flows)
+
+### 📈 US Spot ETF Net Flows (Bitbo)
+{% if data.etf_flows.status == "error" %}
+- Status: No data reported
+{% else %}
+- **Reporting Date:** {{ data.etf_flows.date }}
+- **Net Flow:** ${{ "{:,.1f}M".format(data.etf_flows.net_flow) }}
+{% endif %}
+
+### 📑 Holdings-Derived Flows (btcetffundflow)
+{% if data.holdings_flows.status == "error" %}
+- Status: No data reported
+{% else %}
+- **Lag (D+1) Date:** {{ data.holdings_flows.date }}
+- **Estimated Net Flow:** ${{ "{:,.1f}M".format(data.holdings_flows.total_value / 1e6) }}
+{% endif %}
+
+---
+
+## ⚡ Derivatives Positioning (Coinalyze)
+
+**Aggregate Open Interest:**
+- **All:** ${{ "{:,.1f}B".format(data.derivatives_oi.get('all', 0) / 1e9) }}
+
+**Current Funding Rates (8h Normalized):**
+| Exchange | Current Rate | Predicted |
+| :--- | :--- | :--- |
+{% if data.funding_rates %}
+{% for row in data.funding_rates %}
+| {{ row.exchange }} | {{ row.current }} | {{ row.predicted }} |
+{% endfor %}
+{% else %}
+| N/A | No Data | No Data |
+{% endif %}
+
+---
+
+## 🧠 Cognitive Architecture: Research-Validated Analysis
+
+> [!NOTE]
+> **Chain-of-Thought (CoT) Reasoning**
+{% for thought in reasoning.chain_of_thought %}
+> - {{ thought }}
+{% endfor %}
+
+> [!TIP]
+> **Cross-Consistency Validation (Confidence: {{ data.consensus.confidence_score }}%)**
+{% for check in reasoning.consistency_validation %}
+> - {{ check }}
+{% endfor %}
+
+---
+
+## 🖼️ Supplementary Evidence (CoinGlass)
+
+### Spot Inflow/Outflow (24h)
+![Spot Flows]({{ screenshots.spot_flows }})
+
+### Funding Rate Heatmap
+![Funding Heatmap]({{ screenshots.funding_heatmap }})
+
+### Liquidation Heatmap
+![Liquidation Heatmap]({{ screenshots.liquidation_heatmap }})
+
+---
+_End of Report_

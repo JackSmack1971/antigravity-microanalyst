@@ -1,0 +1,448 @@
+version: 1
+asset: BTC
+quote: USD
+
+adapters:
+
+  # ---------------------------------------------------------------------------
+  # Spot OHLC (Daily) — Twelve Data (Coinbase Pro BTC-USD historical table)
+  # ---------------------------------------------------------------------------
+  - id: twelvedata_btcusd_hist_html
+    url: "https://twelvedata.com/markets/499377/crypto/coinbase-pro/btc-usd/historical-data"
+    retrieval_mode: browser
+    role: ohlc_daily
+    browser:
+      engine: playwright
+      actions:
+        - {type: screenshot_only}
+    expected_format: html_table
+    extract:
+      asof_time_reported:
+        strategy: label_regex
+        label_contains: "Last update"
+        parse: datetime_text
+        timezone_default: UTC
+
+      candles:
+        strategy: table_by_headers
+        headers: ["Date", "Open", "High", "Low", "Close"]
+        # NOTE: prices on this page can use human suffixes (e.g., 86.42K).
+        # Ensure your number parser expands K/M/B and strips commas.
+        fields:
+          - {name: date, type: date}
+          - {name: open, type: number, parse: human_number}
+          - {name: high, type: number, parse: human_number}
+          - {name: low, type: number, parse: human_number}
+          - {name: close, type: number, parse: human_number}
+          # If present, header is often "% Change"
+          - {name: pct_change, type: number, optional: true, parse: percent_number}
+
+    normalization:
+      instrument_id: "BTC/USD"
+      venue_id: "coinbase"
+      venue_label_reported: "Coinbase Pro"
+      timezone_displayed: "UTC"
+      candle_cutoff_policy: "UTC_00:00_completed_days"
+      units: {price: "USD"}
+
+    drift_locks:
+      - instrument_id
+      - venue_id
+      - candle_cutoff_policy
+      - timezone_displayed
+
+    quality:
+      parse_confidence: high
+      is_interactive_only: false
+
+
+  # ---------------------------------------------------------------------------
+  # US Spot BTC ETF net flows — Bitbo (table in US$m)
+  # ---------------------------------------------------------------------------
+  - id: bitbo_us_etf_flows_table
+    url: "https://bitbo.io/treasuries/etf-flows/"
+    retrieval_mode: http
+    role: etf_net_flows
+    expected_format: html_table
+    extract:
+      table_mode:
+        strategy: ui_state_text
+        record: true
+
+      flows:
+        strategy: table_by_headers
+        headers_contains: ["Date", "Totals"]
+        dynamic_ticker_columns: true
+
+        # Bitbo includes non-date summary rows ("Total", "Average", etc.).
+        # Keep only rows where Date parses cleanly.
+        row_filter:
+          strategy: date_parseable_only
+          field: date
+
+        # Optional mapping if your engine supports it; otherwise it will match by header text.
+        column_map:
+          total_net_flow_usd_millions: "Totals"
+
+        fields:
+          - {name: date, type: date}
+          - {name: total_net_flow_usd_millions, type: number, unit: "USDm"}
+          - {name: per_fund_flows, type: map, key: ticker, value_type: number, unit: "USDm"}
+
+    normalization:
+      flow_units: "USDm"
+      flow_definition: "cash_flow"
+      fund_universe_source: "header_row"
+
+    drift_locks:
+      - flow_units
+      - flow_definition
+      - fund_universe_source
+
+    quality:
+      parse_confidence: high
+      is_interactive_only: false
+
+
+  # ---------------------------------------------------------------------------
+  # Derivatives Open Interest — Coinalyze (grid/table: All / Perpetual / Futures)
+  # ---------------------------------------------------------------------------
+  - id: coinalyze_btc_open_interest
+    url: "https://coinalyze.net/bitcoin/open-interest/"
+    retrieval_mode: browser
+    role: derivatives_open_interest
+    browser:
+      engine: playwright
+      actions:
+        - {type: screenshot_only}
+    artifacts:
+      screenshot_fullpage: true
+    expected_format: html_stats
+    extract:
+      # Coinalyze presents a grid:
+      #   columns: All | Perpetual | Futures
+      #   rows:    Open Interest | OI Change 24H
+      #
+      # Prefer a matrix/grid extractor rather than single label-value pairs.
+      oi_all_usd:
+        strategy: stats_matrix
+        row_label: "Open Interest"
+        col_label: "All"
+        type: number
+        unit: "USD"
+
+      oi_perpetual_usd:
+        strategy: stats_matrix
+        row_label: "Open Interest"
+        col_label: "Perpetual"
+        type: number
+        unit: "USD"
+        optional: true
+
+      oi_futures_usd:
+        strategy: stats_matrix
+        row_label: "Open Interest"
+        col_label: "Futures"
+        type: number
+        unit: "USD"
+        optional: true
+
+      oi_change_24h_pct:
+        strategy: stats_matrix
+        row_label_contains: "OI Change"
+        col_label: "All"
+        type: number
+        unit: "percent"
+
+      source_claim_universe:
+        strategy: text_block_contains
+        contains: ["coin-margined", "stablecoin-margined", "BTC/USD", "BTC/USDT"]
+        store_as: source_claims
+
+      realtime_flag:
+        strategy: text_regex
+        regex: "not updated in real-time"
+        type: boolean
+
+    normalization:
+      contract_universe:
+        margin_types: ["coin", "stablecoin"]
+        included_pairs_note: "as described on page"
+        aggregation: "USD_notional"
+      realtime_expected: false
+      expected_update_interval_seconds: 300
+      freshness_max_age_seconds: 1800
+
+    drift_locks:
+      - contract_universe
+      - realtime_expected
+
+    quality:
+      parse_confidence: medium
+      is_interactive_only: false
+
+
+  # ---------------------------------------------------------------------------
+  # Derivatives Funding — Coinalyze (table per exchange; current vs predicted)
+  # ---------------------------------------------------------------------------
+  - id: coinalyze_btc_funding
+    url: "https://coinalyze.net/bitcoin/funding-rate/"
+    retrieval_mode: browser
+    role: derivatives_funding
+    browser:
+      engine: playwright
+      actions:
+        - {type: screenshot_only}
+    artifacts:
+      screenshot_fullpage: true
+    expected_format: html_stats
+    extract:
+      # Coinalyze provides a table like:
+      #   Exchange | Current (normalized to 8h) | Predicted
+      # and may segment by margin type (USDⓈ-M vs COIN-M).
+      #
+      # Capture the whole table into a structured map, keyed by exchange (and optionally segment).
+      funding_table:
+        strategy: table_by_headers
+        headers_contains: ["Exchange", "Current", "Predicted"]
+        fields:
+          - {name: exchange, type: string}
+          - {name: funding_rate_current, type: number, unit: "percent", parse: percent_number}
+          - {name: predicted_funding_rate, type: number, unit: "percent", parse: percent_number}
+
+      # If your runner can detect sections/headings (USDⓈ-M / COIN-M), store it.
+      funding_table_sections:
+        strategy: section_heading_capture
+        heading_contains_any: ["USD", "USDT", "USDⓈ-M", "COIN", "COIN-M"]
+        optional: true
+
+    normalization:
+      # The page states rates are normalized to 8 hours.
+      funding_interval: "8h"
+      realtime_expected: false
+      expected_update_interval_seconds: 300
+      freshness_max_age_seconds: 1800
+
+    drift_locks:
+      - realtime_expected
+
+    quality:
+      parse_confidence: medium
+      is_interactive_only: false
+
+
+  # ---------------------------------------------------------------------------
+  # Spot turnover proxy — CoinGecko (24h volume, etc.)
+  # ---------------------------------------------------------------------------
+  - id: coingecko_btc_market_snapshot
+    url: "https://www.coingecko.com/en/coins/bitcoin"
+    retrieval_mode: browser
+    role: spot_turnover_proxy
+    browser:
+      engine: playwright
+      actions:
+        - {type: screenshot_only}
+    artifacts:
+      screenshot_fullpage: true
+    expected_format: html_stats
+    extract:
+      # CoinGecko DOM can shift; keep optional where possible.
+      price_usd:
+        strategy: stat_label_value
+        label_contains: "Price"
+        type: number
+        unit: "USD"
+        optional: true
+
+      volume_24h_usd:
+        strategy: stat_label_value
+        label_contains: "24 Hour Trading Vol"
+        type: number
+        unit: "USD"
+        parse: human_number
+
+      market_cap_usd:
+        strategy: stat_label_value
+        label_contains: "Market Cap"
+        type: number
+        unit: "USD"
+        parse: human_number
+        optional: true
+
+      range_24h:
+        strategy: stat_label_value
+        label_contains: "24H Range"
+        type: range
+        unit: "USD"
+        optional: true
+
+      source_claim_window:
+        strategy: text_block_contains
+        contains: ["rolling", "24-hour", "no open/closing times"]
+        store_as: source_claims
+
+    normalization:
+      volume_window: "rolling_24h"
+      volume_type: "aggregated_turnover"
+      venues: "multi_exchange_aggregate"
+
+    drift_locks:
+      - volume_window
+      - volume_type
+
+    quality:
+      parse_confidence: medium
+      is_interactive_only: false
+
+
+  # ---------------------------------------------------------------------------
+  # CoinGlass: XHR-first + screenshot-only fallback (interactive pages)
+  # ---------------------------------------------------------------------------
+  - id: coinglass_spot_inflow_outflow_xhr
+    url: "https://www.coinglass.com/spot-inflow-outflow"
+    retrieval_mode: browser
+    role: exchange_netflows
+    browser:
+      engine: playwright
+      actions:
+        - {type: set_timeframe, value: "24h"}   # runner-specific
+        - {type: capture_xhr, filter: "json"}
+    extract:
+      netflow_series:
+        strategy: from_xhr_json
+        json_path_hint: "$..netflow"            # runner fills after discovery
+        optional: true
+    artifacts:
+      screenshot_fullpage: true
+      screenshot_widgets: true
+      xhr_bundle: true
+    normalization:
+      timeframe_selected: "24h"
+      parse_confidence_floor: "low"
+    drift_locks:
+      - timeframe_selected
+    quality:
+      is_interactive_only: true
+      requires_app_banner_expected: true
+
+  - id: coinglass_spot_inflow_outflow_screenshot_only
+    url: "https://www.coinglass.com/spot-inflow-outflow"
+    retrieval_mode: browser
+    role: evidence_only
+    browser:
+      engine: playwright
+      actions:
+        - {type: set_timeframe, value: "24h"}
+        - {type: screenshot_only}
+    extract: {}
+    artifacts:
+      screenshot_fullpage: true
+      screenshot_widgets: true
+    normalization:
+      evidence_only: true
+      timeframe_selected: "24h"
+    drift_locks:
+      - evidence_only
+      - timeframe_selected
+    quality:
+      parse_confidence: low
+      is_interactive_only: true
+      requires_app_banner_expected: true
+
+  - id: coinglass_funding_heatmap_screenshot_only
+    url: "https://www.coinglass.com/FundingRateHeatMap"
+    retrieval_mode: browser
+    role: evidence_only
+    browser:
+      engine: playwright
+      actions:
+        - {type: screenshot_only}
+        - {type: capture_xhr, filter: "json", optional: true}
+    extract: {}
+    artifacts:
+      screenshot_fullpage: true
+      screenshot_widgets: true
+      xhr_bundle: true
+    normalization:
+      evidence_only: true
+    drift_locks:
+      - evidence_only
+    quality:
+      parse_confidence: low
+      is_interactive_only: true
+
+  - id: coinglass_liquidation_heatmap_screenshot_only
+    url: "https://www.coinglass.com/pro/futures/LiquidationHeatMap?coin=BTC&type=symbol"
+    retrieval_mode: browser
+    role: evidence_only
+    browser:
+      engine: playwright
+      actions:
+        - {type: screenshot_only}
+        - {type: capture_xhr, filter: "json", optional: true}
+    extract: {}
+    artifacts:
+      screenshot_fullpage: true
+      screenshot_widgets: true
+      xhr_bundle: true
+    normalization:
+      evidence_only: true
+      liquidity_threshold_label_expected: true
+    drift_locks:
+      - evidence_only
+    quality:
+      parse_confidence: low
+      is_interactive_only: true
+
+
+  # ---------------------------------------------------------------------------
+  # ETF “extras” — btcetffundflow (holdings-derived; includes reporting lag metadata)
+  # ---------------------------------------------------------------------------
+  - id: btcetffundflow_holdings_derived
+    url: "https://btcetffundflow.com/"
+    retrieval_mode: http
+    role: etf_holdings_derived_flows
+    expected_format: html_stats_or_table
+    extract:
+      updated_date_reported:
+        strategy: label_regex
+        label_contains: "Updated"
+        type: date
+        optional: true
+
+      reporting_lag_rule:
+        strategy: text_block_contains
+        contains: ["D+1", "GMT"]
+        store_as: source_claims
+        optional: true
+
+      flows_or_holdings:
+        strategy: best_effort_table_or_stats
+        optional: true
+
+    normalization:
+      flow_definition: "holdings_derived"
+      reporting_lag_rule: "as_reported"
+
+    drift_locks:
+      - flow_definition
+
+    quality:
+      parse_confidence: low
+      is_interactive_only: false
+
+  # ---------------------------------------------------------------------------
+  # CoinGecko API (Fallback/Primary for Volume & Price)
+  # ---------------------------------------------------------------------------
+  - id: coingecko_api_simple
+    url: "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_vol=true"
+    retrieval_mode: http
+    role: spot_turnover_api
+    expected_format: json
+    extract:
+      price_usd:
+        strategy: json_path
+        path: "$.bitcoin.usd"
+      volume_24h_usd:
+        strategy: json_path
+        path: "$.bitcoin.usd_24h_vol"

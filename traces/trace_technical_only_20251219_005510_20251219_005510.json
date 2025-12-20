@@ -1,0 +1,286 @@
+{
+  "trace_id": "trace_technical_only_20251219_005510",
+  "objective": "technical_only",
+  "agent_id": "coordinator",
+  "started_at": "2025-12-19T00:55:10.993821",
+  "completed_at": "2025-12-19T00:55:11.917530",
+  "status": "completed",
+  "total_tool_calls": 0,
+  "total_reasoning_steps": 2,
+  "events": [
+    {
+      "timestamp": "2025-12-19T00:55:10.993901",
+      "agent_role": "coordinator",
+      "event_type": "decision",
+      "description": "Objective decomposed into tasks",
+      "inputs": {
+        "lookback_days": 1
+      },
+      "outputs": {
+        "task_ids": [
+          "collect_price",
+          "analyze_technical"
+        ]
+      },
+      "reasoning": null,
+      "confidence": null,
+      "metadata": {
+        "role": "coordinator"
+      }
+    },
+    {
+      "timestamp": "2025-12-19T00:55:10.994314",
+      "agent_role": "data_collector",
+      "event_type": "reasoning_step",
+      "description": "Agent data_collector starting task collect_price",
+      "inputs": {
+        "lookback_days": 1,
+        "sources": [
+          "price",
+          "synthetic"
+        ]
+      },
+      "outputs": {},
+      "reasoning": null,
+      "confidence": 0.95,
+      "metadata": {
+        "role": "data_collector"
+      }
+    },
+    {
+      "timestamp": "2025-12-19T00:55:11.916657",
+      "agent_role": "data_collector",
+      "event_type": "decision",
+      "description": "Task collect_price completed",
+      "inputs": {
+        "lookback_days": 1,
+        "sources": [
+          "price",
+          "synthetic"
+        ]
+      },
+      "outputs": {
+        "timestamp": "2025-12-19 04:00:00",
+        "ground_truth": {
+          "regime": "unknown",
+          "regime_confidence": 0.0,
+          "instructions": {}
+        },
+        "price": {
+          "current": 87223.54,
+          "open": 87025.7,
+          "high": 87399.27,
+          "low": 86636.93,
+          "volume": 0.49158,
+          "features": {}
+        },
+        "derived_metrics": {},
+        "macro": {
+          "correlation_btc_dxy": {
+            "metric": "BTC_DXY_Correlation_30d",
+            "value": 0.0,
+            "status": "normal",
+            "interpretation": "Positive correlation implies idiosyncratic crypto strength/weakness independent of dollar."
+          }
+        },
+        "flows": {},
+        "derivatives": {},
+        "sentiment": {},
+        "risk": {},
+        "intelligence": {
+          "predictions": {
+            "prediction": "sideways_compression",
+            "probabilities": {
+              "bull_trending": 0.2,
+              "bear_trending": 0.2,
+              "sideways_compression": 0.2,
+              "high_volatility": 0.2,
+              "distribution": 0.2
+            },
+            "confidence": 0.0
+          }
+        },
+        "raw_price_history": {
+          "open": {
+            "2025-12-18 08:00:00": 86851.0,
+            "2025-12-18 12:00:00": 87410.02,
+            "2025-12-18 16:00:00": 88492.17,
+            "2025-12-18 20:00:00": 84608.01,
+            "2025-12-19 00:00:00": 85563.43,
+            "2025-12-19 04:00:00": 87025.7
+          },
+          "high": {
+            "2025-12-18 08:00:00": 87416.88,
+            "2025-12-18 12:00:00": 89494.76,
+            "2025-12-18 16:00:00": 88602.32,
+            "2025-12-18 20:00:00": 85828.17,
+            "2025-12-19 00:00:00": 87512.22,
+            "2025-12-19 04:00:00": 87399.27
+          },
+          "low": {
+            "2025-12-18 08:00:00": 86538.24,
+            "2025-12-18 12:00:00": 87029.86,
+            "2025-12-18 16:00:00": 84608.01,
+            "2025-12-18 20:00:00": 84583.57,
+            "2025-12-19 00:00:00": 85185.26,
+            "2025-12-19 04:00:00": 86636.93
+          },
+          "close": {
+            "2025-12-18 08:00:00": 87287.47,
+            "2025-12-18 12:00:00": 88603.57,
+            "2025-12-18 16:00:00": 84608.02,
+            "2025-12-18 20:00:00": 85300.0,
+            "2025-12-19 00:00:00": 86747.24,
+            "2025-12-19 04:00:00": 87223.54
+          },
+          "volume": {
+            "2025-12-18 08:00:00": 0.1907,
+            "2025-12-18 12:00:00": 5.55706,
+            "2025-12-18 16:00:00": 6.58658,
+            "2025-12-18 20:00:00": 1.15181,
+            "2025-12-19 00:00:00": 0.99227,
+            "2025-12-19 04:00:00": 0.49158
+          }
+        },
+        "meta": {
+          "source": "live"
+        }
+      },
+      "reasoning": null,
+      "confidence": null,
+      "metadata": {
+        "role": "data_collector"
+      }
+    },
+    {
+      "timestamp": "2025-12-19T00:55:11.916737",
+      "agent_role": "analyst_technical",
+      "event_type": "reasoning_step",
+      "description": "Agent analyst_technical starting task analyze_technical",
+      "inputs": {
+        "depends_on": "collect_price",
+        "timestamp": "2025-12-19 04:00:00",
+        "ground_truth": {
+          "regime": "unknown",
+          "regime_confidence": 0.0,
+          "instructions": {}
+        },
+        "price": {
+          "current": 87223.54,
+          "open": 87025.7,
+          "high": 87399.27,
+          "low": 86636.93,
+          "volume": 0.49158,
+          "features": {}
+        },
+        "derived_metrics": {},
+        "macro": {
+          "correlation_btc_dxy": {
+            "metric": "BTC_DXY_Correlation_30d",
+            "value": 0.0,
+            "status": "normal",
+            "interpretation": "Positive correlation implies idiosyncratic crypto strength/weakness independent of dollar."
+          }
+        },
+        "flows": {},
+        "derivatives": {},
+        "sentiment": {},
+        "risk": {},
+        "intelligence": {
+          "predictions": {
+            "prediction": "sideways_compression",
+            "probabilities": {
+              "bull_trending": 0.2,
+              "bear_trending": 0.2,
+              "sideways_compression": 0.2,
+              "high_volatility": 0.2,
+              "distribution": 0.2
+            },
+            "confidence": 0.0
+          }
+        },
+        "raw_price_history": {
+          "open": {
+            "2025-12-18 08:00:00": 86851.0,
+            "2025-12-18 12:00:00": 87410.02,
+            "2025-12-18 16:00:00": 88492.17,
+            "2025-12-18 20:00:00": 84608.01,
+            "2025-12-19 00:00:00": 85563.43,
+            "2025-12-19 04:00:00": 87025.7
+          },
+          "high": {
+            "2025-12-18 08:00:00": 87416.88,
+            "2025-12-18 12:00:00": 89494.76,
+            "2025-12-18 16:00:00": 88602.32,
+            "2025-12-18 20:00:00": 85828.17,
+            "2025-12-19 00:00:00": 87512.22,
+            "2025-12-19 04:00:00": 87399.27
+          },
+          "low": {
+            "2025-12-18 08:00:00": 86538.24,
+            "2025-12-18 12:00:00": 87029.86,
+            "2025-12-18 16:00:00": 84608.01,
+            "2025-12-18 20:00:00": 84583.57,
+            "2025-12-19 00:00:00": 85185.26,
+            "2025-12-19 04:00:00": 86636.93
+          },
+          "close": {
+            "2025-12-18 08:00:00": 87287.47,
+            "2025-12-18 12:00:00": 88603.57,
+            "2025-12-18 16:00:00": 84608.02,
+            "2025-12-18 20:00:00": 85300.0,
+            "2025-12-19 00:00:00": 86747.24,
+            "2025-12-19 04:00:00": 87223.54
+          },
+          "volume": {
+            "2025-12-18 08:00:00": 0.1907,
+            "2025-12-18 12:00:00": 5.55706,
+            "2025-12-18 16:00:00": 6.58658,
+            "2025-12-18 20:00:00": 1.15181,
+            "2025-12-19 00:00:00": 0.99227,
+            "2025-12-19 04:00:00": 0.49158
+          }
+        },
+        "meta": {
+          "source": "live"
+        }
+      },
+      "outputs": {},
+      "reasoning": null,
+      "confidence": 0.95,
+      "metadata": {
+        "role": "analyst_technical"
+      }
+    },
+    {
+      "timestamp": "2025-12-19T00:55:11.917513",
+      "agent_role": "analyst_technical",
+      "event_type": "decision",
+      "description": "Task analyze_technical completed",
+      "inputs": {
+        "depends_on": "collect_price"
+      },
+      "outputs": {
+        "technical_signals": [],
+        "key_levels": {
+          "support": 84583.57,
+          "resistance": 89494.76
+        }
+      },
+      "reasoning": null,
+      "confidence": null,
+      "metadata": {
+        "role": "analyst_technical"
+      }
+    }
+  ],
+  "final_result": {
+    "objective": "technical_only",
+    "final_result": {},
+    "tasks_executed": [
+      "collect_price",
+      "analyze_technical"
+    ],
+    "execution_time": 0.923767
+  }
+}

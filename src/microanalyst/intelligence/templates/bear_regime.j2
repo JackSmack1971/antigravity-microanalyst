@@ -1,0 +1,28 @@
+# 🐻 BEAR MARKET REGIME REPORT
+*Generated: {{ timestamp }}*
+
+> [!CAUTION]
+> **Market State**: BEARISH TREND
+> **Strategy**: Capital Preservation / Sell Bounces
+
+## 📋 Situation Report
+{{ regime_narrative }}
+
+The market is in a downtrend. Price is **{{ format_percent(regime.features.price_vs_sma50 * 100) }}** relative to the 50-day SMA.
+
+## 🛡️ Defensive Actions
+{% for action in prioritized_actions %}
+*   **{{ action.action }}**: {{ action.rationale }}
+{% endfor %}
+
+## ⚠️ Primary Risks
+{% for risk in risks.primary_risks %}
+*   **{{ risk.type }}**: {{ risk.description }}
+{% endfor %}
+
+## 📈 Key Levels to Watch
+*   **Major Resistance**: {{ format_price(key_levels.major_resistance_zone.lower) }} - {{ format_price(key_levels.major_resistance_zone.upper) }}
+*   **Immediate Resistance**: {{ format_price(key_levels.nearest_resistance) }}
+
+---
+*MicroAnalyst Intelligence v3.0*

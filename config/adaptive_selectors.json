@@ -1,0 +1,3 @@
+{
+  "verify.test.source": "[data-testid='healed-element']"
+}

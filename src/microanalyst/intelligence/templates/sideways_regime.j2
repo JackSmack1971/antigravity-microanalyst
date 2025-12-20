@@ -1,0 +1,24 @@
+# 🦀 SIDEWAYS / CONSOLIDATION REPORT
+*Generated: {{ timestamp }}*
+
+> [!NOTE]
+> **Market State**: RANGE BOUND
+> **Strategy**: Mean Reversion / Range Trading
+
+## 📋 Situation Report
+{{ regime_narrative }}
+
+The market is lacking directional conviction. Flow pressure is **{{ sentiment.flow_sentiment.magnitude }}** {{ sentiment.flow_sentiment.direction }}.
+
+## 🎯 Range Levels
+*   **Range High (Resistance)**: {{ format_price(key_levels.nearest_resistance) }}
+*   **Range Low (Support)**: {{ format_price(key_levels.nearest_support) }}
+*   **Mid-Range**: {{ format_price((key_levels.nearest_resistance + key_levels.nearest_support) / 2) }}
+
+## 💡 Trading Plan
+*   Look for rejection at {{ format_price(key_levels.nearest_resistance) }} to Short.
+*   Look for bounce at {{ format_price(key_levels.nearest_support) }} to Long.
+*   Avoid trading in the middle of the range.
+
+---
+*MicroAnalyst Intelligence v3.0*

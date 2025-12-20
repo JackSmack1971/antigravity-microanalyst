@@ -1,0 +1,41 @@
+{
+  "trace_id": "0c18088af48a232f",
+  "objective": "Execute workflow: sentiment_analysis",
+  "agent_id": "workflow_engine",
+  "started_at": "2025-12-19T00:59:01.411290",
+  "completed_at": "2025-12-19T00:59:01.477025",
+  "status": "completed",
+  "total_tool_calls": 0,
+  "total_reasoning_steps": 0,
+  "events": [
+    {
+      "timestamp": "2025-12-19T00:59:01.411311",
+      "agent_role": "orchestrator",
+      "event_type": "decision",
+      "description": "Starting workflow sentiment_analysis",
+      "inputs": {
+        "lookback_days": 7
+      },
+      "outputs": {},
+      "reasoning": "Workflow engine triggered for sentiment_analysis",
+      "confidence": null,
+      "metadata": {
+        "role": "orchestrator"
+      }
+    }
+  ],
+  "final_result": {
+    "workflow_id": "sentiment_analysis",
+    "execution_id": "0c18088af48a232f",
+    "status": "completed",
+    "execution_time": 0.065787,
+    "completed_tasks": 6,
+    "failed_tasks": 0,
+    "outputs": {
+      "synthesize_sentiment": {
+        "sentiment": "bullish",
+        "confidence": 0.72
+      }
+    }
+  }
+}

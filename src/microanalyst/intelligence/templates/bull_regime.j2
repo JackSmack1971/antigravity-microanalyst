@@ -1,0 +1,29 @@
+# 🐂 BULL MARKET REGIME REPORT
+*Generated: {{ timestamp }}*
+
+> [!TIP]
+> **Market State**: BULLISH TREND
+> **Strategy**: Buy Dips / Trend Following
+
+## 📋 Situation Report
+{{ regime_narrative }}
+
+The market is exhibiting strong bullish characteristics. Price is currently **{{ format_percent(regime.features.price_vs_sma20 * 100) }}** above the 20-day SMA.
+
+## 🏹 High-Probability Opportunities
+{% for opp in opportunities %}
+*   **{{ opp.type }}**: {{ opp.description }} (Confidence: {{ format_percent(opp.confidence * 100) }})
+{% endfor %}
+
+## ⚠️ Risk Factors
+Even in a bull market, risks exist.
+{% for risk in risks.primary_risks %}
+*   **{{ risk.type }}**: {{ risk.description }}
+{% endfor %}
+
+## 📉 Key Levels to Watch
+*   **Major Support**: {{ format_price(key_levels.major_support_zone.lower) }} - {{ format_price(key_levels.major_support_zone.upper) }}
+*   **Immediate Support**: {{ format_price(key_levels.nearest_support) }}
+
+---
+*MicroAnalyst Intelligence v3.0*

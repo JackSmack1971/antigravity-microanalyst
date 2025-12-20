@@ -1,0 +1,40 @@
+# Executive Market Intelligence Report
+*Generated: {{ timestamp }}*
+
+## 🚨 Executive Summary
+{{ executive_summary }}
+
+## 🎯 Prioritized Actions
+{% for action in prioritized_actions %}
+*   **{{ severity_badge(action.priority) }} {{ action.action }}**
+    *   *Rationale*: {{ action.rationale }}
+    *   *Timing*: {{ action.timing }}
+{% endfor %}
+
+## 📊 Market Context
+*   **Regime**: **{{ regime.current_regime|upper }}** ({{ confidence_badge(regime.regime_confidence) }} {{ format_percent(regime.regime_confidence * 100) }} Confidence)
+*   **Duration**: {{ regime.regime_duration_days }} Days
+*   **Risk Level**: {{ severity_badge(risks.risk_level) }} (Score: {{ format_percent(risks.overall_risk_score * 100) }})
+*   **Composite Sentiment**: {{ sentiment.composite_label|replace('_', ' ')|title }}
+
+### Key Levels
+*   **Resistance**: {{ format_price(key_levels.nearest_resistance) }}
+*   **Current Price**: {{ format_price(key_levels.current_price) }}
+*   **Support**: {{ format_price(key_levels.nearest_support) }}
+
+{% if show_details %}
+## 🔍 Deep Dive
+### Signal Analysis
+{{ signal_narrative }}
+
+### Risk Assessment
+{{ risk_narrative }}
+
+### Historical Context
+Price is currently at the **{{ format_percent(historical.price_percentile) }} percentile** of the historical range.
+*   Distance from High: {{ format_percent(historical.distance_from_high_pct) }}
+*   Distance from Low: {{ format_percent(historical.distance_from_low_pct) }}
+{% endif %}
+
+---
+*MicroAnalyst Intelligence v3.0 | Confidence Score: {{ format_percent(confidence_score * 100) }}*

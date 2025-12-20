@@ -1,0 +1,108 @@
+[2025-12-16 20:44:36] Fetching HTTP: twelvedata_btcusd_hist_html
+[2025-12-16 20:44:38]   -> Status: 200
+[2025-12-16 20:44:38] Fetching HTTP: bitbo_us_etf_flows_table
+[2025-12-16 20:44:40]   -> Status: 200
+[2025-12-16 20:44:40] Fetching HTTP: coinalyze_btc_open_interest
+[2025-12-16 20:44:41]   -> Status: 403
+[2025-12-16 20:44:41] Fetching HTTP: coinalyze_btc_funding
+[2025-12-16 20:44:41]   -> Status: 403
+[2025-12-16 20:44:41] Fetching HTTP: coingecko_btc_market_snapshot
+[2025-12-16 20:44:42]   -> Status: 403
+[2025-12-16 20:44:42] Fetching HTTP: btcetffundflow_holdings_derived
+[2025-12-16 20:44:45]   -> Status: 200
+[2025-12-16 20:44:45] Fetching Browser: coinglass_spot_inflow_outflow_xhr
+[2025-12-16 20:44:56]   -> Could not click 24h, continuing
+[2025-12-16 20:44:56]   -> Saved full screenshot
+[2025-12-16 20:44:57]   -> Saved 11 XHR responses
+[2025-12-16 20:44:57] Fetching Browser: coinglass_spot_inflow_outflow_screenshot_only
+[2025-12-16 20:45:08]   -> Could not click 24h, continuing
+[2025-12-16 20:45:08]   -> Saved full screenshot
+[2025-12-16 20:45:09] Fetching Browser: coinglass_funding_heatmap_screenshot_only
+[2025-12-16 20:45:15]   -> Saved full screenshot
+[2025-12-16 20:45:15]   -> Saved 9 XHR responses
+[2025-12-16 20:45:16] Fetching Browser: coinglass_liquidation_heatmap_screenshot_only
+[2025-12-16 20:45:23]   -> Saved full screenshot
+[2025-12-16 20:45:23]   -> Saved 9 XHR responses
+[2025-12-16 20:45:23] ------------------------------
+[2025-12-16 20:45:23] Live Retrieval Complete. Stats: {'success': 7, 'failure': 3}
+[2025-12-16 20:45:23] CRITICAL: Success rate below threshold. See logs.
+[2025-12-16 20:52:22] Fetching HTTP: twelvedata_btcusd_hist_html
+[2025-12-16 20:52:24]   -> Status: 200
+[2025-12-16 20:52:24] Fetching HTTP: bitbo_us_etf_flows_table
+[2025-12-16 20:52:26]   -> Status: 200
+[2025-12-16 20:52:26] Fetching HTTP: btcetffundflow_holdings_derived
+[2025-12-16 20:52:29]   -> Status: 200
+[2025-12-16 20:52:30] Fetching Browser: coinalyze_btc_open_interest
+[2025-12-16 20:52:40]   -> Saved full screenshot
+[2025-12-16 20:52:40] Fetching Browser: coinalyze_btc_funding
+[2025-12-16 20:52:49]   -> Saved full screenshot
+[2025-12-16 20:52:50] Fetching Browser: coingecko_btc_market_snapshot
+[2025-12-16 20:53:50]   -> Browser Error: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.coingecko.com/en/coins/bitcoin", waiting until "networkidle"
+
+[2025-12-16 20:53:52] Fetching Browser: coinglass_spot_inflow_outflow_xhr
+[2025-12-16 20:54:03]   -> Could not click 24h, continuing
+[2025-12-16 20:54:03]   -> Saved full screenshot
+[2025-12-16 20:54:04]   -> Saved 14 XHR responses
+[2025-12-16 20:54:04] Fetching Browser: coinglass_spot_inflow_outflow_screenshot_only
+[2025-12-16 20:54:16]   -> Could not click 24h, continuing
+[2025-12-16 20:54:17]   -> Saved full screenshot
+[2025-12-16 20:54:17] Fetching Browser: coinglass_funding_heatmap_screenshot_only
+[2025-12-16 20:54:22]   -> Saved full screenshot
+[2025-12-16 20:54:22]   -> Saved 8 XHR responses
+[2025-12-16 20:54:23] Fetching Browser: coinglass_liquidation_heatmap_screenshot_only
+[2025-12-16 20:54:29]   -> Saved full screenshot
+[2025-12-16 20:54:29]   -> Saved 9 XHR responses
+[2025-12-16 20:54:30] ------------------------------
+[2025-12-16 20:54:30] Live Retrieval Complete. Stats: {'success': 9, 'failure': 1}
+[2025-12-17 20:54:14] Fetching HTTP: bitbo_us_etf_flows_table
+[2025-12-17 20:54:15]   -> Status: 200
+[2025-12-17 20:54:15] Fetching HTTP: btcetffundflow_holdings_derived
+[2025-12-17 20:54:18]   -> Status: 200
+[2025-12-17 20:54:36] Fetching Browser: twelvedata_btcusd_hist_html
+[2025-12-17 20:54:44]   -> Scrolling page...
+[2025-12-17 20:54:49]   -> Saved HTML content
+[2025-12-17 20:54:49] Fetching Browser: coinalyze_btc_open_interest
+[2025-12-17 20:54:58]   -> Scrolling page...
+[2025-12-17 20:55:04]   -> Saved full screenshot
+[2025-12-17 20:55:04]   -> Saved HTML content
+[2025-12-17 20:55:04] Fetching Browser: coinalyze_btc_funding
+[2025-12-17 20:55:12]   -> Scrolling page...
+[2025-12-17 20:55:18]   -> Saved full screenshot
+[2025-12-17 20:55:18]   -> Saved HTML content
+[2025-12-17 20:55:18] Fetching Browser: coingecko_btc_market_snapshot
+[2025-12-17 20:56:18]   -> Browser Error: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.coingecko.com/en/coins/bitcoin", waiting until "networkidle"
+
+[2025-12-17 20:56:19] Fetching Browser: coinglass_spot_inflow_outflow_xhr
+[2025-12-17 20:56:24]   -> Scrolling page...
+[2025-12-17 20:56:29]   -> Clicked 24h
+[2025-12-17 20:56:32]   -> Saved full screenshot
+[2025-12-17 20:56:32]   -> Saved HTML content
+[2025-12-17 20:56:32]   -> Saved 10 XHR responses
+[2025-12-17 20:56:33] Fetching Browser: coinglass_spot_inflow_outflow_screenshot_only
+[2025-12-17 20:56:40]   -> Scrolling page...
+[2025-12-17 20:56:45]   -> Clicked 24h
+[2025-12-17 20:56:48]   -> Saved full screenshot
+[2025-12-17 20:56:49]   -> Saved HTML content
+[2025-12-17 20:56:49] Fetching Browser: coinglass_funding_heatmap_screenshot_only
+[2025-12-17 20:56:53]   -> Scrolling page...
+[2025-12-17 20:56:59]   -> Saved full screenshot
+[2025-12-17 20:56:59]   -> Saved HTML content
+[2025-12-17 20:56:59]   -> Saved 7 XHR responses
+[2025-12-17 20:57:02] Fetching Browser: coinglass_liquidation_heatmap_screenshot_only
+[2025-12-17 20:57:09]   -> Scrolling page...
+[2025-12-17 20:57:15]   -> Saved full screenshot
+[2025-12-17 20:57:15]   -> Saved HTML content
+[2025-12-17 20:57:15]   -> Saved 8 XHR responses
+[2025-12-17 20:57:15] ------------------------------
+[2025-12-17 20:57:15] Live Retrieval Complete. Stats: {'success': 9, 'failure': 1}
+[2025-12-17 22:04:58.912660] Async Stats: {'success': 8, 'failure': 2}
+[2025-12-18 00:12:14.812561] Async Stats: {'success': 7, 'failure': 3}
+[2025-12-18 19:16:16.932247] Async Stats: {'success': 7, 'failure': 3}
+[2025-12-18 19:23:09.164556] Async Stats: {'success': 10, 'failure': 1}
+[2025-12-18 19:24:43.580287] Async Stats: {'success': 10, 'failure': 1}
+[2025-12-18 19:26:52.984125] Async Stats: {'success': 10, 'failure': 1}
+[2025-12-19 00:51:40.950425] Async Stats: {'success': 2, 'failure': 0}

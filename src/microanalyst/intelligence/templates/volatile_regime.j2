@@ -1,0 +1,23 @@
+# ⚡ VOLATILE REGIME REPORT
+*Generated: {{ timestamp }}*
+
+> [!WARNING]
+> **Market State**: HIGH VOLATILITY
+> **Strategy**: Risk Management / Step Aside
+
+## 📋 Situation Report
+{{ regime_narrative }}
+
+Volatility is currently classified as **{{ sentiment.volatility.classification|upper }}**.
+
+## 🛡️ Risk Management
+*   **Stop Losses**: Widen stops to account for noise (Recommended: {{ format_percent(risks.overall_risk_score * 10) }} distance).
+*   **Position Sizing**: REDUCE SIZE significantly.
+
+## ⚠️ Critical Risks
+{% for risk in risks.primary_risks %}
+*   **{{ risk.type }}**: {{ risk.description }}
+{% endfor %}
+
+---
+*MicroAnalyst Intelligence v3.0*

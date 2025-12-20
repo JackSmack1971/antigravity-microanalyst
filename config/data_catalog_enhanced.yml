@@ -1,0 +1,395 @@
+version: 3.0.0
+last_updated: 2025-12-17T15:30:00Z
+catalog_metadata:
+  maintainer: "BTC Microanalyst System"
+  update_frequency: "every_4_hours"
+  total_datasets: 2
+  total_fields: 9
+  data_freshness_sla: "6_hours"
+
+datasets:
+  btc_price_normalized:
+    # === Core Metadata ===
+    id: "btc_price_normalized"
+    display_name: "Bitcoin OHLC Price Data"
+    description: "Daily open-high-low-close price data for BTC/USD from Coinbase Pro via TwelveData aggregator"
+    category: "market_data"
+    subcategory: "spot_price"
+    
+    # === Location & Format ===
+    storage:
+      primary_location: "data_clean/btc_price_normalized.csv"
+      format: "csv"
+      encoding: "utf-8"
+      compression: null
+      size_bytes: null  # Auto-populated
+      row_count: null   # Auto-populated
+      
+    # === Schema Definition ===
+    schema:
+      version: "1.0"
+      fields:
+        - name: date
+          type: datetime64[ns]
+          format: "YYYY-MM-DD"
+          timezone: UTC
+          nullable: false
+          description: "Trading date (market close)"
+          example: "2025-12-17"
+          constraints:
+            - type: "unique"
+            - type: "not_null"
+            - type: "date_range"
+              min: "2010-07-17"  # Bitcoin genesis
+              max: "today"
+          semantic_type: "temporal_dimension"
+          
+        - name: open
+          type: float64
+          unit: USD
+          precision: 2
+          nullable: false
+          description: "Opening price at 00:00 UTC"
+          example: 92100.50
+          constraints:
+            - type: "range"
+              min: 0
+              max: 1000000
+            - type: "not_null"
+          semantic_type: "price_metric"
+          statistical_properties:
+            typical_range: [20000, 100000]
+            volatility: "high"
+            
+        - name: high
+          type: float64
+          unit: USD
+          precision: 2
+          nullable: false
+          description: "Highest price during trading day"
+          example: 93780.00
+          constraints:
+            - type: "range"
+              min: 0
+              max: 1000000
+            - type: "greater_than_or_equal"
+              field: "open"
+          semantic_type: "price_metric"
+          
+        - name: low
+          type: float64
+          unit: USD
+          precision: 2
+          nullable: false
+          description: "Lowest price during trading day"
+          example: 89180.00
+          constraints:
+            - type: "range"
+              min: 0
+              max: 1000000
+            - type: "less_than_or_equal"
+              field: "open"
+          semantic_type: "price_metric"
+          
+        - name: close
+          type: float64
+          unit: USD
+          precision: 2
+          nullable: false
+          description: "Closing price at 23:59:59 UTC"
+          example: 92910.75
+          constraints:
+            - type: "not_null"
+          semantic_type: "price_metric"
+          primary_metric: true
+          
+    # === Data Quality ===
+    quality_metrics:
+      completeness:
+        current: 0.98
+        target: 0.95
+        critical_threshold: 0.90
+      accuracy:
+        validation_method: "cross_reference_multiple_sources"
+        confidence_level: "high"
+      timeliness:
+        freshness_sla_hours: 6
+        current_lag_hours: null  # Auto-populated
+        critical_threshold_hours: 12
+      consistency:
+        validation_rules:
+          - "high >= low"
+          - "high >= open"
+          - "high >= close"
+          - "low <= open"
+          - "low <= close"
+          
+    # === Lineage & Provenance ===
+    lineage:
+      source_systems:
+        - name: "TwelveData"
+          type: "external_api"
+          url: "https://twelvedata.com/markets/499377"
+          reliability: "high"
+          historical_uptime: 0.987
+      transformation_pipeline:
+        - stage: "raw_ingestion"
+          module: "live_retrieval.py"
+          function: "fetch_browser"
+          timestamp: null  # Runtime
+        - stage: "html_parsing"
+          module: "data_loader.py"
+          function: "load_price_history"
+        - stage: "normalization"
+          module: "normalization.py"
+          function: "normalize_price_history"
+        - stage: "validation"
+          module: "validation.suite.py"
+          function: "run_suite"
+      dependencies:
+        upstream: []
+        downstream:
+          - "analytics.calculate_rsi"
+          - "reports.generate_daily_market_summary"
+          
+    # === Relationships ===
+    relationships:
+      - target_dataset: "etf_flows_normalized"
+        join_type: "left"
+        join_key: "date"
+        cardinality: "1:many"
+        description: "Price data can be enriched with ETF flow information"
+        
+    # === Usage Patterns ===
+    usage_metadata:
+      primary_use_cases:
+        - "Technical analysis"
+        - "Price trend visualization"
+        - "Correlation studies"
+      common_queries:
+        - query: "Get last 30 days closing prices"
+          sql_equivalent: "SELECT date, close FROM btc_price WHERE date >= CURRENT_DATE - 30"
+          api_endpoint: "/data/price-history?days=30"
+        - query: "Find highest price this year"
+          sql_equivalent: "SELECT MAX(high) FROM btc_price WHERE YEAR(date) = YEAR(CURRENT_DATE)"
+      access_frequency: "high"
+      typical_row_range: [30, 365]
+      
+    # === Agent-Specific Metadata ===
+    agent_hints:
+      recommended_for:
+        - "Price analysis agents"
+        - "Technical indicator calculators"
+        - "Trading signal generators"
+      not_recommended_for:
+        - "Sentiment analysis"
+        - "On-chain metrics"
+      processing_tips:
+        - "Always sort by date ascending before time-series operations"
+        - "Use 'close' price for most analyses unless specifically studying intraday volatility"
+        - "Consider resampling to weekly/monthly for long-term trend analysis"
+      common_pitfalls:
+        - "Don't assume continuous dates - market holidays and data gaps exist"
+        - "Outlier detection may trigger on genuine volatility events"
+        
+    # === SLA & Monitoring ===
+    sla:
+      update_frequency: "every_4_hours"
+      expected_update_times: ["02:00 UTC", "06:00 UTC", "10:00 UTC", "14:00 UTC", "18:00 UTC", "22:00 UTC"]
+      max_acceptable_lag: "6_hours"
+      availability_target: 0.99
+      
+  etf_flows_normalized:
+    # === Core Metadata ===
+    id: "etf_flows_normalized"
+    display_name: "US Spot Bitcoin ETF Flows"
+    description: "Daily net flows (inflows/outflows) for US-listed spot Bitcoin ETFs by ticker"
+    category: "market_data"
+    subcategory: "fund_flows"
+    
+    # === Location & Format ===
+    storage:
+      primary_location: "data_clean/etf_flows_normalized.csv"
+      format: "csv"
+      encoding: "utf-8"
+      compression: null
+      
+    # === Schema Definition ===
+    schema:
+      version: "1.0"
+      fields:
+        - name: date
+          type: datetime64[ns]
+          format: "YYYY-MM-DD"
+          timezone: UTC
+          nullable: false
+          description: "Trading date for reported flows"
+          constraints:
+            - type: "not_null"
+            - type: "date_range"
+              min: "2024-01-11"  # First US spot ETF approval
+              max: "today"
+          semantic_type: "temporal_dimension"
+          
+        - name: ticker
+          type: string
+          nullable: false
+          description: "ETF ticker symbol"
+          example: "IBIT"
+          constraints:
+            - type: "not_null"
+            - type: "enum"
+              values: ["IBIT", "FBTC", "ARKB", "BITB", "HODL", "BTCO", "EZBC", "BRRR", "GBTC"]
+          semantic_type: "categorical_dimension"
+          cardinality: 9  # Number of unique tickers
+          
+        - name: flow_usd
+          type: float64
+          unit: USD
+          precision: 2
+          nullable: true
+          description: "Net flow in US dollars (positive = inflow, negative = outflow)"
+          example: 28600000.50
+          constraints:
+            - type: "range"
+              min: -10000000000  # -$10B max daily outflow
+              max: 10000000000   # $10B max daily inflow
+          semantic_type: "financial_metric"
+          interpretation:
+            positive: "Net inflows (buying pressure)"
+            negative: "Net outflows (selling pressure)"
+            zero: "No net movement"
+          statistical_properties:
+            typical_range: [-1000000000, 1000000000]
+            high_volatility_threshold: 2000000000
+            
+        - name: flow_btc
+          type: float64
+          unit: BTC
+          precision: 4
+          nullable: true
+          description: "Net flow in Bitcoin units"
+          example: -3753.5
+          constraints:
+            - type: "range"
+              min: -200000  # Approximate max holdings
+              max: 200000
+          semantic_type: "financial_metric"
+          
+    # === Data Quality ===
+    quality_metrics:
+      completeness:
+        current: 0.95
+        target: 0.90
+        note: "Some tickers may have delayed reporting"
+      accuracy:
+        validation_method: "cross_reference_issuer_filings"
+        confidence_level: "medium"
+        note: "D+1 reporting lag may cause revisions"
+      timeliness:
+        freshness_sla_hours: 24
+        reporting_lag_note: "ETF flows typically reported D+1 (next business day)"
+        
+    # === Lineage ===
+    lineage:
+      source_systems:
+        - name: "BTCETFFundFlow.com"
+          type: "aggregator"
+          url: "https://btcetffundflow.com/"
+          reliability: "medium"
+          data_source_note: "Aggregates from SEC filings and issuer reports"
+      transformation_pipeline:
+        - stage: "raw_ingestion"
+          module: "live_retrieval.py"
+          function: "fetch_http"
+        - stage: "json_parsing"
+          module: "data_loader.py"
+          function: "load_btcetffundflow_json"
+        - stage: "normalization"
+          module: "normalization.py"
+          function: "normalize_etf_flows"
+      dependencies:
+        upstream: []
+        downstream:
+          - "reports.generate_daily_market_summary"
+          - "intelligence.detect_flow_anomalies"
+          
+    # === Relationships ===
+    relationships:
+      - target_dataset: "btc_price_normalized"
+        join_type: "inner"
+        join_key: "date"
+        cardinality: "many:1"
+        description: "Analyze correlation between flows and price movements"
+        
+    # === Usage Patterns ===
+    usage_metadata:
+      primary_use_cases:
+        - "Institutional sentiment analysis"
+        - "Flow-based trend prediction"
+        - "Fund performance comparison"
+      common_queries:
+        - query: "Total net flows last 7 days"
+          aggregation: "SUM(flow_usd) WHERE date >= CURRENT_DATE - 7"
+          api_endpoint: "/data/etf-flows?days=7"
+        - query: "Which ETF had largest inflow today"
+          aggregation: "MAX(flow_usd) GROUP BY ticker"
+        - query: "Cumulative flows by ticker"
+          aggregation: "SUM(flow_usd) GROUP BY ticker"
+      access_frequency: "high"
+      typical_row_range: [7, 90]
+      
+    # === Agent Hints ===
+    agent_hints:
+      recommended_for:
+        - "Institutional flow analysis"
+        - "Sentiment detection agents"
+        - "Market regime classification"
+      processing_tips:
+        - "Aggregate flows by date for market-wide sentiment"
+        - "Compare individual ticker flows to identify fund preferences"
+        - "Consider reporting lag - flows reflect T-1 activity"
+      common_pitfalls:
+        - "Zero flows don't necessarily mean no activity (could be balanced in/out)"
+        - "Weekend/holiday dates will have no data"
+        - "GBTC may show perpetual outflows due to conversion dynamics"
+      semantic_interpretation:
+        - context: "Large positive flows (>$500M)"
+          meaning: "Strong institutional accumulation"
+        - context: "Large negative flows (<-$500M)"
+          meaning: "Institutional profit-taking or de-risking"
+        - context: "Persistent outflows from single ticker"
+          meaning: "Possible fee competition or fund-specific issues"
+          
+    # === SLA ===
+    sla:
+      update_frequency: "daily"
+      expected_update_times: ["08:00 UTC"]
+      max_acceptable_lag: "48_hours"
+      note: "D+1 reporting standard in ETF industry"
+
+# === Global Metadata ===
+global_metadata:
+  data_governance:
+    data_classification: "public"
+    retention_policy: "indefinite"
+    backup_frequency: "daily"
+    backup_location: "data_clean/.backup/"
+    
+  access_control:
+    read_access: "public"
+    write_access: "system_only"
+    admin_access: "maintainers"
+    
+  data_dictionary_url: "https://docs.btc-microanalyst.local/data-dictionary"
+  
+  api_endpoints:
+    base_url: "http://localhost:8000"
+    health_check: "/pipeline/status"
+    catalog_endpoint: "/metadata/catalog"
+    search_endpoint: "/metadata/search"
+    
+  support:
+    documentation: "README.md"
+    contact: "admin@example.com"
+    issue_tracker: "https://github.com/example/issues"

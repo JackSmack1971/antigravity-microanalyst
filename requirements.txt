@@ -1,0 +1,15 @@
+pyyaml
+requests
+pandas
+numpy
+pytest
+requests
+playwright
+playwright-stealth
+beautifulsoup4
+langgraph
+langchain-openai
+langchain-community
+pydantic
+mcp>=1.0.0
+yfinance
