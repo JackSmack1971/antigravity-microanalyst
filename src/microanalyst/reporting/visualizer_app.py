@@ -21,78 +21,85 @@ st.markdown("""
         background-color: #0e1117;
         color: #e0e0e0;
     }
-    /* Hero Card for Final Decision - Optimized Height */
+    /* Hero Card for Final Decision - Institutional Polish */
     .hero-card {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 1.5rem; /* Reduced height by 40% */
-        border-radius: 1rem;
+        padding: 1.2rem; /* Even more compact */
+        border-radius: 12px;
         text-align: center;
-        margin-bottom: 2rem;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        margin-bottom: 1.5rem;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        border: 1px solid rgba(255,255,255,0.1);
     }
     .hero-title {
-        color: rgba(255,255,255,0.8);
-        font-size: 0.8rem;
-        letter-spacing: 2px;
+        color: rgba(255,255,255,0.7);
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 1.5px;
         text-transform: uppercase;
-        margin-bottom: 0.2rem;
+        margin-bottom: 0.1rem;
     }
     .hero-value {
         color: #ffffff;
-        font-size: 3.5rem; /* Slightly smaller for compactness */
-        font-weight: 800;
+        font-size: 3.2rem;
+        font-weight: 900;
         margin: 0;
         line-height: 1;
+        letter-spacing: -1px;
     }
     .hero-subtitle {
         color: rgba(255,255,255,0.9);
-        font-size: 1rem;
-        margin-top: 0.5rem;
+        font-size: 0.9rem;
+        margin-top: 0.3rem;
+        font-family: 'IBM Plex Mono', monospace;
     }
 
     /* Defensive UI: Stale Data Warning */
     .stale-banner {
-        background-color: #ff4b4b;
-        color: white;
-        padding: 10px;
-        border-radius: 8px;
+        background-color: #ff4b4b22;
+        color: #ff4b4b;
+        padding: 8px;
+        border-radius: 6px;
         text-align: center;
-        font-weight: bold;
+        font-weight: 600;
+        font-size: 0.8rem;
+        border: 1px solid #ff4b4b44;
         margin-bottom: 1rem;
     }
 
     /* WCAG Compliant Agent Cards */
     .persona-card {
         background-color: #1a1c27;
-        padding: 20px;
-        border-radius: 12px;
-        border-left: 5px solid #3d4455;
-        margin-bottom: 15px;
+        padding: 18px;
+        border-radius: 10px;
+        border-left: 4px solid #3d4455;
+        margin-bottom: 12px;
         color: #f0f0f0;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        border: 1px solid rgba(255,255,255,0.05);
     }
-    .retail-card { border-left-color: #ff4b4b; }
-    .inst-card { border-left-color: #00ff88; }
-    .whale-card { border-left-color: #9d4edd; }
-    .macro-card { border-left-color: #f59e0b; }
+    .retail-card { border-left-color: #ff4b4b; background-color: rgba(255, 75, 75, 0.03); }
+    .inst-card { border-left-color: #00ff88; background-color: rgba(0, 255, 136, 0.03); }
+    .whale-card { border-left-color: #9d4edd; background-color: rgba(157, 78, 221, 0.03); }
+    .macro-card { border-left-color: #f59e0b; background-color: rgba(245, 158, 11, 0.03); }
     
     /* Metrics & Tooltips */
     .stMetric {
         background-color: #161a24;
-        padding: 15px;
-        border-radius: 10px;
+        padding: 12px;
+        border-radius: 8px;
         border: 1px solid #2d323e;
     }
     
-    /* Monospace Log Styling with Semantic Colors */
+    /* Semantic Log Entry Styling */
     .log-entry {
         font-family: 'IBM Plex Mono', monospace;
-        font-size: 0.75rem;
-        padding: 4px 8px;
-        margin-bottom: 4px;
+        font-size: 0.7rem;
+        padding: 5px 10px;
+        margin-bottom: 3px;
         border-radius: 4px;
         border-left: 3px solid #3d4455;
         background-color: rgba(255,255,255,0.02);
+        color: #b0b3b8;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -207,22 +214,36 @@ def render_swarm_debate(data):
     st.write("---")
     st.subheader("🤺 Adversarial Swarm")
     
-    # Progressive Disclosure for Agents
-    with st.expander("📈 Retail Momentum (The Hype)", expanded=True):
-        st.markdown(f'<div class="persona-card retail-card">{data.get("bull_case", "...")}</div>', unsafe_allow_html=True)
-        st.progress(0.72)
-        st.caption("Agent Consensus Confidence: 72%")
+    # Mock confidence scores and data mapping
+    agents = [
+        {"id": "retail", "name": "Retail Momentum", "icon": "📈", "conf": 0.72, "key": "bull_case", "class": "retail-card"},
+        {"id": "whale", "name": "Whale Sniper", "icon": " Whale Sniper", "icon": "🐋", "conf": 0.85, "key": "bear_case", "class": "whale-card"},
+        {"id": "macro", "name": "Macro Economist", "icon": "🌍", "conf": 0.91, "key": "macro_thesis", "class": "macro-card"}
+    ]
+    
+    # Tiered Sorting (Confidence Descending)
+    agents_sorted = sorted(agents, key=lambda x: x['conf'], reverse=True)
+    
+    for agent in agents_sorted:
+        # High confidence tier automatically expanded
+        is_expanded = agent['conf'] >= 0.80
         
-    with st.expander("🐋 Whale Sniper (The Hunter)", expanded=False):
-        st.markdown(f'<div class="persona-card whale-card">{data.get("bear_case", "...")}</div>', unsafe_allow_html=True)
-        st.progress(0.85)
-        st.caption("Agent Consensus Confidence: 85%")
-        
-    with st.expander("🌍 Macro Economist (The General)", expanded=False):
-        macro_text = data.get("macro_thesis", "Structural decoupling detected in DXY/BTC.")
-        st.markdown(f'<div class="persona-card macro-card">{macro_text}</div>', unsafe_allow_html=True)
-        st.progress(0.91)
-        st.caption("Agent Consensus Confidence: 91%")
+        with st.expander(f"{agent['icon']} {agent['name']}", expanded=is_expanded):
+            text = data.get(agent['key'], "...")
+            if agent['id'] == 'macro' and not data.get('macro_thesis'):
+                text = "Structural decoupling detected in DXY/BTC. Correlation dropping to 0.12. Safe Haven regime active."
+                
+            st.markdown(f'<div class="persona-card {agent["class"]}">{text}</div>', unsafe_allow_html=True)
+            
+            # Confidence calibration context
+            col1, col2 = st.columns([4, 1])
+            with col1:
+                st.progress(agent['conf'])
+            with col2:
+                tier = "HIGH" if agent['conf'] >= 0.8 else "MED"
+                color = "green" if tier == "HIGH" else "orange"
+                st.markdown(f':{color}[**{tier}**]')
+            st.caption(f"Agent Confidence: {agent['conf']*100:.0f}%")
 
 def render_logs(data):
     with st.sidebar:
