@@ -10,10 +10,24 @@ from src.microanalyst.intelligence.performance_analyzer import OraclePerformance
 logger = logging.getLogger(__name__)
 
 class AutomatedRetrainer:
-    """
-    Automates the collection, training, evaluation, and deployment of Oracle models.
+    """Automates the collection, training, evaluation, and deployment of Oracle models.
+
+    This class orchestrates the end-to-end ML lifecycle for the Prediction Oracle,
+    including dynamic resolution detection, dataset building, model training,
+    performance evaluation, and gated promotion to the active version.
+
+    Attributes:
+        builder (AgentDatasetBuilder): Component to build unified ML datasets.
+        manager (MLModelManager): Component to handle model training and persistence.
+        analyzer (OraclePerformanceAnalyzer): Component to evaluate model performance.
+        active_version (str): The version tag of the currently promoted model.
     """
     def __init__(self, model_dir: str = "models"):
+        """Initializes the AutomatedRetrainer with required components.
+
+        Args:
+            model_dir: Directory where trained models will be stored. Defaults to "models".
+        """
         self.builder = AgentDatasetBuilder()
         self.manager = MLModelManager(model_dir=model_dir)
         self.analyzer = OraclePerformanceAnalyzer()
@@ -24,8 +38,20 @@ class AutomatedRetrainer:
         df_price: pd.DataFrame, 
         actual_prices: Optional[pd.DataFrame] = None
     ) -> Dict[str, Any]:
-        """
-        Executes a full retraining cycle with dynamic resolution and performance gating.
+        """Executes a full retraining cycle with dynamic resolution and performance gating.
+
+        This method determines the appropriate lookahead window based on data
+        frequency, builds a labeled training dataset, trains a candidate model,
+        and compares it against the active version before promoting it.
+
+        Args:
+            df_price: Historical price data (OHLCV) with a DatetimeIndex.
+            actual_prices: Optional dataframe containing actual prices for target
+                verification or external evaluation.
+
+        Returns:
+            Dict[str, Any]: Result of the retraining cycle, including status,
+                version, metrics, and promotion status.
         """
         logger.info("Starting automated retraining cycle...")
         
@@ -110,9 +136,18 @@ class AutomatedRetrainer:
             }
 
     def _calculate_lookahead_shift(self, df: pd.DataFrame) -> int:
-        """
-        Calculates the number of bars representing a 24-hour window.
-        Defaults to 6 (for 4h bars).
+        """Calculates the number of bars representing a 24-hour window.
+
+        Analyzes the median time difference between consecutive rows in the
+        dataframe index to determine the data frequency and calculate the
+        appropriate shift for a T+24h target.
+
+        Args:
+            df: Dataframe with a DatetimeIndex to analyze resolution.
+
+        Returns:
+            int: The number of bars constituting a 24-hour period. Defaults to 6
+                (for 4h bars) if detection fails or data is insufficient.
         """
         # Frequency detection only depends on the index
         if df is None or len(df.index) < 2:

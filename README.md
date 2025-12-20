@@ -59,58 +59,57 @@ python verify_swarm.py
 
 ---
 
-## 🏗️ V3 Architecture
+## 🏗️ V5 Architecture: Synthetic Intelligence
 
 ### System Overview
 ```mermaid
 flowchart TD
-    A[Configuration.yml] --> B{Async Retrieval Engine}
+    A[Configuration.yml] --> B{Discovery Engine}
 
-    subgraph "Core Engine"
+    subgraph "Core Data Engine (V3/V4)"
         B -->|Shared Browser Pool| C[Playwright Adapters]
         B -->|Circuit Breaker| D[HTTP Adapters]
+        C & D --> E[Normalization & Persistence]
+        E --> F[(microanalyst.db)]
     end
 
-    C --> E[Raw Artifacts]
-    D --> E
+    subgraph "Advanced Intelligence (V5)"
+        F --> G[Context Synthesizer]
+        G --> H{AgentCoordinator}
+        
+        subgraph "Predictive Oracle"
+            H --> I[Automated Retrainer]
+            I --> J[ML Model Manager]
+            J --> K[Oracle Analyzer]
+        end
 
-    E --> F[Normalization Pipeline]
-    
-    subgraph "Memory & Persistence"
-        F --> G[(microanalyst.db)]
-        G --> H[Gap Filler]
+        subgraph "Debate Swarm"
+            H --> L[Analyst Technical]
+            H --> M[Analyst Sentiment]
+            H --> N[Risk Specialist]
+            L & M & N --> O[Synthesizer Agent]
+        end
     end
 
-    subgraph "Cognitive Layer"
-        G --> I[Context Window]
-        I --> J{Debate Swarm}
-        J -->|Bull Case| K["LLM (OpenRouter)"]
-        J -->|Bear Case| L["LLM (OpenRouter)"]
-        K & L --> M[Facilitator Synthesis]
-    end
-
-    M --> N[Final Thesis]
+    K & O --> P[Final Decision/Thesis]
 ```
 
 ### Key Components
 
-#### 1. Async Retrieval Engine (`src/microanalyst/core/async_retrieval.py`)
--   **Shared Browser Pool**: Launches a single Chromium instance for all browser tasks, reducing RAM usage by 80%.
--   **Smart Circuit Breakers**: Automatically pauses requests to rate-limited hosts (e.g., Coinalyze) to prevent bans.
--   **Parallel Execution**: Fetches 11+ sources concurrently using `asyncio`.
+#### 1. Discovery Engine & Persistence
+-   **Shared Browser Pool**: Efficient multi-source aggregation (11+ endpoints).
+-   **SQLite Golden Copy**: Local persistence of institutional-grade metrics.
 
-#### 2. Golden Copy Persistence (`src/microanalyst/core/persistence.py`)
--   **SQLite Backend**: Zero-conf local database (`microanalyst.db`).
--   **Auto-Upsert**: `normalization.py` automatically inserts/updates records.
--   **Gap Detection**: `gap_filler.py` identifies missing historical days.
+#### 2. Multi-Agent Swarm Intelligence (`src/microanalyst/agents/`)
+-   **AgentCoordinator**: Orchestrates specialized roles (Technical, Sentiment, Risk, Oracle).
+-   **Role-Based Decomposition**: Complexity is handled by specialized microanalysts debating in a structured workflow.
+-   **Self-Healing**: Dynamic error recovery and simulation fallbacks.
 
-#### 3. Cognitive Swarm (`src/microanalyst/agents/debate_swarm.py`)
--   **Real LLM Inference**: Uses `langchain` + `OpenRouter` to access models like Claude 3.5 Sonnet or Gemini Pro.
--   **Adversarial Logic**:
-    -   **Retail Agent**: Momentum-focused, FOMO-prone.
-    -   **Institutional Agent**: Risk-averse, flow-centric.
-    -   **Whale Agent**: Liquidity-hunting, contrarian.
--   **Fallback Mode**: Gracefully degrades to simulation logic if API key is missing.
+#### 3. Prediction Oracle (`src/microanalyst/intelligence/`)
+-   **T+24h Forecasting**: Predicts directional bias and price targets.
+-   **Automated Retraining**: Continuous ML lifecycle with dynamic resolution detection.
+-   **Performance Gating**: New models are only promoted if they exceed a 2% improvement threshold over the active version.
+-   **Dynamic Context**: Real-time Support/Resistance detection from live price action.
 
 ---
 

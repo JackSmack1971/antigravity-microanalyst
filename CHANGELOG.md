@@ -278,11 +278,14 @@
 ### 🚀 Technical Refinements
 *   **Volatility Standardization**: Unified volatility metrics across the Oracle and Feature Engineering layers to ensure target precision.
 *   **Verification**: 100% test pass rate (7/7) on updated unit tests following refactor.
-- **Phase 46: Oracle Robustness & Dynamic Context**
-    - Implemented dynamic lookahead shift detection in `AutomatedRetrainer` (T+24h resolution awareness).
-    - Integrated performance-gated model promotion logic (2% improvement threshold).
-    - Replaced hardcoded Support/Resistance placeholders in `ContextSynthesizer` with `SignalLibrary`-derived levels.
-    - Standardized error metrics across all intelligence modules using `sklearn`.
+- **ML Predictive Core (Phase 44-46)**
+    - **Added**: T+24h Prediction Oracle with XGBoost/LightGBM integration.
+    - **Added**: `AutomatedRetrainer` with dynamic frequency detection and performance gating (2% ROI floor).
+    - **Added**: `MLModelManager` for versioned model persistence and training.
+    - **Added**: `OraclePerformanceAnalyzer` for standardized RMSE/MAPE evaluation.
+    - **Improved**: `ContextSynthesizer` now generates dynamic Support/Resistance zones from price action.
+    - **Improved**: `AgentCoordinator` integrates Predictive Oracle as a specialized analyst role.
+    - **Fixed**: Corrected price target volatility buffers in `OracleAnalyzer`.
 
 ---
 

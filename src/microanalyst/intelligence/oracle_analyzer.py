@@ -8,13 +8,22 @@ from src.microanalyst.intelligence.ml_model_manager import MLModelManager
 logger = logging.getLogger(__name__)
 
 class OracleAnalyzer:
-    """
-    The Oracle: Specializes in T+24h directional forecasting.
-    Initial implementation uses weighted signal consensus.
-    Ready for XGBoost/LightGBM integration.
+    """The Oracle: Specializes in T+24h directional forecasting.
+
+    This class aggregates technical indicators, sentiment analysis, and
+    on-chain data to produce a weighted consensus for short-term price direction.
+    It integrates a trained machine learning model to refine predictions
+    and calculate confidence scores.
+
+    Attributes:
+        weights (Dict[str, float]): Base weights for the signal consensus logic.
+        engineer (MLFeatureEngineer): Component for technical feature extraction.
+        model_manager (MLModelManager): Lifecycle manager for the ML prediction model.
+        model_loaded (bool): Indicates if a trained ML model is currently active.
     """
     
     def __init__(self):
+        """Initializes the OracleAnalyzer with default weights and components."""
         self.weights = {
             'tech_rsi': 0.2,
             'tech_sma_dist': 0.2,
@@ -26,9 +35,22 @@ class OracleAnalyzer:
         self.model_loaded = False
 
     def predict_24h(self, df_price: pd.DataFrame, context: Dict[str, Any]) -> Dict[str, Any]:
-        """
-        Main entry point for 24h prediction.
-        Precondition: df_price must have >= 50 periods.
+        """Generates a directional forecast for a 24-hour horizon.
+
+        Performs feature engineering, calculates a signal consensus score,
+        integrates ML model predictions if available, and determines the
+        directional bias and price target.
+
+        Args:
+            df_price: Historical price data (OHLCV) with >= 50 periods.
+            context: Metadata containing sentiment, on-chain, and risk data.
+
+        Returns:
+            Dict[str, Any]: Prediction results including direction, confidence,
+                price target, and active model information.
+
+        Raises:
+            ValueError: If df_price has fewer than 50 periods.
         """
         if df_price.empty or len(df_price) < 50:
             logger.error("Precondition failed: Insufficient price history for Oracle.")
@@ -81,7 +103,11 @@ class OracleAnalyzer:
         }
 
     def load_oracle_model(self, version_tag: str):
-        """Loads a specific model version into the analyzer."""
+        """Loads a specific model version from disk.
+
+        Args:
+            version_tag: The identifier of the model version to load.
+        """
         try:
             self.model_manager.load_model(version_tag)
             self.model_loaded = True
@@ -91,7 +117,15 @@ class OracleAnalyzer:
             self.model_loaded = False
 
     def _aggregate_features(self, df_price: pd.DataFrame, context: Dict[str, Any]) -> Dict[str, Any]:
-        """Internal feature engineering pipeline using MLFeatureEngineer."""
+        """Extracts and merges technical and contextual features for prediction.
+
+        Args:
+            df_price: Historical price data for technical analysis.
+            context: Nested dictionary of contextual market intelligence.
+
+        Returns:
+            Dict[str, Any]: A flat feature vector for the latest period.
+        """
         # 1. Technicals
         df_tech = self.engineer.extract_technical_features(df_price)
         latest_tech = df_tech.iloc[-1].to_dict() if not df_tech.empty else {}
