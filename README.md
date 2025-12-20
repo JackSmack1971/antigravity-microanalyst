@@ -18,7 +18,7 @@
 ### Installation
 ```bash
 # Clone and navigate
-cd "antigravity test v2"
+cd "antigravity-microanalyst"
 
 # Install dependencies
 pip install -r requirements.txt
@@ -713,3 +713,4 @@ streamlit run src/microanalyst/legacy_ui/ui_proof_of_concept.py
 **OPSEC Note**: Browser fingerprinting may still occur. Rotate execution IP if running at scale.
 
 ---
+
