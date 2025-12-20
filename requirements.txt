@@ -16,3 +16,8 @@ yfinance
 aiohttp
 tenacity
 python-dotenv
+
+# API Server
+fastapi
+uvicorn
+sse-starlette

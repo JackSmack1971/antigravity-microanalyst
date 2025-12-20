@@ -89,3 +89,73 @@ Call log:
 
 2025-12-20 00:32:40,266 - INFO - Closing Shared Browser...
 2025-12-20 00:32:40,577 - INFO - Async Pipeline Complete: {'success': 10, 'failure': 1, 'skipped': 0}
+2025-12-20 01:43:22,582 - INFO - Initializing Shared Browser Pool for 8 tasks...
+2025-12-20 01:43:28,211 - INFO - Shared Browser launched.
+2025-12-20 01:43:28,212 - INFO - Fetching HTTP: bitbo_us_etf_flows_table
+2025-12-20 01:43:28,258 - INFO - Fetching HTTP: btcetffundflow_holdings_derived
+2025-12-20 01:43:28,261 - INFO - Fetching HTTP: coingecko_api_simple
+2025-12-20 01:43:28,263 - INFO - Fetching Browser: twelvedata_btcusd_hist_html
+2025-12-20 01:43:28,289 - INFO - Fetching Browser: coinalyze_btc_open_interest
+2025-12-20 01:43:28,449 - INFO - Fetching Browser: coinalyze_btc_funding
+2025-12-20 01:43:29,929 - INFO - Fetching Browser: coingecko_btc_market_snapshot
+2025-12-20 01:43:31,070 - INFO - Fetching Browser: coinglass_spot_inflow_outflow_xhr
+2025-12-20 01:43:39,296 - INFO - Fetching Browser: coinglass_spot_inflow_outflow_screenshot_only
+2025-12-20 01:43:40,555 - INFO - Fetching Browser: coinglass_funding_heatmap_screenshot_only
+2025-12-20 01:43:40,878 - INFO - Clicked 24h for coinglass_spot_inflow_outflow_xhr
+2025-12-20 01:43:43,064 - INFO - Fetching Browser: coinglass_liquidation_heatmap_screenshot_only
+2025-12-20 01:44:09,377 - INFO - Clicked 24h for coinglass_spot_inflow_outflow_screenshot_only
+2025-12-20 01:44:30,044 - ERROR - Browser failed for coingecko_btc_market_snapshot: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.coingecko.com/en/coins/bitcoin", waiting until "networkidle"
+
+2025-12-20 01:44:30,056 - INFO - Closing Shared Browser...
+2025-12-20 01:44:30,206 - INFO - Async Pipeline Complete: {'success': 10, 'failure': 1, 'skipped': 0}
+2025-12-20 01:47:58,351 - INFO - Initializing Shared Browser Pool for 10 tasks...
+2025-12-20 01:47:59,007 - INFO - Shared Browser launched.
+2025-12-20 01:47:59,007 - INFO - Fetching HTTP: bitbo_us_etf_flows_table
+2025-12-20 01:47:59,043 - INFO - Fetching HTTP: btcetffundflow_holdings_derived
+2025-12-20 01:47:59,046 - INFO - Fetching HTTP: coingecko_api_simple
+2025-12-20 01:47:59,050 - INFO - Fetching Browser: twelvedata_btcusd_hist_html
+2025-12-20 01:47:59,054 - INFO - Fetching Browser: twelvedata_btcusd_1h
+2025-12-20 01:47:59,224 - INFO - Fetching Browser: twelvedata_btcusd_15m
+2025-12-20 01:48:00,623 - INFO - Fetching Browser: coinalyze_btc_open_interest
+2025-12-20 01:48:01,314 - INFO - Fetching Browser: coinalyze_btc_funding
+2025-12-20 01:48:09,036 - INFO - Fetching Browser: coingecko_btc_market_snapshot
+2025-12-20 01:48:09,042 - INFO - Fetching Browser: coinglass_spot_inflow_outflow_xhr
+2025-12-20 01:48:09,539 - INFO - Fetching Browser: coinglass_spot_inflow_outflow_screenshot_only
+2025-12-20 01:48:18,455 - INFO - Fetching Browser: coinglass_funding_heatmap_screenshot_only
+2025-12-20 01:48:21,292 - INFO - Clicked 24h for coinglass_spot_inflow_outflow_xhr
+2025-12-20 01:48:24,798 - INFO - Fetching Browser: coinglass_liquidation_heatmap_screenshot_only
+2025-12-20 01:49:09,187 - ERROR - Browser failed for coingecko_btc_market_snapshot: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.coingecko.com/en/coins/bitcoin", waiting until "networkidle"
+
+2025-12-20 01:49:09,653 - ERROR - Browser failed for coinglass_spot_inflow_outflow_screenshot_only: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.coinglass.com/spot-inflow-outflow", waiting until "networkidle"
+
+2025-12-20 01:49:09,680 - INFO - Closing Shared Browser...
+2025-12-20 01:49:09,810 - INFO - Async Pipeline Complete: {'success': 11, 'failure': 2, 'skipped': 0}
+2025-12-20 01:55:34,021 - INFO - Initializing Shared Browser Pool for 10 tasks...
+2025-12-20 01:55:35,595 - INFO - Shared Browser launched.
+2025-12-20 01:55:35,600 - INFO - Fetching HTTP: bitbo_us_etf_flows_table
+2025-12-20 01:55:35,662 - INFO - Fetching HTTP: btcetffundflow_holdings_derived
+2025-12-20 01:55:35,668 - INFO - Fetching HTTP: coingecko_api_simple
+2025-12-20 01:55:35,671 - INFO - Fetching Browser: twelvedata_btcusd_hist_html
+2025-12-20 01:55:35,678 - INFO - Fetching Browser: twelvedata_btcusd_1h
+2025-12-20 01:55:35,849 - INFO - Fetching Browser: twelvedata_btcusd_15m
+2025-12-20 01:55:37,383 - INFO - Fetching Browser: coinalyze_btc_open_interest
+2025-12-20 01:55:38,140 - INFO - Fetching Browser: coinalyze_btc_funding
+2025-12-20 01:55:46,696 - INFO - Fetching Browser: coingecko_btc_market_snapshot
+2025-12-20 01:55:46,699 - INFO - Fetching Browser: coinglass_spot_inflow_outflow_xhr
+2025-12-20 01:55:46,847 - INFO - Fetching Browser: coinglass_spot_inflow_outflow_screenshot_only
+2025-12-20 01:55:56,332 - INFO - Clicked 24h for coinglass_spot_inflow_outflow_xhr
+2025-12-20 01:55:56,695 - INFO - Fetching Browser: coinglass_funding_heatmap_screenshot_only
+2025-12-20 01:55:57,677 - INFO - Fetching Browser: coinglass_liquidation_heatmap_screenshot_only
+2025-12-20 01:56:00,706 - INFO - Clicked 24h for coinglass_spot_inflow_outflow_screenshot_only
+2025-12-20 01:56:46,848 - ERROR - Browser failed for coingecko_btc_market_snapshot: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.coingecko.com/en/coins/bitcoin", waiting until "networkidle"
+
+2025-12-20 01:56:46,863 - INFO - Closing Shared Browser...
+2025-12-20 01:56:47,062 - INFO - Async Pipeline Complete: {'success': 12, 'failure': 1, 'skipped': 0}

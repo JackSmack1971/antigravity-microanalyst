@@ -112,15 +112,15 @@ def load_etf_flows():
 
     return df
 
-def load_price_history():
+def load_price_history(file_path=TWELVE_FILE):
     """
     Parses TwelveData HTML to extract OHLC data.
     Returns: pd.DataFrame with columns [Date, Open, High, Low, Close]
     """
-    if not os.path.exists(TWELVE_FILE):
+    if not os.path.exists(file_path):
         return pd.DataFrame()
 
-    with open(TWELVE_FILE, "r", encoding="utf-8") as f:
+    with open(file_path, "r", encoding="utf-8") as f:
         soup = BeautifulSoup(f.read(), "html.parser")
 
     # Find the table that contains "Open" in its headers
@@ -132,6 +132,7 @@ def load_price_history():
             break
     
     if not table:
+        print(f"DEBUG: No table found in {file_path}. Headers found in tables: {[ [th.get_text(strip=True) for th in t.find_all('th')] for t in soup.find_all('table') ]}")
         return pd.DataFrame()
 
     rows = []
@@ -168,6 +169,7 @@ def load_price_history():
             })
         except Exception as e:
             # print(f"Error parsing row: {e}")
+            # print(f"DEBUG: Parse error: {e}")
             continue
 
     df = pd.DataFrame(rows)

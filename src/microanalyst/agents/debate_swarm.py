@@ -13,6 +13,8 @@ from src.microanalyst.intelligence.prompts.personas import (
     WHALE_AGENT_PROMPT,
     FACILITATOR_PROMPT
 )
+from src.microanalyst.intelligence.whale_intent import WhaleIntentEngine
+from src.microanalyst.intelligence.confluence import ConfluenceUtils
 
 
 from src.microanalyst.core.adaptive_thinking import AdaptiveThinkingConfig, ThinkingLevel
@@ -127,27 +129,32 @@ def whale_agent_node(state: AgentState) -> Dict[str, Any]:
     thinking_level = ThinkingLevel(state.get('thinking_level', 'BALANCED'))
     
     # LLM Invocation
-    llm = get_openrouter_llm()
-    if not llm:
-        return {
-             "whale_view": "[WHALE (SIM)]: Hunting stops. (No API Key)",
-             "logs": ["Whale Agent used fallback logic."]
-        }
-
-    prompt = ChatPromptTemplate.from_messages([
-        ("system", WHALE_AGENT_PROMPT),
-        ("user", "Context: Regime={regime}. Where is the liquidity?")
-    ])
+    # LLM Invocation
+    # P4: Use WhaleIntentEngine for Theory of Mind
+    engine = WhaleIntentEngine()
     
-    chain = prompt | llm | StrOutputParser()
+    # Construct context from state
+    # MOCKING: In real flow, 'market_data' would have these specific keys extracted by DataNormalizer
+    market_context = {
+        "price": state.get('market_data', {}).get('price', 0),
+        "trend": regime, # Using regime as proxy for trend
+        "open_interest": state.get('market_data', {}).get('open_interest', 'Unknown'),
+        "funding_rate": state.get('market_data', {}).get('funding_rate', 0),
+        "liquidation_clusters": state.get('market_data', {}).get('liquidation_clusters', [])
+    }
+
     try:
-        response = chain.invoke({"regime": regime})
+        analysis = engine.analyze_market_structure(market_context)
+        
+        # Format for debate
+        response = f"Intent: {analysis.get('intent')} | Target: ${analysis.get('target_price')} | Logic: {analysis.get('logic')}"
+        
     except Exception as e:
         response = f"Error: {e}"
         
     return {
         "whale_view": f"[WHALE ({thinking_level})]: {response}",
-        "logs": ["Whale Agent set a trap."]
+        "logs": [f"Whale Agent analyzed intent: {analysis.get('intent')}"]
     }
 
 def facilitator_node(state: AgentState) -> Dict[str, Any]:
@@ -184,6 +191,22 @@ def facilitator_node(state: AgentState) -> Dict[str, Any]:
         winner = "Retail Momentum"
         reasoning = "Trend followers are in control. Ride the wave."
         
+    # P5: Check Confluence
+    confluence_check = ConfluenceUtils().check_fractal_alignment()
+    if confluence_check.get("aligned", False):
+        alignment_type = confluence_check.get("type")
+        # Boost confidence if signal aligns with fractal trend
+        if decision == "BUY" and "Bullish" in alignment_type:
+            conf = min(0.99, conf + 0.1)
+            reasoning += f" [FRACTAL CONFLUENCE: {alignment_type}]"
+            winner += " + Confluence"
+        elif decision == "SELL" and "Bearish" in alignment_type:
+            conf = min(0.99, conf + 0.1)
+            reasoning += f" [FRACTAL CONFLUENCE: {alignment_type}]"
+            winner += " + Confluence"
+        else:
+             reasoning += f" (Fractal: {alignment_type} - Divergence noted)"
+
     signal = MarketSignal(
         decision=decision,
         confidence=conf,
@@ -194,7 +217,7 @@ def facilitator_node(state: AgentState) -> Dict[str, Any]:
     
     return {
         "synthesis": signal,
-        "logs": [f"Facilitator sided with {winner}."]
+        "logs": [f"Facilitator sided with {winner}. Fractal: {confluence_check.get('type')}"]
     }
 
 def risk_manager_node(state: AgentState) -> Dict[str, Any]:

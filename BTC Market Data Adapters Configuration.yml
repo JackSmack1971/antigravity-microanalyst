@@ -56,6 +56,61 @@ adapters:
       is_interactive_only: false
 
 
+
+  # ---------------------------------------------------------------------------
+  # Spot OHLC (1 Hour) — Twelve Data
+  # ---------------------------------------------------------------------------
+  - id: twelvedata_btcusd_1h
+    url: "https://twelvedata.com/markets/499377/crypto/coinbase-pro/btc-usd/historical-data?interval=1h"
+    retrieval_mode: browser
+    role: ohlc_intraday
+    browser:
+      engine: playwright
+      actions:
+        - {type: screenshot_only}
+    expected_format: html_table
+    extract:
+      candles:
+        strategy: table_by_headers
+        headers: ["Date", "Open", "High", "Low", "Close"]
+        fields:
+          - {name: date, type: date} # Actually datetime
+          - {name: open, type: number, parse: human_number}
+          - {name: high, type: number, parse: human_number}
+          - {name: low, type: number, parse: human_number}
+          - {name: close, type: number, parse: human_number}
+    normalization:
+      instrument_id: "BTC/USD"
+      interval: "1h"
+      units: {price: "USD"}
+
+  # ---------------------------------------------------------------------------
+  # Spot OHLC (15 Minute) — Twelve Data
+  # ---------------------------------------------------------------------------
+  - id: twelvedata_btcusd_15m
+    url: "https://twelvedata.com/markets/499377/crypto/coinbase-pro/btc-usd/historical-data?interval=15m"
+    retrieval_mode: browser
+    role: ohlc_intraday
+    browser:
+      engine: playwright
+      actions:
+        - {type: screenshot_only}
+    expected_format: html_table
+    extract:
+      candles:
+        strategy: table_by_headers
+        headers: ["Date", "Open", "High", "Low", "Close"]
+        fields:
+          - {name: date, type: date} 
+          - {name: open, type: number, parse: human_number}
+          - {name: high, type: number, parse: human_number}
+          - {name: low, type: number, parse: human_number}
+          - {name: close, type: number, parse: human_number}
+    normalization:
+      instrument_id: "BTC/USD"
+      interval: "15m"
+      units: {price: "USD"}
+
   # ---------------------------------------------------------------------------
   # US Spot BTC ETF net flows — Bitbo (table in US$m)
   # ---------------------------------------------------------------------------

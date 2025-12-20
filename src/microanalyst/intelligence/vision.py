@@ -9,7 +9,7 @@ from src.microanalyst.intelligence.llm_config import get_openrouter_llm
 logger = logging.getLogger(__name__)
 
 class VisionParser:
-    def __init__(self, model_name="google/gemini-2.0-flash-exp:free"):
+    def __init__(self, model_name="google/gemini-2.5-flash"):
         self.llm = get_openrouter_llm(model_name=model_name)
         if not self.llm:
             logger.warning("VisionParser initialized without Active LLM. Methods will fail or return mocks.")

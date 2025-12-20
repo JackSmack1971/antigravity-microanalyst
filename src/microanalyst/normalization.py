@@ -8,8 +8,9 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
 
 from datetime import datetime
-from src.microanalyst.data_loader import load_btcetffundflow_json, load_price_history, BTCETFFO_FILE, TWELVE_FILE
+from src.microanalyst.data_loader import load_btcetffundflow_json, load_price_history, BTCETFFO_FILE, TWELVE_FILE, DATA_DIR
 from src.microanalyst.core.persistence import DatabaseManager
+import yaml
 
 # Output Directory
 DATA_CLEAN_DIR = os.path.join("data_clean")
@@ -51,27 +52,60 @@ class DataNormalizer:
         else:
             print("WARNING: Raw ETF flows data is empty.")
 
-        # 2. BTC Price
+        # 2. BTC Price (Multi-Timeframe)
         print("Processing BTC Price...")
-        # Note: load_price_history currently parses TwelveData HTML or similar. 
-        # We assume it returns a DF with Date index or column.
-        raw_price = load_price_history()
-        if not raw_price.empty:
-            norm_price = self.normalize_price_history(raw_price)
-            if self.validate_schema(norm_price, "btc_price"):
-                self.save_csv(norm_price, "btc_price_normalized.csv")
-                self.db.upsert_price(norm_price)
-                
-                # Metadata Recording
-                self.lineage.record_transformation(
-                    dataset_id='btc_price_normalized',
-                    source_datasets=['twelvedata_raw'],
-                    transformation_module='normalization.py',
-                    transformation_function='normalize_price_history',
-                    metadata={'rows_processed': len(norm_price), 'source': TWELVE_FILE}
-                )
-        else:
-            print("WARNING: Raw BTC price data is empty.")
+        
+        # Load Config to find Adapter IDs
+        config_path = os.path.join(os.path.dirname(__file__), "../../BTC Market Data Adapters Configuration.yml")
+        try:
+            with open(config_path, 'r', encoding='utf-8') as f:
+                config = yaml.safe_load(f)
+                adapters = config.get("adapters", [])
+        except Exception as e:
+            print(f"Warning: Could not load config for adapter lookup: {e}")
+            adapters = []
+
+        # Map Intervals to Adapters
+        # Default fallback
+        price_tasks = [("1d", TWELVE_FILE)]
+        
+        # Check for 1h and 15m files
+        for adapter in adapters:
+            if "ohlc" in adapter.get("role", ""):
+                 interval = adapter.get("normalization", {}).get("interval", "1d")
+                 file_path = os.path.join(DATA_DIR, f"{adapter['id']}.html")
+                 if os.path.exists(file_path):
+                     price_tasks.append((interval, file_path))
+        
+        # Deduplicate tasks by interval (prioritize config-based found files)
+        # Using dict to keep last found for interval
+        tasks_map = {} 
+        # Add legacy default first
+        if os.path.exists(TWELVE_FILE):
+             tasks_map["1d"] = TWELVE_FILE
+             
+        for interval, path in price_tasks:
+            if os.path.exists(path):
+                tasks_map[interval] = path
+
+        for interval, file_path in tasks_map.items():
+            print(f"  - Processing {interval} candles from {os.path.basename(file_path)}...")
+            
+            # Use generic loader
+            raw_price = load_price_history(file_path)
+
+            if not raw_price.empty:
+                norm_price = self.normalize_price_history(raw_price)
+                if self.validate_schema(norm_price, "btc_price"):
+                    
+                    # Distinguish filename by interval
+                    filename = f"btc_price_{interval}_normalized.csv" if interval != "1d" else "btc_price_normalized.csv"
+                    
+                    self.save_csv(norm_price, filename)
+                    self.db.upsert_price(norm_price, interval=interval)
+        
+        # NOTE: Full multi-timeframe loading requires updating data_loader.py to accept a path argument.
+        # I will do that in the next tool call.
 
         # Cross Validation (Optional but good)
         if hasattr(self, 'cross_validate') and 'norm_flows' in locals() and 'norm_price' in locals():

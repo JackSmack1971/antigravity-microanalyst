@@ -10,6 +10,7 @@ from typing import Dict, Any, Optional
 import aiohttp
 from tenacity import retry, stop_after_attempt, wait_exponential, RetryError
 from playwright.async_api import async_playwright, Browser
+from src.microanalyst.core.proxy_manager import proxy_manager
 
 try:
     from playwright_stealth import stealth_async
@@ -84,16 +85,26 @@ class AsyncRetrievalEngine:
 
     @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=4, max=10))
     async def _fetch_http_attempt(self, session, url, headers, adapter_id):
-        """Internal method to perform the request with tenacity retries."""
-        async with session.get(url, headers=headers, timeout=15) as response:
-            if response.status == 429 or response.status == 403:
-                logger.warning(f"Rate limited/Forbidden ({response.status}): {adapter_id}")
-                raise Exception(f"Rate limited {response.status}")
-            
-            if response.status != 200:
-                raise Exception(f"HTTP {response.status}")
+        """Internal method to perform the request with tenacity retries and proxy rotation."""
+        proxy = proxy_manager.get_proxy()
+        if proxy:
+            logger.info(f"Using proxy {proxy} for {adapter_id}")
 
-            return await response.text()
+        try:
+            async with session.get(url, headers=headers, proxy=proxy, timeout=15) as response:
+                if response.status == 429 or response.status == 403:
+                    logger.warning(f"Rate limited/Forbidden ({response.status}): {adapter_id} with proxy {proxy}")
+                    proxy_manager.report_failure(proxy)
+                    raise Exception(f"Rate limited {response.status}")
+                
+                if response.status != 200:
+                    raise Exception(f"HTTP {response.status}")
+
+                return await response.text()
+        except Exception:
+            # Report failure on connection errors too
+            proxy_manager.report_failure(proxy)
+            raise
 
     async def fetch_http(self, adapter):
         adapter_id = adapter["id"]
@@ -148,11 +159,18 @@ class AsyncRetrievalEngine:
         async with self.semaphore:
             logger.info(f"Fetching Browser: {adapter_id}")
             
-            # Create a lightweight context instead of a full browser launch
-            context = await browser.new_context(
-                viewport={'width': 1920, 'height': 1080},
-                user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-            )
+            # Proxy Setup
+            proxy_url = proxy_manager.get_proxy()
+            context_args = {
+                "viewport": {'width': 1920, 'height': 1080},
+                "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+            }
+            if proxy_url:
+                logger.info(f"Using browser proxy {proxy_url} for {adapter_id}")
+                context_args["proxy"] = {"server": proxy_url}
+
+            # Create context with proxy if available
+            context = await browser.new_context(**context_args)
             
             page = await context.new_page()
 

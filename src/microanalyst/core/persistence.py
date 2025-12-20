@@ -33,6 +33,19 @@ class DatabaseManager:
                     close REAL
                 )
             ''')
+
+            # BTC Price Intraday
+            cursor.execute('''
+                CREATE TABLE IF NOT EXISTS btc_price_intraday (
+                    date TEXT,
+                    interval TEXT,
+                    open REAL,
+                    high REAL,
+                    low REAL,
+                    close REAL,
+                    PRIMARY KEY (date, interval)
+                )
+            ''')
             
             # ETF Flows
             cursor.execute('''
@@ -48,32 +61,50 @@ class DatabaseManager:
             # Commit changes
             conn.commit()
 
-    def upsert_price(self, df: pd.DataFrame):
+    def upsert_price(self, df: pd.DataFrame, interval: str = "1d"):
         """
-        Upsert normalized price data into btc_price_daily.
-        Expects DF with columns: date, open, high, low, close.
+        Upsert normalized price data.
+        df: [date, open, high, low, close]
+        interval: "1d", "1h", "15m", etc.
         """
         if df.empty:
             return
+
+        table = "btc_price_daily" if interval == "1d" else "btc_price_intraday"
 
         with self._get_connection() as conn:
             cursor = conn.cursor()
             for _, row in df.iterrows():
                 try:
-                    date_str = row['date'] if isinstance(row['date'], str) else row['date'].strftime('%Y-%m-%d')
-                    cursor.execute('''
-                        INSERT INTO btc_price_daily (date, open, high, low, close)
-                        VALUES (?, ?, ?, ?, ?)
-                        ON CONFLICT(date) DO UPDATE SET
-                            open=excluded.open,
-                            high=excluded.high,
-                            low=excluded.low,
-                            close=excluded.close
-                    ''', (date_str, row['open'], row['high'], row['low'], row['close']))
+                    date_str = row['date'] if isinstance(row['date'], str) else row['date'].strftime('%Y-%m-%d %H:%M:%S')
+                    
+                    if interval == "1d":
+                        # Legacy Daily Table
+                        cursor.execute(f'''
+                            INSERT INTO {table} (date, open, high, low, close)
+                            VALUES (?, ?, ?, ?, ?)
+                            ON CONFLICT(date) DO UPDATE SET
+                                open=excluded.open,
+                                high=excluded.high,
+                                low=excluded.low,
+                                close=excluded.close
+                        ''', (date_str[:10], row['open'], row['high'], row['low'], row['close'])) # Truncate date for 1d
+                    else:
+                        # Intraday Table
+                        cursor.execute(f'''
+                            INSERT INTO {table} (date, interval, open, high, low, close)
+                            VALUES (?, ?, ?, ?, ?, ?)
+                            ON CONFLICT(date, interval) DO UPDATE SET
+                                open=excluded.open,
+                                high=excluded.high,
+                                low=excluded.low,
+                                close=excluded.close
+                        ''', (date_str, interval, row['open'], row['high'], row['low'], row['close']))
+
                 except Exception as e:
-                    logger.error(f"Failed to upsert price for {row.get('date')}: {e}")
+                    logger.error(f"Failed to upsert price for {row.get('date')} ({interval}): {e}")
             conn.commit()
-            logger.info(f"Upserted {len(df)} price rows.")
+            logger.info(f"Upserted {len(df)} price rows to {table}.")
 
     def upsert_flows(self, df: pd.DataFrame):
         """
@@ -118,3 +149,25 @@ class DatabaseManager:
             
         missing = sorted(list(expected_dates - existing_dates))
         return missing
+
+    def get_price_history(self, limit: int = 1000, interval: str = "1d") -> pd.DataFrame:
+        """
+        Fetches price history as a DataFrame.
+        """
+        table = "btc_price_daily" if interval == "1d" else "btc_price_intraday"
+        query = f"SELECT * FROM {table} ORDER BY date DESC LIMIT ?"
+        
+        with self._get_connection() as conn:
+            # params must be tuple
+            if interval == "1d":
+                df = pd.read_sql_query(query, conn, params=(limit,))
+            else:
+                # For intraday, we filter by interval
+                query = f"SELECT * FROM {table} WHERE interval=? ORDER BY date DESC LIMIT ?"
+                df = pd.read_sql_query(query, conn, params=(interval, limit))
+        
+        if not df.empty:
+            df["date"] = pd.to_datetime(df["date"])
+            df = df.sort_values("date", ascending=True).reset_index(drop=True)
+            
+        return df
