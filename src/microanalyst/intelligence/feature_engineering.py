@@ -17,7 +17,9 @@ class MLFeatureEngineer:
             'sent_vol': ('sentiment', 'volatility'),
             'onchain_whale': ('onchain', 'whale_score'),
             'onchain_congestion': ('onchain', 'mempool_congestion'),
-            'risk_var_95': ('risk', 'var_95')
+            'risk_var_95': ('risk', 'var_95'),
+            'iv_garch': ('volatility', 'synthetic_iv_garch'),
+            'vision_liq_dist': ('vision', 'liq_distance')
         }
 
     def flatten_context(self, context: Dict[str, Any]) -> Dict[str, float]:

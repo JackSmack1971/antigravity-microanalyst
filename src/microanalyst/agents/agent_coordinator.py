@@ -18,7 +18,8 @@ from src.microanalyst.core.adaptive_cache import AdaptiveCacheManager
 from src.microanalyst.outputs.agent_ready import AgentDatasetBuilder
 from src.microanalyst.signals.library import SignalLibrary
 from src.microanalyst.intelligence.risk_manager import RiskManager
-from src.microanalyst.intelligence.oracle_analyzer import OracleAnalyzer # new
+from src.microanalyst.intelligence.oracle_analyzer import OracleAnalyzer
+from src.microanalyst.agents.prediction_agent import PredictionAgent
 from src.microanalyst.synthetic.sentiment import FreeSentimentAggregator
 from src.microanalyst.providers.binance_spot import BinanceSpotProvider
 from src.microanalyst.providers.binance_derivatives import BinanceFreeDerivatives
@@ -113,7 +114,7 @@ class AgentCoordinator:
             parallel_safe=True
         )
 
-        self.oracle_analyzer = OracleAnalyzer()
+        self.prediction_agent = PredictionAgent()
         
         # Technical Analyst
         self.agents['analyst_technical'] = AgentCapability(
@@ -705,7 +706,10 @@ class AgentCoordinator:
                 if 'sentiment' not in context_meta:
                     context_meta['sentiment'] = self.results.get('analyst_sentiment', {})
                 
-                prediction = self.oracle_analyzer.predict_24h(df_price, context_meta)
+                prediction = self.prediction_agent.run_task({
+                    'df_price': df_price,
+                    'context_metadata': context_meta
+                })
                 return prediction
             except Exception as e:
                 logger.error(f"Oracle prediction failed: {e}")

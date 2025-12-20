@@ -90,6 +90,8 @@ class AgentDatasetBuilder:
         sentiment_history: Optional[Dict[str, Any]] = None,
         onchain_history: Optional[Dict[str, Any]] = None,
         risk_history: Optional[Dict[str, Any]] = None,
+        vision_history: Optional[Dict[str, Any]] = None,
+        volatility_history: Optional[Dict[str, Any]] = None,
         is_inference: bool = True # Security Remediation: Distinguish training vs inference
     ) -> pd.DataFrame:
         """
@@ -106,7 +108,9 @@ class AgentDatasetBuilder:
         context = {
             'sentiment': sentiment_history or {},
             'onchain': onchain_history or {},
-            'risk': risk_history or {}
+            'risk': risk_history or {},
+            'vision': vision_history or {},
+            'volatility': volatility_history or {}
         }
         
         flat_context = engineer.flatten_context(context)

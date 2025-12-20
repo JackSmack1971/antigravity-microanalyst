@@ -278,7 +278,10 @@
 ### 🚀 Technical Refinements
 *   **Volatility Standardization**: Unified volatility metrics across the Oracle and Feature Engineering layers to ensure target precision.
 *   **Verification**: 100% test pass rate (7/7) on updated unit tests following refactor.
-- **ML Predictive Core (Phase 44-46)**
+- **ML Predictive Core (Phase 44-47)**
+    - **Added**: `PredictionAgent` specialized in T+24h directional synthesis.
+    - **Added**: Unified ML feature vector integrating Vision (Heatmaps) and GARCH (Volatility).
+    - **Added**: `BaseAgent` abstract class for standardized swarm integration.
     - **Added**: T+24h Prediction Oracle with XGBoost/LightGBM integration.
     - **Added**: `AutomatedRetrainer` with dynamic frequency detection and performance gating (2% ROI floor).
     - **Added**: `MLModelManager` for versioned model persistence and training.

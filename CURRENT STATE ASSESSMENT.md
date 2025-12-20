@@ -30,9 +30,9 @@
 
 ## **🎯 STRATEGIC PRIORITIES: TOWARDS V6 (PREDICTION)**
 
-### **PHASE 1: THE ORACLE (Prediction Agent)**
-- [ ] **Data Set**: Combine Vision, GARCH, On-Chain, and Technicals into a single ML-ready dataset.
-- [ ] **Agent**: Build `PredictionAgent` specialized in T+24h price targeting.
+### **PHASE 1: THE ORACLE (Prediction Agent) [DONE]**
+- [x] **Data Set**: Combine Vision, GARCH, On-Chain, and Technicals into a single ML-ready dataset.
+- [x] **Agent**: Build `PredictionAgent` specialized in T+24h price targeting.
 
 ### **ARCHIVED PRIORITIES (COMPLETED IN V5)**
 - [x] Paper Trading Engine (Simulator)
