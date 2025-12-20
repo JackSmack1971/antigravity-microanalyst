@@ -40,7 +40,37 @@ st.markdown("""
         backdrop-filter: blur(10px);
     }
 
-    /* Custom Metric Cards (Neon Design) */
+    /* Stale data warning badge */
+    .stale-warning {
+        background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(217, 119, 6, 0.2) 100%);
+        border: 2px solid #F59E0B;
+        border-radius: 8px;
+        padding: 12px 16px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+    }
+    .stale-warning-icon { font-size: 20px; }
+    .stale-warning-text { color: #FCD34D; font-weight: 600; font-size: 13px; letter-spacing: 0.05em; margin: 0; }
+    
+    /* Fresh data indicator */
+    .fresh-data {
+        background: linear-gradient(135deg, rgba(0, 255, 136, 0.15) 0%, rgba(0, 200, 100, 0.15) 100%);
+        border: 2px solid #00FF88;
+        border-radius: 8px;
+        padding: 12px 16px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+    }
+    .fresh-data-icon { font-size: 20px; }
+    .fresh-data-text { color: #00FF88; font-weight: 600; font-size: 13px; letter-spacing: 0.05em; margin: 0; }
+
+    /* Custom Metric Cards (Neon Design) - Enhanced for 42px values */
     .metric-card {
         background: rgba(15, 23, 42, 0.6);
         border-radius: 12px;
@@ -49,6 +79,10 @@ st.markdown("""
         backdrop-filter: blur(10px);
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         margin-bottom: 10px;
+        height: 140px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
     .metric-card:hover {
         transform: translateY(-4px);
@@ -69,7 +103,7 @@ st.markdown("""
         margin-bottom: 5px;
     }
     .metric-value {
-        font-size: 32px;
+        font-size: 42px; /* Updated to 42px as per spec */
         font-weight: 800;
         color: #FFFFFF;
         line-height: 1;
@@ -78,84 +112,86 @@ st.markdown("""
     .metric-delta { font-size: 13px; font-weight: 600; }
     .metric-delta.pos { color: #00FF88; }
     .metric-delta.neg { color: #FF4465; }
+    .metric-delta.neu { color: #94A3B8; }
+
+    /* Sidebar Section Headers */
+    .sidebar-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid rgba(0, 217, 255, 0.2);
+    }
+    .sidebar-header-icon { font-size: 18px; }
+    .sidebar-header-text { color: #FFFFFF; font-weight: 600; font-size: 14px; margin: 0; text-transform: uppercase; letter-spacing: 0.05em; }
 
     /* Swarm Header */
     .swarm-header {
-        text-align: left;
+        text-align: center; /* Centered as per spec update */
         margin-bottom: 2rem;
-        border-bottom: 1px solid rgba(0, 217, 255, 0.2);
         padding-bottom: 1rem;
     }
     .swarm-title {
-        font-size: 2.5rem;
+        font-size: 3rem;
         font-weight: 900;
         margin: 0;
         display: flex;
         align-items: center;
-        gap: 15px;
+        justify-content: center;
+        gap: 20px;
     }
     .title-white { color: #FFFFFF; }
-    .title-cyan { color: #00D9FF; text-shadow: 0 0 20px rgba(0, 217, 255, 0.4); }
+    .title-cyan { color: #00D9FF; text-shadow: 0 0 30px rgba(0, 217, 255, 0.5); }
 
-    /* Agent Card Refinement (Left Border Stripe) */
+    /* Agent Card Refinement (Hover effect updated to translateX) */
     .agent-card {
         background: rgba(15, 23, 42, 0.8);
         border-radius: 12px;
-        padding: 16px;
+        padding: 18px;
         margin-bottom: 16px;
         border-left: 4px solid;
         backdrop-filter: blur(10px);
-        transition: all 0.2s ease;
+        transition: all 0.3s ease;
     }
-    .agent-card:hover { background: rgba(15, 23, 42, 0.95); }
+    .agent-card:hover { 
+        transform: translateX(4px); 
+        background: rgba(15, 23, 42, 0.95); 
+    }
     
-    .agent-header {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-bottom: 10px;
-    }
     .agent-avatar {
-        width: 38px;
-        height: 38px;
+        width: 44px; /* Slightly larger */
+        height: 44px;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 18px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        font-size: 22px;
+        box-shadow: 0 4px 12px rgba(0,217,255,0.3);
     }
-    .agent-name { color: #FFFFFF; font-weight: 700; font-size: 15px; }
-    .agent-message { color: #CBD5E1; font-size: 13px; line-height: 1.5; margin: 0; border-radius: 8px; padding: 10px; background: rgba(255,255,255,0.03); }
 
-    /* Cyberpunk Logs */
-    .log-item {
-        background: rgba(0, 217, 255, 0.03);
-        border-left: 3px solid #00D9FF;
-        padding: 10px 14px;
-        margin-bottom: 6px;
-        border-radius: 4px;
-        color: #00D9FF;
-        font-size: 12px;
-        font-family: 'IBM Plex Mono', monospace;
-        transition: all 0.2s ease;
+    /* Refresh Button - High Fidelity White Style */
+    .stButton > button {
+        background: #FFFFFF !important;
+        color: #0A0E1A !important;
+        border: none !important;
+        border-radius: 8px !important;
+        padding: 12px 24px !important;
+        font-weight: 600 !important;
+        font-size: 14px !important;
+        box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2) !important;
+        transition: all 0.3s ease !important;
+        width: 100%;
     }
-    .log-item:hover { background: rgba(0, 217, 255, 0.08); border-left-color: #00FF88; }
-    .log-item::before { content: '> '; color: #00FF88; font-weight: bold; }
-
-    /* Reasoning Box */
-    .reasoning-box {
-        background: rgba(0, 217, 255, 0.05);
-        border: 1px solid rgba(0, 217, 255, 0.2);
-        border-radius: 10px;
-        padding: 16px;
-        margin-top: 15px;
+    .stButton > button:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 24px rgba(255, 255, 255, 0.3) !important;
+        background: #F1F5F9 !important;
     }
-    .reasoning-label { font-weight: 700; color: #00D9FF; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; margin-bottom: 5px; }
-    .reasoning-text { color: #E2E8F0; font-size: 14px; margin: 0; }
 
     /* Utilities */
-    .section-label { color: #FFFFFF; font-weight: 800; font-size: 18px; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; }
+    .section-label { color: #FFFFFF; font-weight: 800; font-size: 18px; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid rgba(0, 217, 255, 0.2); padding-bottom: 10px; }
+</style>
 </style>
 """, unsafe_allow_html=True)
 
@@ -184,7 +220,7 @@ def render_header(data):
     st.markdown("""
         <div class="swarm-header">
             <h1 class="swarm-title">
-                🎯 <span class="title-white">Microanalyst |</span> 
+                <span class="title-white">🎯 Microanalyst |</span> 
                 <span class="title-cyan">SWARM COMMAND</span>
             </h1>
         </div>
@@ -208,9 +244,9 @@ def render_header(data):
         alloc = data.get('allocation_pct', 0.0)
         st.markdown(f"""
             <div class="metric-card cyan">
-                <div class="metric-label">Portfolio ALT ⓘ</div>
+                <div class="metric-label">Portfolio ΔΤ ⓘ</div>
                 <div class="metric-value">{alloc:.1f}%</div>
-                <div class="metric-delta pos">↑ Stable</div>
+                <div class="metric-delta neu">↑ Stable</div>
             </div>
         """, unsafe_allow_html=True)
 
@@ -292,30 +328,28 @@ def render_forecast_chart(data):
 def render_swarm_debate(data):
     st.markdown('<div class="section-label">💬 Adversarial Swarm Debate</div>', unsafe_allow_html=True)
     
+    # Updated Priority Order: Macro -> Whale -> Retail
     agents = [
-        {
-            "id": "retail", "name": "Retail Momentum (The Hype)", "icon": "📈", "conf": 0.72, "key": "bull_case", 
-            "color": "pink", "grad": "linear-gradient(135deg, #FF4465 0%, #FF6B88 100%)"
-        },
-        {
-            "id": "whale", "name": "Whale Sniper (The Hunter)", "icon": "🐋", "conf": 0.85, "key": "bear_case", 
-            "color": "blue", "grad": "linear-gradient(135deg, #00D9FF 0%, #0099CC 100%)"
-        },
         {
             "id": "macro", "name": "Macro Economist (The General)", "icon": "🌍", "conf": 0.91, "key": "macro_thesis", 
             "color": "cyan", "grad": "linear-gradient(135deg, #00E5FF 0%, #00B8D4 100%)"
+        },
+        {
+            "id": "whale", "name": "Whale Sniper (The Hunter)", "icon": "🐋", "conf": 0.85, "key": "bear_case", 
+            "color": "blue", "grad": "linear-gradient(135deg, #3B82F6 0%, #2563EB 100%)"
+        },
+        {
+            "id": "retail", "name": "Retail Momentum (The Hype)", "icon": "📈", "conf": 0.72, "key": "bull_case", 
+            "color": "pink", "grad": "linear-gradient(135deg, #FF4465 0%, #DC2626 100%)"
         }
     ]
     
-    # Sort agents by confidence
-    agents_sorted = sorted(agents, key=lambda x: x['conf'], reverse=True)
-    
-    for agent in agents_sorted:
+    for agent in agents:
         text = data.get(agent['key'], "...")
         if agent['id'] == 'retail' and not data.get('bull_case'):
-            text = "[RETAIL [ThinkingLevel.BALANCED], OMG, OMG, OMG! Look at at that price! $88.250 We't a STANLTH THE MAKING!"
+            text = "[RETAIL (ThinkingLevel.BALANCED)]: OMG, OMG, OMG! Look at that price! $88,250! We're not just stable, we're \"stable at the top of a rocket launchpad\"! The funding rate is at a juicy 0.01 – that's positive, baby!"
         elif agent['id'] == 'whale' and not data.get('bear_case'):
-            text = "WHALE: [ThinkingLevel.BALANCED]: Intent: Wait | Target: $0 | Logic insufficient data to identify profitable liquidity hunt targets or market conditions for manipulation."
+            text = "[WHALE (ThinkingLevel.BALANCED)]: Intent: Wait | Target: $0 | Logic: Insufficient data to identify profitable liquidity hunt targets or market conditions for manipulation."
         elif agent['id'] == 'macro' and not data.get('macro_thesis'):
             text = "Structural decoupling detected in DXY/BTC. Correlation dropping to 0.12. Safe Haven regime active."
 
@@ -333,19 +367,31 @@ def render_swarm_debate(data):
 
 def render_logs(data):
     with st.sidebar:
+        # Freshness / Status (Institutional Safety Badges)
+        sttime = data.get('_mtime', time.time())
+        age_minutes = int((time.time() - sttime) / 60)
+        
+        if age_minutes >= 10:
+            st.markdown(f"""
+                <div class="stale-warning">
+                    <span class="stale-warning-icon">⚠️</span>
+                    <p class="stale-warning-text">STALE DATA ({age_minutes}m old)</p>
+                </div>
+            """, unsafe_allow_html=True)
+        else:
+            st.markdown(f"""
+                <div class="fresh-data">
+                    <span class="fresh-data-icon">✓</span>
+                    <p class="fresh-data-text">LIVE DATA ({age_minutes if age_minutes > 0 else '<1'}m ago)</p>
+                </div>
+            """, unsafe_allow_html=True)
+
         st.markdown("""
-            <div class="section-header" style="border-bottom:none; margin-bottom:0;">
-                <span class="section-icon">📋</span>
-                <span class="section-title" style="font-size:16px;">Intelligence Logs</span>
+            <div class="sidebar-header">
+                <span class="sidebar-header-icon">📋</span>
+                <span class="sidebar-header-text">Intelligence Logs</span>
             </div>
         """, unsafe_allow_html=True)
-        
-        # Freshness / Status (Institutional Polish applied to Cyberpunk)
-        sttime = data.get('_mtime', time.time())
-        age = time.time() - sttime
-        
-        if age > 300:
-            st.markdown(f'<div class="stale-banner">⚠️ STALE DATA ({int(age/60)}m old)</div>', unsafe_allow_html=True)
         
         # Log items
         logs = [
@@ -361,7 +407,7 @@ def render_logs(data):
             st.markdown(f'<div class="log-item">{log}</div>', unsafe_allow_html=True)
         
         st.write("")
-        if st.button("🔄 Refresh Data", type="secondary", use_container_width=True):
+        if st.button("🔄 Refresh Data", use_container_width=True):
             st.cache_data.clear()
             st.rerun()
 
