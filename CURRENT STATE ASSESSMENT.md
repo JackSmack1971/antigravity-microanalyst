@@ -4,65 +4,48 @@
 
 ### ✅ **Strengths**
 
-**Infrastructure & Data**
-- **Intraday Granularity**: 1h and 15m candle support via TwelveData + SQLite persistence.
-- **Resilient Retrieval**: Smart Proxy Rotation (Circuit Breaker V2) ensuring high availability for Coinalyze/CoinGecko.
-- **Visual Intelligence**: `VisionParser` extracts Liquidation Clusters (Price/Vol) from CoinGlass heatmaps using OCR.
-- **Persistence**: Local "Ground Truth" SQLite database (`microanalyst.db`) with gap-filling logic.
+**Simulation & Action (V5)**
+- **Paper Trading Engine**: `PaperExchange` simulating Market/Limit fills.
+- **Execution Router**: Agents size positions (5-15%) based on Confidence & Risk.
+- **Performance Tracking**: Realized/Unrealized PnL persisted to DB.
 
 **Intelligence Layer (The Brain)**
-- **Whale Intent Engine**: "Theory of Mind" simulation (LLM) predicting predator moves (Stop Runs/Liquidation Hunts).
-- **Fractal Confluence**: Multi-timeframe trend alignment detection (15m + 1H + 1D).
-- **Risk Manager**: Historical Value-at-Risk (VaR) and Volatility calculation module.
-- **Adversarial Swarm**: Retail vs. Institutional vs. Whale debate protocol with "Facilitator" synthesis.
-
-**Action & Experience (Mission Control)**
-- **FastAPI Streaming Server**: Decoupled backend serving real-time Thesis (`/thesis`) and Logs (`/logs` SSE).
-- **Cyberpunk Dashboard**: Next.js (App Router) + Tailwind CSS frontend visualizing the Agent Swarm debate in real-time.
-- **Unified Pipeline**: `live_retrieval.py` orchestrates Retrieval -> Normalization -> Analysis -> API Export.
+- **Synthetic Fear Gauge**: GARCH(1,1) calculates `synthetic_iv_30d` (Implied Volatility proxy) from price history.
+- **On-Chain Eyes**: `ChainWatcher` monitors Mempool Congestion & Fees (Whale Activity proxy).
+- **Whale Intent & Confluence**: Existing V4 logic.
 
 ---
 
-### ⚠️ **Remaining Gaps (Post-V4)**
+### ⚠️ **Remaining Gaps**
 
-**1. EXECUTION AUTOMATION (V5)**
-- ❌ No connection to Exchange APIs for trade execution.
-- ❌ No wallet management or key signing implementation.
-- ❌ No automated entry/exit logic based on Thesis.
+**1. PREDICTIVE PRECISION (V6) [DONE]**
+- [x] Agents are "Predictive" (Forecasting T+24h) via `OracleAnalyzer`.
+- [x] Machine Learning "Feature Importance" weighting via `MLModelManager`.
+- [x] Autonomous Lifecycle: Performance monitoring and automated retraining protocols established.
 
-**2. DATA SCOPE**
-- ❌ Limited On-Chain metrics (MVRV/SOPR are calculated but not deep entity tracking).
-- ❌ No live Option Flow (Gamma Exposure/GEX) integration.
-- ❌ "Vision" is limited to Liquidation maps; could expand to Technical Chart Pattern recognition.
-
-**3. SCALABILITY**
-- ❌ SQLite is robust for single-user but requires TimescaleDB migration for high-frequency/tick data (Strategic Backlog).
-- ❌ Single-process execution (Pipeline is synchronous within steps).
+**2. SCALABILITY**
+- ❌ Still relying on SQLite. TimescaleDB needed for <1m tick data.
 
 ---
 
-## **🎯 STRATEGIC PRIORITIES: TOWARDS V5 (PAPER TRADING)**
+## **🎯 STRATEGIC PRIORITIES: TOWARDS V6 (PREDICTION)**
 
-### **PHASE 1: PAPER TRADING ENGINE (V5)**
-- [ ] **Paper Exchange Class**: Simulate an exchange with `create_order`, `cancel_order`, `get_balance`.
-- [ ] **Order Matching Logic**: Simulate fills based on matching real-time price against order price.
-- [ ] **Portfolio Manager**: Track "Virtual USD" and "Virtual BTC" balances.
-- [ ] **Agent Router**: Connect `Facilitator` decision ("BUY") to `PaperExchange` execution.
+### **PHASE 1: THE ORACLE (Prediction Agent)**
+- [ ] **Data Set**: Combine Vision, GARCH, On-Chain, and Technicals into a single ML-ready dataset.
+- [ ] **Agent**: Build `PredictionAgent` specialized in T+24h price targeting.
 
-### **PHASE 2: STRATEGY OPTIMIZATION (V5)**
-- [ ] **Backtesting**: Run the engine against historical data (Time Travel debugging).
-- [ ] **Parameter Tuning**: Optimize agent confidence thresholds and risk constraints.
+### **ARCHIVED PRIORITIES (COMPLETED IN V5)**
+- [x] Paper Trading Engine (Simulator)
+- [x] Agent Execution Router
+- [x] Synthetic Volatility (GARCH)
+- [x] On-Chain Whale Watcher
+- [x] **Prediction Oracle (The Oracle)**: T+24h forecasting engine integrated.
 
-*(Note: Live Execution is explicitly deferred until the Paper Trading system is robust).*
+### 🚧 **Technical Debt & Known Risks**
 
----
+*   **Pydantic Compatibility:** `live_retrieval.py` contains manual dict adaptation for Order objects (`order.dict()` vs `order.__dict__`) which relies on legacy Pydantic behavior. Recommended refactor to `model_dump()` in V6.
+*   **Simulation Visibility:** `AgentCoordinator` falls back to random simulations silently if `BinanceSpotProvider` fails. Needs explicit UI warning.
+*   **Dynamic Context Engine:** Hardcoded Support/Resistance zones have been replaced with dynamic `SignalLibrary` logic.
+*   **Oracle Robustness:** `AutomatedRetrainer` now detects data frequency dynamically and enforces a performance improvement floor for model promotion.
 
-### **ARCHIVED PRIORITIES (COMPLETED IN V4)**
-- [x] Intraday Granularity (1h/15m)
-- [x] Liquidation Intelligence (Vision)
-- [x] Smart Proxy Rotation
-- [x] Risk Manager (VaR)
-- [x] Whale Intent Engine
-- [x] Multi-Timeframe Confluence
-- [x] FastAPI Server
-- [x] Mission Control Dashboard
+

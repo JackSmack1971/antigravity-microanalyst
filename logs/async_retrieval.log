@@ -188,3 +188,1516 @@ Call log:
 2025-12-20 09:45:55,405 - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
 2025-12-20 09:45:59,911 - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
 2025-12-20 09:46:03,040 - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-20 12:17:41,697 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 1
+2025-12-20 12:17:41,702 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 2
+2025-12-20 12:17:41,715 - INFO - Fetching HTTP: fail_src
+2025-12-20 12:17:49,734 - ERROR - HTTP failed via tenacity for fail_src: RetryError[<Future at 0x1f44b9e9950 state=finished raised Exception>]
+2025-12-20 12:17:49,735 - WARNING - Circuit Breaker: Recorded failure for fail_src. Count: 1
+2025-12-20 12:17:49,742 - INFO - Fetching HTTP: test_src
+2025-12-20 12:17:49,750 - WARNING - Circuit Breaker OPEN for broken_src. Skipping request.
+2025-12-20 12:19:54,485 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 1
+2025-12-20 12:19:54,487 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 2
+2025-12-20 12:19:54,497 - INFO - Fetching HTTP: fail_src
+2025-12-20 12:20:02,528 - ERROR - HTTP failed via tenacity for fail_src: RetryError[<Future at 0x1b154fe9310 state=finished raised Exception>]
+2025-12-20 12:20:02,528 - WARNING - Circuit Breaker: Recorded failure for fail_src. Count: 1
+2025-12-20 12:20:02,532 - INFO - Fetching HTTP: test_src
+2025-12-20 12:20:02,537 - WARNING - Circuit Breaker OPEN for broken_src. Skipping request.
+2025-12-20 12:20:02,553 - INFO - WorkflowEngine initialized
+2025-12-20 12:20:02,556 - INFO - WorkflowEngine initialized
+2025-12-20 12:20:02,559 - INFO - WorkflowEngine initialized
+2025-12-20 12:20:02,561 - INFO - WorkflowEngine initialized
+2025-12-20 12:20:02,562 - INFO - WorkflowEngine initialized
+2025-12-20 12:20:02,564 - INFO - WorkflowEngine initialized
+2025-12-20 12:21:46,669 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 1
+2025-12-20 12:21:46,671 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 2
+2025-12-20 12:21:46,682 - INFO - Fetching HTTP: fail_src
+2025-12-20 12:21:54,700 - ERROR - HTTP failed via tenacity for fail_src: RetryError[<Future at 0x2c0f8b33890 state=finished raised Exception>]
+2025-12-20 12:21:54,700 - WARNING - Circuit Breaker: Recorded failure for fail_src. Count: 1
+2025-12-20 12:21:54,710 - INFO - Fetching HTTP: test_src
+2025-12-20 12:21:54,719 - WARNING - Circuit Breaker OPEN for broken_src. Skipping request.
+2025-12-20 12:21:54,739 - INFO - WorkflowEngine initialized
+2025-12-20 12:21:54,743 - INFO - Registered workflow: empty (v1.0)
+2025-12-20 12:21:54,756 - INFO - Starting workflow execution: 03bde1c217d668ff
+2025-12-20 12:21:54,758 - INFO - Workflow completed: 03bde1c217d668ff (0.00s)
+2025-12-20 12:21:54,767 - INFO - WorkflowEngine initialized
+2025-12-20 12:21:54,768 - INFO - Registered workflow: missing_param (v1.0)
+2025-12-20 12:21:54,770 - INFO - Starting workflow execution: ee0330f3b351872d
+2025-12-20 12:21:54,771 - INFO - Executing task: t1
+2025-12-20 12:21:54,772 - ERROR - Task t1 failed: the JSON object must be str, bytes or bytearray, not AsyncMock
+2025-12-20 12:21:54,780 - INFO - Workflow completed: ee0330f3b351872d (0.01s)
+2025-12-20 12:21:54,816 - INFO - WorkflowEngine initialized
+2025-12-20 12:21:54,818 - INFO - WorkflowEngine initialized
+2025-12-20 12:21:54,822 - INFO - WorkflowEngine initialized
+2025-12-20 12:21:54,828 - INFO - WorkflowEngine initialized
+2025-12-20 12:21:54,829 - INFO - Registered workflow: simple_dag (v1.0)
+2025-12-20 12:21:54,830 - INFO - Starting workflow execution: 465fb29178da18ca
+2025-12-20 12:21:54,830 - INFO - Executing task: t1
+2025-12-20 12:21:54,832 - ERROR - Task t1 failed: the JSON object must be str, bytes or bytearray, not AsyncMock
+2025-12-20 12:21:54,835 - INFO - Executing task: t2
+2025-12-20 12:21:54,835 - ERROR - Task t2 failed because dependency t1 failed
+2025-12-20 12:21:54,835 - ERROR - Task t2 failed: Dependency t1 failed
+2025-12-20 12:21:54,836 - INFO - Workflow completed: 465fb29178da18ca (0.01s)
+2025-12-20 12:23:46,060 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 1
+2025-12-20 12:23:46,064 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 2
+2025-12-20 12:23:46,075 - INFO - Fetching HTTP: fail_src
+2025-12-20 12:23:54,101 - ERROR - HTTP failed via tenacity for fail_src: RetryError[<Future at 0x2bdd42c0690 state=finished raised Exception>]
+2025-12-20 12:23:54,103 - WARNING - Circuit Breaker: Recorded failure for fail_src. Count: 1
+2025-12-20 12:23:54,132 - INFO - Fetching HTTP: test_src
+2025-12-20 12:23:54,174 - WARNING - Circuit Breaker OPEN for broken_src. Skipping request.
+2025-12-20 12:23:54,465 - INFO - WorkflowEngine initialized
+2025-12-20 12:23:54,469 - INFO - Registered workflow: empty (v1.0)
+2025-12-20 12:23:54,472 - INFO - Starting workflow execution: bde19edd1aa5e465
+2025-12-20 12:23:54,473 - INFO - Workflow completed: bde19edd1aa5e465 (0.00s)
+2025-12-20 12:23:54,495 - INFO - WorkflowEngine initialized
+2025-12-20 12:23:54,505 - INFO - Registered workflow: missing_param (v1.0)
+2025-12-20 12:23:54,518 - INFO - Starting workflow execution: 066f6a080dcd1561
+2025-12-20 12:23:54,529 - INFO - Executing task: t1
+2025-12-20 12:23:54,552 - ERROR - Task t1 failed: the JSON object must be str, bytes or bytearray, not AsyncMock
+2025-12-20 12:23:54,602 - INFO - Workflow completed: 066f6a080dcd1561 (0.08s)
+2025-12-20 12:23:54,624 - INFO - WorkflowEngine initialized
+2025-12-20 12:23:54,632 - INFO - WorkflowEngine initialized
+2025-12-20 12:23:54,637 - INFO - WorkflowEngine initialized
+2025-12-20 12:23:54,640 - INFO - WorkflowEngine initialized
+2025-12-20 12:23:54,642 - INFO - Registered workflow: simple_dag (v1.0)
+2025-12-20 12:23:54,644 - INFO - Starting workflow execution: 4010bf2549ad8887
+2025-12-20 12:23:54,645 - INFO - Executing task: t1
+2025-12-20 12:23:54,658 - ERROR - Task t1 failed: the JSON object must be str, bytes or bytearray, not AsyncMock
+2025-12-20 12:23:54,683 - INFO - Executing task: t2
+2025-12-20 12:23:54,687 - ERROR - Task t2 failed because dependency t1 failed
+2025-12-20 12:23:54,690 - ERROR - Task t2 failed: Dependency t1 failed
+2025-12-20 12:23:54,708 - INFO - Workflow completed: 4010bf2549ad8887 (0.06s)
+2025-12-20 12:27:47,546 - INFO - Delegating data_collector task...
+2025-12-20 12:27:47,548 - INFO - Fetching Live OHLCV from Binance (limit=60)...
+2025-12-20 12:27:47,548 - ERROR - Failed to build agent dataset: CorrelationAnalyzer.analyze_correlations() missing 1 required positional argument: 'macro_series'
+2025-12-20 12:27:47,552 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 1
+2025-12-20 12:27:47,553 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 2
+2025-12-20 12:27:47,555 - INFO - Fetching HTTP: fail_src
+2025-12-20 12:27:55,559 - ERROR - HTTP failed via tenacity for fail_src: RetryError[<Future at 0x1759ccc9e50 state=finished raised Exception>]
+2025-12-20 12:27:55,559 - WARNING - Circuit Breaker: Recorded failure for fail_src. Count: 1
+2025-12-20 12:27:55,584 - INFO - Fetching HTTP: test_src
+2025-12-20 12:27:55,600 - WARNING - Circuit Breaker OPEN for broken_src. Skipping request.
+2025-12-20 12:27:55,639 - INFO - WorkflowEngine initialized
+2025-12-20 12:27:55,639 - INFO - Registered workflow: empty (v1.0)
+2025-12-20 12:27:55,641 - INFO - Starting workflow execution: e9d7c3e2f5f31ab6
+2025-12-20 12:27:55,641 - INFO - Workflow completed: e9d7c3e2f5f31ab6 (0.00s)
+2025-12-20 12:27:55,645 - INFO - WorkflowEngine initialized
+2025-12-20 12:27:55,645 - INFO - Registered workflow: missing_param (v1.0)
+2025-12-20 12:27:55,646 - INFO - Starting workflow execution: 57e06239aba81ab1
+2025-12-20 12:27:55,646 - INFO - Executing task: t1
+2025-12-20 12:27:55,647 - ERROR - Task t1 failed: the JSON object must be str, bytes or bytearray, not AsyncMock
+2025-12-20 12:27:55,648 - INFO - Workflow completed: 57e06239aba81ab1 (0.00s)
+2025-12-20 12:27:55,651 - INFO - WorkflowEngine initialized
+2025-12-20 12:27:55,653 - INFO - WorkflowEngine initialized
+2025-12-20 12:27:55,654 - INFO - WorkflowEngine initialized
+2025-12-20 12:27:55,654 - INFO - Registered workflow: parallel_flow (v1.0)
+2025-12-20 12:27:55,655 - INFO - Starting workflow execution: c16fe542d240de1c
+2025-12-20 12:27:55,655 - INFO - Executing task: p1
+2025-12-20 12:27:55,656 - INFO - Executing task: p2
+2025-12-20 12:27:55,657 - ERROR - Task p1 failed: the JSON object must be str, bytes or bytearray, not AsyncMock
+2025-12-20 12:27:55,657 - ERROR - Task p2 failed: the JSON object must be str, bytes or bytearray, not AsyncMock
+2025-12-20 12:27:55,658 - INFO - Workflow completed: c16fe542d240de1c (0.00s)
+2025-12-20 12:27:55,661 - INFO - WorkflowEngine initialized
+2025-12-20 12:27:55,662 - INFO - Registered workflow: simple_dag (v1.0)
+2025-12-20 12:27:55,662 - INFO - Starting workflow execution: 6b59a700533097c0
+2025-12-20 12:27:55,663 - INFO - Executing task: t1
+2025-12-20 12:27:55,663 - ERROR - Task t1 failed: the JSON object must be str, bytes or bytearray, not AsyncMock
+2025-12-20 12:27:55,665 - INFO - Executing task: t2
+2025-12-20 12:27:55,665 - ERROR - Task t2 failed because dependency t1 failed
+2025-12-20 12:27:55,665 - ERROR - Task t2 failed: Dependency t1 failed
+2025-12-20 12:27:55,666 - INFO - Workflow completed: 6b59a700533097c0 (0.00s)
+2025-12-20 12:28:35,442 - INFO - Delegating data_collector task...
+2025-12-20 12:28:35,443 - INFO - Fetching Live OHLCV from Binance (limit=60)...
+2025-12-20 12:28:35,443 - ERROR - Failed to build agent dataset: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-12-20 12:28:35,448 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 1
+2025-12-20 12:28:35,448 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 2
+2025-12-20 12:28:35,451 - INFO - Fetching HTTP: fail_src
+2025-12-20 12:28:43,461 - ERROR - HTTP failed via tenacity for fail_src: RetryError[<Future at 0x199d89c9e50 state=finished raised Exception>]
+2025-12-20 12:28:43,461 - WARNING - Circuit Breaker: Recorded failure for fail_src. Count: 1
+2025-12-20 12:28:43,485 - INFO - Fetching HTTP: test_src
+2025-12-20 12:28:43,503 - WARNING - Circuit Breaker OPEN for broken_src. Skipping request.
+2025-12-20 12:28:43,536 - INFO - WorkflowEngine initialized
+2025-12-20 12:28:43,537 - INFO - Registered workflow: empty (v1.0)
+2025-12-20 12:28:43,539 - INFO - Starting workflow execution: 399475886c2f97ba
+2025-12-20 12:28:43,540 - INFO - Workflow completed: 399475886c2f97ba (0.00s)
+2025-12-20 12:28:43,544 - INFO - WorkflowEngine initialized
+2025-12-20 12:28:43,544 - INFO - Registered workflow: missing_param (v1.0)
+2025-12-20 12:28:43,563 - INFO - Starting workflow execution: e7d7b08664d113b9
+2025-12-20 12:28:43,563 - INFO - Executing task: t1
+2025-12-20 12:28:43,564 - ERROR - Task t1 failed: the JSON object must be str, bytes or bytearray, not AsyncMock
+2025-12-20 12:28:43,567 - INFO - Workflow completed: e7d7b08664d113b9 (0.00s)
+2025-12-20 12:28:43,571 - INFO - WorkflowEngine initialized
+2025-12-20 12:28:43,573 - INFO - WorkflowEngine initialized
+2025-12-20 12:28:43,574 - INFO - WorkflowEngine initialized
+2025-12-20 12:28:43,575 - INFO - Registered workflow: parallel_flow (v1.0)
+2025-12-20 12:28:43,575 - INFO - Starting workflow execution: f75189f072338e91
+2025-12-20 12:28:43,576 - INFO - Executing task: p1
+2025-12-20 12:28:43,576 - INFO - Executing task: p2
+2025-12-20 12:28:43,577 - ERROR - Task p1 failed: the JSON object must be str, bytes or bytearray, not AsyncMock
+2025-12-20 12:28:43,577 - ERROR - Task p2 failed: the JSON object must be str, bytes or bytearray, not AsyncMock
+2025-12-20 12:28:43,578 - INFO - Workflow completed: f75189f072338e91 (0.00s)
+2025-12-20 12:28:43,581 - INFO - WorkflowEngine initialized
+2025-12-20 12:28:43,582 - INFO - Registered workflow: simple_dag (v1.0)
+2025-12-20 12:28:43,583 - INFO - Starting workflow execution: 7f189dc7a88501b1
+2025-12-20 12:28:43,584 - INFO - Executing task: t1
+2025-12-20 12:28:43,584 - ERROR - Task t1 failed: the JSON object must be str, bytes or bytearray, not AsyncMock
+2025-12-20 12:28:43,586 - INFO - Executing task: t2
+2025-12-20 12:28:43,587 - ERROR - Task t2 failed because dependency t1 failed
+2025-12-20 12:28:43,587 - ERROR - Task t2 failed: Dependency t1 failed
+2025-12-20 12:28:43,588 - INFO - Workflow completed: 7f189dc7a88501b1 (0.01s)
+2025-12-20 12:30:03,644 - INFO - Delegating data_collector task...
+2025-12-20 12:30:03,645 - INFO - Fetching Live OHLCV from Binance (limit=60)...
+2025-12-20 12:30:03,645 - ERROR - Failed to build agent dataset: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-12-20 12:30:03,650 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 1
+2025-12-20 12:30:03,650 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 2
+2025-12-20 12:30:03,652 - INFO - Fetching HTTP: fail_src
+2025-12-20 12:30:11,663 - ERROR - HTTP failed via tenacity for fail_src: RetryError[<Future at 0x1b751bc9f90 state=finished raised Exception>]
+2025-12-20 12:30:11,663 - WARNING - Circuit Breaker: Recorded failure for fail_src. Count: 1
+2025-12-20 12:30:11,688 - INFO - Fetching HTTP: test_src
+2025-12-20 12:30:11,692 - WARNING - Circuit Breaker OPEN for broken_src. Skipping request.
+2025-12-20 12:30:11,727 - INFO - WorkflowEngine initialized
+2025-12-20 12:30:11,728 - INFO - Registered workflow: empty (v1.0)
+2025-12-20 12:30:11,730 - INFO - Starting workflow execution: 20dcc83b332ae528
+2025-12-20 12:30:11,730 - INFO - Workflow completed: 20dcc83b332ae528 (0.00s)
+2025-12-20 12:30:11,733 - INFO - WorkflowEngine initialized
+2025-12-20 12:30:11,733 - INFO - Registered workflow: missing_param (v1.0)
+2025-12-20 12:30:11,734 - INFO - Starting workflow execution: df2fee8ca3d9329c
+2025-12-20 12:30:11,735 - INFO - Executing task: t1
+2025-12-20 12:30:11,735 - ERROR - Task t1 failed: the JSON object must be str, bytes or bytearray, not AsyncMock
+2025-12-20 12:30:11,737 - INFO - Workflow completed: df2fee8ca3d9329c (0.00s)
+2025-12-20 12:30:11,740 - INFO - WorkflowEngine initialized
+2025-12-20 12:30:11,741 - INFO - WorkflowEngine initialized
+2025-12-20 12:30:11,742 - INFO - Registered workflow: timeout_flow (v1.0)
+2025-12-20 12:30:11,743 - INFO - Starting workflow execution: 9d6fbcbc202df848
+2025-12-20 12:30:11,743 - INFO - Executing task: slow_task
+2025-12-20 12:30:11,744 - ERROR - Task slow_task failed: the JSON object must be str, bytes or bytearray, not AsyncMock
+2025-12-20 12:30:11,746 - INFO - Workflow completed: 9d6fbcbc202df848 (0.00s)
+2025-12-20 12:30:11,749 - INFO - WorkflowEngine initialized
+2025-12-20 12:30:11,749 - INFO - Registered workflow: parallel_flow (v1.0)
+2025-12-20 12:30:11,750 - INFO - Starting workflow execution: f93f4cce1f4fd6cc
+2025-12-20 12:30:11,750 - INFO - Executing task: p1
+2025-12-20 12:30:11,751 - INFO - Executing task: p2
+2025-12-20 12:30:11,751 - ERROR - Task p1 failed: the JSON object must be str, bytes or bytearray, not AsyncMock
+2025-12-20 12:30:11,751 - ERROR - Task p2 failed: the JSON object must be str, bytes or bytearray, not AsyncMock
+2025-12-20 12:30:11,752 - INFO - Workflow completed: f93f4cce1f4fd6cc (0.00s)
+2025-12-20 12:30:11,756 - INFO - WorkflowEngine initialized
+2025-12-20 12:30:11,757 - INFO - Registered workflow: simple_dag (v1.0)
+2025-12-20 12:30:11,758 - INFO - Starting workflow execution: ad5fb46e454f3ffc
+2025-12-20 12:30:11,758 - INFO - Executing task: t1
+2025-12-20 12:30:11,760 - ERROR - Task t1 failed: the JSON object must be str, bytes or bytearray, not AsyncMock
+2025-12-20 12:30:11,761 - INFO - Executing task: t2
+2025-12-20 12:30:11,762 - ERROR - Task t2 failed because dependency t1 failed
+2025-12-20 12:30:11,762 - ERROR - Task t2 failed: Dependency t1 failed
+2025-12-20 12:30:11,763 - INFO - Workflow completed: ad5fb46e454f3ffc (0.00s)
+2025-12-20 12:56:49,636 - INFO - Delegating data_collector task...
+2025-12-20 12:56:49,637 - INFO - Fetching Live OHLCV from Binance (limit=60)...
+2025-12-20 12:56:49,638 - ERROR - Failed to build agent dataset: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-12-20 12:56:49,644 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 1
+2025-12-20 12:56:49,644 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 2
+2025-12-20 12:56:49,648 - INFO - Fetching HTTP: fail_src
+2025-12-20 12:56:57,672 - ERROR - HTTP failed via tenacity for fail_src: RetryError[<Future at 0x219b1a9da90 state=finished raised Exception>]
+2025-12-20 12:56:57,672 - WARNING - Circuit Breaker: Recorded failure for fail_src. Count: 1
+2025-12-20 12:56:57,703 - INFO - Fetching HTTP: test_src
+2025-12-20 12:56:57,724 - WARNING - Circuit Breaker OPEN for broken_src. Skipping request.
+2025-12-20 12:56:57,774 - INFO - WorkflowEngine initialized
+2025-12-20 12:56:57,775 - INFO - Registered workflow: empty (v1.0)
+2025-12-20 12:56:57,778 - INFO - Starting workflow execution: 3e8d69bdf1c881bb
+2025-12-20 12:56:57,778 - INFO - Workflow completed: 3e8d69bdf1c881bb (0.00s)
+2025-12-20 12:56:57,783 - INFO - WorkflowEngine initialized
+2025-12-20 12:56:57,787 - INFO - Registered workflow: missing_param (v1.0)
+2025-12-20 12:56:57,788 - INFO - Starting workflow execution: f8584e587887c65c
+2025-12-20 12:56:57,789 - INFO - Executing task: t1
+2025-12-20 12:56:57,791 - ERROR - Task t1 failed: the JSON object must be str, bytes or bytearray, not AsyncMock
+2025-12-20 12:56:57,794 - INFO - Workflow completed: f8584e587887c65c (0.01s)
+2025-12-20 12:56:57,799 - INFO - WorkflowEngine initialized
+2025-12-20 12:56:57,800 - INFO - Registered workflow: retry_flow (v1.0)
+2025-12-20 12:56:57,802 - INFO - Starting workflow execution: e94b02f23c25878b
+2025-12-20 12:56:57,802 - INFO - Executing task: fail_task
+2025-12-20 12:56:57,803 - ERROR - Task fail_task failed: the JSON object must be str, bytes or bytearray, not AsyncMock
+2025-12-20 12:56:57,807 - INFO - Workflow completed: e94b02f23c25878b (0.01s)
+2025-12-20 12:56:57,809 - INFO - WorkflowEngine initialized
+2025-12-20 12:56:57,810 - INFO - Registered workflow: timeout_flow (v1.0)
+2025-12-20 12:56:57,811 - INFO - Starting workflow execution: f0e7a2215aa1faf0
+2025-12-20 12:56:57,812 - INFO - Executing task: slow_task
+2025-12-20 12:56:57,813 - ERROR - Task slow_task failed: the JSON object must be str, bytes or bytearray, not AsyncMock
+2025-12-20 12:56:57,817 - INFO - Workflow completed: f0e7a2215aa1faf0 (0.01s)
+2025-12-20 12:56:57,821 - INFO - WorkflowEngine initialized
+2025-12-20 12:56:57,822 - INFO - Registered workflow: parallel_flow (v1.0)
+2025-12-20 12:56:57,823 - INFO - Starting workflow execution: 44af0774ade14d02
+2025-12-20 12:56:57,823 - INFO - Executing task: p1
+2025-12-20 12:56:57,825 - INFO - Executing task: p2
+2025-12-20 12:56:57,825 - ERROR - Task p1 failed: the JSON object must be str, bytes or bytearray, not AsyncMock
+2025-12-20 12:56:57,825 - ERROR - Task p2 failed: the JSON object must be str, bytes or bytearray, not AsyncMock
+2025-12-20 12:56:57,828 - INFO - Workflow completed: 44af0774ade14d02 (0.00s)
+2025-12-20 12:56:57,832 - INFO - WorkflowEngine initialized
+2025-12-20 12:56:57,833 - INFO - Registered workflow: simple_dag (v1.0)
+2025-12-20 12:56:57,834 - INFO - Starting workflow execution: 369f0c520915bd90
+2025-12-20 12:56:57,834 - INFO - Executing task: t1
+2025-12-20 12:56:57,836 - ERROR - Task t1 failed: the JSON object must be str, bytes or bytearray, not AsyncMock
+2025-12-20 12:56:57,838 - INFO - Executing task: t2
+2025-12-20 12:56:57,838 - ERROR - Task t2 failed because dependency t1 failed
+2025-12-20 12:56:57,839 - ERROR - Task t2 failed: Dependency t1 failed
+2025-12-20 12:56:57,840 - INFO - Workflow completed: 369f0c520915bd90 (0.01s)
+2025-12-20 13:02:37,814 - INFO - Delegating data_collector task...
+2025-12-20 13:02:37,816 - INFO - Fetching Live OHLCV from Binance (limit=60)...
+2025-12-20 13:02:37,817 - ERROR - Failed to build agent dataset: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-12-20 13:02:37,821 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 1
+2025-12-20 13:02:37,821 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 2
+2025-12-20 13:02:37,824 - INFO - Fetching HTTP: fail_src
+2025-12-20 13:02:45,846 - ERROR - HTTP failed via tenacity for fail_src: RetryError[<Future at 0x253821cce10 state=finished raised Exception>]
+2025-12-20 13:02:45,847 - WARNING - Circuit Breaker: Recorded failure for fail_src. Count: 1
+2025-12-20 13:02:45,862 - INFO - Fetching HTTP: test_src
+2025-12-20 13:02:45,866 - WARNING - Circuit Breaker OPEN for broken_src. Skipping request.
+2025-12-20 13:02:45,903 - INFO - WorkflowEngine initialized
+2025-12-20 13:02:45,904 - INFO - Registered workflow: empty (v1.0)
+2025-12-20 13:02:45,905 - INFO - Starting workflow execution: 213d5e45f4800328
+2025-12-20 13:02:45,905 - INFO - Workflow completed: 213d5e45f4800328 (0.00s)
+2025-12-20 13:02:45,907 - INFO - WorkflowEngine initialized
+2025-12-20 13:02:45,908 - INFO - Registered workflow: missing_param (v1.0)
+2025-12-20 13:02:45,909 - INFO - Starting workflow execution: fcc6fe834f964164
+2025-12-20 13:02:45,909 - INFO - Executing task: t1
+2025-12-20 13:02:45,911 - WARNING - Failed to read cache for t1: Cannot open console output buffer for reading
+2025-12-20 13:02:45,911 - WARNING - Task t1 failed (attempt 1/1): TestWorkflowEngine.test_execute_edge_missing_params.<locals>.task_need_param() missing 1 required positional argument: 'val'
+2025-12-20 13:02:45,911 - ERROR - Task t1 failed: TestWorkflowEngine.test_execute_edge_missing_params.<locals>.task_need_param() missing 1 required positional argument: 'val'
+2025-12-20 13:02:45,913 - INFO - Workflow completed: fcc6fe834f964164 (0.00s)
+2025-12-20 13:02:45,915 - INFO - WorkflowEngine initialized
+2025-12-20 13:02:45,916 - INFO - Registered workflow: retry_flow (v1.0)
+2025-12-20 13:02:45,917 - INFO - Starting workflow execution: 21a919c6eb0102dd
+2025-12-20 13:02:45,917 - INFO - Executing task: fail_task
+2025-12-20 13:02:45,919 - WARNING - Failed to read cache for fail_task: Cannot open console output buffer for reading
+2025-12-20 13:02:45,919 - WARNING - Task fail_task failed (attempt 1/2): Boom
+2025-12-20 13:02:45,934 - WARNING - Task fail_task failed (attempt 2/2): Boom
+2025-12-20 13:02:45,934 - ERROR - Task fail_task failed: Boom
+2025-12-20 13:02:45,937 - INFO - Workflow completed: 21a919c6eb0102dd (0.02s)
+2025-12-20 13:02:45,939 - INFO - WorkflowEngine initialized
+2025-12-20 13:02:45,941 - INFO - Registered workflow: timeout_flow (v1.0)
+2025-12-20 13:02:45,942 - INFO - Starting workflow execution: c1685cd8a2fb5c23
+2025-12-20 13:02:45,942 - INFO - Executing task: slow_task
+2025-12-20 13:02:45,944 - WARNING - Failed to read cache for slow_task: Cannot open console output buffer for reading
+2025-12-20 13:02:45,995 - WARNING - Task slow_task timed out (attempt 1/1)
+2025-12-20 13:02:45,996 - ERROR - Task slow_task failed: 
+2025-12-20 13:02:45,998 - INFO - Workflow completed: c1685cd8a2fb5c23 (0.06s)
+2025-12-20 13:02:46,000 - INFO - WorkflowEngine initialized
+2025-12-20 13:02:46,001 - INFO - Registered workflow: parallel_flow (v1.0)
+2025-12-20 13:02:46,002 - INFO - Starting workflow execution: d50b9e17c5ed581e
+2025-12-20 13:02:46,002 - INFO - Executing task: p1
+2025-12-20 13:02:46,004 - WARNING - Failed to read cache for p1: Cannot open console output buffer for reading
+2025-12-20 13:02:46,004 - INFO - Executing task: p2
+2025-12-20 13:02:46,005 - WARNING - Failed to read cache for p2: Cannot open console output buffer for reading
+2025-12-20 13:02:46,028 - INFO - Task p1 completed (0.02s)
+2025-12-20 13:02:46,029 - INFO - Task p2 completed (0.02s)
+2025-12-20 13:02:46,030 - INFO - Workflow completed: d50b9e17c5ed581e (0.03s)
+2025-12-20 13:02:46,032 - INFO - WorkflowEngine initialized
+2025-12-20 13:02:46,033 - INFO - Registered workflow: simple_dag (v1.0)
+2025-12-20 13:02:46,034 - INFO - Starting workflow execution: 9eac1ce3d56dcb7c
+2025-12-20 13:02:46,035 - INFO - Executing task: t1
+2025-12-20 13:02:46,037 - WARNING - Failed to read cache for t1: Cannot open console output buffer for reading
+2025-12-20 13:02:46,038 - INFO - Task t1 completed (0.00s)
+2025-12-20 13:02:46,039 - INFO - Executing task: t2
+2025-12-20 13:02:46,039 - WARNING - Failed to read cache for t2: Cannot open console output buffer for reading
+2025-12-20 13:02:46,040 - WARNING - Task t2 failed (attempt 1/1): TestWorkflowEngine.test_execute_happy_path_simple_dag.<locals>.task_b() got an unexpected keyword argument 'x'
+2025-12-20 13:02:46,040 - ERROR - Task t2 failed: TestWorkflowEngine.test_execute_happy_path_simple_dag.<locals>.task_b() got an unexpected keyword argument 'x'
+2025-12-20 13:02:46,040 - INFO - Workflow completed: 9eac1ce3d56dcb7c (0.01s)
+2025-12-20 13:03:04,506 - INFO - Delegating data_collector task...
+2025-12-20 13:03:04,507 - INFO - Fetching Live OHLCV from Binance (limit=60)...
+2025-12-20 13:03:04,508 - ERROR - Failed to build agent dataset: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-12-20 13:03:04,514 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 1
+2025-12-20 13:03:04,515 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 2
+2025-12-20 13:03:04,518 - INFO - Fetching HTTP: fail_src
+2025-12-20 13:03:12,536 - ERROR - HTTP failed via tenacity for fail_src: RetryError[<Future at 0x253211ad090 state=finished raised Exception>]
+2025-12-20 13:03:12,537 - WARNING - Circuit Breaker: Recorded failure for fail_src. Count: 1
+2025-12-20 13:03:12,552 - INFO - Fetching HTTP: test_src
+2025-12-20 13:03:12,582 - WARNING - Circuit Breaker OPEN for broken_src. Skipping request.
+2025-12-20 13:03:12,619 - INFO - WorkflowEngine initialized
+2025-12-20 13:03:12,620 - INFO - Registered workflow: empty (v1.0)
+2025-12-20 13:03:12,621 - INFO - Starting workflow execution: 634d9ad3deba6e8d
+2025-12-20 13:03:12,622 - INFO - Workflow completed: 634d9ad3deba6e8d (0.00s)
+2025-12-20 13:03:12,625 - INFO - WorkflowEngine initialized
+2025-12-20 13:03:12,631 - INFO - Registered workflow: missing_param (v1.0)
+2025-12-20 13:03:12,633 - INFO - Starting workflow execution: 4c39bb76194c4e01
+2025-12-20 13:03:12,633 - INFO - Executing task: t1
+2025-12-20 13:03:12,636 - WARNING - Failed to read cache for t1: Cannot open console output buffer for reading
+2025-12-20 13:03:12,636 - WARNING - Task t1 failed (attempt 1/1): TestWorkflowEngine.test_execute_edge_missing_params.<locals>.task_need_param() missing 1 required positional argument: 'val'
+2025-12-20 13:03:12,638 - ERROR - Task t1 failed: TestWorkflowEngine.test_execute_edge_missing_params.<locals>.task_need_param() missing 1 required positional argument: 'val'
+2025-12-20 13:03:12,639 - INFO - Workflow completed: 4c39bb76194c4e01 (0.01s)
+2025-12-20 13:03:12,642 - INFO - WorkflowEngine initialized
+2025-12-20 13:03:12,644 - INFO - Registered workflow: retry_flow (v1.0)
+2025-12-20 13:03:12,645 - INFO - Starting workflow execution: 0228b2bdc49bd8da
+2025-12-20 13:03:12,646 - INFO - Executing task: fail_task
+2025-12-20 13:03:12,648 - WARNING - Failed to read cache for fail_task: Cannot open console output buffer for reading
+2025-12-20 13:03:12,648 - WARNING - Task fail_task failed (attempt 1/2): Boom
+2025-12-20 13:03:12,664 - WARNING - Task fail_task failed (attempt 2/2): Boom
+2025-12-20 13:03:12,664 - ERROR - Task fail_task failed: Boom
+2025-12-20 13:03:12,666 - INFO - Workflow completed: 0228b2bdc49bd8da (0.02s)
+2025-12-20 13:03:12,669 - INFO - WorkflowEngine initialized
+2025-12-20 13:03:12,670 - INFO - Registered workflow: timeout_flow (v1.0)
+2025-12-20 13:03:12,671 - INFO - Starting workflow execution: cadd62558a63fdba
+2025-12-20 13:03:12,672 - INFO - Executing task: slow_task
+2025-12-20 13:03:12,673 - WARNING - Failed to read cache for slow_task: Cannot open console output buffer for reading
+2025-12-20 13:03:12,734 - WARNING - Task slow_task timed out (attempt 1/1)
+2025-12-20 13:03:12,735 - ERROR - Task slow_task failed: 
+2025-12-20 13:03:12,738 - INFO - Workflow completed: cadd62558a63fdba (0.07s)
+2025-12-20 13:03:12,741 - INFO - WorkflowEngine initialized
+2025-12-20 13:03:12,743 - INFO - Registered workflow: parallel_flow (v1.0)
+2025-12-20 13:03:12,744 - INFO - Starting workflow execution: 764e7d3108d78a0a
+2025-12-20 13:03:12,745 - INFO - Executing task: p1
+2025-12-20 13:03:12,747 - WARNING - Failed to read cache for p1: Cannot open console output buffer for reading
+2025-12-20 13:03:12,747 - INFO - Executing task: p2
+2025-12-20 13:03:12,748 - WARNING - Failed to read cache for p2: Cannot open console output buffer for reading
+2025-12-20 13:03:12,766 - INFO - Task p1 completed (0.02s)
+2025-12-20 13:03:12,768 - INFO - Task p2 completed (0.02s)
+2025-12-20 13:03:12,768 - INFO - Workflow completed: 764e7d3108d78a0a (0.02s)
+2025-12-20 13:03:12,771 - INFO - WorkflowEngine initialized
+2025-12-20 13:03:12,772 - INFO - Registered workflow: simple_dag (v1.0)
+2025-12-20 13:03:12,796 - INFO - Starting workflow execution: 88fbf1e8cb4c6602
+2025-12-20 13:03:12,796 - INFO - Executing task: t1
+2025-12-20 13:03:12,798 - WARNING - Failed to read cache for t1: Cannot open console output buffer for reading
+2025-12-20 13:03:12,801 - INFO - Task t1 completed (0.00s)
+2025-12-20 13:03:12,801 - INFO - Executing task: t2
+2025-12-20 13:03:12,802 - WARNING - Failed to read cache for t2: Cannot open console output buffer for reading
+2025-12-20 13:03:12,803 - WARNING - Task t2 failed (attempt 1/1): TestWorkflowEngine.test_execute_happy_path_simple_dag.<locals>.task_b() got an unexpected keyword argument 'x'
+2025-12-20 13:03:12,803 - ERROR - Task t2 failed: TestWorkflowEngine.test_execute_happy_path_simple_dag.<locals>.task_b() got an unexpected keyword argument 'x'
+2025-12-20 13:03:12,803 - INFO - Workflow completed: 88fbf1e8cb4c6602 (0.01s)
+2025-12-20 13:08:44,540 - INFO - Delegating data_collector task...
+2025-12-20 13:08:44,542 - INFO - Fetching Live OHLCV from Binance (limit=60)...
+2025-12-20 13:08:44,542 - ERROR - Failed to build agent dataset: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-12-20 13:08:44,547 - INFO - Delegating analyst_risk task...
+2025-12-20 13:08:44,553 - INFO - Delegating analyst_sentiment task...
+2025-12-20 13:08:44,554 - INFO - Delegating analyst_sentiment task...
+2025-12-20 13:08:44,559 - INFO - Delegating analyst_technical task...
+2025-12-20 13:08:44,562 - INFO - Delegating decision_maker task...
+2025-12-20 13:08:44,562 - INFO - Initiating Adversarial Debate Swarm...
+2025-12-20 13:08:44,562 - INFO - Decision stored in EpisodicMemory: mem_123
+2025-12-20 13:08:44,564 - INFO - Delegating synthesizer task...
+2025-12-20 13:08:44,568 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 1
+2025-12-20 13:08:44,568 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 2
+2025-12-20 13:08:44,571 - INFO - Fetching HTTP: fail_src
+2025-12-20 13:08:52,589 - ERROR - HTTP failed via tenacity for fail_src: RetryError[<Future at 0x22114b95810 state=finished raised Exception>]
+2025-12-20 13:08:52,590 - WARNING - Circuit Breaker: Recorded failure for fail_src. Count: 1
+2025-12-20 13:08:52,595 - INFO - Fetching HTTP: test_src
+2025-12-20 13:08:52,599 - WARNING - Circuit Breaker OPEN for broken_src. Skipping request.
+2025-12-20 13:08:52,650 - INFO - Registered 6 research workflows
+2025-12-20 13:08:52,651 - INFO - Registered 6 research workflows
+2025-12-20 13:08:52,654 - INFO - Registered 6 research workflows
+2025-12-20 13:08:52,656 - INFO - Registered 6 research workflows
+2025-12-20 13:08:52,657 - INFO - WorkflowEngine initialized
+2025-12-20 13:08:52,658 - INFO - Registered workflow: empty (v1.0)
+2025-12-20 13:08:52,661 - INFO - Starting workflow execution: 76d6ce645102196a
+2025-12-20 13:08:52,661 - INFO - Workflow completed: 76d6ce645102196a (0.00s)
+2025-12-20 13:08:52,665 - INFO - WorkflowEngine initialized
+2025-12-20 13:08:52,667 - INFO - Registered workflow: missing_param (v1.0)
+2025-12-20 13:08:52,668 - INFO - Starting workflow execution: 22719941afeaa669
+2025-12-20 13:08:52,668 - INFO - Executing task: t1
+2025-12-20 13:08:52,671 - WARNING - Failed to read cache for t1: Cannot open console output buffer for reading
+2025-12-20 13:08:52,671 - WARNING - Task t1 failed (attempt 1/1): TestWorkflowEngine.test_execute_edge_missing_params.<locals>.task_need_param() missing 1 required positional argument: 'val'
+2025-12-20 13:08:52,671 - ERROR - Task t1 failed: TestWorkflowEngine.test_execute_edge_missing_params.<locals>.task_need_param() missing 1 required positional argument: 'val'
+2025-12-20 13:08:52,674 - INFO - Workflow completed: 22719941afeaa669 (0.01s)
+2025-12-20 13:08:52,677 - INFO - WorkflowEngine initialized
+2025-12-20 13:08:52,679 - INFO - Registered workflow: retry_flow (v1.0)
+2025-12-20 13:08:52,681 - INFO - Starting workflow execution: b40c8fda4ee9c81d
+2025-12-20 13:08:52,681 - INFO - Executing task: fail_task
+2025-12-20 13:08:52,684 - WARNING - Failed to read cache for fail_task: Cannot open console output buffer for reading
+2025-12-20 13:08:52,684 - WARNING - Task fail_task failed (attempt 1/2): Boom
+2025-12-20 13:08:52,703 - WARNING - Task fail_task failed (attempt 2/2): Boom
+2025-12-20 13:08:52,704 - ERROR - Task fail_task failed: Boom
+2025-12-20 13:08:52,707 - INFO - Workflow completed: b40c8fda4ee9c81d (0.03s)
+2025-12-20 13:08:52,711 - INFO - WorkflowEngine initialized
+2025-12-20 13:08:52,712 - INFO - Registered workflow: timeout_flow (v1.0)
+2025-12-20 13:08:52,712 - INFO - Starting workflow execution: 60268281d0939706
+2025-12-20 13:08:52,713 - INFO - Executing task: slow_task
+2025-12-20 13:08:52,715 - WARNING - Failed to read cache for slow_task: Cannot open console output buffer for reading
+2025-12-20 13:08:52,771 - WARNING - Task slow_task timed out (attempt 1/1)
+2025-12-20 13:08:52,772 - ERROR - Task slow_task failed: 
+2025-12-20 13:08:52,774 - INFO - Workflow completed: 60268281d0939706 (0.06s)
+2025-12-20 13:08:52,777 - INFO - WorkflowEngine initialized
+2025-12-20 13:08:52,778 - INFO - Registered workflow: parallel_flow (v1.0)
+2025-12-20 13:08:52,779 - INFO - Starting workflow execution: 0f6266d5302ae6f1
+2025-12-20 13:08:52,780 - INFO - Executing task: p1
+2025-12-20 13:08:52,782 - WARNING - Failed to read cache for p1: Cannot open console output buffer for reading
+2025-12-20 13:08:52,782 - INFO - Executing task: p2
+2025-12-20 13:08:52,783 - WARNING - Failed to read cache for p2: Cannot open console output buffer for reading
+2025-12-20 13:08:52,804 - INFO - Task p1 completed (0.02s)
+2025-12-20 13:08:52,805 - INFO - Task p2 completed (0.02s)
+2025-12-20 13:08:52,805 - INFO - Workflow completed: 0f6266d5302ae6f1 (0.03s)
+2025-12-20 13:08:52,808 - INFO - WorkflowEngine initialized
+2025-12-20 13:08:52,810 - INFO - Registered workflow: simple_dag (v1.0)
+2025-12-20 13:08:52,811 - INFO - Starting workflow execution: f0735217c2eb04cf
+2025-12-20 13:08:52,811 - INFO - Executing task: t1
+2025-12-20 13:08:52,813 - WARNING - Failed to read cache for t1: Cannot open console output buffer for reading
+2025-12-20 13:08:52,815 - INFO - Task t1 completed (0.00s)
+2025-12-20 13:08:52,816 - INFO - Executing task: t2
+2025-12-20 13:08:52,817 - WARNING - Failed to read cache for t2: Cannot open console output buffer for reading
+2025-12-20 13:08:52,817 - WARNING - Task t2 failed (attempt 1/1): TestWorkflowEngine.test_execute_happy_path_simple_dag.<locals>.task_b() got an unexpected keyword argument 'x'
+2025-12-20 13:08:52,817 - ERROR - Task t2 failed: TestWorkflowEngine.test_execute_happy_path_simple_dag.<locals>.task_b() got an unexpected keyword argument 'x'
+2025-12-20 13:08:52,818 - INFO - Workflow completed: f0735217c2eb04cf (0.01s)
+2025-12-20 13:11:20,291 - INFO - Delegating data_collector task...
+2025-12-20 13:11:20,292 - INFO - Fetching Live OHLCV from Binance (limit=60)...
+2025-12-20 13:11:20,293 - ERROR - Failed to build agent dataset: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-12-20 13:11:20,301 - INFO - Delegating analyst_risk task...
+2025-12-20 13:11:20,307 - INFO - Delegating analyst_sentiment task...
+2025-12-20 13:11:20,308 - INFO - Delegating analyst_sentiment task...
+2025-12-20 13:11:20,313 - INFO - Delegating analyst_technical task...
+2025-12-20 13:11:20,318 - INFO - Delegating decision_maker task...
+2025-12-20 13:11:20,319 - INFO - Initiating Adversarial Debate Swarm...
+2025-12-20 13:11:20,319 - INFO - Decision stored in EpisodicMemory: mem_123
+2025-12-20 13:11:20,322 - INFO - Delegating synthesizer task...
+2025-12-20 13:11:20,325 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 1
+2025-12-20 13:11:20,325 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 2
+2025-12-20 13:11:20,328 - INFO - Fetching HTTP: fail_src
+2025-12-20 13:11:28,341 - ERROR - HTTP failed via tenacity for fail_src: RetryError[<Future at 0x258c5778a50 state=finished raised Exception>]
+2025-12-20 13:11:28,341 - WARNING - Circuit Breaker: Recorded failure for fail_src. Count: 1
+2025-12-20 13:11:28,347 - INFO - Fetching HTTP: test_src
+2025-12-20 13:11:28,355 - WARNING - Circuit Breaker OPEN for broken_src. Skipping request.
+2025-12-20 13:11:28,420 - INFO - Registered 6 research workflows
+2025-12-20 13:11:28,423 - INFO - Registered 6 research workflows
+2025-12-20 13:11:28,425 - INFO - Registered 6 research workflows
+2025-12-20 13:11:28,427 - INFO - Registered 6 research workflows
+2025-12-20 13:11:28,428 - INFO - WorkflowEngine initialized
+2025-12-20 13:11:28,429 - INFO - Registered workflow: empty (v1.0)
+2025-12-20 13:11:28,431 - INFO - Starting workflow execution: 0b39ad5ee88f4204
+2025-12-20 13:11:28,431 - INFO - Workflow completed: 0b39ad5ee88f4204 (0.00s)
+2025-12-20 13:11:28,434 - INFO - WorkflowEngine initialized
+2025-12-20 13:11:28,436 - INFO - Registered workflow: missing_param (v1.0)
+2025-12-20 13:11:28,437 - INFO - Starting workflow execution: 368468c32da5707f
+2025-12-20 13:11:28,438 - INFO - Executing task: t1
+2025-12-20 13:11:28,441 - WARNING - Failed to read cache for t1: Cannot open console output buffer for reading
+2025-12-20 13:11:28,441 - WARNING - Task t1 failed (attempt 1/1): TestWorkflowEngine.test_execute_edge_missing_params.<locals>.task_need_param() missing 1 required positional argument: 'val'
+2025-12-20 13:11:28,442 - ERROR - Task t1 failed: TestWorkflowEngine.test_execute_edge_missing_params.<locals>.task_need_param() missing 1 required positional argument: 'val'
+2025-12-20 13:11:28,444 - INFO - Workflow completed: 368468c32da5707f (0.01s)
+2025-12-20 13:11:28,447 - INFO - WorkflowEngine initialized
+2025-12-20 13:11:28,449 - INFO - Registered workflow: retry_flow (v1.0)
+2025-12-20 13:11:28,450 - INFO - Starting workflow execution: 6cd5cfb097ff9d86
+2025-12-20 13:11:28,450 - INFO - Executing task: fail_task
+2025-12-20 13:11:28,452 - WARNING - Failed to read cache for fail_task: Cannot open console output buffer for reading
+2025-12-20 13:11:28,453 - WARNING - Task fail_task failed (attempt 1/2): Boom
+2025-12-20 13:11:28,464 - WARNING - Task fail_task failed (attempt 2/2): Boom
+2025-12-20 13:11:28,465 - ERROR - Task fail_task failed: Boom
+2025-12-20 13:11:28,467 - INFO - Workflow completed: 6cd5cfb097ff9d86 (0.02s)
+2025-12-20 13:11:28,471 - INFO - WorkflowEngine initialized
+2025-12-20 13:11:28,472 - INFO - Registered workflow: timeout_flow (v1.0)
+2025-12-20 13:11:28,473 - INFO - Starting workflow execution: cdb219dfadfc9fba
+2025-12-20 13:11:28,474 - INFO - Executing task: slow_task
+2025-12-20 13:11:28,477 - WARNING - Failed to read cache for slow_task: Cannot open console output buffer for reading
+2025-12-20 13:11:28,534 - WARNING - Task slow_task timed out (attempt 1/1)
+2025-12-20 13:11:28,535 - ERROR - Task slow_task failed: 
+2025-12-20 13:11:28,537 - INFO - Workflow completed: cdb219dfadfc9fba (0.06s)
+2025-12-20 13:11:28,541 - INFO - WorkflowEngine initialized
+2025-12-20 13:11:28,542 - INFO - Registered workflow: parallel_flow (v1.0)
+2025-12-20 13:11:28,544 - INFO - Starting workflow execution: 180de235b0e42136
+2025-12-20 13:11:28,544 - INFO - Executing task: p1
+2025-12-20 13:11:28,547 - WARNING - Failed to read cache for p1: Cannot open console output buffer for reading
+2025-12-20 13:11:28,548 - INFO - Executing task: p2
+2025-12-20 13:11:28,549 - WARNING - Failed to read cache for p2: Cannot open console output buffer for reading
+2025-12-20 13:11:28,574 - INFO - Task p1 completed (0.03s)
+2025-12-20 13:11:28,576 - INFO - Task p2 completed (0.03s)
+2025-12-20 13:11:28,576 - INFO - Workflow completed: 180de235b0e42136 (0.03s)
+2025-12-20 13:11:28,579 - INFO - WorkflowEngine initialized
+2025-12-20 13:11:28,580 - INFO - Registered workflow: simple_dag (v1.0)
+2025-12-20 13:11:28,581 - INFO - Starting workflow execution: 2435ccbb5da16d64
+2025-12-20 13:11:28,581 - INFO - Executing task: t1
+2025-12-20 13:11:28,583 - WARNING - Failed to read cache for t1: Cannot open console output buffer for reading
+2025-12-20 13:11:28,585 - INFO - Task t1 completed (0.00s)
+2025-12-20 13:11:28,585 - INFO - Executing task: t2
+2025-12-20 13:11:28,586 - WARNING - Failed to read cache for t2: Cannot open console output buffer for reading
+2025-12-20 13:11:28,586 - WARNING - Task t2 failed (attempt 1/1): TestWorkflowEngine.test_execute_happy_path_simple_dag.<locals>.task_b() got an unexpected keyword argument 'x'
+2025-12-20 13:11:28,586 - ERROR - Task t2 failed: TestWorkflowEngine.test_execute_happy_path_simple_dag.<locals>.task_b() got an unexpected keyword argument 'x'
+2025-12-20 13:11:28,587 - INFO - Workflow completed: 2435ccbb5da16d64 (0.01s)
+2025-12-20 13:15:58,270 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 1
+2025-12-20 13:15:58,271 - INFO - Circuit Breaker: Recovery timeout passed for test.com. Resetting.
+2025-12-20 13:15:58,272 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 1
+2025-12-20 13:15:58,272 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 2
+2025-12-20 13:15:58,272 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 3
+2025-12-20 13:15:58,272 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 4
+2025-12-20 13:15:58,273 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 5
+2025-12-20 13:15:58,275 - INFO - Fetching HTTP: test_http
+2025-12-20 13:15:58,295 - INFO - Fetching Browser: test_adapter
+2025-12-20 13:16:28,767 - INFO - Delegating data_collector task...
+2025-12-20 13:16:28,768 - INFO - Fetching Live OHLCV from Binance (limit=60)...
+2025-12-20 13:16:28,769 - ERROR - Failed to build agent dataset: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-12-20 13:16:28,775 - INFO - Delegating analyst_risk task...
+2025-12-20 13:16:28,781 - INFO - Delegating analyst_sentiment task...
+2025-12-20 13:16:28,782 - INFO - Delegating analyst_sentiment task...
+2025-12-20 13:16:28,788 - INFO - Delegating analyst_technical task...
+2025-12-20 13:16:28,792 - INFO - Delegating decision_maker task...
+2025-12-20 13:16:28,792 - INFO - Initiating Adversarial Debate Swarm...
+2025-12-20 13:16:28,792 - INFO - Decision stored in EpisodicMemory: mem_123
+2025-12-20 13:16:28,796 - INFO - Delegating synthesizer task...
+2025-12-20 13:16:28,800 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 1
+2025-12-20 13:16:28,800 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 2
+2025-12-20 13:16:28,803 - INFO - Fetching HTTP: fail_src
+2025-12-20 13:16:36,817 - ERROR - HTTP failed via tenacity for fail_src: RetryError[<Future at 0x1ff438ac7d0 state=finished raised Exception>]
+2025-12-20 13:16:36,817 - WARNING - Circuit Breaker: Recorded failure for fail_src. Count: 1
+2025-12-20 13:16:36,821 - INFO - Fetching HTTP: test_src
+2025-12-20 13:16:36,827 - WARNING - Circuit Breaker OPEN for broken_src. Skipping request.
+2025-12-20 13:16:36,829 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 1
+2025-12-20 13:16:36,830 - INFO - Circuit Breaker: Recovery timeout passed for test.com. Resetting.
+2025-12-20 13:16:36,831 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 1
+2025-12-20 13:16:36,832 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 2
+2025-12-20 13:16:36,832 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 3
+2025-12-20 13:16:36,832 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 4
+2025-12-20 13:16:36,833 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 5
+2025-12-20 13:16:36,835 - INFO - Fetching HTTP: test_http
+2025-12-20 13:16:36,885 - INFO - Fetching Browser: test_adapter
+2025-12-20 13:16:41,950 - INFO - Registered 6 research workflows
+2025-12-20 13:16:41,952 - INFO - Registered 6 research workflows
+2025-12-20 13:16:41,954 - INFO - Registered 6 research workflows
+2025-12-20 13:16:41,956 - INFO - Registered 6 research workflows
+2025-12-20 13:16:41,957 - INFO - WorkflowEngine initialized
+2025-12-20 13:16:41,958 - INFO - Registered workflow: empty (v1.0)
+2025-12-20 13:16:41,960 - INFO - Starting workflow execution: 1f481de9fa99f0cc
+2025-12-20 13:16:41,961 - INFO - Workflow completed: 1f481de9fa99f0cc (0.00s)
+2025-12-20 13:16:41,964 - INFO - WorkflowEngine initialized
+2025-12-20 13:16:41,965 - INFO - Registered workflow: missing_param (v1.0)
+2025-12-20 13:16:41,966 - INFO - Starting workflow execution: 2a92701ae5e53b6d
+2025-12-20 13:16:41,967 - INFO - Executing task: t1
+2025-12-20 13:16:41,969 - WARNING - Failed to read cache for t1: Cannot open console output buffer for reading
+2025-12-20 13:16:41,969 - WARNING - Task t1 failed (attempt 1/1): TestWorkflowEngine.test_execute_edge_missing_params.<locals>.task_need_param() missing 1 required positional argument: 'val'
+2025-12-20 13:16:41,969 - ERROR - Task t1 failed: TestWorkflowEngine.test_execute_edge_missing_params.<locals>.task_need_param() missing 1 required positional argument: 'val'
+2025-12-20 13:16:41,972 - INFO - Workflow completed: 2a92701ae5e53b6d (0.01s)
+2025-12-20 13:16:41,976 - INFO - WorkflowEngine initialized
+2025-12-20 13:16:41,977 - INFO - Registered workflow: retry_flow (v1.0)
+2025-12-20 13:16:41,978 - INFO - Starting workflow execution: 568f0c32ea9752d3
+2025-12-20 13:16:41,978 - INFO - Executing task: fail_task
+2025-12-20 13:16:41,980 - WARNING - Failed to read cache for fail_task: Cannot open console output buffer for reading
+2025-12-20 13:16:41,981 - WARNING - Task fail_task failed (attempt 1/2): Boom
+2025-12-20 13:16:41,996 - WARNING - Task fail_task failed (attempt 2/2): Boom
+2025-12-20 13:16:41,996 - ERROR - Task fail_task failed: Boom
+2025-12-20 13:16:41,999 - INFO - Workflow completed: 568f0c32ea9752d3 (0.02s)
+2025-12-20 13:16:42,001 - INFO - WorkflowEngine initialized
+2025-12-20 13:16:42,002 - INFO - Registered workflow: timeout_flow (v1.0)
+2025-12-20 13:16:42,003 - INFO - Starting workflow execution: 442a0354c2ccf6ee
+2025-12-20 13:16:42,004 - INFO - Executing task: slow_task
+2025-12-20 13:16:42,007 - WARNING - Failed to read cache for slow_task: Cannot open console output buffer for reading
+2025-12-20 13:16:42,069 - WARNING - Task slow_task timed out (attempt 1/1)
+2025-12-20 13:16:42,069 - ERROR - Task slow_task failed: 
+2025-12-20 13:16:42,073 - INFO - Workflow completed: 442a0354c2ccf6ee (0.07s)
+2025-12-20 13:16:42,076 - INFO - WorkflowEngine initialized
+2025-12-20 13:16:42,077 - INFO - Registered workflow: parallel_flow (v1.0)
+2025-12-20 13:16:42,078 - INFO - Starting workflow execution: b8949b77fdc642c4
+2025-12-20 13:16:42,078 - INFO - Executing task: p1
+2025-12-20 13:16:42,080 - WARNING - Failed to read cache for p1: Cannot open console output buffer for reading
+2025-12-20 13:16:42,080 - INFO - Executing task: p2
+2025-12-20 13:16:42,081 - WARNING - Failed to read cache for p2: Cannot open console output buffer for reading
+2025-12-20 13:16:42,097 - INFO - Task p1 completed (0.02s)
+2025-12-20 13:16:42,099 - INFO - Task p2 completed (0.02s)
+2025-12-20 13:16:42,099 - INFO - Workflow completed: b8949b77fdc642c4 (0.02s)
+2025-12-20 13:16:42,102 - INFO - WorkflowEngine initialized
+2025-12-20 13:16:42,103 - INFO - Registered workflow: simple_dag (v1.0)
+2025-12-20 13:16:42,105 - INFO - Starting workflow execution: 918721751dac1992
+2025-12-20 13:16:42,105 - INFO - Executing task: t1
+2025-12-20 13:16:42,108 - WARNING - Failed to read cache for t1: Cannot open console output buffer for reading
+2025-12-20 13:16:42,109 - INFO - Task t1 completed (0.00s)
+2025-12-20 13:16:42,110 - INFO - Executing task: t2
+2025-12-20 13:16:42,111 - WARNING - Failed to read cache for t2: Cannot open console output buffer for reading
+2025-12-20 13:16:42,111 - WARNING - Task t2 failed (attempt 1/1): TestWorkflowEngine.test_execute_happy_path_simple_dag.<locals>.task_b() got an unexpected keyword argument 'x'
+2025-12-20 13:16:42,112 - ERROR - Task t2 failed: TestWorkflowEngine.test_execute_happy_path_simple_dag.<locals>.task_b() got an unexpected keyword argument 'x'
+2025-12-20 13:16:42,112 - INFO - Workflow completed: 918721751dac1992 (0.01s)
+2025-12-20 13:17:49,626 - INFO - Delegating data_collector task...
+2025-12-20 13:17:49,627 - INFO - Fetching Live OHLCV from Binance (limit=60)...
+2025-12-20 13:17:49,628 - ERROR - Failed to build agent dataset: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-12-20 13:17:49,645 - INFO - Delegating analyst_risk task...
+2025-12-20 13:17:49,651 - INFO - Delegating analyst_sentiment task...
+2025-12-20 13:17:49,653 - INFO - Delegating analyst_sentiment task...
+2025-12-20 13:17:49,658 - INFO - Delegating analyst_technical task...
+2025-12-20 13:17:49,662 - INFO - Delegating decision_maker task...
+2025-12-20 13:17:49,663 - INFO - Initiating Adversarial Debate Swarm...
+2025-12-20 13:17:49,663 - INFO - Decision stored in EpisodicMemory: mem_123
+2025-12-20 13:17:49,667 - INFO - Delegating synthesizer task...
+2025-12-20 13:17:49,670 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 1
+2025-12-20 13:17:49,671 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 2
+2025-12-20 13:17:49,675 - INFO - Fetching HTTP: fail_src
+2025-12-20 13:17:57,702 - ERROR - HTTP failed via tenacity for fail_src: RetryError[<Future at 0x275800ac7d0 state=finished raised Exception>]
+2025-12-20 13:17:57,703 - WARNING - Circuit Breaker: Recorded failure for fail_src. Count: 1
+2025-12-20 13:17:57,717 - INFO - Fetching HTTP: test_src
+2025-12-20 13:17:57,723 - WARNING - Circuit Breaker OPEN for broken_src. Skipping request.
+2025-12-20 13:17:57,725 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 1
+2025-12-20 13:17:57,726 - INFO - Circuit Breaker: Recovery timeout passed for test.com. Resetting.
+2025-12-20 13:17:57,727 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 1
+2025-12-20 13:17:57,728 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 2
+2025-12-20 13:17:57,728 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 3
+2025-12-20 13:17:57,728 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 4
+2025-12-20 13:17:57,728 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 5
+2025-12-20 13:17:57,733 - INFO - Fetching HTTP: test_http
+2025-12-20 13:17:57,762 - INFO - Fetching Browser: test_adapter
+2025-12-20 13:18:02,868 - INFO - Registered 6 research workflows
+2025-12-20 13:18:02,870 - INFO - Registered 6 research workflows
+2025-12-20 13:18:02,872 - INFO - Registered 6 research workflows
+2025-12-20 13:18:02,874 - INFO - Registered 6 research workflows
+2025-12-20 13:18:02,875 - INFO - WorkflowEngine initialized
+2025-12-20 13:18:02,876 - INFO - Registered workflow: empty (v1.0)
+2025-12-20 13:18:02,879 - INFO - Starting workflow execution: 1fad483d5777edd8
+2025-12-20 13:18:02,879 - INFO - Workflow completed: 1fad483d5777edd8 (0.00s)
+2025-12-20 13:18:02,884 - INFO - WorkflowEngine initialized
+2025-12-20 13:18:02,886 - INFO - Registered workflow: missing_param (v1.0)
+2025-12-20 13:18:02,887 - INFO - Starting workflow execution: bb1f201f1e48b0bb
+2025-12-20 13:18:02,888 - INFO - Executing task: t1
+2025-12-20 13:18:02,890 - WARNING - Failed to read cache for t1: Cannot open console output buffer for reading
+2025-12-20 13:18:02,891 - WARNING - Task t1 failed (attempt 1/1): TestWorkflowEngine.test_execute_edge_missing_params.<locals>.task_need_param() missing 1 required positional argument: 'val'
+2025-12-20 13:18:02,891 - ERROR - Task t1 failed: TestWorkflowEngine.test_execute_edge_missing_params.<locals>.task_need_param() missing 1 required positional argument: 'val'
+2025-12-20 13:18:02,894 - INFO - Workflow completed: bb1f201f1e48b0bb (0.01s)
+2025-12-20 13:18:02,898 - INFO - WorkflowEngine initialized
+2025-12-20 13:18:02,901 - INFO - Registered workflow: retry_flow (v1.0)
+2025-12-20 13:18:02,903 - INFO - Starting workflow execution: 660efd9587d3afa6
+2025-12-20 13:18:02,904 - INFO - Executing task: fail_task
+2025-12-20 13:18:02,906 - WARNING - Failed to read cache for fail_task: Cannot open console output buffer for reading
+2025-12-20 13:18:02,907 - WARNING - Task fail_task failed (attempt 1/2): Boom
+2025-12-20 13:18:02,927 - WARNING - Task fail_task failed (attempt 2/2): Boom
+2025-12-20 13:18:02,927 - ERROR - Task fail_task failed: Boom
+2025-12-20 13:18:02,930 - INFO - Workflow completed: 660efd9587d3afa6 (0.03s)
+2025-12-20 13:18:02,934 - INFO - WorkflowEngine initialized
+2025-12-20 13:18:02,936 - INFO - Registered workflow: timeout_flow (v1.0)
+2025-12-20 13:18:02,937 - INFO - Starting workflow execution: 36019ba712f5860b
+2025-12-20 13:18:02,938 - INFO - Executing task: slow_task
+2025-12-20 13:18:02,941 - WARNING - Failed to read cache for slow_task: Cannot open console output buffer for reading
+2025-12-20 13:18:02,995 - WARNING - Task slow_task timed out (attempt 1/1)
+2025-12-20 13:18:02,996 - ERROR - Task slow_task failed: 
+2025-12-20 13:18:02,998 - INFO - Workflow completed: 36019ba712f5860b (0.06s)
+2025-12-20 13:18:03,002 - INFO - WorkflowEngine initialized
+2025-12-20 13:18:03,003 - INFO - Registered workflow: parallel_flow (v1.0)
+2025-12-20 13:18:03,005 - INFO - Starting workflow execution: 0b4df4bd0eccc104
+2025-12-20 13:18:03,005 - INFO - Executing task: p1
+2025-12-20 13:18:03,008 - WARNING - Failed to read cache for p1: Cannot open console output buffer for reading
+2025-12-20 13:18:03,008 - INFO - Executing task: p2
+2025-12-20 13:18:03,009 - WARNING - Failed to read cache for p2: Cannot open console output buffer for reading
+2025-12-20 13:18:03,029 - INFO - Task p1 completed (0.02s)
+2025-12-20 13:18:03,030 - INFO - Task p2 completed (0.02s)
+2025-12-20 13:18:03,031 - INFO - Workflow completed: 0b4df4bd0eccc104 (0.03s)
+2025-12-20 13:18:03,034 - INFO - WorkflowEngine initialized
+2025-12-20 13:18:03,036 - INFO - Registered workflow: simple_dag (v1.0)
+2025-12-20 13:18:03,037 - INFO - Starting workflow execution: b0e3cbda19d850f0
+2025-12-20 13:18:03,038 - INFO - Executing task: t1
+2025-12-20 13:18:03,040 - WARNING - Failed to read cache for t1: Cannot open console output buffer for reading
+2025-12-20 13:18:03,042 - INFO - Task t1 completed (0.00s)
+2025-12-20 13:18:03,042 - INFO - Executing task: t2
+2025-12-20 13:18:03,043 - WARNING - Failed to read cache for t2: Cannot open console output buffer for reading
+2025-12-20 13:18:03,044 - INFO - Task t2 completed (0.00s)
+2025-12-20 13:18:03,044 - INFO - Workflow completed: b0e3cbda19d850f0 (0.01s)
+2025-12-20 13:18:59,252 - INFO - Delegating data_collector task...
+2025-12-20 13:18:59,253 - INFO - Fetching Live OHLCV from Binance (limit=60)...
+2025-12-20 13:18:59,254 - ERROR - Failed to build agent dataset: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-12-20 13:18:59,259 - INFO - Delegating analyst_risk task...
+2025-12-20 13:18:59,265 - INFO - Delegating analyst_sentiment task...
+2025-12-20 13:18:59,266 - INFO - Delegating analyst_sentiment task...
+2025-12-20 13:18:59,270 - INFO - Delegating analyst_technical task...
+2025-12-20 13:18:59,273 - INFO - Delegating decision_maker task...
+2025-12-20 13:18:59,274 - INFO - Initiating Adversarial Debate Swarm...
+2025-12-20 13:18:59,274 - INFO - Decision stored in EpisodicMemory: mem_123
+2025-12-20 13:18:59,277 - INFO - Delegating synthesizer task...
+2025-12-20 13:18:59,281 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 1
+2025-12-20 13:18:59,282 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 2
+2025-12-20 13:18:59,285 - INFO - Fetching HTTP: fail_src
+2025-12-20 13:19:07,311 - ERROR - HTTP failed via tenacity for fail_src: RetryError[<Future at 0x247a1389d10 state=finished raised Exception>]
+2025-12-20 13:19:07,312 - WARNING - Circuit Breaker: Recorded failure for fail_src. Count: 1
+2025-12-20 13:19:07,324 - INFO - Fetching HTTP: test_src
+2025-12-20 13:19:07,329 - WARNING - Circuit Breaker OPEN for broken_src. Skipping request.
+2025-12-20 13:19:07,331 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 1
+2025-12-20 13:19:07,332 - INFO - Circuit Breaker: Recovery timeout passed for test.com. Resetting.
+2025-12-20 13:19:07,333 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 1
+2025-12-20 13:19:07,334 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 2
+2025-12-20 13:19:07,334 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 3
+2025-12-20 13:19:07,334 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 4
+2025-12-20 13:19:07,334 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 5
+2025-12-20 13:19:07,337 - INFO - Fetching Browser: fail_browser
+2025-12-20 13:19:07,347 - INFO - Fetching HTTP: test_http
+2025-12-20 13:19:07,368 - INFO - Fetching Browser: test_adapter
+2025-12-20 13:19:12,472 - INFO - Registered 6 research workflows
+2025-12-20 13:19:12,474 - INFO - Registered 6 research workflows
+2025-12-20 13:19:12,476 - INFO - Registered 6 research workflows
+2025-12-20 13:19:12,478 - INFO - Registered 6 research workflows
+2025-12-20 13:19:12,479 - INFO - WorkflowEngine initialized
+2025-12-20 13:19:12,480 - INFO - Registered workflow: empty (v1.0)
+2025-12-20 13:19:12,505 - INFO - Starting workflow execution: 3903ffc502e9749d
+2025-12-20 13:19:12,506 - INFO - Workflow completed: 3903ffc502e9749d (0.00s)
+2025-12-20 13:19:12,509 - INFO - WorkflowEngine initialized
+2025-12-20 13:19:12,510 - INFO - Registered workflow: missing_param (v1.0)
+2025-12-20 13:19:12,511 - INFO - Starting workflow execution: 84bfe08cded1c0c3
+2025-12-20 13:19:12,512 - INFO - Executing task: t1
+2025-12-20 13:19:12,515 - WARNING - Failed to read cache for t1: Cannot open console output buffer for reading
+2025-12-20 13:19:12,515 - WARNING - Task t1 failed (attempt 1/1): TestWorkflowEngine.test_execute_edge_missing_params.<locals>.task_need_param() missing 1 required positional argument: 'val'
+2025-12-20 13:19:12,516 - ERROR - Task t1 failed: TestWorkflowEngine.test_execute_edge_missing_params.<locals>.task_need_param() missing 1 required positional argument: 'val'
+2025-12-20 13:19:12,518 - INFO - Workflow completed: 84bfe08cded1c0c3 (0.01s)
+2025-12-20 13:19:12,522 - INFO - WorkflowEngine initialized
+2025-12-20 13:19:12,523 - INFO - Registered workflow: retry_flow (v1.0)
+2025-12-20 13:19:12,524 - INFO - Starting workflow execution: 9b02db0a4a92634d
+2025-12-20 13:19:12,525 - INFO - Executing task: fail_task
+2025-12-20 13:19:12,526 - WARNING - Failed to read cache for fail_task: Cannot open console output buffer for reading
+2025-12-20 13:19:12,527 - WARNING - Task fail_task failed (attempt 1/2): Boom
+2025-12-20 13:19:12,540 - WARNING - Task fail_task failed (attempt 2/2): Boom
+2025-12-20 13:19:12,540 - ERROR - Task fail_task failed: Boom
+2025-12-20 13:19:12,543 - INFO - Workflow completed: 9b02db0a4a92634d (0.02s)
+2025-12-20 13:19:12,545 - INFO - WorkflowEngine initialized
+2025-12-20 13:19:12,546 - INFO - Registered workflow: timeout_flow (v1.0)
+2025-12-20 13:19:12,547 - INFO - Starting workflow execution: 9741cd57f9c4d92d
+2025-12-20 13:19:12,547 - INFO - Executing task: slow_task
+2025-12-20 13:19:12,549 - WARNING - Failed to read cache for slow_task: Cannot open console output buffer for reading
+2025-12-20 13:19:12,602 - WARNING - Task slow_task timed out (attempt 1/1)
+2025-12-20 13:19:12,602 - ERROR - Task slow_task failed: 
+2025-12-20 13:19:12,605 - INFO - Workflow completed: 9741cd57f9c4d92d (0.06s)
+2025-12-20 13:19:12,608 - INFO - WorkflowEngine initialized
+2025-12-20 13:19:12,609 - INFO - Registered workflow: parallel_flow (v1.0)
+2025-12-20 13:19:12,610 - INFO - Starting workflow execution: 95687e4347b99f0b
+2025-12-20 13:19:12,610 - INFO - Executing task: p1
+2025-12-20 13:19:12,612 - WARNING - Failed to read cache for p1: Cannot open console output buffer for reading
+2025-12-20 13:19:12,613 - INFO - Executing task: p2
+2025-12-20 13:19:12,613 - WARNING - Failed to read cache for p2: Cannot open console output buffer for reading
+2025-12-20 13:19:12,630 - INFO - Task p1 completed (0.02s)
+2025-12-20 13:19:12,631 - INFO - Task p2 completed (0.02s)
+2025-12-20 13:19:12,631 - INFO - Workflow completed: 95687e4347b99f0b (0.02s)
+2025-12-20 13:19:12,634 - INFO - WorkflowEngine initialized
+2025-12-20 13:19:12,635 - INFO - Registered workflow: simple_dag (v1.0)
+2025-12-20 13:19:12,637 - INFO - Starting workflow execution: 2c548a7f1407fc79
+2025-12-20 13:19:12,638 - INFO - Executing task: t1
+2025-12-20 13:19:12,640 - WARNING - Failed to read cache for t1: Cannot open console output buffer for reading
+2025-12-20 13:19:12,642 - INFO - Task t1 completed (0.00s)
+2025-12-20 13:19:12,642 - INFO - Executing task: t2
+2025-12-20 13:19:12,643 - WARNING - Failed to read cache for t2: Cannot open console output buffer for reading
+2025-12-20 13:19:12,643 - INFO - Task t2 completed (0.00s)
+2025-12-20 13:19:12,644 - INFO - Workflow completed: 2c548a7f1407fc79 (0.01s)
+2025-12-20 13:20:50,452 - INFO - Delegating data_collector task...
+2025-12-20 13:20:50,454 - INFO - Fetching Live OHLCV from Binance (limit=60)...
+2025-12-20 13:20:50,455 - ERROR - Failed to build agent dataset: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-12-20 13:20:50,465 - INFO - Delegating analyst_risk task...
+2025-12-20 13:20:50,471 - INFO - Delegating analyst_sentiment task...
+2025-12-20 13:20:50,473 - INFO - Delegating analyst_sentiment task...
+2025-12-20 13:20:50,478 - INFO - Delegating analyst_technical task...
+2025-12-20 13:20:50,482 - INFO - Delegating decision_maker task...
+2025-12-20 13:20:50,482 - INFO - Initiating Adversarial Debate Swarm...
+2025-12-20 13:20:50,482 - INFO - Decision stored in EpisodicMemory: mem_123
+2025-12-20 13:20:50,485 - INFO - Delegating synthesizer task...
+2025-12-20 13:20:50,488 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 1
+2025-12-20 13:20:50,489 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 2
+2025-12-20 13:20:50,493 - INFO - Fetching HTTP: fail_src
+2025-12-20 13:20:58,508 - ERROR - HTTP failed via tenacity for fail_src: RetryError[<Future at 0x17ccf489d10 state=finished raised Exception>]
+2025-12-20 13:20:58,509 - WARNING - Circuit Breaker: Recorded failure for fail_src. Count: 1
+2025-12-20 13:20:58,514 - INFO - Fetching HTTP: test_src
+2025-12-20 13:20:58,521 - WARNING - Circuit Breaker OPEN for broken_src. Skipping request.
+2025-12-20 13:20:58,523 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 1
+2025-12-20 13:20:58,524 - INFO - Circuit Breaker: Recovery timeout passed for test.com. Resetting.
+2025-12-20 13:20:58,525 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 1
+2025-12-20 13:20:58,526 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 2
+2025-12-20 13:20:58,526 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 3
+2025-12-20 13:20:58,526 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 4
+2025-12-20 13:20:58,527 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 5
+2025-12-20 13:20:58,532 - INFO - Fetching Browser: fail_browser
+2025-12-20 13:20:58,542 - INFO - Fetching HTTP: test_http
+2025-12-20 13:20:58,569 - INFO - Fetching Browser: test_adapter
+2025-12-20 13:21:03,691 - INFO - Registered 6 research workflows
+2025-12-20 13:21:03,693 - INFO - Registered 6 research workflows
+2025-12-20 13:21:03,695 - INFO - Registered 6 research workflows
+2025-12-20 13:21:03,696 - INFO - Registered 6 research workflows
+2025-12-20 13:21:03,698 - INFO - WorkflowEngine initialized
+2025-12-20 13:21:03,699 - INFO - Registered workflow: empty (v1.0)
+2025-12-20 13:21:03,702 - INFO - Starting workflow execution: 7ff74d0a3c55c84d
+2025-12-20 13:21:03,702 - INFO - Workflow completed: 7ff74d0a3c55c84d (0.00s)
+2025-12-20 13:21:03,706 - INFO - WorkflowEngine initialized
+2025-12-20 13:21:03,707 - INFO - Registered workflow: missing_param (v1.0)
+2025-12-20 13:21:03,708 - INFO - Starting workflow execution: dc73eaafab734a95
+2025-12-20 13:21:03,708 - INFO - Executing task: t1
+2025-12-20 13:21:03,710 - WARNING - Failed to read cache for t1: Cannot open console output buffer for reading
+2025-12-20 13:21:03,711 - WARNING - Task t1 failed (attempt 1/1): TestWorkflowEngine.test_execute_edge_missing_params.<locals>.task_need_param() missing 1 required positional argument: 'val'
+2025-12-20 13:21:03,711 - ERROR - Task t1 failed: TestWorkflowEngine.test_execute_edge_missing_params.<locals>.task_need_param() missing 1 required positional argument: 'val'
+2025-12-20 13:21:03,713 - INFO - Workflow completed: dc73eaafab734a95 (0.00s)
+2025-12-20 13:21:03,715 - INFO - WorkflowEngine initialized
+2025-12-20 13:21:03,716 - INFO - Registered workflow: retry_flow (v1.0)
+2025-12-20 13:21:03,717 - INFO - Starting workflow execution: 902a2ab040865850
+2025-12-20 13:21:03,718 - INFO - Executing task: fail_task
+2025-12-20 13:21:03,721 - WARNING - Failed to read cache for fail_task: Cannot open console output buffer for reading
+2025-12-20 13:21:03,722 - WARNING - Task fail_task failed (attempt 1/2): Boom
+2025-12-20 13:21:03,740 - WARNING - Task fail_task failed (attempt 2/2): Boom
+2025-12-20 13:21:03,741 - ERROR - Task fail_task failed: Boom
+2025-12-20 13:21:03,743 - INFO - Workflow completed: 902a2ab040865850 (0.03s)
+2025-12-20 13:21:03,745 - INFO - WorkflowEngine initialized
+2025-12-20 13:21:03,746 - INFO - Registered workflow: timeout_flow (v1.0)
+2025-12-20 13:21:03,748 - INFO - Starting workflow execution: b95d4ab79577eaec
+2025-12-20 13:21:03,748 - INFO - Executing task: slow_task
+2025-12-20 13:21:03,750 - WARNING - Failed to read cache for slow_task: Cannot open console output buffer for reading
+2025-12-20 13:21:03,807 - WARNING - Task slow_task timed out (attempt 1/1)
+2025-12-20 13:21:03,808 - ERROR - Task slow_task failed: 
+2025-12-20 13:21:03,810 - INFO - Workflow completed: b95d4ab79577eaec (0.06s)
+2025-12-20 13:21:03,813 - INFO - WorkflowEngine initialized
+2025-12-20 13:21:03,815 - INFO - Registered workflow: parallel_flow (v1.0)
+2025-12-20 13:21:03,816 - INFO - Starting workflow execution: ffaa945e6bac6989
+2025-12-20 13:21:03,827 - INFO - Executing task: p1
+2025-12-20 13:21:03,830 - WARNING - Failed to read cache for p1: Cannot open console output buffer for reading
+2025-12-20 13:21:03,831 - INFO - Executing task: p2
+2025-12-20 13:21:03,832 - WARNING - Failed to read cache for p2: Cannot open console output buffer for reading
+2025-12-20 13:21:03,850 - INFO - Task p1 completed (0.02s)
+2025-12-20 13:21:03,851 - INFO - Task p2 completed (0.02s)
+2025-12-20 13:21:03,852 - INFO - Workflow completed: ffaa945e6bac6989 (0.04s)
+2025-12-20 13:21:03,854 - INFO - WorkflowEngine initialized
+2025-12-20 13:21:03,855 - INFO - Registered workflow: simple_dag (v1.0)
+2025-12-20 13:21:03,857 - INFO - Starting workflow execution: 52e707cd756fb390
+2025-12-20 13:21:03,857 - INFO - Executing task: t1
+2025-12-20 13:21:03,860 - WARNING - Failed to read cache for t1: Cannot open console output buffer for reading
+2025-12-20 13:21:03,862 - INFO - Task t1 completed (0.00s)
+2025-12-20 13:21:03,863 - INFO - Executing task: t2
+2025-12-20 13:21:03,864 - WARNING - Failed to read cache for t2: Cannot open console output buffer for reading
+2025-12-20 13:21:03,865 - INFO - Task t2 completed (0.00s)
+2025-12-20 13:21:03,866 - INFO - Workflow completed: 52e707cd756fb390 (0.01s)
+2025-12-20 13:21:53,484 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 1
+2025-12-20 13:21:53,484 - INFO - Circuit Breaker: Recovery timeout passed for test.com. Resetting.
+2025-12-20 13:21:53,485 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 1
+2025-12-20 13:21:53,485 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 2
+2025-12-20 13:21:53,485 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 3
+2025-12-20 13:21:53,485 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 4
+2025-12-20 13:21:53,486 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 5
+2025-12-20 13:21:53,488 - INFO - Fetching Browser: fail_browser
+2025-12-20 13:21:53,488 - ERROR - Browser failed for fail_browser: Browser Crash
+2025-12-20 13:21:53,491 - INFO - Fetching HTTP: test_http
+2025-12-20 13:21:53,508 - INFO - Fetching Browser: test_adapter
+2025-12-20 13:22:20,433 - INFO - Delegating data_collector task...
+2025-12-20 13:22:20,434 - INFO - Fetching Live OHLCV from Binance (limit=60)...
+2025-12-20 13:22:20,436 - ERROR - Failed to build agent dataset: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-12-20 13:22:20,442 - INFO - Delegating analyst_risk task...
+2025-12-20 13:22:20,447 - INFO - Delegating analyst_sentiment task...
+2025-12-20 13:22:20,448 - INFO - Delegating analyst_sentiment task...
+2025-12-20 13:22:20,453 - INFO - Delegating analyst_technical task...
+2025-12-20 13:22:20,457 - INFO - Delegating decision_maker task...
+2025-12-20 13:22:20,457 - INFO - Initiating Adversarial Debate Swarm...
+2025-12-20 13:22:20,458 - INFO - Decision stored in EpisodicMemory: mem_123
+2025-12-20 13:22:20,460 - INFO - Delegating synthesizer task...
+2025-12-20 13:22:20,463 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 1
+2025-12-20 13:22:20,464 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 2
+2025-12-20 13:22:20,468 - INFO - Fetching HTTP: fail_src
+2025-12-20 13:22:28,482 - ERROR - HTTP failed via tenacity for fail_src: RetryError[<Future at 0x228e2189bd0 state=finished raised Exception>]
+2025-12-20 13:22:28,482 - WARNING - Circuit Breaker: Recorded failure for fail_src. Count: 1
+2025-12-20 13:22:28,497 - INFO - Fetching HTTP: test_src
+2025-12-20 13:22:28,503 - WARNING - Circuit Breaker OPEN for broken_src. Skipping request.
+2025-12-20 13:22:28,504 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 1
+2025-12-20 13:22:28,505 - INFO - Circuit Breaker: Recovery timeout passed for test.com. Resetting.
+2025-12-20 13:22:28,506 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 1
+2025-12-20 13:22:28,507 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 2
+2025-12-20 13:22:28,507 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 3
+2025-12-20 13:22:28,507 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 4
+2025-12-20 13:22:28,508 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 5
+2025-12-20 13:22:28,534 - INFO - Fetching Browser: fail_browser
+2025-12-20 13:22:28,535 - ERROR - Browser failed for fail_browser: Browser Crash
+2025-12-20 13:22:28,539 - INFO - Fetching HTTP: test_http
+2025-12-20 13:22:28,562 - INFO - Fetching Browser: test_adapter
+2025-12-20 13:22:33,653 - INFO - Registered 6 research workflows
+2025-12-20 13:22:33,655 - INFO - Registered 6 research workflows
+2025-12-20 13:22:33,657 - INFO - Registered 6 research workflows
+2025-12-20 13:22:33,659 - INFO - Registered 6 research workflows
+2025-12-20 13:22:33,659 - INFO - WorkflowEngine initialized
+2025-12-20 13:22:33,660 - INFO - Registered workflow: empty (v1.0)
+2025-12-20 13:22:33,663 - INFO - Starting workflow execution: fb991b2ccbec3633
+2025-12-20 13:22:33,663 - INFO - Workflow completed: fb991b2ccbec3633 (0.00s)
+2025-12-20 13:22:33,666 - INFO - WorkflowEngine initialized
+2025-12-20 13:22:33,667 - INFO - Registered workflow: missing_param (v1.0)
+2025-12-20 13:22:33,668 - INFO - Starting workflow execution: f4245e3726f785b6
+2025-12-20 13:22:33,669 - INFO - Executing task: t1
+2025-12-20 13:22:33,671 - WARNING - Failed to read cache for t1: Cannot open console output buffer for reading
+2025-12-20 13:22:33,671 - WARNING - Task t1 failed (attempt 1/1): TestWorkflowEngine.test_execute_edge_missing_params.<locals>.task_need_param() missing 1 required positional argument: 'val'
+2025-12-20 13:22:33,672 - ERROR - Task t1 failed: TestWorkflowEngine.test_execute_edge_missing_params.<locals>.task_need_param() missing 1 required positional argument: 'val'
+2025-12-20 13:22:33,674 - INFO - Workflow completed: f4245e3726f785b6 (0.01s)
+2025-12-20 13:22:33,677 - INFO - WorkflowEngine initialized
+2025-12-20 13:22:33,678 - INFO - Registered workflow: retry_flow (v1.0)
+2025-12-20 13:22:33,679 - INFO - Starting workflow execution: 11fa319e3bb0f8b0
+2025-12-20 13:22:33,680 - INFO - Executing task: fail_task
+2025-12-20 13:22:33,682 - WARNING - Failed to read cache for fail_task: Cannot open console output buffer for reading
+2025-12-20 13:22:33,683 - WARNING - Task fail_task failed (attempt 1/2): Boom
+2025-12-20 13:22:33,695 - WARNING - Task fail_task failed (attempt 2/2): Boom
+2025-12-20 13:22:33,696 - ERROR - Task fail_task failed: Boom
+2025-12-20 13:22:33,698 - INFO - Workflow completed: 11fa319e3bb0f8b0 (0.02s)
+2025-12-20 13:22:33,701 - INFO - WorkflowEngine initialized
+2025-12-20 13:22:33,702 - INFO - Registered workflow: timeout_flow (v1.0)
+2025-12-20 13:22:33,703 - INFO - Starting workflow execution: ca9f3b49de192b24
+2025-12-20 13:22:33,704 - INFO - Executing task: slow_task
+2025-12-20 13:22:33,706 - WARNING - Failed to read cache for slow_task: Cannot open console output buffer for reading
+2025-12-20 13:22:33,759 - WARNING - Task slow_task timed out (attempt 1/1)
+2025-12-20 13:22:33,759 - ERROR - Task slow_task failed: 
+2025-12-20 13:22:33,762 - INFO - Workflow completed: ca9f3b49de192b24 (0.06s)
+2025-12-20 13:22:33,765 - INFO - WorkflowEngine initialized
+2025-12-20 13:22:33,766 - INFO - Registered workflow: parallel_flow (v1.0)
+2025-12-20 13:22:33,767 - INFO - Starting workflow execution: 7453e85374fd311f
+2025-12-20 13:22:33,768 - INFO - Executing task: p1
+2025-12-20 13:22:33,770 - WARNING - Failed to read cache for p1: Cannot open console output buffer for reading
+2025-12-20 13:22:33,771 - INFO - Executing task: p2
+2025-12-20 13:22:33,772 - WARNING - Failed to read cache for p2: Cannot open console output buffer for reading
+2025-12-20 13:22:33,785 - INFO - Task p1 completed (0.01s)
+2025-12-20 13:22:33,786 - INFO - Task p2 completed (0.01s)
+2025-12-20 13:22:33,787 - INFO - Workflow completed: 7453e85374fd311f (0.02s)
+2025-12-20 13:22:33,789 - INFO - WorkflowEngine initialized
+2025-12-20 13:22:33,790 - INFO - Registered workflow: simple_dag (v1.0)
+2025-12-20 13:22:33,791 - INFO - Starting workflow execution: 5f58992652c370e1
+2025-12-20 13:22:33,792 - INFO - Executing task: t1
+2025-12-20 13:22:33,794 - WARNING - Failed to read cache for t1: Cannot open console output buffer for reading
+2025-12-20 13:22:33,796 - INFO - Task t1 completed (0.00s)
+2025-12-20 13:22:33,796 - INFO - Executing task: t2
+2025-12-20 13:22:33,797 - WARNING - Failed to read cache for t2: Cannot open console output buffer for reading
+2025-12-20 13:22:33,798 - INFO - Task t2 completed (0.00s)
+2025-12-20 13:22:33,798 - INFO - Workflow completed: 5f58992652c370e1 (0.01s)
+2025-12-20 13:30:55,517 - INFO - Delegating data_collector task...
+2025-12-20 13:30:55,519 - INFO - Fetching Live OHLCV from Binance (limit=60)...
+2025-12-20 13:30:55,520 - ERROR - Failed to build agent dataset: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-12-20 13:30:55,530 - INFO - Delegating analyst_risk task...
+2025-12-20 13:30:55,537 - INFO - Delegating analyst_sentiment task...
+2025-12-20 13:30:55,538 - INFO - Delegating analyst_sentiment task...
+2025-12-20 13:30:55,546 - INFO - Delegating analyst_technical task...
+2025-12-20 13:30:55,551 - INFO - Delegating decision_maker task...
+2025-12-20 13:30:55,551 - INFO - Initiating Adversarial Debate Swarm...
+2025-12-20 13:30:55,552 - INFO - Decision stored in EpisodicMemory: mem_123
+2025-12-20 13:30:55,555 - INFO - Delegating synthesizer task...
+2025-12-20 13:30:55,563 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 1
+2025-12-20 13:30:55,564 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 2
+2025-12-20 13:30:55,568 - INFO - Fetching HTTP: fail_src
+2025-12-20 13:31:03,584 - ERROR - HTTP failed via tenacity for fail_src: RetryError[<Future at 0x21d99f5ee90 state=finished raised Exception>]
+2025-12-20 13:31:03,589 - WARNING - Circuit Breaker: Recorded failure for fail_src. Count: 1
+2025-12-20 13:31:03,600 - INFO - Fetching HTTP: test_src
+2025-12-20 13:31:03,609 - WARNING - Circuit Breaker OPEN for broken_src. Skipping request.
+2025-12-20 13:31:03,612 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 1
+2025-12-20 13:31:03,613 - INFO - Circuit Breaker: Recovery timeout passed for test.com. Resetting.
+2025-12-20 13:31:03,615 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 1
+2025-12-20 13:31:03,615 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 2
+2025-12-20 13:31:03,619 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 3
+2025-12-20 13:31:03,619 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 4
+2025-12-20 13:31:03,619 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 5
+2025-12-20 13:31:03,635 - INFO - Fetching Browser: fail_browser
+2025-12-20 13:31:03,636 - ERROR - Browser failed for fail_browser: Browser Crash
+2025-12-20 13:31:03,641 - INFO - Fetching HTTP: test_http
+2025-12-20 13:31:03,754 - INFO - Fetching Browser: test_adapter
+2025-12-20 13:31:08,897 - INFO - Registered 6 research workflows
+2025-12-20 13:31:08,899 - INFO - Registered 6 research workflows
+2025-12-20 13:31:08,901 - INFO - Registered 6 research workflows
+2025-12-20 13:31:08,904 - INFO - Registered 6 research workflows
+2025-12-20 13:31:08,906 - INFO - WorkflowEngine initialized
+2025-12-20 13:31:08,908 - INFO - Registered workflow: empty (v1.0)
+2025-12-20 13:31:08,912 - INFO - Starting workflow execution: 62d92a17f71559c7
+2025-12-20 13:31:08,913 - INFO - Workflow completed: 62d92a17f71559c7 (0.00s)
+2025-12-20 13:31:08,918 - INFO - WorkflowEngine initialized
+2025-12-20 13:31:08,919 - INFO - Registered workflow: missing_param (v1.0)
+2025-12-20 13:31:08,921 - INFO - Starting workflow execution: 3392f4e8d1c39365
+2025-12-20 13:31:08,922 - INFO - Executing task: t1
+2025-12-20 13:31:08,925 - WARNING - Failed to read cache for t1: Cannot open console output buffer for reading
+2025-12-20 13:31:08,925 - WARNING - Task t1 failed (attempt 1/1): TestWorkflowEngine.test_execute_edge_missing_params.<locals>.task_need_param() missing 1 required positional argument: 'val'
+2025-12-20 13:31:08,926 - ERROR - Task t1 failed: TestWorkflowEngine.test_execute_edge_missing_params.<locals>.task_need_param() missing 1 required positional argument: 'val'
+2025-12-20 13:31:08,929 - INFO - Workflow completed: 3392f4e8d1c39365 (0.01s)
+2025-12-20 13:31:08,934 - INFO - WorkflowEngine initialized
+2025-12-20 13:31:08,936 - INFO - Registered workflow: retry_flow (v1.0)
+2025-12-20 13:31:08,939 - INFO - Starting workflow execution: 76d5974017ed836d
+2025-12-20 13:31:08,940 - INFO - Executing task: fail_task
+2025-12-20 13:31:08,943 - WARNING - Failed to read cache for fail_task: Cannot open console output buffer for reading
+2025-12-20 13:31:08,943 - WARNING - Task fail_task failed (attempt 1/2): Boom
+2025-12-20 13:31:08,979 - WARNING - Task fail_task failed (attempt 2/2): Boom
+2025-12-20 13:31:08,989 - ERROR - Task fail_task failed: Boom
+2025-12-20 13:31:09,299 - INFO - Workflow completed: 76d5974017ed836d (0.36s)
+2025-12-20 13:31:09,385 - INFO - WorkflowEngine initialized
+2025-12-20 13:31:09,526 - INFO - Registered workflow: timeout_flow (v1.0)
+2025-12-20 13:31:09,578 - INFO - Starting workflow execution: 14b905ea165d6a94
+2025-12-20 13:31:09,673 - INFO - Executing task: slow_task
+2025-12-20 13:31:09,861 - WARNING - Failed to read cache for slow_task: Cannot open console output buffer for reading
+2025-12-20 13:31:09,981 - WARNING - Task slow_task timed out (attempt 1/1)
+2025-12-20 13:31:10,009 - ERROR - Task slow_task failed: 
+2025-12-20 13:31:10,698 - INFO - Workflow completed: 14b905ea165d6a94 (1.12s)
+2025-12-20 13:31:10,832 - INFO - WorkflowEngine initialized
+2025-12-20 13:31:10,870 - INFO - Registered workflow: parallel_flow (v1.0)
+2025-12-20 13:31:10,909 - INFO - Starting workflow execution: 30cd9a8cc4f64f64
+2025-12-20 13:31:10,953 - INFO - Executing task: p1
+2025-12-20 13:31:11,186 - WARNING - Failed to read cache for p1: Cannot open console output buffer for reading
+2025-12-20 13:31:11,231 - INFO - Executing task: p2
+2025-12-20 13:31:11,339 - WARNING - Failed to read cache for p2: Cannot open console output buffer for reading
+2025-12-20 13:31:11,560 - INFO - Task p1 completed (0.38s)
+2025-12-20 13:31:11,740 - INFO - Task p2 completed (0.39s)
+2025-12-20 13:31:11,763 - INFO - Workflow completed: 30cd9a8cc4f64f64 (0.86s)
+2025-12-20 13:31:11,855 - INFO - WorkflowEngine initialized
+2025-12-20 13:31:11,886 - INFO - Registered workflow: simple_dag (v1.0)
+2025-12-20 13:31:11,906 - INFO - Starting workflow execution: 705542f353a55211
+2025-12-20 13:31:11,951 - INFO - Executing task: t1
+2025-12-20 13:31:12,283 - WARNING - Failed to read cache for t1: Cannot open console output buffer for reading
+2025-12-20 13:31:12,726 - INFO - Task t1 completed (0.35s)
+2025-12-20 13:31:12,794 - INFO - Executing task: t2
+2025-12-20 13:31:13,132 - WARNING - Failed to read cache for t2: Cannot open console output buffer for reading
+2025-12-20 13:31:13,362 - INFO - Task t2 completed (0.31s)
+2025-12-20 13:31:13,401 - INFO - Workflow completed: 705542f353a55211 (1.49s)
+2025-12-20 13:32:43,700 - INFO - Delegating data_collector task...
+2025-12-20 13:32:43,701 - INFO - Fetching Live OHLCV from Binance (limit=60)...
+2025-12-20 13:32:43,701 - ERROR - Failed to build agent dataset: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-12-20 13:32:43,710 - INFO - Delegating analyst_risk task...
+2025-12-20 13:32:43,715 - INFO - Delegating analyst_sentiment task...
+2025-12-20 13:32:43,716 - INFO - Delegating analyst_sentiment task...
+2025-12-20 13:32:43,721 - INFO - Delegating analyst_technical task...
+2025-12-20 13:32:43,726 - INFO - Delegating decision_maker task...
+2025-12-20 13:32:43,726 - INFO - Initiating Adversarial Debate Swarm...
+2025-12-20 13:32:43,727 - INFO - Decision stored in EpisodicMemory: mem_123
+2025-12-20 13:32:43,730 - INFO - Delegating synthesizer task...
+2025-12-20 13:32:43,735 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 1
+2025-12-20 13:32:43,736 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 2
+2025-12-20 13:32:43,741 - INFO - Fetching HTTP: fail_src
+2025-12-20 13:32:51,760 - ERROR - HTTP failed via tenacity for fail_src: RetryError[<Future at 0x1454ec07610 state=finished raised Exception>]
+2025-12-20 13:32:51,761 - WARNING - Circuit Breaker: Recorded failure for fail_src. Count: 1
+2025-12-20 13:32:51,782 - INFO - Fetching HTTP: test_src
+2025-12-20 13:32:51,796 - WARNING - Circuit Breaker OPEN for broken_src. Skipping request.
+2025-12-20 13:32:51,798 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 1
+2025-12-20 13:32:51,799 - INFO - Circuit Breaker: Recovery timeout passed for test.com. Resetting.
+2025-12-20 13:32:51,800 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 1
+2025-12-20 13:32:51,802 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 2
+2025-12-20 13:32:51,802 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 3
+2025-12-20 13:32:51,803 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 4
+2025-12-20 13:32:51,803 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 5
+2025-12-20 13:32:51,809 - INFO - Fetching Browser: fail_browser
+2025-12-20 13:32:51,810 - ERROR - Browser failed for fail_browser: Browser Crash
+2025-12-20 13:32:51,814 - INFO - Fetching HTTP: test_http
+2025-12-20 13:32:52,115 - INFO - Fetching Browser: test_adapter
+2025-12-20 13:32:57,316 - INFO - Registered 6 research workflows
+2025-12-20 13:32:57,320 - INFO - Registered 6 research workflows
+2025-12-20 13:32:57,322 - INFO - Registered 6 research workflows
+2025-12-20 13:32:57,324 - INFO - Registered 6 research workflows
+2025-12-20 13:32:57,329 - INFO - WorkflowEngine initialized
+2025-12-20 13:32:57,330 - INFO - Registered workflow: empty (v1.0)
+2025-12-20 13:32:57,337 - INFO - Starting workflow execution: e901486275ef0d77
+2025-12-20 13:32:57,339 - INFO - Workflow completed: e901486275ef0d77 (0.00s)
+2025-12-20 13:32:57,344 - INFO - WorkflowEngine initialized
+2025-12-20 13:32:57,346 - INFO - Registered workflow: missing_param (v1.0)
+2025-12-20 13:32:57,347 - INFO - Starting workflow execution: ab4a54ca2afc8ad4
+2025-12-20 13:32:57,348 - INFO - Executing task: t1
+2025-12-20 13:32:57,359 - WARNING - Failed to read cache for t1: Cannot open console output buffer for reading
+2025-12-20 13:32:57,359 - WARNING - Task t1 failed (attempt 1/1): TestWorkflowEngine.test_execute_edge_missing_params.<locals>.task_need_param() missing 1 required positional argument: 'val'
+2025-12-20 13:32:57,359 - ERROR - Task t1 failed: TestWorkflowEngine.test_execute_edge_missing_params.<locals>.task_need_param() missing 1 required positional argument: 'val'
+2025-12-20 13:32:57,363 - INFO - Workflow completed: ab4a54ca2afc8ad4 (0.02s)
+2025-12-20 13:32:57,382 - INFO - WorkflowEngine initialized
+2025-12-20 13:32:57,384 - INFO - Registered workflow: retry_flow (v1.0)
+2025-12-20 13:32:57,385 - INFO - Starting workflow execution: 46357cac95af34f7
+2025-12-20 13:32:57,386 - INFO - Executing task: fail_task
+2025-12-20 13:32:57,388 - WARNING - Failed to read cache for fail_task: Cannot open console output buffer for reading
+2025-12-20 13:32:57,389 - WARNING - Task fail_task failed (attempt 1/2): Boom
+2025-12-20 13:32:57,414 - WARNING - Task fail_task failed (attempt 2/2): Boom
+2025-12-20 13:32:57,415 - ERROR - Task fail_task failed: Boom
+2025-12-20 13:32:57,419 - INFO - Workflow completed: 46357cac95af34f7 (0.03s)
+2025-12-20 13:32:57,426 - INFO - WorkflowEngine initialized
+2025-12-20 13:32:57,428 - INFO - Registered workflow: timeout_flow (v1.0)
+2025-12-20 13:32:57,430 - INFO - Starting workflow execution: 98c1c2a01a064412
+2025-12-20 13:32:57,431 - INFO - Executing task: slow_task
+2025-12-20 13:32:57,434 - WARNING - Failed to read cache for slow_task: Cannot open console output buffer for reading
+2025-12-20 13:32:57,495 - WARNING - Task slow_task timed out (attempt 1/1)
+2025-12-20 13:32:57,499 - ERROR - Task slow_task failed: 
+2025-12-20 13:32:57,511 - INFO - Workflow completed: 98c1c2a01a064412 (0.08s)
+2025-12-20 13:32:57,520 - INFO - WorkflowEngine initialized
+2025-12-20 13:32:57,526 - INFO - Registered workflow: parallel_flow (v1.0)
+2025-12-20 13:32:57,533 - INFO - Starting workflow execution: 72ce4a7cc603a4ca
+2025-12-20 13:32:57,535 - INFO - Executing task: p1
+2025-12-20 13:32:57,544 - WARNING - Failed to read cache for p1: Cannot open console output buffer for reading
+2025-12-20 13:32:57,544 - INFO - Executing task: p2
+2025-12-20 13:32:57,545 - WARNING - Failed to read cache for p2: Cannot open console output buffer for reading
+2025-12-20 13:32:57,570 - INFO - Task p1 completed (0.03s)
+2025-12-20 13:32:57,570 - INFO - Task p2 completed (0.03s)
+2025-12-20 13:32:57,571 - INFO - Workflow completed: 72ce4a7cc603a4ca (0.04s)
+2025-12-20 13:32:57,573 - INFO - WorkflowEngine initialized
+2025-12-20 13:32:57,574 - INFO - Registered workflow: simple_dag (v1.0)
+2025-12-20 13:32:57,574 - INFO - Starting workflow execution: 5dc5c82a02636fd2
+2025-12-20 13:32:57,575 - INFO - Executing task: t1
+2025-12-20 13:32:57,576 - WARNING - Failed to read cache for t1: Cannot open console output buffer for reading
+2025-12-20 13:32:57,577 - INFO - Task t1 completed (0.00s)
+2025-12-20 13:32:57,577 - INFO - Executing task: t2
+2025-12-20 13:32:57,577 - WARNING - Failed to read cache for t2: Cannot open console output buffer for reading
+2025-12-20 13:32:57,577 - INFO - Task t2 completed (0.00s)
+2025-12-20 13:32:57,578 - INFO - Workflow completed: 5dc5c82a02636fd2 (0.00s)
+2025-12-20 13:33:46,963 - INFO - Delegating data_collector task...
+2025-12-20 13:33:46,965 - INFO - Fetching Live OHLCV from Binance (limit=60)...
+2025-12-20 13:33:46,966 - ERROR - Failed to build agent dataset: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-12-20 13:33:46,973 - INFO - Delegating analyst_risk task...
+2025-12-20 13:33:46,991 - INFO - Delegating analyst_sentiment task...
+2025-12-20 13:33:46,992 - INFO - Delegating analyst_sentiment task...
+2025-12-20 13:33:46,997 - INFO - Delegating analyst_technical task...
+2025-12-20 13:33:47,002 - INFO - Delegating decision_maker task...
+2025-12-20 13:33:47,003 - INFO - Initiating Adversarial Debate Swarm...
+2025-12-20 13:33:47,003 - INFO - Decision stored in EpisodicMemory: mem_123
+2025-12-20 13:33:47,007 - INFO - Delegating synthesizer task...
+2025-12-20 13:33:47,022 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 1
+2025-12-20 13:33:47,023 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 2
+2025-12-20 13:33:47,027 - INFO - Fetching HTTP: fail_src
+2025-12-20 13:33:55,045 - ERROR - HTTP failed via tenacity for fail_src: RetryError[<Future at 0x1b5341b6990 state=finished raised Exception>]
+2025-12-20 13:33:55,047 - WARNING - Circuit Breaker: Recorded failure for fail_src. Count: 1
+2025-12-20 13:33:55,055 - INFO - Fetching HTTP: test_src
+2025-12-20 13:33:55,062 - WARNING - Circuit Breaker OPEN for broken_src. Skipping request.
+2025-12-20 13:33:55,065 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 1
+2025-12-20 13:33:55,066 - INFO - Circuit Breaker: Recovery timeout passed for test.com. Resetting.
+2025-12-20 13:33:55,068 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 1
+2025-12-20 13:33:55,068 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 2
+2025-12-20 13:33:55,068 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 3
+2025-12-20 13:33:55,068 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 4
+2025-12-20 13:33:55,069 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 5
+2025-12-20 13:33:55,072 - INFO - Fetching Browser: fail_browser
+2025-12-20 13:33:55,072 - ERROR - Browser failed for fail_browser: Browser Crash
+2025-12-20 13:33:55,076 - INFO - Fetching HTTP: test_http
+2025-12-20 13:33:55,137 - INFO - Fetching Browser: test_adapter
+2025-12-20 13:34:00,389 - INFO - Registered 6 research workflows
+2025-12-20 13:34:00,391 - INFO - Registered 6 research workflows
+2025-12-20 13:34:00,399 - INFO - Registered 6 research workflows
+2025-12-20 13:34:00,400 - INFO - Registered 6 research workflows
+2025-12-20 13:34:00,402 - INFO - WorkflowEngine initialized
+2025-12-20 13:34:00,402 - INFO - Registered workflow: empty (v1.0)
+2025-12-20 13:34:00,407 - INFO - Starting workflow execution: 575d21c00e9fa134
+2025-12-20 13:34:00,407 - INFO - Workflow completed: 575d21c00e9fa134 (0.00s)
+2025-12-20 13:34:00,413 - INFO - WorkflowEngine initialized
+2025-12-20 13:34:00,414 - INFO - Registered workflow: missing_param (v1.0)
+2025-12-20 13:34:00,415 - INFO - Starting workflow execution: 5e12dfd00d837294
+2025-12-20 13:34:00,416 - INFO - Executing task: t1
+2025-12-20 13:34:00,418 - WARNING - Failed to read cache for t1: Cannot open console output buffer for reading
+2025-12-20 13:34:00,418 - WARNING - Task t1 failed (attempt 1/1): TestWorkflowEngine.test_execute_edge_missing_params.<locals>.task_need_param() missing 1 required positional argument: 'val'
+2025-12-20 13:34:00,419 - ERROR - Task t1 failed: TestWorkflowEngine.test_execute_edge_missing_params.<locals>.task_need_param() missing 1 required positional argument: 'val'
+2025-12-20 13:34:00,421 - INFO - Workflow completed: 5e12dfd00d837294 (0.01s)
+2025-12-20 13:34:00,424 - INFO - WorkflowEngine initialized
+2025-12-20 13:34:00,425 - INFO - Registered workflow: retry_flow (v1.0)
+2025-12-20 13:34:00,426 - INFO - Starting workflow execution: 9e736609e2b962b8
+2025-12-20 13:34:00,426 - INFO - Executing task: fail_task
+2025-12-20 13:34:00,428 - WARNING - Failed to read cache for fail_task: Cannot open console output buffer for reading
+2025-12-20 13:34:00,428 - WARNING - Task fail_task failed (attempt 1/2): Boom
+2025-12-20 13:34:00,452 - WARNING - Task fail_task failed (attempt 2/2): Boom
+2025-12-20 13:34:00,453 - ERROR - Task fail_task failed: Boom
+2025-12-20 13:34:00,455 - INFO - Workflow completed: 9e736609e2b962b8 (0.03s)
+2025-12-20 13:34:00,458 - INFO - WorkflowEngine initialized
+2025-12-20 13:34:00,459 - INFO - Registered workflow: timeout_flow (v1.0)
+2025-12-20 13:34:00,460 - INFO - Starting workflow execution: a5dfcc14e2f00229
+2025-12-20 13:34:00,460 - INFO - Executing task: slow_task
+2025-12-20 13:34:00,463 - WARNING - Failed to read cache for slow_task: Cannot open console output buffer for reading
+2025-12-20 13:34:00,520 - WARNING - Task slow_task timed out (attempt 1/1)
+2025-12-20 13:34:00,521 - ERROR - Task slow_task failed: 
+2025-12-20 13:34:00,522 - INFO - Workflow completed: a5dfcc14e2f00229 (0.06s)
+2025-12-20 13:34:00,532 - INFO - WorkflowEngine initialized
+2025-12-20 13:34:00,533 - INFO - Registered workflow: parallel_flow (v1.0)
+2025-12-20 13:34:00,535 - INFO - Starting workflow execution: 46641fdbb790382e
+2025-12-20 13:34:00,535 - INFO - Executing task: p1
+2025-12-20 13:34:00,537 - WARNING - Failed to read cache for p1: Cannot open console output buffer for reading
+2025-12-20 13:34:00,537 - INFO - Executing task: p2
+2025-12-20 13:34:00,538 - WARNING - Failed to read cache for p2: Cannot open console output buffer for reading
+2025-12-20 13:34:00,563 - INFO - Task p1 completed (0.03s)
+2025-12-20 13:34:00,564 - INFO - Task p2 completed (0.03s)
+2025-12-20 13:34:00,565 - INFO - Workflow completed: 46641fdbb790382e (0.03s)
+2025-12-20 13:34:00,568 - INFO - WorkflowEngine initialized
+2025-12-20 13:34:00,569 - INFO - Registered workflow: simple_dag (v1.0)
+2025-12-20 13:34:00,570 - INFO - Starting workflow execution: c7812330a93997c9
+2025-12-20 13:34:00,571 - INFO - Executing task: t1
+2025-12-20 13:34:00,573 - WARNING - Failed to read cache for t1: Cannot open console output buffer for reading
+2025-12-20 13:34:00,574 - INFO - Task t1 completed (0.00s)
+2025-12-20 13:34:00,575 - INFO - Executing task: t2
+2025-12-20 13:34:00,575 - WARNING - Failed to read cache for t2: Cannot open console output buffer for reading
+2025-12-20 13:34:00,576 - INFO - Task t2 completed (0.00s)
+2025-12-20 13:34:00,576 - INFO - Workflow completed: c7812330a93997c9 (0.01s)
+2025-12-20 13:42:39,607 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-20 13:42:39,608 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 1
+2025-12-20 13:42:39,608 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 2
+2025-12-20 13:42:39,648 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-20 13:42:39,650 - INFO - Fetching HTTP: fail_src
+2025-12-20 13:42:47,656 - ERROR - HTTP failed via tenacity for fail_src: RetryError[<Future at 0x262025c3b10 state=finished raised Exception>]
+2025-12-20 13:42:47,657 - WARNING - Circuit Breaker: Recorded failure for fail_src. Count: 1
+2025-12-20 13:42:47,659 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-20 13:42:47,685 - INFO - Fetching HTTP: test_src
+2025-12-20 13:42:47,689 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-20 13:42:47,691 - WARNING - Circuit Breaker OPEN for broken_src. Skipping request.
+2025-12-20 13:42:47,693 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-20 13:42:47,694 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 1
+2025-12-20 13:42:47,694 - INFO - Circuit Breaker: Recovery timeout passed for test.com. Resetting.
+2025-12-20 13:42:47,696 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-20 13:42:47,696 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 1
+2025-12-20 13:42:47,696 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 2
+2025-12-20 13:42:47,696 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 3
+2025-12-20 13:42:47,697 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 4
+2025-12-20 13:42:47,697 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 5
+2025-12-20 13:42:47,698 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-20 13:42:47,700 - INFO - Fetching Browser: fail_browser
+2025-12-20 13:42:47,700 - ERROR - Browser failed for fail_browser: Browser Crash
+2025-12-20 13:42:47,702 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-20 13:42:47,703 - INFO - Fetching HTTP: test_http
+2025-12-20 13:42:47,728 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-20 13:42:47,740 - INFO - Fetching Browser: test_adapter
+2025-12-20 13:42:52,827 - INFO - Registered 6 research workflows
+2025-12-20 13:42:52,829 - INFO - Registered 6 research workflows
+2025-12-20 13:42:52,830 - INFO - Registered 6 research workflows
+2025-12-20 13:42:52,832 - INFO - Registered 6 research workflows
+2025-12-20 13:42:52,833 - INFO - WorkflowEngine initialized
+2025-12-20 13:42:52,835 - INFO - Registered workflow: empty (v1.0)
+2025-12-20 13:42:52,837 - INFO - Starting workflow execution: dadfb9b5b7095d42
+2025-12-20 13:42:52,838 - INFO - Workflow completed: dadfb9b5b7095d42 (0.00s)
+2025-12-20 13:42:52,842 - INFO - WorkflowEngine initialized
+2025-12-20 13:42:52,843 - INFO - Registered workflow: missing_param (v1.0)
+2025-12-20 13:42:52,844 - INFO - Starting workflow execution: cac7c6b08313b85e
+2025-12-20 13:42:52,845 - INFO - Executing task: t1
+2025-12-20 13:42:52,847 - WARNING - Failed to read cache for t1: Cannot open console output buffer for reading
+2025-12-20 13:42:52,847 - WARNING - Task t1 failed (attempt 1/1): TestWorkflowEngine.test_execute_edge_missing_params.<locals>.task_need_param() missing 1 required positional argument: 'val'
+2025-12-20 13:42:52,847 - ERROR - Task t1 failed: TestWorkflowEngine.test_execute_edge_missing_params.<locals>.task_need_param() missing 1 required positional argument: 'val'
+2025-12-20 13:42:52,850 - INFO - Workflow completed: cac7c6b08313b85e (0.01s)
+2025-12-20 13:42:52,854 - INFO - WorkflowEngine initialized
+2025-12-20 13:42:52,855 - INFO - Registered workflow: retry_flow (v1.0)
+2025-12-20 13:42:52,857 - INFO - Starting workflow execution: dfccef1dcf5aca82
+2025-12-20 13:42:52,858 - INFO - Executing task: fail_task
+2025-12-20 13:42:52,860 - WARNING - Failed to read cache for fail_task: Cannot open console output buffer for reading
+2025-12-20 13:42:52,861 - WARNING - Task fail_task failed (attempt 1/2): Boom
+2025-12-20 13:42:52,876 - WARNING - Task fail_task failed (attempt 2/2): Boom
+2025-12-20 13:42:52,877 - ERROR - Task fail_task failed: Boom
+2025-12-20 13:42:52,878 - INFO - Workflow completed: dfccef1dcf5aca82 (0.02s)
+2025-12-20 13:42:52,883 - INFO - WorkflowEngine initialized
+2025-12-20 13:42:52,885 - INFO - Registered workflow: timeout_flow (v1.0)
+2025-12-20 13:42:52,886 - INFO - Starting workflow execution: 1b791e64cc227882
+2025-12-20 13:42:52,886 - INFO - Executing task: slow_task
+2025-12-20 13:42:52,888 - WARNING - Failed to read cache for slow_task: Cannot open console output buffer for reading
+2025-12-20 13:42:52,945 - WARNING - Task slow_task timed out (attempt 1/1)
+2025-12-20 13:42:52,945 - ERROR - Task slow_task failed: 
+2025-12-20 13:42:52,947 - INFO - Workflow completed: 1b791e64cc227882 (0.06s)
+2025-12-20 13:42:52,952 - INFO - WorkflowEngine initialized
+2025-12-20 13:42:52,953 - INFO - Registered workflow: parallel_flow (v1.0)
+2025-12-20 13:42:52,954 - INFO - Starting workflow execution: 9fbc3b5488fef8c7
+2025-12-20 13:42:52,954 - INFO - Executing task: p1
+2025-12-20 13:42:52,955 - WARNING - Failed to read cache for p1: Cannot open console output buffer for reading
+2025-12-20 13:42:52,955 - INFO - Executing task: p2
+2025-12-20 13:42:52,956 - WARNING - Failed to read cache for p2: Cannot open console output buffer for reading
+2025-12-20 13:42:52,970 - INFO - Task p1 completed (0.01s)
+2025-12-20 13:42:52,971 - INFO - Task p2 completed (0.01s)
+2025-12-20 13:42:52,971 - INFO - Workflow completed: 9fbc3b5488fef8c7 (0.02s)
+2025-12-20 13:42:52,974 - INFO - WorkflowEngine initialized
+2025-12-20 13:42:52,975 - INFO - Registered workflow: simple_dag (v1.0)
+2025-12-20 13:42:52,975 - INFO - Starting workflow execution: 551270504edd1228
+2025-12-20 13:42:52,976 - INFO - Executing task: t1
+2025-12-20 13:42:52,977 - WARNING - Failed to read cache for t1: Cannot open console output buffer for reading
+2025-12-20 13:42:52,978 - INFO - Task t1 completed (0.00s)
+2025-12-20 13:42:52,978 - INFO - Executing task: t2
+2025-12-20 13:42:52,978 - WARNING - Failed to read cache for t2: Cannot open console output buffer for reading
+2025-12-20 13:42:52,979 - INFO - Task t2 completed (0.00s)
+2025-12-20 13:42:52,979 - INFO - Workflow completed: 551270504edd1228 (0.00s)
+2025-12-20 13:43:38,441 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-20 13:43:38,442 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 1
+2025-12-20 13:43:38,442 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 2
+2025-12-20 13:43:38,448 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-20 13:43:38,451 - INFO - Fetching HTTP: fail_src
+2025-12-20 13:43:46,482 - ERROR - HTTP failed via tenacity for fail_src: RetryError[<Future at 0x15f66fbf9d0 state=finished raised Exception>]
+2025-12-20 13:43:46,483 - WARNING - Circuit Breaker: Recorded failure for fail_src. Count: 1
+2025-12-20 13:43:46,486 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-20 13:43:46,499 - INFO - Fetching HTTP: test_src
+2025-12-20 13:43:46,502 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-20 13:43:46,514 - WARNING - Circuit Breaker OPEN for broken_src. Skipping request.
+2025-12-20 13:43:46,517 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-20 13:43:46,517 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 1
+2025-12-20 13:43:46,518 - INFO - Circuit Breaker: Recovery timeout passed for test.com. Resetting.
+2025-12-20 13:43:46,519 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-20 13:43:46,519 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 1
+2025-12-20 13:43:46,520 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 2
+2025-12-20 13:43:46,520 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 3
+2025-12-20 13:43:46,520 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 4
+2025-12-20 13:43:46,520 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 5
+2025-12-20 13:43:46,522 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-20 13:43:46,524 - INFO - Fetching Browser: fail_browser
+2025-12-20 13:43:46,524 - ERROR - Browser failed for fail_browser: Browser Crash
+2025-12-20 13:43:46,527 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-20 13:43:46,528 - INFO - Fetching HTTP: test_http
+2025-12-20 13:43:46,544 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-20 13:43:46,547 - INFO - Fetching Browser: test_adapter
+2025-12-20 13:43:51,627 - INFO - Registered 6 research workflows
+2025-12-20 13:43:51,629 - INFO - Registered 6 research workflows
+2025-12-20 13:43:51,630 - INFO - Registered 6 research workflows
+2025-12-20 13:43:51,632 - INFO - Registered 6 research workflows
+2025-12-20 13:43:51,633 - INFO - WorkflowEngine initialized
+2025-12-20 13:43:51,634 - INFO - Registered workflow: empty (v1.0)
+2025-12-20 13:43:51,636 - INFO - Starting workflow execution: dd00feb1321afc54
+2025-12-20 13:43:51,636 - INFO - Workflow completed: dd00feb1321afc54 (0.00s)
+2025-12-20 13:43:51,639 - INFO - WorkflowEngine initialized
+2025-12-20 13:43:51,639 - INFO - Registered workflow: missing_param (v1.0)
+2025-12-20 13:43:51,640 - INFO - Starting workflow execution: 6e3cdb2e88cd0791
+2025-12-20 13:43:51,641 - INFO - Executing task: t1
+2025-12-20 13:43:51,642 - WARNING - Failed to read cache for t1: Cannot open console output buffer for reading
+2025-12-20 13:43:51,642 - WARNING - Task t1 failed (attempt 1/1): TestWorkflowEngine.test_execute_edge_missing_params.<locals>.task_need_param() missing 1 required positional argument: 'val'
+2025-12-20 13:43:51,642 - ERROR - Task t1 failed: TestWorkflowEngine.test_execute_edge_missing_params.<locals>.task_need_param() missing 1 required positional argument: 'val'
+2025-12-20 13:43:51,643 - INFO - Workflow completed: 6e3cdb2e88cd0791 (0.00s)
+2025-12-20 13:43:51,647 - INFO - WorkflowEngine initialized
+2025-12-20 13:43:51,647 - INFO - Registered workflow: retry_flow (v1.0)
+2025-12-20 13:43:51,648 - INFO - Starting workflow execution: 3973a8a1343d5fd3
+2025-12-20 13:43:51,648 - INFO - Executing task: fail_task
+2025-12-20 13:43:51,650 - WARNING - Failed to read cache for fail_task: Cannot open console output buffer for reading
+2025-12-20 13:43:51,651 - WARNING - Task fail_task failed (attempt 1/2): Boom
+2025-12-20 13:43:51,663 - WARNING - Task fail_task failed (attempt 2/2): Boom
+2025-12-20 13:43:51,663 - ERROR - Task fail_task failed: Boom
+2025-12-20 13:43:51,665 - INFO - Workflow completed: 3973a8a1343d5fd3 (0.02s)
+2025-12-20 13:43:51,669 - INFO - WorkflowEngine initialized
+2025-12-20 13:43:51,669 - INFO - Registered workflow: timeout_flow (v1.0)
+2025-12-20 13:43:51,670 - INFO - Starting workflow execution: 1d94ce70c30e968a
+2025-12-20 13:43:51,670 - INFO - Executing task: slow_task
+2025-12-20 13:43:51,672 - WARNING - Failed to read cache for slow_task: Cannot open console output buffer for reading
+2025-12-20 13:43:51,727 - WARNING - Task slow_task timed out (attempt 1/1)
+2025-12-20 13:43:51,728 - ERROR - Task slow_task failed: 
+2025-12-20 13:43:51,730 - INFO - Workflow completed: 1d94ce70c30e968a (0.06s)
+2025-12-20 13:43:51,734 - INFO - WorkflowEngine initialized
+2025-12-20 13:43:51,735 - INFO - Registered workflow: parallel_flow (v1.0)
+2025-12-20 13:43:51,736 - INFO - Starting workflow execution: f6006393fb7f2294
+2025-12-20 13:43:51,737 - INFO - Executing task: p1
+2025-12-20 13:43:51,738 - WARNING - Failed to read cache for p1: Cannot open console output buffer for reading
+2025-12-20 13:43:51,738 - INFO - Executing task: p2
+2025-12-20 13:43:51,739 - WARNING - Failed to read cache for p2: Cannot open console output buffer for reading
+2025-12-20 13:43:51,763 - INFO - Task p1 completed (0.02s)
+2025-12-20 13:43:51,764 - INFO - Task p2 completed (0.02s)
+2025-12-20 13:43:51,764 - INFO - Workflow completed: f6006393fb7f2294 (0.03s)
+2025-12-20 13:43:51,767 - INFO - WorkflowEngine initialized
+2025-12-20 13:43:51,768 - INFO - Registered workflow: simple_dag (v1.0)
+2025-12-20 13:43:51,769 - INFO - Starting workflow execution: 8816c2a8462a8042
+2025-12-20 13:43:51,769 - INFO - Executing task: t1
+2025-12-20 13:43:51,771 - WARNING - Failed to read cache for t1: Cannot open console output buffer for reading
+2025-12-20 13:43:51,772 - INFO - Task t1 completed (0.00s)
+2025-12-20 13:43:51,772 - INFO - Executing task: t2
+2025-12-20 13:43:51,773 - WARNING - Failed to read cache for t2: Cannot open console output buffer for reading
+2025-12-20 13:43:51,774 - INFO - Task t2 completed (0.00s)
+2025-12-20 13:43:51,774 - INFO - Workflow completed: 8816c2a8462a8042 (0.01s)
+2025-12-20 13:44:09,854 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-20 13:44:09,855 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 1
+2025-12-20 13:44:09,855 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 2
+2025-12-20 13:44:09,860 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-20 13:44:09,866 - INFO - Fetching HTTP: fail_src
+2025-12-20 13:44:17,884 - ERROR - HTTP failed via tenacity for fail_src: RetryError[<Future at 0x17cf78bf9d0 state=finished raised Exception>]
+2025-12-20 13:44:17,885 - WARNING - Circuit Breaker: Recorded failure for fail_src. Count: 1
+2025-12-20 13:44:17,889 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-20 13:44:17,902 - INFO - Fetching HTTP: test_src
+2025-12-20 13:44:17,907 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-20 13:44:17,908 - WARNING - Circuit Breaker OPEN for broken_src. Skipping request.
+2025-12-20 13:44:17,910 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-20 13:44:17,911 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 1
+2025-12-20 13:44:17,911 - INFO - Circuit Breaker: Recovery timeout passed for test.com. Resetting.
+2025-12-20 13:44:17,913 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-20 13:44:17,913 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 1
+2025-12-20 13:44:17,913 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 2
+2025-12-20 13:44:17,913 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 3
+2025-12-20 13:44:17,914 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 4
+2025-12-20 13:44:17,914 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 5
+2025-12-20 13:44:17,915 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-20 13:44:17,917 - INFO - Fetching Browser: fail_browser
+2025-12-20 13:44:17,917 - ERROR - Browser failed for fail_browser: Browser Crash
+2025-12-20 13:44:17,919 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-20 13:44:17,920 - INFO - Fetching HTTP: test_http
+2025-12-20 13:44:17,933 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-20 13:44:17,935 - INFO - Fetching Browser: test_adapter
+2025-12-20 13:44:23,024 - INFO - Registered 6 research workflows
+2025-12-20 13:44:23,025 - INFO - Registered 6 research workflows
+2025-12-20 13:44:23,027 - INFO - Registered 6 research workflows
+2025-12-20 13:44:23,028 - INFO - Registered 6 research workflows
+2025-12-20 13:44:23,029 - INFO - WorkflowEngine initialized
+2025-12-20 13:44:23,030 - INFO - Registered workflow: empty (v1.0)
+2025-12-20 13:44:23,031 - INFO - Starting workflow execution: f6a9f7491c21a903
+2025-12-20 13:44:23,031 - INFO - Workflow completed: f6a9f7491c21a903 (0.00s)
+2025-12-20 13:44:23,035 - INFO - WorkflowEngine initialized
+2025-12-20 13:44:23,036 - INFO - Registered workflow: missing_param (v1.0)
+2025-12-20 13:44:23,037 - INFO - Starting workflow execution: 6875b22b7340fa77
+2025-12-20 13:44:23,037 - INFO - Executing task: t1
+2025-12-20 13:44:23,039 - WARNING - Failed to read cache for t1: Cannot open console output buffer for reading
+2025-12-20 13:44:23,039 - WARNING - Task t1 failed (attempt 1/1): TestWorkflowEngine.test_execute_edge_missing_params.<locals>.task_need_param() missing 1 required positional argument: 'val'
+2025-12-20 13:44:23,039 - ERROR - Task t1 failed: TestWorkflowEngine.test_execute_edge_missing_params.<locals>.task_need_param() missing 1 required positional argument: 'val'
+2025-12-20 13:44:23,041 - INFO - Workflow completed: 6875b22b7340fa77 (0.00s)
+2025-12-20 13:44:23,044 - INFO - WorkflowEngine initialized
+2025-12-20 13:44:23,045 - INFO - Registered workflow: retry_flow (v1.0)
+2025-12-20 13:44:23,046 - INFO - Starting workflow execution: 8e25fda99473e1f9
+2025-12-20 13:44:23,046 - INFO - Executing task: fail_task
+2025-12-20 13:44:23,047 - WARNING - Failed to read cache for fail_task: Cannot open console output buffer for reading
+2025-12-20 13:44:23,048 - WARNING - Task fail_task failed (attempt 1/2): Boom
+2025-12-20 13:44:23,064 - WARNING - Task fail_task failed (attempt 2/2): Boom
+2025-12-20 13:44:23,064 - ERROR - Task fail_task failed: Boom
+2025-12-20 13:44:23,066 - INFO - Workflow completed: 8e25fda99473e1f9 (0.02s)
+2025-12-20 13:44:23,069 - INFO - WorkflowEngine initialized
+2025-12-20 13:44:23,070 - INFO - Registered workflow: timeout_flow (v1.0)
+2025-12-20 13:44:23,071 - INFO - Starting workflow execution: 1173ebc0ae371772
+2025-12-20 13:44:23,072 - INFO - Executing task: slow_task
+2025-12-20 13:44:23,073 - WARNING - Failed to read cache for slow_task: Cannot open console output buffer for reading
+2025-12-20 13:44:23,138 - WARNING - Task slow_task timed out (attempt 1/1)
+2025-12-20 13:44:23,139 - ERROR - Task slow_task failed: 
+2025-12-20 13:44:23,141 - INFO - Workflow completed: 1173ebc0ae371772 (0.07s)
+2025-12-20 13:44:23,143 - INFO - WorkflowEngine initialized
+2025-12-20 13:44:23,144 - INFO - Registered workflow: parallel_flow (v1.0)
+2025-12-20 13:44:23,145 - INFO - Starting workflow execution: 6644f4e0dfc3905d
+2025-12-20 13:44:23,145 - INFO - Executing task: p1
+2025-12-20 13:44:23,147 - WARNING - Failed to read cache for p1: Cannot open console output buffer for reading
+2025-12-20 13:44:23,147 - INFO - Executing task: p2
+2025-12-20 13:44:23,148 - WARNING - Failed to read cache for p2: Cannot open console output buffer for reading
+2025-12-20 13:44:23,165 - INFO - Task p1 completed (0.02s)
+2025-12-20 13:44:23,166 - INFO - Task p2 completed (0.02s)
+2025-12-20 13:44:23,167 - INFO - Workflow completed: 6644f4e0dfc3905d (0.02s)
+2025-12-20 13:44:23,170 - INFO - WorkflowEngine initialized
+2025-12-20 13:44:23,170 - INFO - Registered workflow: simple_dag (v1.0)
+2025-12-20 13:44:23,171 - INFO - Starting workflow execution: 1fe315571004b4ef
+2025-12-20 13:44:23,172 - INFO - Executing task: t1
+2025-12-20 13:44:23,174 - WARNING - Failed to read cache for t1: Cannot open console output buffer for reading
+2025-12-20 13:44:23,175 - INFO - Task t1 completed (0.00s)
+2025-12-20 13:44:23,176 - INFO - Executing task: t2
+2025-12-20 13:44:23,176 - WARNING - Failed to read cache for t2: Cannot open console output buffer for reading
+2025-12-20 13:44:23,177 - INFO - Task t2 completed (0.00s)
+2025-12-20 13:44:23,177 - INFO - Workflow completed: 1fe315571004b4ef (0.01s)
+2025-12-20 13:59:58,872 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-20 13:59:58,873 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 1
+2025-12-20 13:59:58,873 - WARNING - Circuit Breaker: Recorded failure for src1. Count: 2
+2025-12-20 13:59:58,878 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-20 13:59:58,910 - INFO - Fetching HTTP: fail_src
+2025-12-20 14:00:06,930 - ERROR - HTTP failed via tenacity for fail_src: RetryError[<Future at 0x2038509a5d0 state=finished raised Exception>]
+2025-12-20 14:00:06,930 - WARNING - Circuit Breaker: Recorded failure for fail_src. Count: 1
+2025-12-20 14:00:06,933 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-20 14:00:06,935 - INFO - Fetching HTTP: test_src
+2025-12-20 14:00:06,939 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-20 14:00:06,940 - WARNING - Circuit Breaker OPEN for broken_src. Skipping request.
+2025-12-20 14:00:06,942 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-20 14:00:06,942 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 1
+2025-12-20 14:00:06,943 - INFO - Circuit Breaker: Recovery timeout passed for test.com. Resetting.
+2025-12-20 14:00:06,944 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-20 14:00:06,944 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 1
+2025-12-20 14:00:06,945 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 2
+2025-12-20 14:00:06,945 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 3
+2025-12-20 14:00:06,945 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 4
+2025-12-20 14:00:06,945 - WARNING - Circuit Breaker: Recorded failure for test.com. Count: 5
+2025-12-20 14:00:06,946 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-20 14:00:06,948 - INFO - Fetching Browser: fail_browser
+2025-12-20 14:00:06,948 - ERROR - Browser failed for fail_browser: Browser Crash
+2025-12-20 14:00:06,950 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-20 14:00:06,951 - INFO - Fetching HTTP: test_http
+2025-12-20 14:00:06,979 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-20 14:00:06,982 - INFO - Fetching Browser: test_adapter
+2025-12-20 14:00:12,222 - INFO - Model trained successfully. RMSE: 0.066394
+2025-12-20 14:00:12,442 - INFO - Model trained successfully. RMSE: 0.060337
+2025-12-20 14:00:12,466 - INFO - Model saved to test_models\model_test_v1.joblib
+2025-12-20 14:00:12,516 - INFO - Model loaded from test_models\model_test_v1.joblib
+2025-12-20 14:00:12,651 - INFO - Model trained successfully. RMSE: 0.060859
+2025-12-20 14:00:12,670 - ERROR - Precondition failed: Insufficient price history for Oracle.
+2025-12-20 14:00:12,672 - INFO - Delegating prediction_oracle task...
+2025-12-20 14:00:12,704 - INFO - Evaluated 9 predictions. Accuracy: 100.00%, RMSE: 2.0276
+2025-12-20 14:00:12,727 - INFO - Evaluated 9 predictions. Accuracy: 100.00%, RMSE: 2.0276
+2025-12-20 14:00:12,728 - INFO - Registered 6 research workflows
+2025-12-20 14:00:12,729 - INFO - Registered 6 research workflows
+2025-12-20 14:00:12,731 - INFO - Registered 6 research workflows
+2025-12-20 14:00:12,732 - INFO - Registered 6 research workflows
+2025-12-20 14:00:12,734 - INFO - WorkflowEngine initialized
+2025-12-20 14:00:12,735 - INFO - Registered workflow: empty (v1.0)
+2025-12-20 14:00:12,740 - INFO - Starting workflow execution: 8762902d954da236
+2025-12-20 14:00:12,741 - INFO - Workflow completed: 8762902d954da236 (0.00s)
+2025-12-20 14:00:12,743 - INFO - WorkflowEngine initialized
+2025-12-20 14:00:12,744 - INFO - Registered workflow: missing_param (v1.0)
+2025-12-20 14:00:12,745 - INFO - Starting workflow execution: b6f1498b0cec2892
+2025-12-20 14:00:12,746 - INFO - Executing task: t1
+2025-12-20 14:00:12,748 - WARNING - Failed to read cache for t1: Cannot open console output buffer for reading
+2025-12-20 14:00:12,749 - WARNING - Task t1 failed (attempt 1/1): TestWorkflowEngine.test_execute_edge_missing_params.<locals>.task_need_param() missing 1 required positional argument: 'val'
+2025-12-20 14:00:12,749 - ERROR - Task t1 failed: TestWorkflowEngine.test_execute_edge_missing_params.<locals>.task_need_param() missing 1 required positional argument: 'val'
+2025-12-20 14:00:12,751 - INFO - Workflow completed: b6f1498b0cec2892 (0.01s)
+2025-12-20 14:00:12,754 - INFO - WorkflowEngine initialized
+2025-12-20 14:00:12,755 - INFO - Registered workflow: retry_flow (v1.0)
+2025-12-20 14:00:12,756 - INFO - Starting workflow execution: ceab71776fc48790
+2025-12-20 14:00:12,757 - INFO - Executing task: fail_task
+2025-12-20 14:00:12,758 - WARNING - Failed to read cache for fail_task: Cannot open console output buffer for reading
+2025-12-20 14:00:12,759 - WARNING - Task fail_task failed (attempt 1/2): Boom
+2025-12-20 14:00:12,774 - WARNING - Task fail_task failed (attempt 2/2): Boom
+2025-12-20 14:00:12,774 - ERROR - Task fail_task failed: Boom
+2025-12-20 14:00:12,776 - INFO - Workflow completed: ceab71776fc48790 (0.02s)
+2025-12-20 14:00:12,779 - INFO - WorkflowEngine initialized
+2025-12-20 14:00:12,781 - INFO - Registered workflow: timeout_flow (v1.0)
+2025-12-20 14:00:12,783 - INFO - Starting workflow execution: 7c36e9941fbb3dba
+2025-12-20 14:00:12,783 - INFO - Executing task: slow_task
+2025-12-20 14:00:12,785 - WARNING - Failed to read cache for slow_task: Cannot open console output buffer for reading
+2025-12-20 14:00:12,846 - WARNING - Task slow_task timed out (attempt 1/1)
+2025-12-20 14:00:12,848 - ERROR - Task slow_task failed: 
+2025-12-20 14:00:12,851 - INFO - Workflow completed: 7c36e9941fbb3dba (0.07s)
+2025-12-20 14:00:12,854 - INFO - WorkflowEngine initialized
+2025-12-20 14:00:12,854 - INFO - Registered workflow: parallel_flow (v1.0)
+2025-12-20 14:00:12,855 - INFO - Starting workflow execution: 6566c2f02fea3478
+2025-12-20 14:00:12,855 - INFO - Executing task: p1
+2025-12-20 14:00:12,856 - WARNING - Failed to read cache for p1: Cannot open console output buffer for reading
+2025-12-20 14:00:12,857 - INFO - Executing task: p2
+2025-12-20 14:00:12,857 - WARNING - Failed to read cache for p2: Cannot open console output buffer for reading
+2025-12-20 14:00:12,875 - INFO - Task p1 completed (0.02s)
+2025-12-20 14:00:12,876 - INFO - Task p2 completed (0.02s)
+2025-12-20 14:00:12,877 - INFO - Workflow completed: 6566c2f02fea3478 (0.02s)
+2025-12-20 14:00:12,882 - INFO - WorkflowEngine initialized
+2025-12-20 14:00:12,885 - INFO - Registered workflow: simple_dag (v1.0)
+2025-12-20 14:00:12,887 - INFO - Starting workflow execution: 5e4f14b5dfeacacb
+2025-12-20 14:00:12,887 - INFO - Executing task: t1
+2025-12-20 14:00:12,889 - WARNING - Failed to read cache for t1: Cannot open console output buffer for reading
+2025-12-20 14:00:12,891 - INFO - Task t1 completed (0.00s)
+2025-12-20 14:00:12,891 - INFO - Executing task: t2
+2025-12-20 14:00:12,891 - WARNING - Failed to read cache for t2: Cannot open console output buffer for reading
+2025-12-20 14:00:12,892 - INFO - Task t2 completed (0.00s)
+2025-12-20 14:00:12,893 - INFO - Workflow completed: 5e4f14b5dfeacacb (0.01s)

@@ -17,15 +17,7 @@ try:
 except ImportError:
     stealth_async = None
 
-# Configure Logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler("logs/async_retrieval.log"),
-        logging.StreamHandler()
-    ]
-)
+# Configure Logging in class __init__ instead of top level to ensure paths are resolved correctly
 logger = logging.getLogger(__name__)
 
 class CircuitBreaker:
@@ -69,11 +61,27 @@ class AsyncRetrievalEngine:
         self.data_dir = self.project_root / "data_exports"
         self.screenshot_dir = self.project_root / "screenshots"
         self.log_dir = self.project_root / "logs"
-        
         self._ensure_dirs()
+        self._setup_logging()
         self.config = self._load_config()
         self.semaphore = asyncio.Semaphore(5) # max concurrent adapters
         self.circuit_breaker = CircuitBreaker()
+
+    def _setup_logging(self):
+        """Configure logging with absolute paths."""
+        log_file = self.log_dir / "async_retrieval.log"
+        
+        # Avoid duplicate handlers if re-initialized
+        if not logger.handlers:
+            logging.basicConfig(
+                level=logging.INFO,
+                format='%(asctime)s - %(levelname)s - %(message)s',
+                handlers=[
+                    logging.FileHandler(log_file),
+                    logging.StreamHandler()
+                ]
+            )
+            logger.info(f"Logging initialized at {log_file}")
 
     def _ensure_dirs(self):
         for d in [self.data_dir, self.screenshot_dir, self.log_dir]:
@@ -169,12 +177,13 @@ class AsyncRetrievalEngine:
                 logger.info(f"Using browser proxy {proxy_url} for {adapter_id}")
                 context_args["proxy"] = {"server": proxy_url}
 
-            # Create context with proxy if available
-            context = await browser.new_context(**context_args)
-            
-            page = await context.new_page()
-
+            context = None
             try:
+                # Create context with proxy if available
+                context = await browser.new_context(**context_args)
+                
+                page = await context.new_page()
+
                 if stealth_async:
                     await stealth_async(page)
 
@@ -236,7 +245,8 @@ class AsyncRetrievalEngine:
                 return {"id": adapter_id, "status": "failure"}
             finally:
                 # Ensure context is always closed to free resources
-                await context.close()
+                if context:
+                    await context.close()
 
     async def execute_pipeline(self):
         adapters = self.config.get("adapters", [])

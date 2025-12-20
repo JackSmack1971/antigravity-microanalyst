@@ -13,6 +13,7 @@ class MarketContext:
     key_levels: Dict[str, Any]
     sentiment_indicators: Dict[str, Any]
     historical_comparison: Dict[str, Any]
-    macro_correlations: List[Dict[str, Any]] = None # P2 Add
     confidence_score: float
     metadata: Dict[str, Any]
+    is_simulation: bool = False # Flag for simulation mode visibility
+    macro_correlations: List[Dict[str, Any]] = None # P2 Add

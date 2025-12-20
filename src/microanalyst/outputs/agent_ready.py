@@ -5,6 +5,7 @@ from typing import Dict, Any, Optional
 import logging
 from src.microanalyst.intelligence.transition_predictor import RegimeTransitionPredictor
 from src.microanalyst.intelligence.correlation_analyzer import CorrelationAnalyzer
+from src.microanalyst.intelligence.feature_engineering import MLFeatureEngineer # new
 
 logger = logging.getLogger(__name__)
 
@@ -45,7 +46,7 @@ class AgentDatasetBuilder:
             prediction = predictor.predict_next_regime(regime)
             
             analyzer = CorrelationAnalyzer()
-            correlation = analyzer.analyze_correlations(df_price['close'])
+            correlation = analyzer.analyze_correlations(df_price['close'], df_price['close'])
             
             intel['predictions'] = prediction
 
@@ -82,3 +83,44 @@ class AgentDatasetBuilder:
             import traceback
             traceback.print_exc()
             return {}
+
+    def build_ml_dataset(
+        self,
+        df_price: pd.DataFrame,
+        sentiment_history: Optional[Dict[str, Any]] = None,
+        onchain_history: Optional[Dict[str, Any]] = None,
+        risk_history: Optional[Dict[str, Any]] = None,
+        is_inference: bool = True # Security Remediation: Distinguish training vs inference
+    ) -> pd.DataFrame:
+        """
+        Builds a flattened, multi-timeframe feature matrix.
+        Security: Only broadcasts point-in-time data if is_inference=True.
+        """
+        engineer = MLFeatureEngineer()
+        
+        # 1. Technical Features
+        df_ml = engineer.extract_technical_features(df_price)
+        df_ml['price_close'] = df_price['close']
+        
+        # 2. Integrate Point-in-Time Contextual Data
+        context = {
+            'sentiment': sentiment_history or {},
+            'onchain': onchain_history or {},
+            'risk': risk_history or {}
+        }
+        
+        flat_context = engineer.flatten_context(context)
+        
+        # Security Remediation: Prevent Data Leakage
+        if is_inference:
+            # Broadcast latest context to all rows (Valid for live inference on latest candle)
+            for feature, val in flat_context.items():
+                df_ml[feature] = val
+        else:
+            # For TRAINING, we only populate the LATEST row, or expect historical series
+            # This prevents future-leakage in backtests/training.
+            for feature, val in flat_context.items():
+                df_ml.loc[df_ml.index[-1], feature] = val
+                # Rest remain NaN or 0.0 (enforcing data collection per-step)
+            
+        return df_ml

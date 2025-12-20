@@ -112,6 +112,11 @@ class PromptEngine:
         return f"""
         Technical Core: RSI, MACD trends...
         Sentiment: {data.get('sentiment', {}).get('value', 'Neutral')}
+        
+        24H ORACLE PREDICTION:
+        Direction: {data.get('oracle_prediction', {}).get('direction', 'NEUTRAL')}
+        Confidence: {data.get('oracle_prediction', {}).get('confidence', 0):.0%}
+        Expected Target: {data.get('oracle_prediction', {}).get('price_target', 'N/A')}
         """
 
     def _build_strategic_layer(self, data: Dict[str, Any]) -> str:

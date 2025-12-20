@@ -223,3 +223,77 @@
 
 *   **Agent Coordinator Guide:** Published `src/microanalyst/agents/README.md` detailing the DAG architecture and extension patterns for new roles.
 *   **Extensibility Tutorial:** Documented the 4-step process (Enum -> Prompt -> Logic -> Delegation) for registering specialized agents.
+
+---
+
+## [Review] - High-Assurance Code Review (On-Chain Monitoring)
+
+### 🛡️ Resilience & Security
+
+*   **Consistency Trifecta Check:** Verified `ChainWatcher` and `live_retrieval.py` against design intent and API existence. Confirmed `log_paper_trade` persistence method exists.
+*   **Intent Alignment:** Validated that congestion monitoring accurately reflects mempool dynamics for the Synthetic Intelligence Engine.
+
+---
+
+## [Review] - High-Assurance Code Review (Vulnerability & Assurance)
+
+### 🛡️ Resilience & Security
+*   **Dependency Audit**: Patched 6 vulnerable packages including `pdfminer-six` (Critical) and `filelock` (High).
+*   **Conflict Resolution**: Upgraded `fastapi` and `gradio` to resolve `starlette` version conflicts.
+*   **Code Review**: Completed High-Assurance Review of Core Modules (`workflow_engine`, `agent_coordinator`, `async_retrieval`).
+    - Identified simulation fallback risks.
+    - Flagged placeholder logic in `ContextSynthesizer`.
+
+---
+
+## [Phase 0.1] - The Oracle (Predictive Intelligence)
+
+### 🚀 Core Architecture
+*   **Predictive Oracle Agent**: Introduced `AgentRole.PREDICTION_ORACLE` to the multi-agent framework, specialized in T+24h directional forecasting.
+*   **Oracle Analyzer**: Deployed `oracle_analyzer.py` to aggregate Technicals, Sentiment, and On-Chain signals into a weighted predictive consensus.
+*   **Predictive Prompt Injection**: Integrated the Oracle's 24h targets into the `PromptEngine`, enriching the Synthesizer's tactical layer with forward-looking bias.
+
+*   **Oracle Verification**: Verified the predictive pipeline with 100% test pass rate (unit & integration), ensuring precondition enforcement for short price histories.
+
+---
+
+## [Phase 43] - Multi-Timeframe ML Dataset Generation
+
+### 🚀 Data Engineering
+*   **ML Feature Engineer**: Implemented `feature_engineering.py` to calculate normalized technical indicators (RSI, SMA Dist, Volatility) and flatten multi-sourced metrics (Sentiment, On-Chain) into ML-ready vectors.
+*   **Flattened Dataset Pipeline**: Added `build_ml_dataset` to `AgentDatasetBuilder`, enabling the generation of numeric feature matrices indexed by timestamp for model training and inference.
+*   **Oracle Refactoring**: Updated `OracleAnalyzer` to utilize the `MLFeatureEngineer`, replacing legacy hardcoded logic with a standardized feature aggregation pipeline.
+
+### 🛡️ Verification
+*   **Dataset Integrity**: Verified feature flattening and data alignment with new unit tests in `test_ml_dataset_builder.py` (3/3 Pass).
+
+---
+
+## [Remediation] - Oracle & ML Pipeline Security & Robustness
+
+### 🛡️ Security Fixes
+*   **Data Leakage Prevention**: Patched `AgentDatasetBuilder.build_ml_dataset` to prevent future-information leakage during training by disabling context broadcasting when `is_inference=False`.
+*   **Numerical Stability**: Resolved division by zero risks in the Technical RSI calculation within `MLFeatureEngineer`.
+
+### 🚀 Technical Refinements
+*   **Volatility Standardization**: Unified volatility metrics across the Oracle and Feature Engineering layers to ensure target precision.
+*   **Verification**: 100% test pass rate (7/7) on updated unit tests following refactor.
+- **Phase 46: Oracle Robustness & Dynamic Context**
+    - Implemented dynamic lookahead shift detection in `AutomatedRetrainer` (T+24h resolution awareness).
+    - Integrated performance-gated model promotion logic (2% improvement threshold).
+    - Replaced hardcoded Support/Resistance placeholders in `ContextSynthesizer` with `SignalLibrary`-derived levels.
+    - Standardized error metrics across all intelligence modules using `sklearn`.
+
+---
+
+## [Review] - High-Assurance Code Review (Oracle & ML)
+
+### 🛡️ Resilience & Security
+*   **Consistency Trifecta Check**: Verified OracleAnalyzer, PerformanceAnalyzer, and AutomatedRetrainer for semantic alignment with \
+T+24h\ forecasting intent.
+*   **Findings**:
+    *   Flagged hardcoded bar-shift (-6) in AutomatedRetrainer as a risk for non-4h data resolutions.
+    *   Identified \Naive
+Promotion\ vulnerability where models are updated without performance gating.
+    *   Recommended standardizing RMSE calculations via sklearn.metrics in PerformanceAnalyzer.
+

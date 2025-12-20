@@ -17,7 +17,8 @@ from src.microanalyst.synthetic.sentiment import FreeSentimentAggregator
 from src.microanalyst.core.adaptive_cache import AdaptiveCacheManager
 from src.microanalyst.outputs.agent_ready import AgentDatasetBuilder
 from src.microanalyst.signals.library import SignalLibrary
-from src.microanalyst.intelligence.risk_manager import AdvancedRiskManager
+from src.microanalyst.intelligence.risk_manager import RiskManager
+from src.microanalyst.intelligence.oracle_analyzer import OracleAnalyzer # new
 from src.microanalyst.synthetic.sentiment import FreeSentimentAggregator
 from src.microanalyst.providers.binance_spot import BinanceSpotProvider
 from src.microanalyst.providers.binance_derivatives import BinanceFreeDerivatives
@@ -41,6 +42,7 @@ class AgentRole(Enum):
     SYNTHESIZER = "synthesizer"               # Combines analyses
     DECISION_MAKER = "decision_maker"         # Final recommendations
     EXECUTOR = "executor"                     # Executes actions
+    PREDICTION_ORACLE = "prediction_oracle"   # Forecasts T+24h signals
 
 @dataclass
 class AgentCapability:
@@ -100,6 +102,18 @@ class AgentCoordinator:
             dependencies=[AgentRole.DATA_COLLECTOR],
             parallel_safe=False
         )
+
+        # Prediction Oracle
+        self.agents['prediction_oracle'] = AgentCapability(
+            role=AgentRole.PREDICTION_ORACLE,
+            tools=['predict_24h', 'aggregate_features'],
+            input_schema={'raw_price_history': dict, 'context_metadata': dict},
+            output_schema={'direction': str, 'confidence': float, 'price_target': float},
+            dependencies=[AgentRole.DATA_COLLECTOR, AgentRole.ANALYST_SENTIMENT],
+            parallel_safe=True
+        )
+
+        self.oracle_analyzer = OracleAnalyzer()
         
         # Technical Analyst
         self.agents['analyst_technical'] = AgentCapability(
@@ -283,10 +297,17 @@ class AgentCoordinator:
                     expected_outputs=['risk_assessment'],
                 ),
                 AgentTask(
+                    task_id="predict_oracle",
+                    role=AgentRole.PREDICTION_ORACLE,
+                    priority=7,
+                    inputs={'depends_on': 'collect_data'},
+                    expected_outputs=['direction', 'confidence', 'price_target'],
+                ),
+                AgentTask(
                     task_id="synthesize",
                     role=AgentRole.SYNTHESIZER,
                     priority=5,
-                    inputs={'depends_on': ['analyze_technical', 'analyze_sentiment', 'analyze_risk']},
+                    inputs={'depends_on': ['analyze_technical', 'analyze_sentiment', 'analyze_risk', 'predict_oracle']},
                     expected_outputs=['market_context'],
                 ),
                 AgentTask(
@@ -314,6 +335,25 @@ class AgentCoordinator:
                     priority=5,
                     inputs={'depends_on': 'collect_price'},
                     expected_outputs=['technical_signals'],
+                )
+            ])
+
+        else:
+            # Default fallback (Data Collection + Decision Maker)
+            tasks.extend([
+                AgentTask(
+                    task_id="collect_data",
+                    role=AgentRole.DATA_COLLECTOR,
+                    priority=10,
+                    inputs=parameters,
+                    expected_outputs=['price_data'],
+                ),
+                AgentTask(
+                    task_id="decide",
+                    role=AgentRole.DECISION_MAKER,
+                    priority=1,
+                    inputs={'depends_on': 'collect_data'},
+                    expected_outputs=['recommendations'],
                 )
             ])
         
@@ -480,7 +520,7 @@ class AgentCoordinator:
                 
             risk_data = None
             if 'risk' in inputs.get('sources', []):
-                 rm = AdvancedRiskManager()
+                 rm = RiskManager()
                  try:
                      risk_data = rm.calculate_value_at_risk(df_price)
                  except Exception as e:
@@ -566,7 +606,7 @@ class AgentCoordinator:
             recommended_sizing = 0.0
             if 'raw_price_history' in inputs:
                 df = pd.DataFrame(inputs['raw_price_history'])
-                rm = AdvancedRiskManager()
+                rm = RiskManager()
                 
                 # Assume some confidence from previous steps or default
                 confidence = 0.6 
@@ -650,6 +690,27 @@ class AgentCoordinator:
                 
             return result
         
+        if role == AgentRole.PREDICTION_ORACLE:
+            # Oracle utilizes Technicals, Sentiment, and On-Chain context
+            # inputs usually contain 'raw_price_history' and 'context_metadata'
+            try:
+                history = inputs.get('raw_price_history', {})
+                if not history:
+                    # fallback to global results if not in inputs
+                    history = self.results.get('data_collector', {}).get('raw_price_history', {})
+                
+                df_price = pd.DataFrame(history)
+                context_meta = inputs.get('context_metadata', {})
+                # Add sentiment from previous results if available
+                if 'sentiment' not in context_meta:
+                    context_meta['sentiment'] = self.results.get('analyst_sentiment', {})
+                
+                prediction = self.oracle_analyzer.predict_24h(df_price, context_meta)
+                return prediction
+            except Exception as e:
+                logger.error(f"Oracle prediction failed: {e}")
+                return {"direction": "NEUTRAL", "confidence": 0.0, "error": str(e)}
+
         return {}
 
 if __name__ == "__main__":

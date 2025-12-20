@@ -1,5 +1,6 @@
 import asyncio
 import json
+import pytest
 import websockets
 import subprocess
 import time

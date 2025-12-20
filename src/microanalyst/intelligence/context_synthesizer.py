@@ -15,6 +15,7 @@ from src.microanalyst.intelligence.action_prioritizer import ActionPrioritizer
 from src.microanalyst.agents.reasoning_adapter import AgentReasoningAdapter
 from src.microanalyst.providers.macro_data import MacroDataProvider
 from src.microanalyst.intelligence.correlation_analyzer import CorrelationAnalyzer
+from src.microanalyst.signals.library import SignalLibrary
 from src.microanalyst.intelligence.base import MarketContext
 
 class ContextSynthesizer:
@@ -39,12 +40,12 @@ class ContextSynthesizer:
         self.opportunity_detector = OpportunityDetector()
         self.narrative_generator = NarrativeGenerator()
         self.action_prioritizer = ActionPrioritizer()
-        self.action_prioritizer = ActionPrioritizer()
         self.reasoning_adapter = AgentReasoningAdapter()
         
         # Macro Data
         self.macro_provider = MacroDataProvider()
         self.correlation_analyzer = CorrelationAnalyzer()
+        self.signal_lib = SignalLibrary() # Remediation: Use shared signal library
         
         # Jinja2 environment
         self.jinja_env = Environment(
@@ -56,7 +57,8 @@ class ContextSynthesizer:
     def synthesize_context(
         self, 
         lookback_days: int = 30,
-        target_date: Optional[datetime] = None
+        target_date: Optional[datetime] = None,
+        is_simulation: bool = False # Remediation: Allow passing simulation flag
     ) -> MarketContext:
         """
         Generate complete market context with all intelligence layers
@@ -103,8 +105,10 @@ class ContextSynthesizer:
             risks=risks
         )
         
-        # 5. Key Levels
-        key_levels = self._identify_key_levels(df_price, df_flows, regime_info)
+        # 5. Key Levels (Remediation: Using decoupled SignalLibrary instead of placeholders)
+        key_levels = self.signal_lib.find_support_resistance(df_price)
+        key_levels['current_price'] = float(df_price['close'].iloc[-1])
+        key_levels['psychological_levels'] = self._find_psychological_levels(key_levels['current_price'])
         
         # 6. Sentiment Indicators
         sentiment = self._calculate_sentiment_indicators(df_price, df_flows)
@@ -129,10 +133,10 @@ class ContextSynthesizer:
             risks=risks,
             opportunities=opportunities,
             key_levels=key_levels,
-            key_levels=key_levels,
             sentiment_indicators=sentiment,
             historical_comparison=historical,
             confidence_score=confidence,
+            is_simulation=is_simulation, # Remediation: Set simulation flag
             macro_correlations=correlations, # Add to context
             metadata={
                 'data_points': len(df_price),
@@ -212,8 +216,11 @@ class ContextSynthesizer:
     ) -> Dict[str, Any]:
         """Build context dictionary for Jinja template"""
         
+        # remediation: Inject simulation status into narratives
+        simulation_prefix = "⚠️ [SIMULATION MODE] " if context.is_simulation else ""
+        
         # Generate narrative elements
-        executive_summary = self.narrative_generator.generate_executive_summary(context)
+        executive_summary = simulation_prefix + self.narrative_generator.generate_executive_summary(context)
         regime_narrative = self.narrative_generator.generate_regime_narrative(context)
         signal_narrative = self.narrative_generator.generate_signal_narrative(context)
         risk_narrative = self.narrative_generator.generate_risk_narrative(context)
@@ -419,42 +426,10 @@ class ContextSynthesizer:
         except Exception:
             return pd.DataFrame()
     
-    def _identify_key_levels(
-        self,
-        df_price: pd.DataFrame,
-        df_flows: pd.DataFrame,
-        regime_info: Dict
-    ) -> Dict[str, Any]:
-        """Identify critical price levels"""
-        if df_price.empty: return {}
-
-        current_price = df_price['close'].iloc[-1]
-        
-        # Support/Resistance from price action
-        recent_lows = df_price['low'].tail(20)
-        recent_highs = df_price['high'].tail(20)
-        
-        # Find levels with multiple touches by rounding
-        # Simplified logic
-        rounded_lows = recent_lows.round(-3)
-        rounded_highs = recent_highs.round(-3)
-        
-        support_candidates = rounded_lows.value_counts()
-        resistance_candidates = rounded_highs.value_counts()
-        
-        # Get nearest levels
-        supports_below = support_candidates[support_candidates.index < current_price]
-        resistances_above = resistance_candidates[resistance_candidates.index > current_price]
-        
-        return {
-            'current_price': float(current_price),
-            'nearest_support': float(supports_below.index[0]) if not supports_below.empty else None,
-            'nearest_resistance': float(resistances_above.index[0]) if not resistances_above.empty else None,
-            'major_support_zone': self._find_support_zone(df_price),
-            'major_resistance_zone': self._find_resistance_zone(df_price),
-            'psychological_levels': self._find_psychological_levels(current_price),
-            'flow_pivot_points': self._find_flow_pivots(df_flows) if not df_flows.empty else []
-        }
+    def _find_psychological_levels(self, price: float) -> List[float]:
+        """Identifies round numbers near current price."""
+        base = round(price, -4)  # Round to nearest 10k
+        return [base - 10000, base, base + 10000]
     
     def _calculate_sentiment_indicators(
         self,
@@ -663,20 +638,9 @@ class ContextSynthesizer:
         else:
             return "Near historical lows - deep value or distress"
     
-    def _find_support_zone(self, df: pd.DataFrame) -> Dict:
-        # Simplified placeholder logic
-        current = df['close'].iloc[-1]
-        return {'lower': current * 0.9, 'upper': current * 0.95}
-    
-    def _find_resistance_zone(self, df: pd.DataFrame) -> Dict:
-        # Simplified placeholder logic
-        current = df['close'].iloc[-1]
-        return {'lower': current * 1.05, 'upper': current * 1.1}
-    
-    def _find_psychological_levels(self, price: float) -> List[float]:
-        # Round numbers
-        base = round(price, -4)  # Round to nearest 10k
-        return [base - 10000, base, base + 10000]
+    def _find_flow_pivots(self, df: pd.DataFrame) -> List[float]:
+        """Detect pivot points based on volume flow nodes."""
+        return []
     
     def _find_flow_pivots(self, df: pd.DataFrame) -> List[float]:
         return []
@@ -808,4 +772,8 @@ class ContextSynthesizer:
     
     def _generate_simple_markdown(self, context: MarketContext) -> str:
         """Fallback markdown generation"""
-        return f"# Market Report\n\nRegime: {context.regime['current_regime']}\nPrice: {context.key_levels['current_price']}"
+        report = "# Market Report\n\n"
+        if context.is_simulation:
+            report += "⚠️ **SIMULATION MODE ACTIVE** - Data is synthetic/simulated.\n\n"
+        report += f"Regime: {context.regime['current_regime']}\nPrice: {context.key_levels['current_price']}"
+        return report

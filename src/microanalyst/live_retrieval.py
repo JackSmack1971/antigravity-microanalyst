@@ -41,14 +41,20 @@ def main():
         try:
             from src.microanalyst.core.persistence import DatabaseManager
             from src.microanalyst.intelligence.synthetic_iv import SyntheticVolatilityEngine
+            from src.microanalyst.intelligence.chain_watcher import ChainWatcher
             
             db = DatabaseManager()
             vol_engine = SyntheticVolatilityEngine()
+            chain_watcher = ChainWatcher()
             
             # Fetch Price History (1D for Volatility)
             price_df = db.get_price_history(limit=365, interval="1d")
             vol_metrics = vol_engine.calculate_metrics(price_df)
             print(f"Volatility Metrics: {vol_metrics}")
+            
+            # Fetch On-Chain Data
+            chain_stats = chain_watcher.fetch_mempool_stats()
+            print(f"On-Chain Stats: {chain_stats}")
             
             # Fetch Latest Price (Intraday)
             latest_price = 0
@@ -61,13 +67,18 @@ def main():
                  latest_price = intra_df.iloc[-1]['close']
 
             context = {
-                "ground_truth": {"regime": "Volatile" if (vol_metrics.get('synthetic_iv_garch') or 0) > 50 else "Stable"},
+                "ground_truth": {
+                    "regime": "Volatile" if (vol_metrics.get('synthetic_iv_garch') or 0) > 50 else "Stable",
+                    "congestion": chain_stats.get("congestion_level")
+                },
                 "market_data": {
                     "price": latest_price or 95000, 
                     "volatility_score": vol_metrics.get('synthetic_iv_garch', 0),
                     "realized_vol": vol_metrics.get('realized_vol_30d', 0),
-                    "open_interest": "Unknown", # Todo: Fetch from DB if stored
-                    "funding_rate": 0.01
+                    "open_interest": "Unknown", 
+                    "funding_rate": 0.01,
+                    "mempool_vbytes": chain_stats.get("mempool_vbytes", 0),
+                    "network_fees": chain_stats.get("fastest_fee_sats", 0)
                 }
             }
         except Exception as e:

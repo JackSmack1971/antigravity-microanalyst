@@ -254,7 +254,10 @@ class WorkflowEngine:
                     await self._checkpoint(execution)
             
             # Finalize execution state
-            execution.status = WorkflowStatus.COMPLETED
+            if execution.failed_tasks > 0:
+                execution.status = WorkflowStatus.FAILED
+            else:
+                execution.status = WorkflowStatus.COMPLETED
             execution.completed_at = datetime.now()
             execution.execution_time = (execution.completed_at - execution.started_at).total_seconds()
             
