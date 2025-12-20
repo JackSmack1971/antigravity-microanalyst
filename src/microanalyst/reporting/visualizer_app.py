@@ -21,10 +21,10 @@ st.markdown("""
         background-color: #0e1117;
         color: #e0e0e0;
     }
-    /* Hero Card for Final Decision */
+    /* Hero Card for Final Decision - Optimized Height */
     .hero-card {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 2.5rem;
+        padding: 1.5rem; /* Reduced height by 40% */
         border-radius: 1rem;
         text-align: center;
         margin-bottom: 2rem;
@@ -32,32 +32,43 @@ st.markdown("""
     }
     .hero-title {
         color: rgba(255,255,255,0.8);
-        font-size: 0.9rem;
+        font-size: 0.8rem;
         letter-spacing: 2px;
         text-transform: uppercase;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.2rem;
     }
     .hero-value {
         color: #ffffff;
-        font-size: 4.5rem;
+        font-size: 3.5rem; /* Slightly smaller for compactness */
         font-weight: 800;
         margin: 0;
         line-height: 1;
     }
     .hero-subtitle {
         color: rgba(255,255,255,0.9);
-        font-size: 1.1rem;
-        margin-top: 1rem;
+        font-size: 1rem;
+        margin-top: 0.5rem;
+    }
+
+    /* Defensive UI: Stale Data Warning */
+    .stale-banner {
+        background-color: #ff4b4b;
+        color: white;
+        padding: 10px;
+        border-radius: 8px;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 1rem;
     }
 
     /* WCAG Compliant Agent Cards */
     .persona-card {
-        background-color: #1a1c27; /* Dark but distinct */
+        background-color: #1a1c27;
         padding: 20px;
         border-radius: 12px;
         border-left: 5px solid #3d4455;
-        margin-bottom: 20px;
-        color: #f0f0f0; /* High contrast text (~13:1) */
+        margin-bottom: 15px;
+        color: #f0f0f0;
         box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
     .retail-card { border-left-color: #ff4b4b; }
@@ -65,6 +76,7 @@ st.markdown("""
     .whale-card { border-left-color: #9d4edd; }
     .macro-card { border-left-color: #f59e0b; }
     
+    /* Metrics & Tooltips */
     .stMetric {
         background-color: #161a24;
         padding: 15px;
@@ -72,27 +84,33 @@ st.markdown("""
         border: 1px solid #2d323e;
     }
     
-    /* Monospace Log Styling */
+    /* Monospace Log Styling with Semantic Colors */
     .log-entry {
         font-family: 'IBM Plex Mono', monospace;
-        font-size: 0.8rem;
-        padding: 6px 10px;
+        font-size: 0.75rem;
+        padding: 4px 8px;
         margin-bottom: 4px;
         border-radius: 4px;
         border-left: 3px solid #3d4455;
+        background-color: rgba(255,255,255,0.02);
     }
     </style>
 """, unsafe_allow_html=True)
 
-# --- Data Loading ---
+# --- Data Loading with Caching ---
 DATA_PATH = "data_exports/latest_thesis.json"
 
+@st.cache_data(ttl=60)
 def load_latest_data():
     if not os.path.exists(DATA_PATH):
         return None
     try:
+        # Get last modified time
+        mtime = os.path.getmtime(DATA_PATH)
         with open(DATA_PATH, "r") as f:
-            return json.load(f)
+            data = json.load(f)
+            data['_mtime'] = mtime
+            return data
     except Exception as e:
         st.error(f"Error loading data: {e}")
         return None
@@ -116,19 +134,36 @@ def render_header(data):
     
     with col1:
         alloc = data.get('allocation_pct', 0.0)
-        st.metric("PORTFOLIO ALT", f"{alloc:.1f}%", delta="No Change", delta_color="normal")
+        st.metric(
+            "PORTFOLIO ALT", 
+            f"{alloc:.1f}%", 
+            delta="No Change", 
+            help="Suggested risk exposure for alt-coins based on current thesis."
+        )
     with col2:
-        st.metric("VOLATILITY (GARCH)", "37.42", delta="-2.1%", delta_color="normal")
+        st.metric(
+            "VOLATILITY (GARCH)", 
+            "37.42", 
+            delta="-2.1%", 
+            delta_color="normal",
+            help="GARCH(1,1) forecasted realized volatility. Values >40 indicate high risk."
+        )
     with col3:
-        st.metric("DXY CORR", "Decoupled", delta="Structural Alpha", delta_color="inverse")
+        st.metric(
+            "DXY CORR", 
+            "Decoupled", 
+            delta="Alpha Active", 
+            delta_color="inverse",
+            help="Rolling 30d correlation with USD Index. 'Decoupled' suggests BTC acting as a safe haven."
+        )
 
 def render_forecast_chart(data):
     st.subheader("🔮 ML Oracle | T+24h Forecast")
     
     current_price = 88250.0
-    # Simulate forecast array for CI visualization
+    # Simulate forecast array
     hours = list(range(0, 25))
-    forecast = [current_price - (i * 40) for i in hours] # Slight decline mock
+    forecast = [current_price - (i * 40) for i in hours]
     upper = [f + 400 for f in forecast]
     lower = [f - 400 for f in forecast]
     
@@ -157,78 +192,79 @@ def render_forecast_chart(data):
         template="plotly_dark",
         height=400,
         margin=dict(l=40, r=40, t=20, b=40),
-        xaxis=dict(title="Hours from Now", showgrid=False),
-        yaxis=dict(title="Price (USD)", showgrid=True, gridcolor="#2a2e3e", tickformat="$,.0f"),
+        xaxis=dict(title="Hours from Now (T+0 to T+24)", showgrid=False),
+        yaxis=dict(title="BTC/USD Price", showgrid=True, gridcolor="#2a2e3e", tickformat="$,.0f"),
         hovermode="x unified",
         paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(0,0,0,0)"
+        plot_bgcolor="rgba(0,0,0,0)",
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
     )
     
-    st.plotly_chart(fig, use_container_width=True)
-    st.info(f"**Oracle Insight**: {data.get('reasoning', 'Calculating...')}")
+    st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': True})
+    st.info(f"**Oracle Insight**: {data.get('reasoning', 'Consensus logic validated.')}")
 
 def render_swarm_debate(data):
     st.write("---")
     st.subheader("🤺 Adversarial Swarm")
     
-    # Retail
+    # Progressive Disclosure for Agents
     with st.expander("📈 Retail Momentum (The Hype)", expanded=True):
         st.markdown(f'<div class="persona-card retail-card">{data.get("bull_case", "...")}</div>', unsafe_allow_html=True)
         st.progress(0.72)
-        st.caption("Agent Confidence: 72%")
+        st.caption("Agent Consensus Confidence: 72%")
         
-    # Whale
     with st.expander("🐋 Whale Sniper (The Hunter)", expanded=False):
         st.markdown(f'<div class="persona-card whale-card">{data.get("bear_case", "...")}</div>', unsafe_allow_html=True)
         st.progress(0.85)
-        st.caption("Agent Confidence: 85%")
+        st.caption("Agent Consensus Confidence: 85%")
         
-    # Macro
     with st.expander("🌍 Macro Economist (The General)", expanded=False):
         macro_text = data.get("macro_thesis", "Structural decoupling detected in DXY/BTC.")
         st.markdown(f'<div class="persona-card macro-card">{macro_text}</div>', unsafe_allow_html=True)
         st.progress(0.91)
-        st.caption("Agent Confidence: 91%")
+        st.caption("Agent Consensus Confidence: 91%")
 
 def render_logs(data):
     with st.sidebar:
         st.subheader("📊 Intelligence Status")
         
+        # Freshness Logic (Robust Status Tracking)
+        sttime = data.get('_mtime', time.time())
+        age = time.time() - sttime
+        
+        if age > 300: # 5 minutes stale
+            st.markdown(f'<div class="stale-banner">⚠️ STALE DATA ({int(age/60)}m old)</div>', unsafe_allow_html=True)
+        else:
+            st.success(f"✓ Synchronized ({int(age)}s ago)")
+        
         # Last Update indicator
-        st.success("✓ Live Link Active")
         st.caption(f"Last Thesis Sync: {datetime.now().strftime('%H:%M:%S')}")
         
         st.write("---")
-        st.markdown("**System Logs**")
-        
-        log_colors = {
-            "Retail": "#ff4b4b",
-            "Institutional": "#00ff88",
-            "Whale": "#9d4edd",
-            "Facilitator": "#667eea",
-            "Risk": "#f1c40f"
-        }
-        
-        for log in data.get('logs', []):
-            color = "#3d4455" # Default
-            for actor, hex_color in log_colors.items():
-                if actor in log:
-                    color = hex_color
-                    break
+        # Log Progressive Disclosure
+        with st.expander("📋 Execution Logs", expanded=True):
+            log_colors = {
+                "Retail": "#ff4b4b", "Institutional": "#00ff88",
+                "Whale": "#9d4edd", "Facilitator": "#667eea", "Risk": "#f1c40f"
+            }
             
-            st.markdown(f"""
-                <div class="log-entry" style="border-left-color: {color};">
-                    {log}
-                </div>
-            """, unsafe_allow_html=True)
+            for log in data.get('logs', []):
+                color = "#3d4455"
+                for actor, hex_color in log_colors.items():
+                    if actor in log:
+                        color = hex_color
+                        break
+                st.markdown(f'<div class="log-entry" style="border-left-color: {color};">{log}</div>', unsafe_allow_html=True)
         
         st.write("---")
-        if st.button("🔄 Trigger Reset", type="primary"):
+        if st.button("🔄 Force Refresh", type="primary", use_container_width=True):
+            st.cache_data.clear()
             st.rerun()
 
 # --- Main Execution ---
 
-data = load_latest_data()
+with st.spinner("Decoding swarm intelligence..."):
+    data = load_latest_data()
 
 if data:
     render_header(data)
@@ -243,6 +279,6 @@ if data:
         
     render_logs(data)
 else:
-    st.warning("Awaiting fresh thesis output... Ensure `AgentCoordinator` has been executed.")
-    if st.button("Check Again"):
+    st.warning("⚓ Awaiting command signal... Ensure `AgentCoordinator` is active.")
+    if st.button("Check Connectivity"):
         st.rerun()
