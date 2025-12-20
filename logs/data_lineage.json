@@ -61,6 +61,21 @@
         "rows_processed": 31,
         "source": "data_exports\\twelvedata_btcusd_hist_html.html"
       }
+    },
+    {
+      "timestamp": "2025-12-20T00:35:11.419632",
+      "dataset_id": "btc_price_normalized",
+      "sources": [
+        "twelvedata_raw"
+      ],
+      "transformation": {
+        "module": "normalization.py",
+        "function": "normalize_price_history"
+      },
+      "metadata": {
+        "rows_processed": 31,
+        "source": "data_exports\\twelvedata_btcusd_hist_html.html"
+      }
     }
   ]
 }

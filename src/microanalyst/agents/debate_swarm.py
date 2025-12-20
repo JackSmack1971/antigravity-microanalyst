@@ -4,6 +4,9 @@ from pydantic import BaseModel, Field
 from langgraph.graph import StateGraph, END
 import logging
 import json
+from src.microanalyst.intelligence.llm_config import get_openrouter_llm
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.output_parsers import StrOutputParser
 from src.microanalyst.intelligence.prompts.personas import (
     RETAIL_AGENT_PROMPT, 
     INSTITUTIONAL_AGENT_PROMPT, 
@@ -53,18 +56,33 @@ def retail_agent_node(state: AgentState) -> Dict[str, Any]:
     thinking_level =  ThinkingLevel(state.get('thinking_level', 'BALANCED'))
     config = AdaptiveThinkingConfig.get_config(thinking_level)
     
-    # Simulation Logic (Placeholder for LLM)
-    # Retail loves Uptrends and High Volatility
-    sentiment = "Bullish" if regime in ["bull_trend", "high_volatility"] else "Bearish"
-    argument = f"The chart looks primed! {regime} mode means we fly. "
-    argument += f"Momentum is key. Don't fade the trend! Funding rate is {data.get('funding_rate', 'unknown')}."
+    # LLM Invocation
+    llm = get_openrouter_llm()
+    if not llm:
+        # Fallback to simulation if no key
+        return {
+            "retail_view": "[RETAIL (SIM)]: Bullish! (No API Key)",
+            "logs": ["Retail Agent used fallback logic."]
+        }
+
+    prompt = ChatPromptTemplate.from_messages([
+        ("system", RETAIL_AGENT_PROMPT),
+        ("user", "Context: Regime={regime}, Data={data}, Thinking={thinking}. Analyze.")
+    ])
     
-    # Simulate Prompt Injection effect
-    if config.get('require_counterargument'):
-        argument += f" [DEEP THOUGHT]: However, if this is a trap, I will get wrecked. Checking volume... {config['system_prompt_suffix']}"
+    chain = prompt | llm | StrOutputParser()
     
+    try:
+        response = chain.invoke({
+            "regime": regime, 
+            "data": str(data), 
+            "thinking": thinking_level
+        })
+    except Exception as e:
+        response = f"Error generating view: {e}"
+
     return {
-        "retail_view": f"[RETAIL ({thinking_level})]: {sentiment} because {argument}",
+        "retail_view": f"[RETAIL ({thinking_level})]: {response}",
         "logs": [f"Retail Agent thinking at {thinking_level} level."]
     }
 
@@ -77,20 +95,27 @@ def institution_agent_node(state: AgentState) -> Dict[str, Any]:
     thinking_level = ThinkingLevel(state.get('thinking_level', 'BALANCED'))
     config = AdaptiveThinkingConfig.get_config(thinking_level)
 
-    # Simulation Logic
-    # Institutions fade extremes
-    if regime == "high_volatility":
-        view = "Risk off. Volatility exceeds thresholds. Hedging required."
-    elif regime == "sideways":
-        view = "Accumulating in fair value range."
-    else:
-        view = f"Monitoring deviation in {regime}. Strict risk management."
-        
-    if config.get('require_counterargument'):
-        view += " [RISK CHECK]: VaR calculations updated. Hedges adjusted."
+    # LLM Invocation
+    llm = get_openrouter_llm()
+    if not llm:
+        return {
+             "institution_view": "[INSTITUTION (SIM)]: Risk off. (No API Key)",
+             "logs": ["Institutional Agent used fallback logic."]
+        }
+
+    prompt = ChatPromptTemplate.from_messages([
+        ("system", INSTITUTIONAL_AGENT_PROMPT),
+        ("user", "Context: Regime={regime}, Data={data}. Provide institutional risk assessment.")
+    ])
+    
+    chain = prompt | llm | StrOutputParser()
+    try:
+        response = chain.invoke({"regime": regime, "data": str(data)})
+    except Exception as e:
+        response = f"Error: {e}"
 
     return {
-        "institution_view": f"[INSTITUTION ({thinking_level})]: {view}",
+        "institution_view": f"[INSTITUTION ({thinking_level})]: {response}",
         "logs": ["Institutional Agent calculated variances."]
     }
 
@@ -101,20 +126,27 @@ def whale_agent_node(state: AgentState) -> Dict[str, Any]:
     # P3: Adaptive Thinking Injection
     thinking_level = ThinkingLevel(state.get('thinking_level', 'BALANCED'))
     
-    # Simulation Logic
-    # Whales look for liquidity
-    if regime == "bull_trend":
-        view = "Retail is aping in. Good liquidity to distribute (Sell) into their buy orders."
-    elif regime == "bear_trend":
-        view = "Retail is panic selling. Sweeping the lows for cheap entry."
-    else:
-        view = "Hunting stops on both sides."
-        
-    if thinking_level == ThinkingLevel.CRITICAL:
-        view += " [CRITICAL]: Executing maximum chaos arbitrage."
+    # LLM Invocation
+    llm = get_openrouter_llm()
+    if not llm:
+        return {
+             "whale_view": "[WHALE (SIM)]: Hunting stops. (No API Key)",
+             "logs": ["Whale Agent used fallback logic."]
+        }
+
+    prompt = ChatPromptTemplate.from_messages([
+        ("system", WHALE_AGENT_PROMPT),
+        ("user", "Context: Regime={regime}. Where is the liquidity?")
+    ])
+    
+    chain = prompt | llm | StrOutputParser()
+    try:
+        response = chain.invoke({"regime": regime})
+    except Exception as e:
+        response = f"Error: {e}"
         
     return {
-        "whale_view": f"[WHALE ({thinking_level})]: {view}",
+        "whale_view": f"[WHALE ({thinking_level})]: {response}",
         "logs": ["Whale Agent set a trap."]
     }
 

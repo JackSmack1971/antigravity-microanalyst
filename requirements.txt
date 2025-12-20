@@ -13,3 +13,6 @@ langchain-community
 pydantic
 mcp>=1.0.0
 yfinance
+aiohttp
+tenacity
+python-dotenv

@@ -9,6 +9,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../"
 
 from datetime import datetime
 from src.microanalyst.data_loader import load_btcetffundflow_json, load_price_history, BTCETFFO_FILE, TWELVE_FILE
+from src.microanalyst.core.persistence import DatabaseManager
 
 # Output Directory
 DATA_CLEAN_DIR = os.path.join("data_clean")
@@ -22,6 +23,7 @@ class DataNormalizer:
     def __init__(self):
         self.clean_dir = DATA_CLEAN_DIR
         self.lineage = LineageTracker()
+        self.db = DatabaseManager()
 
     def run_pipeline(self):
         """
@@ -36,6 +38,7 @@ class DataNormalizer:
             norm_flows = self.normalize_etf_flows(raw_flows)
             if self.validate_schema(norm_flows, "etf_flows"):
                 self.save_csv(norm_flows, "etf_flows_normalized.csv")
+                self.db.upsert_flows(norm_flows)
                 
                 # Metadata Recording
                 self.lineage.record_transformation(
@@ -57,6 +60,7 @@ class DataNormalizer:
             norm_price = self.normalize_price_history(raw_price)
             if self.validate_schema(norm_price, "btc_price"):
                 self.save_csv(norm_price, "btc_price_normalized.csv")
+                self.db.upsert_price(norm_price)
                 
                 # Metadata Recording
                 self.lineage.record_transformation(
