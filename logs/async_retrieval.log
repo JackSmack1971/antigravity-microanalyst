@@ -159,3 +159,32 @@ Call log:
 
 2025-12-20 01:56:46,863 - INFO - Closing Shared Browser...
 2025-12-20 01:56:47,062 - INFO - Async Pipeline Complete: {'success': 12, 'failure': 1, 'skipped': 0}
+2025-12-20 09:44:28,594 - INFO - Initializing Shared Browser Pool for 10 tasks...
+2025-12-20 09:44:35,638 - INFO - Shared Browser launched.
+2025-12-20 09:44:35,640 - INFO - Fetching HTTP: bitbo_us_etf_flows_table
+2025-12-20 09:44:35,685 - INFO - Fetching HTTP: btcetffundflow_holdings_derived
+2025-12-20 09:44:35,688 - INFO - Fetching HTTP: coingecko_api_simple
+2025-12-20 09:44:35,691 - INFO - Fetching Browser: twelvedata_btcusd_hist_html
+2025-12-20 09:44:35,718 - INFO - Fetching Browser: twelvedata_btcusd_1h
+2025-12-20 09:44:35,846 - INFO - Fetching Browser: twelvedata_btcusd_15m
+2025-12-20 09:44:37,299 - INFO - Fetching Browser: coinalyze_btc_open_interest
+2025-12-20 09:44:38,545 - INFO - Fetching Browser: coinalyze_btc_funding
+2025-12-20 09:44:47,855 - INFO - Fetching Browser: coingecko_btc_market_snapshot
+2025-12-20 09:44:48,483 - INFO - Fetching Browser: coinglass_spot_inflow_outflow_xhr
+2025-12-20 09:44:50,122 - INFO - Fetching Browser: coinglass_spot_inflow_outflow_screenshot_only
+2025-12-20 09:44:50,265 - INFO - Fetching Browser: coinglass_funding_heatmap_screenshot_only
+2025-12-20 09:44:50,322 - INFO - Fetching Browser: coinglass_liquidation_heatmap_screenshot_only
+2025-12-20 09:45:03,630 - INFO - Clicked 24h for coinglass_spot_inflow_outflow_xhr
+2025-12-20 09:45:47,982 - ERROR - Browser failed for coingecko_btc_market_snapshot: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.coingecko.com/en/coins/bitcoin", waiting until "networkidle"
+
+2025-12-20 09:45:50,357 - ERROR - Browser failed for coinglass_spot_inflow_outflow_screenshot_only: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.coinglass.com/spot-inflow-outflow", waiting until "networkidle"
+
+2025-12-20 09:45:50,377 - INFO - Closing Shared Browser...
+2025-12-20 09:45:50,610 - INFO - Async Pipeline Complete: {'success': 11, 'failure': 2, 'skipped': 0}
+2025-12-20 09:45:55,405 - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-20 09:45:59,911 - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-20 09:46:03,040 - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"

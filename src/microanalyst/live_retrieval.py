@@ -36,20 +36,51 @@ def main():
             print(f"Normalization warning: {e}")
 
         print("\n--- Phase 3: Swarm Intelligence ---")
-        # Construct current context for the debate
-        # Ideally this comes from the DB or the latest fetched file
-        # For V4 demo, we'll try to fetch latest price from normalized DB or fallback
         
-        # Mocking context for now to ensure pipeline completes if DB is empty from just this run
-        context = {
-            "ground_truth": {"regime": "Bullish Volatility"},
-            "market_data": {
-                "price": 95000, 
-                "open_interest": "High",
-                "funding_rate": 0.01,
-                "volatility_score": 65 # High vol
+        # Hydrate Context with Real Data
+        try:
+            from src.microanalyst.core.persistence import DatabaseManager
+            from src.microanalyst.intelligence.synthetic_iv import SyntheticVolatilityEngine
+            
+            db = DatabaseManager()
+            vol_engine = SyntheticVolatilityEngine()
+            
+            # Fetch Price History (1D for Volatility)
+            price_df = db.get_price_history(limit=365, interval="1d")
+            vol_metrics = vol_engine.calculate_metrics(price_df)
+            print(f"Volatility Metrics: {vol_metrics}")
+            
+            # Fetch Latest Price (Intraday)
+            latest_price = 0
+            if not price_df.empty:
+                latest_price = price_df.iloc[-1]['close'] # Fallback to daily close
+                
+            # Better: Get Intraday if available
+            intra_df = db.get_price_history(limit=5, interval="15m")
+            if not intra_df.empty:
+                 latest_price = intra_df.iloc[-1]['close']
+
+            context = {
+                "ground_truth": {"regime": "Volatile" if (vol_metrics.get('synthetic_iv_garch') or 0) > 50 else "Stable"},
+                "market_data": {
+                    "price": latest_price or 95000, 
+                    "volatility_score": vol_metrics.get('synthetic_iv_garch', 0),
+                    "realized_vol": vol_metrics.get('realized_vol_30d', 0),
+                    "open_interest": "Unknown", # Todo: Fetch from DB if stored
+                    "funding_rate": 0.01
+                }
             }
-        }
+        except Exception as e:
+            print(f"Context Hydration Failed: {e}. Using Mock.")
+            context = {
+                "ground_truth": {"regime": "Bullish Volatility"},
+                "market_data": {
+                    "price": 95000, 
+                    "open_interest": "High",
+                    "funding_rate": 0.01,
+                    "volatility_score": 65
+                }
+            }
         
         thesis = run_adversarial_debate(context)
         print(f"Thesis Generated: {thesis.get('decision')} ({thesis.get('confidence')}%)")
@@ -59,6 +90,57 @@ def main():
         with open(export_path, "w", encoding="utf-8") as f:
             json.dump(thesis, f, indent=2)
         print(f"Thesis saved to {export_path}")
+
+        print("\n--- Phase 4: Simulated Execution ---")
+        try:
+            from src.microanalyst.simulation.paper_exchange import PaperExchange
+            from src.microanalyst.simulation.execution_router import ExecutionRouter
+            from src.microanalyst.simulation.portfolio_manager import PortfolioManager
+            from src.microanalyst.core.persistence import DatabaseManager
+
+            # Initialize Engine
+            exchange = PaperExchange()
+            router = ExecutionRouter(exchange)
+            pm = PortfolioManager(exchange)
+            db = DatabaseManager()
+
+            # Execute
+            current_price = context["market_data"]["price"]
+            user_id = "agent_v5_demo"
+            
+            # 1. Execute Signal
+            order = router.execute_signal(user_id, thesis, current_price)
+            
+            # 2. Process Fills (Instant fill for simulation at current price)
+            exchange.process_fills(current_price)
+            
+            # 3. Log Performance
+            pm.log_state_to_db(db, user_id, current_price)
+            if order:
+                print(f"Order Executed: {order.side} {order.quantity} BTC")
+                # Also log the trade itself
+                # We need to adapt the Order object to dict for the logger
+                order_dict = order.dict() if hasattr(order, 'dict') else order.__dict__
+                # Pydantic v2 use model_dump(), v1 use dict()
+                # Adapting manually to be safe
+                trade_record = {
+                    "order_id": order.order_id,
+                    "user_id": order.user_id,
+                    "symbol": order.symbol,
+                    "side": order.side,
+                    "quantity": order.quantity,
+                    "price": order.price or current_price,
+                    "filled_price": order.filled_price,
+                    "status": order.status
+                }
+                db.log_paper_trade(trade_record) # Ensure this method exists in persistence
+            else:
+               print("No trade executed (HOLD or insufficient confidence).")
+
+        except Exception as e:
+             print(f"Execution Phase Error: {e}")
+             import traceback
+             traceback.print_exc()
             
     except Exception as e:
         print(f"Pipeline failed: {e}")

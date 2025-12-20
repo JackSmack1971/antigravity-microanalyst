@@ -16,6 +16,7 @@ yfinance
 aiohttp
 tenacity
 python-dotenv
+arch
 
 # API Server
 fastapi

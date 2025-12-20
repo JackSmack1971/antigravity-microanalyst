@@ -57,6 +57,39 @@ class DatabaseManager:
                     PRIMARY KEY (date, ticker)
                 )
             ''')
+
+            # Create Risk Table (if not exists)
+            cursor.execute('''
+                CREATE TABLE IF NOT EXISTS risk_metrics (
+                    timestamp TEXT PRIMARY KEY,
+                    volatility_30d REAL,
+                    var_95 REAL,
+                    max_drawdown REAL
+                )
+            ''')
+
+            # Create Paper Trading Tables
+            cursor.execute('''
+                CREATE TABLE IF NOT EXISTS paper_trades (
+                    order_id TEXT PRIMARY KEY,
+                    user_id TEXT,
+                    symbol TEXT,
+                    side TEXT,
+                    quantity REAL,
+                    price REAL,
+                    status TEXT,
+                    timestamp TEXT
+                )
+            ''')
+            cursor.execute('''
+                CREATE TABLE IF NOT EXISTS paper_portfolio (
+                    timestamp TEXT,
+                    user_id TEXT,
+                    total_equity REAL,
+                    pnl_pct REAL,
+                    PRIMARY KEY (timestamp, user_id)
+                )
+            ''')
             
             # Commit changes
             conn.commit()
@@ -171,3 +204,29 @@ class DatabaseManager:
             df = df.sort_values("date", ascending=True).reset_index(drop=True)
             
         return df
+
+    def log_paper_trade(self, order_dict: dict):
+        """
+        Log a paper trade execution.
+        """
+        query = '''
+        INSERT OR REPLACE INTO paper_trades 
+        (order_id, user_id, symbol, side, quantity, price, status, timestamp)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        '''
+        with self._get_connection() as conn:
+            conn.execute(query, (
+                order_dict["order_id"],
+                order_dict["user_id"],
+                order_dict["symbol"],
+                order_dict["side"],
+                order_dict["quantity"],
+                order_dict["filled_price"] or order_dict["price"],
+                order_dict["status"],
+                datetime.now().isoformat()
+            ))
+            conn.commit()
+
+    def close(self):
+        # Connection is managed via context managers usually, but method kept for compat
+        pass

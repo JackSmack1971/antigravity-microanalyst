@@ -1,1 +1,15 @@
-{"regime": "Bullish", "decision": "BUY", "confidence": 0.95}
+{
+  "decision": "HOLD",
+  "allocation_pct": 0.0,
+  "reasoning": "Mixed signals. | Consensus logic validated.",
+  "bull_case": "[RETAIL (ThinkingLevel.BALANCED)]: OH MY GOD! Are you seeing this?! 95,000! We are GOING PARABOLIC! This is it, folks, the rocket has LEFT THE LAUNCHPAD!\n\n**Regime: Bullish Volatility** \u2013 DUH! We're not just bullish, we're VOLATILE-BULLISH! This is the kind of market where legends are made!\n\n**Price: 95,000!** \u2013 This isn't just a number, it's a statement! We're breaking barriers, we're shattering ceilings! The momentum is INSANE!\n\n**Open Interest: High!** \u2013 Everyone wants a piece of this action! The FOMO is kicking in, and it's fueling the fire! This rally has legs, BIG LEGS!\n\n**Funding Rate: 0.01!** \u2013 Positive funding! That means people are PAYING to stay long! The demand to be in this trade is THROUGH THE ROOF! This is pure, unadulterated bullish demand!\n\n**Volatility Score: 65!** \u2013 High volatility? PERFECT! This isn't for the faint of heart, this is for the momentum traders, the ones who want to ride the wave to the moon!\n\n**Conclusion:** We are in a full-blown, undeniable, breathtaking **MOON MISSION!** This is not the time to be cautious; this is the time to be **ALL IN!** The green candles are stacking, the price is exploding, and the vibes are IMMACULATE! If you're not in, you're going to regret it FOREVER! Get in NOW before it's too late! This is a generational opportunity! \ud83d\ude80\ud83d\ude80\ud83d\ude80",
+  "bear_case": "[WHALE (ThinkingLevel.BALANCED)]: Intent: Wait | Target: $0 | Logic: Insufficient data to identify clear liquidity targets or market leverage, making any action a pure gamble, and I don't gamble.",
+  "logs": [
+    "System initialized with ThinkingLevel.BALANCED thinking (Vol: 40)",
+    "Retail Agent thinking at ThinkingLevel.BALANCED level.",
+    "Institutional Agent calculated variances.",
+    "Whale Agent analyzed intent: Wait",
+    "Facilitator sided with Consensus. Fractal: None",
+    "Risk Manager applied constraints."
+  ]
+}
