@@ -22,5 +22,14 @@ def verify_db():
         except Exception as e:
             print(f"Error reading flows: {e}")
 
+        print("\n--- Macro Data Sample ---")
+        try:
+            macro = pd.read_sql("SELECT * FROM macro_data_daily ORDER BY date DESC LIMIT 5;", conn)
+            print(macro)
+            if macro.empty:
+                print("Note: macro_data_daily is currently empty.")
+        except Exception as e:
+            print(f"Error reading macro data: {e}")
+
 if __name__ == "__main__":
     verify_db()

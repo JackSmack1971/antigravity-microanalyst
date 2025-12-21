@@ -51,6 +51,10 @@ class AgentState(TypedDict):
 
 # --- Nodes ---
 
+def orchestrator_node(state: AgentState) -> Dict[str, Any]:
+    """Entry point for the cognitive swarm. Passes control to all analysts."""
+    return {"logs": ["Initiating high-concurrency cognitive debate..."]}
+
 def retail_agent_node(state: AgentState) -> Dict[str, Any]:
     """Node representing the Retail Momentum Analyst."""
     regime = state.get('regime', 'neutral')
@@ -304,7 +308,7 @@ def create_debate_swarm_graph():
     """Compiles the Cognitive Personas graph."""
     workflow = StateGraph(AgentState)
     
-    # Nodes
+    workflow.add_node("orchestrator", orchestrator_node)
     workflow.add_node("retail", retail_agent_node)
     workflow.add_node("institution", institution_agent_node)
     workflow.add_node("whale", whale_agent_node)
@@ -312,14 +316,21 @@ def create_debate_swarm_graph():
     workflow.add_node("facilitator", facilitator_node)
     workflow.add_node("risk_manager", risk_manager_node)
     
-    # Edges - Parallel Execution of Analysts
-    workflow.set_entry_point("retail") 
-    # In LangGraph sequential default, we chain them or use parallel branches.
-    # For simplicity here: Retail -> Institution -> Whale -> Facilitator
-    workflow.add_edge("retail", "institution")
-    workflow.add_edge("institution", "whale")
-    workflow.add_edge("whale", "macro")
+    # Edges - Concurrent Fan-Out from Orchestrator
+    workflow.set_entry_point("orchestrator") 
+    
+    # Orchestrator triggers all analysts in parallel
+    workflow.add_edge("orchestrator", "retail")
+    workflow.add_edge("orchestrator", "institution")
+    workflow.add_edge("orchestrator", "whale")
+    workflow.add_edge("orchestrator", "macro")
+    
+    # Fan-In: All analysts aggregate at the facilitator
+    workflow.add_edge("retail", "facilitator")
+    workflow.add_edge("institution", "facilitator")
+    workflow.add_edge("whale", "facilitator")
     workflow.add_edge("macro", "facilitator")
+    
     workflow.add_edge("facilitator", "risk_manager")
     workflow.add_edge("risk_manager", END)
     

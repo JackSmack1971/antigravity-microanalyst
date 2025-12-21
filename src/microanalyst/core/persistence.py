@@ -81,6 +81,7 @@ class DatabaseManager:
                     timestamp TEXT
                 )
             ''')
+            # Create Paper Portfolio Table
             cursor.execute('''
                 CREATE TABLE IF NOT EXISTS paper_portfolio (
                     timestamp TEXT,
@@ -88,6 +89,17 @@ class DatabaseManager:
                     total_equity REAL,
                     pnl_pct REAL,
                     PRIMARY KEY (timestamp, user_id)
+                )
+            ''')
+            
+            # Create Macro Data Table
+            cursor.execute('''
+                CREATE TABLE IF NOT EXISTS macro_data_daily (
+                    date TEXT,
+                    asset_id TEXT,
+                    price REAL,
+                    change_pct REAL,
+                    PRIMARY KEY (date, asset_id)
                 )
             ''')
             
@@ -163,6 +175,31 @@ class DatabaseManager:
                     logger.error(f"Failed to upsert flow for {row.get('date')} {row.get('ticker')}: {e}")
             conn.commit()
             logger.info(f"Upserted {len(df)} flow rows.")
+
+    def upsert_macro_data(self, df: pd.DataFrame):
+        """
+        Upsert macro data into macro_data_daily.
+        Expects DF with columns: date, asset_id, price, change_pct.
+        """
+        if df.empty:
+            return
+
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            for _, row in df.iterrows():
+                try:
+                    date_str = row['date'] if isinstance(row['date'], str) else row['date'].strftime('%Y-%m-%d')
+                    cursor.execute('''
+                        INSERT INTO macro_data_daily (date, asset_id, price, change_pct)
+                        VALUES (?, ?, ?, ?)
+                        ON CONFLICT(date, asset_id) DO UPDATE SET
+                            price=excluded.price,
+                            change_pct=excluded.change_pct
+                    ''', (date_str, row['asset_id'], row['price'], row['change_pct']))
+                except Exception as e:
+                    logger.error(f"Failed to upsert macro data for {row.get('date')} {row.get('asset_id')}: {e}")
+            conn.commit()
+            logger.info(f"Upserted {len(df)} macro data rows.")
 
     def get_missing_dates(self, start_date: str, end_date: str) -> list[str]:
         """
