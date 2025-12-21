@@ -1786,3 +1786,30 @@ Call log:
 2025-12-21 17:58:25,047 - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
 2025-12-21 17:58:27,984 - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
 2025-12-21 17:58:28,692 - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 18:39:38,382 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-21 18:39:38,439 - INFO - Initializing Shared Browser Pool for 10 tasks...
+2025-12-21 18:39:39,876 - INFO - Shared Browser launched.
+2025-12-21 18:39:39,881 - INFO - Fetching HTTP: bitbo_us_etf_flows_table
+2025-12-21 18:39:39,931 - INFO - Fetching HTTP: btcetffundflow_holdings_derived
+2025-12-21 18:39:39,937 - INFO - Fetching HTTP: coingecko_api_simple
+2025-12-21 18:39:39,940 - INFO - Fetching Browser: twelvedata_btcusd_hist_html
+2025-12-21 18:39:39,944 - INFO - Fetching Browser: twelvedata_btcusd_1h
+2025-12-21 18:39:40,088 - INFO - Fetching Browser: twelvedata_btcusd_15m
+2025-12-21 18:39:41,601 - INFO - Fetching Browser: coinalyze_btc_open_interest
+2025-12-21 18:39:42,951 - INFO - Fetching Browser: coinalyze_btc_funding
+2025-12-21 18:39:49,866 - INFO - Fetching Browser: coingecko_btc_market_snapshot
+2025-12-21 18:39:50,218 - INFO - Fetching Browser: coinglass_spot_inflow_outflow_xhr
+2025-12-21 18:39:50,230 - INFO - Fetching Browser: coinglass_spot_inflow_outflow_screenshot_only
+2025-12-21 18:39:50,234 - INFO - Fetching Browser: coinglass_funding_heatmap_screenshot_only
+2025-12-21 18:39:55,091 - INFO - Fetching Browser: coinglass_liquidation_heatmap_screenshot_only
+2025-12-21 18:40:00,855 - WARNING - Selector wait failed for coingecko_btc_market_snapshot, proceeding with partial load.
+2025-12-21 18:40:06,408 - INFO - Clicked 24h for coinglass_spot_inflow_outflow_screenshot_only
+2025-12-21 18:40:07,181 - INFO - Clicked 24h for coinglass_spot_inflow_outflow_xhr
+2025-12-21 18:40:14,872 - INFO - Closing Shared Browser...
+2025-12-21 18:40:15,049 - INFO - Async Pipeline Complete: {'success': 13, 'failure': 0, 'skipped': 0}
+2025-12-21 18:40:15,518 - INFO - Upserted 31 price rows to btc_price_daily.
+2025-12-21 18:40:15,811 - INFO - Upserted 100 price rows to btc_price_intraday.
+2025-12-21 18:40:22,086 - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 18:40:24,472 - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 18:40:26,892 - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 18:40:27,563 - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"

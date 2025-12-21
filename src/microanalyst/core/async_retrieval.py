@@ -200,7 +200,17 @@ class AsyncRetrievalEngine:
                             pass
                     page.on("response", handle_response)
 
-                await page.goto(url, wait_until="networkidle", timeout=60000)
+                # Use 'domcontentloaded' for robustness, followed by explicit selector wait if needed
+                # Hardcoded 'networkidle' often fails on heavy tracking sites like CoinGecko
+                wait_strategy = "domcontentloaded" if "coingecko" in url else "networkidle"
+                await page.goto(url, wait_until=wait_strategy, timeout=60000)
+                
+                # If CoinGecko, wait for the price display to be visible to ensure data is present
+                if "coingecko" in url:
+                    try:
+                        await page.wait_for_selector("[data-test-id='coin-price']", timeout=10000)
+                    except:
+                        logger.warning(f"Selector wait failed for {adapter_id}, proceeding with partial load.")
                 
                 # Scrolling
                 for _ in range(5):
