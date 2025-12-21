@@ -6,9 +6,11 @@ from src.microanalyst.intelligence.correlation_analyzer import CorrelationAnalyz
 logger = logging.getLogger(__name__)
 
 class MacroSpecialistAgent(BaseAgent):
-    """
-    The MacroSpecialistAgent (The Economist) analyzes the relationship
-    between BTC and traditional macro assets like DXY and SPY.
+    """The MacroSpecialistAgent (The Economist) analyzes BTC/Macro correlations.
+
+    Analyzes the relationship between BTC and traditional macro assets 
+    (DXY, SPY, etc.) to identify regime shifts such as decoupling or
+    risk-on/risk-off divergences.
     """
     
     def __init__(self):
@@ -16,18 +18,19 @@ class MacroSpecialistAgent(BaseAgent):
         self.analyzer = CorrelationAnalyzer()
 
     def run_task(self, context: Dict[str, Any]) -> Dict[str, Any]:
-        """
-        Interprets correlation data to identify the macro regime.
+        """Interprets correlation data to identify the current macro regime.
         
+        Analyzes a list of correlation mappings to determine if BTC is 
+        trading as a risk-on asset, a safe haven (decoupled), or showing 
+        divergent behavior.
+
         Args:
-            context: Should contain 'correlations' (list of dicts from CorrelationAnalyzer).
+            context: A dictionary containing 'correlations' (a list of 
+                     dictionaries with 'status' and 'interpretation' keys).
             
         Returns:
-            Dict: {
-                "regime": "DECOUPLING"|"COUPLED"|"UNKNOWN",
-                "confidence": float,
-                "reasoning": str
-            }
+            Dict: A dictionary containing the identified 'regime' (string),
+                  'confidence' (float), and descriptive 'reasoning' (string).
         """
         correlations = context.get('correlations', [])
         

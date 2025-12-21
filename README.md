@@ -111,6 +111,12 @@ flowchart TD
 -   **Performance Gating**: New models are only promoted if they exceed a 2% improvement threshold over the active version.
 -   **Dynamic Context**: Real-time Support/Resistance detection from live price action.
 
+#### 4. Visual Intelligence & Swarm Command (V6)
+-   **Streamlit Dashboard**: A high-fidelity "Cyberpunk Financial Terminal" for real-time monitoring.
+-   **Swarm Command**: Visualizes the adversarial debate between personas (Retail, Whale, Macro).
+-   **Predictive Charting**: Interactive T+24h forecasts with academic-grade precision.
+-   **Safety Systems**: Integrated indicators for intelligence freshness and system health.
+
 ---
 
 ## 📊 Data & Schemas

@@ -54,3 +54,19 @@ The system supports real-time updates via WebSocket (see `src/microanalyst/mcp_s
 - `market_data`: Raw OHLCV updates.
 - `agent_thesis`: Live outputs from the Synthesizer agent.
 - `oracle_signal`: T+24h price target forecasts.
+
+## 5. Visualization & Reporting (V6)
+
+### Swarm Command Visualizer
+**Module**: `src/microanalyst/reporting/visualizer_app.py`
+
+Streamlit-based interface for synthesizing swarm intelligence and ML forecasts.
+
+- **Usage**:
+  ```bash
+  streamlit run src/microanalyst/reporting/visualizer_app.py
+  ```
+- **Features**:
+  - `render_header`: Renders the neon metric grid.
+  - `render_swarm_debate`: Displays the adversarial persona stack.
+  - `render_logs`: Real-time system status and logs.

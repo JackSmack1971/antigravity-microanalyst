@@ -328,7 +328,20 @@ def create_debate_swarm_graph():
 # --- Execution Entry ---
 
 def run_adversarial_debate(dataset: Dict[str, Any]) -> Dict[str, Any]:
-    """Entrance function for the swarm."""
+    """Executes the adversarial cognitive debate graph.
+
+    Orchestrates the multi-agent interaction where specialized personas
+    (Retail, Macro, Whale, Institutional) analyze the provided dataset and
+    debate towards a synthesized market thesis.
+
+    Args:
+        dataset: The unified intelligence dataset containing price, 
+                 correlation, and sentiment inputs.
+
+    Returns:
+        dict: The final synthesized signal, including final_decision, 
+              confidence, and reasoning logs.
+    """
     app = create_debate_swarm_graph()
     
     

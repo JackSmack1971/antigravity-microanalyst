@@ -182,10 +182,20 @@ class AgentCoordinator:
     async def execute_multi_agent_workflow(
         self,
         objective: str,
-        parameters: Dict[str, Any]
+        parameters: Dict[str, Any],
+        status_callback: Optional[Any] = None
     ) -> Dict[str, Any]:
-        """
-        Decompose objective into agent tasks and execute collaboratively
+        """Decomposes an objective into agent tasks and executes collaboratively.
+
+        The central entry point for high-level tasks. Orchestrates the 
+        decomposition, topological execution, and result aggregation.
+
+        Args:
+            objective: High-level mission statement (e.g. 'Analyze BTC 24h').
+            parameters: Execution-time configurations and input data.
+
+        Returns:
+            Dict: Consolidated results from all executed agent sub-tasks.
         """
         start_time = datetime.now()
         trace_id = f"trace_{objective.lower().replace(' ', '_')}_{start_time.strftime('%Y%m%d_%H%M%S')}"
@@ -206,8 +216,13 @@ class AgentCoordinator:
         
         # 3. Execute in stages
         for stage_idx, stage_tasks in enumerate(execution_order):
-            logger.info(f"Starting Stage {stage_idx + 1}/{len(execution_order)} ({len(stage_tasks)} tasks)")
+            stage_name = f"Stage {stage_idx + 1}/{len(execution_order)}"
+            logger.info(f"Starting {stage_name} ({len(stage_tasks)} tasks)")
             
+            if status_callback:
+                task_summaries = ", ".join([str(t.role.value).split('.')[-1] for t in stage_tasks])
+                status_callback(f"Initiating {stage_name}: {task_summaries}")
+
             # Parallel execution within stage
             stage_results = await asyncio.gather(*[
                 self._execute_agent_task(task, trace_id) for task in stage_tasks
