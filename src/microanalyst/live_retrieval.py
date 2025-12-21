@@ -28,9 +28,8 @@ def main():
         # Normalize BTC Price (Intraday & Daily)
         # Note: In a real loop we might process specific files based on stats
         try:
-             # Normalize latest files
-             normalizer.normalize_price_history()
-             # normalizer.normalize_etf_flows() # If available
+             # Use the full pipeline to load from captured artifacts and upsert to DB
+             normalizer.run_pipeline()
              print("Normalization complete.")
         except Exception as e:
             print(f"Normalization warning: {e}")

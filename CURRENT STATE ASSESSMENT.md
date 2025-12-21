@@ -47,5 +47,7 @@
 *   **Simulation Visibility:** `AgentCoordinator` falls back to random simulations silently if `BinanceSpotProvider` fails. Needs explicit UI warning.
 *   **Dynamic Context Engine:** Hardcoded Support/Resistance zones have been replaced with dynamic `SignalLibrary` logic.
 *   **Oracle Robustness:** `AutomatedRetrainer` now detects data frequency dynamically and enforces a performance improvement floor for model promotion.
+*   **CoinGecko Timeout Sensitivity**: `live_retrieval.py` is vulnerable to browser timeouts (60s) on CoinGecko market snapshots during high congestion. Recommended migration to dedicated REST endpoints for critical price feeds.
+*   **Correlation Data Density**: `CorrelationAnalyzer` currently simulates DXY/SPY if historical data is missing in the DB. Needs dedicated macro data seeding.
 
 

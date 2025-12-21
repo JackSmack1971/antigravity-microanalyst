@@ -1728,3 +1728,61 @@ Call log:
 2025-12-20 14:32:41,461 - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
 2025-12-20 14:32:43,491 - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
 2025-12-20 14:32:45,824 - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 17:54:27,928 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-21 17:54:27,975 - INFO - Initializing Shared Browser Pool for 10 tasks...
+2025-12-21 17:54:35,172 - INFO - Shared Browser launched.
+2025-12-21 17:54:35,174 - INFO - Fetching HTTP: bitbo_us_etf_flows_table
+2025-12-21 17:54:35,217 - INFO - Fetching HTTP: btcetffundflow_holdings_derived
+2025-12-21 17:54:35,220 - INFO - Fetching HTTP: coingecko_api_simple
+2025-12-21 17:54:35,222 - INFO - Fetching Browser: twelvedata_btcusd_hist_html
+2025-12-21 17:54:35,247 - INFO - Fetching Browser: twelvedata_btcusd_1h
+2025-12-21 17:54:35,391 - INFO - Fetching Browser: twelvedata_btcusd_15m
+2025-12-21 17:54:36,827 - INFO - Fetching Browser: coinalyze_btc_open_interest
+2025-12-21 17:54:37,629 - INFO - Fetching Browser: coinalyze_btc_funding
+2025-12-21 17:54:47,836 - INFO - Fetching Browser: coingecko_btc_market_snapshot
+2025-12-21 17:54:47,842 - INFO - Fetching Browser: coinglass_spot_inflow_outflow_xhr
+2025-12-21 17:54:47,847 - INFO - Fetching Browser: coinglass_spot_inflow_outflow_screenshot_only
+2025-12-21 17:54:47,851 - INFO - Fetching Browser: coinglass_funding_heatmap_screenshot_only
+2025-12-21 17:54:48,306 - INFO - Fetching Browser: coinglass_liquidation_heatmap_screenshot_only
+2025-12-21 17:55:00,106 - INFO - Clicked 24h for coinglass_spot_inflow_outflow_screenshot_only
+2025-12-21 17:55:00,122 - INFO - Clicked 24h for coinglass_spot_inflow_outflow_xhr
+2025-12-21 17:55:48,061 - ERROR - Browser failed for coingecko_btc_market_snapshot: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.coingecko.com/en/coins/bitcoin", waiting until "networkidle"
+
+2025-12-21 17:55:48,078 - INFO - Closing Shared Browser...
+2025-12-21 17:55:48,211 - INFO - Async Pipeline Complete: {'success': 12, 'failure': 1, 'skipped': 0}
+2025-12-21 17:56:39,090 - INFO - Logging initialized at C:\workspaces\antigravity-microanalyst\antigravity-microanalyst\logs\async_retrieval.log
+2025-12-21 17:56:39,155 - INFO - Initializing Shared Browser Pool for 10 tasks...
+2025-12-21 17:56:40,620 - INFO - Shared Browser launched.
+2025-12-21 17:56:40,632 - INFO - Fetching HTTP: bitbo_us_etf_flows_table
+2025-12-21 17:56:40,707 - INFO - Fetching HTTP: btcetffundflow_holdings_derived
+2025-12-21 17:56:40,717 - INFO - Fetching HTTP: coingecko_api_simple
+2025-12-21 17:56:40,728 - INFO - Fetching Browser: twelvedata_btcusd_hist_html
+2025-12-21 17:56:40,741 - INFO - Fetching Browser: twelvedata_btcusd_1h
+2025-12-21 17:56:40,870 - INFO - Fetching Browser: twelvedata_btcusd_15m
+2025-12-21 17:56:42,057 - INFO - Fetching Browser: coinalyze_btc_open_interest
+2025-12-21 17:56:43,264 - INFO - Fetching Browser: coinalyze_btc_funding
+2025-12-21 17:56:51,273 - INFO - Fetching Browser: coingecko_btc_market_snapshot
+2025-12-21 17:56:51,313 - INFO - Fetching Browser: coinglass_spot_inflow_outflow_xhr
+2025-12-21 17:56:51,846 - INFO - Fetching Browser: coinglass_spot_inflow_outflow_screenshot_only
+2025-12-21 17:56:52,686 - INFO - Fetching Browser: coinglass_funding_heatmap_screenshot_only
+2025-12-21 17:56:54,241 - INFO - Fetching Browser: coinglass_liquidation_heatmap_screenshot_only
+2025-12-21 17:57:05,972 - INFO - Clicked 24h for coinglass_spot_inflow_outflow_screenshot_only
+2025-12-21 17:57:07,425 - INFO - Clicked 24h for coinglass_spot_inflow_outflow_xhr
+2025-12-21 17:57:40,615 - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 17:57:43,328 - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 17:57:45,713 - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 17:57:46,347 - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 17:57:52,766 - ERROR - Browser failed for coingecko_btc_market_snapshot: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.coingecko.com/en/coins/bitcoin", waiting until "networkidle"
+
+2025-12-21 17:57:53,028 - INFO - Closing Shared Browser...
+2025-12-21 17:57:57,164 - INFO - Async Pipeline Complete: {'success': 12, 'failure': 1, 'skipped': 0}
+2025-12-21 17:58:00,886 - INFO - Upserted 31 price rows to btc_price_daily.
+2025-12-21 17:58:01,690 - INFO - Upserted 100 price rows to btc_price_intraday.
+2025-12-21 17:58:23,482 - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 17:58:25,047 - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 17:58:27,984 - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 17:58:28,692 - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"

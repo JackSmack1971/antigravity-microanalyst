@@ -1,157 +1,126 @@
-# Antigravity V3: Cognitive Micro-Analyst Swarm
+# Antigravity: Cognitive Micro-Analyst Swarm
 
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Python](https://img.shields.io/badge/python-3.13+-blue)
-![Status](https://img.shields.io/badge/system-operational-green)
-![Intelligence](https://img.shields.io/badge/AI-OpenRouter_Swarm-purple)
+![React](https://img.shields.io/badge/frontend-Next.js_15-black)
+![API](https://img.shields.io/badge/backend-FastAPI_2.0-009688)
 
-**A "Ground Truth" financial intelligence engine that eliminates hallucination through deterministic data collection, local persistence, and adversarial LLM debate.**
-
----
-
-## 🚀 Mission
-To build an autonomous analyst that doesn't just "read" the market, but **understands** it.
-1.  **Observe**: Headless browser swarm aggregates data from 11+ sources (Order Flow, On-Chain, Sentiment).
-2.  **Remember**: Normalized data is persisted to a local "Golden Copy" SQLite database.
-3.  **Think**: An adversarial swarm of LLM agents (Bull vs. Bear) debates the data to form a synthesized thesis.
+**A high-fidelity financial intelligence engine that synthesizes "Ground Truth" market data through an adversarial swarm of AI agents and machine learning oracles.**
 
 ---
 
-## ⚡ Quickstart
+## 🏗️ System Architecture
 
-### Prerequisites
-- **Python 3.13+**
-- **Playwright** (Chromium)
-- **OpenRouter API Key** (for Swarm Intelligence)
+Antigravity is built on a decoupled, modular architecture designed for high-velocity data retrieval and sophisticated cognitive processing.
 
-### Installation
+```mermaid
+flowchart TD
+    subgraph "Data Plane"
+        R[Live Retrieval] -->|Playwright/HTTP| D[(Data Exports)]
+        D -->|Normalization| DB[(SQLite Golden Copy)]
+    end
 
-1.  **Clone and Setup**:
-    ```bash
-    git clone https://github.com/JackSmack1971/antigravity-microanalyst.git
-    cd antigravity-microanalyst
-    pip install -r requirements.txt
-    playwright install chromium
-    ```
+    subgraph "Intelligence Plane"
+        DB --> C[Context Synthesizer]
+        C --> AC[Agent Coordinator]
+        AC -->|Debate| S[Swarm Agents]
+        AC -->|Forecast| O[ML Oracle]
+        S & O --> T[Final Thesis]
+    end
 
-2.  **Configure Environment**:
-    ```bash
-    cp .env.example .env
-    # Edit .env and add your OPENROUTER_API_KEY
-    ```
+    subgraph "Application Plane"
+        DB & T --> API[FastAPI Server]
+        API --> NXT[Next.js Frontend]
+        API --> STM[Streamlit Dashboard]
+    end
+```
 
-### Execution
+---
 
-**1. Data Collection & Persistence**
+## 🛠️ Technology Stack
+
+### Backend (Python)
+- **Framework**: FastAPI (High-performance API layer)
+- **Intelligence**: LangChain & LangGraph (Multi-agent orchestration)
+- **Data Science**: Pandas, NumPy, GARCH(1,1) via `arch` library
+- **Web Scraping**: Playwright & Playwright-Stealth (Headless browser swarm)
+- **Persistence**: SQLite (Institutional-grade local "Golden Copy")
+
+### Frontend (Modern Stack)
+- **Framework**: Next.js 15 (App Router, TypeScript)
+- **UI/UX**: TailwindCSS, Framer Motion (Micro-animations)
+- **Components**: Lucide React, Shadcn UI (inspired)
+- **Dashboard**: Streamlit (Cyberpunk "Swarm Command" visualizer)
+
+---
+
+## 🚀 Quickstart
+
+### 1. Environment Setup
 ```bash
-# Fetch live data (Shared Browser Pool + Circuit Breakers)
-python src/microanalyst/live_retrieval.py
+# Clone the repository
+git clone https://github.com/JackSmack1971/antigravity-microanalyst.git
+cd antigravity-microanalyst
 
-# Normalize and Upsert to SQLite (microanalyst.db)
+# Install Python dependencies
+pip install -r requirements.txt
+playwright install chromium
+
+# Setup Frontend
+cd frontend
+npm install
+cd ..
+
+# Configure Environment
+cp .env.example .env
+# Add your OPENROUTER_API_KEY and other credentials to .env
+```
+
+### 2. Running the System
+
+Antigravity operates in multiple layers. You can run them independently or together.
+
+#### A. Data Pipeline (Backend)
+```bash
+# Fetch and normalize latest market data
+python src/microanalyst/live_retrieval.py
 python src/microanalyst/normalization.py
 ```
 
-**2. Verify Intelligence**
+#### B. API Server
 ```bash
-# Run the Swarm Debate (Check verify_swarm.py)
-python verify_swarm.py
+# Start the FastAPI v2.0 server
+python src/microanalyst/api/server.py
 ```
 
----
-
-## 🏗️ V5 Architecture: Synthetic Intelligence
-
-### System Overview
-```mermaid
-flowchart TD
-    A[Configuration.yml] --> B{Discovery Engine}
-
-    subgraph "Core Data Engine (V3/V4)"
-        B -->|Shared Browser Pool| C[Playwright Adapters]
-        B -->|Circuit Breaker| D[HTTP Adapters]
-        C & D --> E[Normalization & Persistence]
-        E --> F[(microanalyst.db)]
-    end
-
-    subgraph "Advanced Intelligence (V5)"
-        F --> G[Context Synthesizer]
-        G --> H{AgentCoordinator}
-        
-        subgraph "Predictive Oracle"
-            H --> I[Automated Retrainer]
-            I --> J[ML Model Manager]
-            J --> K[Oracle Analyzer]
-        end
-
-        subgraph "Debate Swarm"
-            H --> L[Analyst Technical]
-            H --> M[Analyst Sentiment]
-            H --> N[Risk Specialist]
-            L & M & N --> O[Synthesizer Agent]
-        end
-    end
-
-    K & O --> P[Final Decision/Thesis]
-```
-
-### Key Components
-
-#### 1. Discovery Engine & Persistence
--   **Shared Browser Pool**: Efficient multi-source aggregation (11+ endpoints).
--   **SQLite Golden Copy**: Local persistence of institutional-grade metrics.
-
-#### 2. Multi-Agent Swarm Intelligence (`src/microanalyst/agents/`)
--   **AgentCoordinator**: Orchestrates specialized roles (Technical, Sentiment, Risk, Oracle).
--   **Role-Based Decomposition**: Complexity is handled by specialized microanalysts debating in a structured workflow.
--   **Self-Healing**: Dynamic error recovery and simulation fallbacks.
-
-#### 3. Prediction Oracle (`src/microanalyst/intelligence/`)
--   **T+24h Forecasting**: Predicts directional bias and price targets.
--   **Automated Retraining**: Continuous ML lifecycle with dynamic resolution detection.
--   **Performance Gating**: New models are only promoted if they exceed a 2% improvement threshold over the active version.
--   **Dynamic Context**: Real-time Support/Resistance detection from live price action.
-
-#### 4. Visual Intelligence & Swarm Command (V6)
--   **Streamlit Dashboard**: A high-fidelity "Cyberpunk Financial Terminal" for real-time monitoring.
--   **Swarm Command**: Visualizes the adversarial debate between personas (Retail, Whale, Macro).
--   **Predictive Charting**: Interactive T+24h forecasts with academic-grade precision.
--   **Safety Systems**: Integrated indicators for intelligence freshness and system health.
-
----
-
-## 📊 Data & Schemas
-
-### Microanalyst Database (`microanalyst.db`)
-| Table | Description | Update Freq |
-|-------|-------------|-------------|
-| `btc_price_daily` | OHLC data from TwelveData | Daily |
-| `etf_flows_daily` | Net Inflow/Outflow (USD/BTC) | Daily |
-
-### Artifacts (`data_exports/`)
--   **JSON/HTML**: Raw responses from all adapters.
--   **Screenshots**: Visual evidence (Liquidation Heatmaps, Funding Rates).
-
----
-
-## 🔧 Production Guide
-
-### Scheduled Execution (Cron/Task Scheduler)
-Recommended frequency: **Every 4 hours**.
-
+#### C. Next.js App
 ```bash
-cd /path/to/antigravity
-python src/microanalyst/live_retrieval.py && python src/microanalyst/normalization.py
+# Run the high-fidelity web interface
+cd frontend
+npm run dev
 ```
 
-### Monitoring
--   **Logs**: Check `logs/retrieval_log.txt` for `Success Rate`.
--   **Database**: Run `python verify_db.py` to inspect recent writes.
+#### D. Swarm Command (Streamlit)
+```bash
+# Launch the real-time visualizer
+streamlit run src/microanalyst/reporting/visualizer_app.py
+```
 
 ---
 
-## ⚠️ Known Issues
--   **CoinGecko Timeout**: The "Market Snapshot" adapter frequently times out due to heavy anti-bot protections. This is non-critical.
--   **Coinalyze 403s**: Aggressive IP blocking. Circuit breakers mitigate impact, but data may be stale if blocked.
+## 📊 System Components
+
+- **Agent Coordinator**: Orchestrates specialized personas (Technical, Sentiment, Risk, Oracle) to debate market conditions.
+- **ML Oracle**: A GARCH-powered forecasting engine providing T+24h price targets with automated retraining cycles.
+- **Discovery Engine**: A headless browser pool that aggregates data from 11+ sources (Order Flow, On-Chain, ETF Flows).
+- **Golden Copy DB**: A local SQLite instance acting as the source of truth for all normalized intelligence.
+
+---
+
+## 🔧 Maintenance & Verification
+- **Test Suite**: Run `pytest` to verify core logic.
+- **Verification Scripts**: Use `verify_*.py` in the root directory for functional checks (e.g., `python verify_swarm.py`).
+- **Logs**: Monitor `logs/retrieval_log.txt` for pipeline health.
 
 ---
 

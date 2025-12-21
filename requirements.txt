@@ -1,7 +1,7 @@
 pyyaml
 requests
 pandas
-numpy
+numpy>=2.2.0,<2.3.0
 pytest
 requests
 playwright
@@ -10,15 +10,19 @@ beautifulsoup4
 langgraph
 langchain-openai
 langchain-community
-pydantic
-mcp>=1.0.0
+pydantic>=2.10.0
+pydantic-ai>=1.37.0
+mcp>=1.25.0
 yfinance
 aiohttp
 tenacity
 python-dotenv
 arch
+httpx
+loguru
 
 # API Server
-fastapi
+fastapi>=0.126.0
 uvicorn
 sse-starlette
+streamlit>=1.52.2

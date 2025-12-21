@@ -22,7 +22,7 @@ class CorrelationAnalyzer:
         """
         Computes rolling correlation against real macro assets.
         """
-        if btc_prices.empty or not macro_series:
+        if (isinstance(btc_prices, (pd.Series, pd.DataFrame)) and btc_prices.empty) or btc_prices is None or not isinstance(macro_series, dict) or len(macro_series) == 0:
              return [{"error": "Insufficient data"}]
 
         results = []

@@ -178,6 +178,16 @@ class AgentCoordinator:
             dependencies=[AgentRole.SYNTHESIZER],
             parallel_safe=False
         )
+
+        # Macro Analyst
+        self.agents['analyst_macro'] = AgentCapability(
+            role=AgentRole.ANALYST_MACRO,
+            tools=['analyze_correlations', 'macro_regime_detection'],
+            input_schema={'raw_price_history': dict, 'macro_series': dict},
+            output_schema={'regime': str, 'confidence': float, 'correlations': list},
+            dependencies=[AgentRole.DATA_COLLECTOR],
+            parallel_safe=True
+        )
     
     async def execute_multi_agent_workflow(
         self,
