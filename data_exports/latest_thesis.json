@@ -1,15 +1,1 @@
-{
-  "decision": "HOLD",
-  "allocation_pct": 0.0,
-  "reasoning": "Mixed signals. | Consensus logic validated.",
-  "bull_case": "[RETAIL (ThinkingLevel.BALANCED)]: OMG, OMG, OMG! Look at that price! $88,250! We're not just stable, we're *stable at the top of a rocket launchpad*!\n\nThe funding rate is at a juicy 0.01 \u2013 that's positive, baby! People are paying to hold long positions, which means demand is THROUGH THE ROOF! They expect this thing to go higher, and so do I!\n\nVolatility score is 37.42, realized vol 41.43... these numbers are just telling me that the energy is building up! It's like a coiled spring, ready to POP!\n\nWe're not seeing a crash, we're seeing *consolidation before the next leg up*! This isn't a \"stable\" regime, this is a **STEALTH BULL RUN IN THE MAKING!**\n\nGet in! Get in now before it goes parabolic! We're about to see green candles for days! **TO THE MOON!**",
-  "bear_case": "[WHALE (ThinkingLevel.BALANCED)]: Intent: Wait | Target: $0 | Logic: Insufficient data to identify profitable liquidity hunt targets or market conditions for manipulation.",
-  "logs": [
-    "System initialized with ThinkingLevel.BALANCED thinking (Vol: 40)",
-    "Retail Agent thinking at ThinkingLevel.BALANCED level.",
-    "Institutional Agent calculated variances.",
-    "Whale Agent analyzed intent: Wait",
-    "Facilitator sided with Consensus. Fractal: None",
-    "Risk Manager applied constraints."
-  ]
-}
+{}

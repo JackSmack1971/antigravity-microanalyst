@@ -20,12 +20,36 @@ This document tracks the iterative improvements made to the Antigravity Microana
 
 - **Proposed Changes**: [implementation_plan_ux_iteration_1.md](file:///C:/Users/click/.gemini/antigravity/brain/08f4dc44-a512-4526-a1df-77cf188ce5d7/implementation_plan_ux_iteration_1.md)
 
+## Iteration 4: Baseline Recovery (Observe)
+- **Findings**:
+  - **Critical**: Dashboard was rendering a blank screen due to missing CSS classes and a redundant style tag.
+  - **High**: Multiple UI components (Header, Metric Grid, Oracle Chart, Swarm Debate) lacked styling, causing layout collapse.
+- **Screenshots**: `header_metrics_grid_1766284938019.png`, `oracle_debate_sections_1766284949971.png`
+- **Proposed Changes**: [implementation_plan.md](file:///C:/Users/click/.gemini/antigravity/brain/ec97efb9-0ba4-4e4c-a916-f64d843a63bd/implementation_plan.md)
+
+## Iteration 4: Baseline Recovery (Verify)
+- **Results**:
+  - Fixed redundant `</style>` tag and injected missing CSS classes.
+  - Dashboard now fully renders with cyberpunk aesthetics.
+  - Baseline established for further UX iterations.
+- **Screenshots**: `header_metrics_grid_1766284938019.png`, `oracle_debate_sections_1766284949971.png`
+
+## Iteration 1: Trust & Clarity (Observe)
+- **Findings**:
+  - **High**: Stale data warning was too aggressive, eroding system trust.
+  - **High**: ML Oracle chart was a flat line, appearing broken.
+  - **Medium**: Metric sub-labels and agent cards were cramped/hard to read.
+- **Screenshots**: `header_metrics_verify.png`, `oracle_debate_verify.png`
+- **Proposed Changes**: [implementation_plan.md](file:///C:/Users/click/.gemini/antigravity/brain/ec97efb9-0ba4-4e4c-a916-f64d843a63bd/implementation_plan.md)
+
 ## Iteration 1: Trust & Clarity (Verify)
 - **Results**:
-  - Relocated stale warning to header (top-right), significantly reducing perceived system "danger".
-  - Oracle chart now features grids and confidence bands, making the trend line feel more grounded.
-  - Agent debate cards now use a side-accented glass style with improved line-height.
-- **Screenshots**: `verify_header_trust_1766276739561.png`, `verify_chart_clarity_1766276766218.png`, `verify_debate_readability_1766276776918.png`
+  - Relocated stale warning to header as an integrated "LAST SYNC" badge.
+  - Upgraded Oracle chart with dynamic trend lines, target annotations, and units.
+  - Improved font sizes and spacing for metrics.
+  - Switched agent cards to expanders for a cleaner, prioritized scanning experience.
+- **Screenshots**: `header_metrics_verify.png`, `oracle_debate_verify.png`
+, `verify_debate_readability_1766276776918.png`
 
 ## Iteration 2: Semantic Intelligence (Plan)
 - **Goals**:
