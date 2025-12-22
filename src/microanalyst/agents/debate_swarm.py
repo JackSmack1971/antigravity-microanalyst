@@ -1,3 +1,48 @@
+"""Adversarial cognitive debate swarm for market thesis generation.
+
+This module implements a multi-agent debate system where specialized AI personas
+(Retail Momentum Analyst, Institutional Algo, Whale Sniper, Macro Economist)
+analyze market data through adversarial discussion to synthesize a robust trading
+thesis. The system uses LangGraph for state management and adaptive thinking levels
+to adjust cognitive depth based on market volatility.
+
+Architecture:
+    1. Orchestrator: Initializes the debate and distributes state to all agents
+    2. Parallel Agent Analysis: 4 specialized personas analyze data concurrently
+        - Retail Agent: Momentum and social sentiment focus
+        - Institution Agent: Statistical variance and regime analysis
+        - Whale Agent: On-chain flow detection and intent inference
+        - Macro Agent: Correlation analysis with traditional markets (DXY, SPY)
+    3. Facilitator: Synthesizes divergent views into consensus decision
+    4. Risk Manager: Applies deterministic validation and safety checks
+    
+Adaptive Thinking:
+    The system adjusts cognitive complexity based on market volatility:
+    - Low volatility (0-30): QUICK thinking (fast, heuristic-based)
+    - Medium volatility (30-60): BALANCED thinking (moderate analysis)
+    - High volatility (60-100): DEEP thinking (extensive reasoning)
+
+Key Classes:
+    MarketSignal: Output schema for agent decisions
+    AgentState: Shared state maintained throughout the debate graph
+
+Main Entry Point:
+    run_adversarial_debate(dataset) - Executes the full debate workflow
+
+Example:
+    >>> dataset = {
+    ...     'price_data': {...},
+    ...     'order_flow': {...},
+    ...     'sentiment': {...},
+    ...     'volatility_score': 45
+    ... }
+    >>> result = run_adversarial_debate(dataset)
+    >>> result['decision']
+    'BUY'
+    >>> result['confidence']
+    0.85
+"""
+
 import operator
 from typing import Annotated, Dict, List, Any, TypedDict, Union
 from pydantic import BaseModel, Field
@@ -25,11 +70,40 @@ logger = logging.getLogger(__name__)
 # --- State & Schema ---
 
 class MarketSignal(BaseModel):
+    """Pydantic model representing an agent's market decision output.
+    
+    Encapsulates a trading recommendation with confidence scoring, allocation
+    suggestion, and reasoning. Used both for individual agent outputs and the
+    final synthesized consensus decision.
+    
+    Attributes:
+        decision: Trading action to take. Must be one of: "BUY", "SELL", "HOLD".
+        confidence: Confidence score from 0.0 (no confidence) to 1.0 (maximum confidence).
+            Typically >0.7 indicates high-conviction signals.
+        suggested_allocation: Fraction of portfolio to allocate (0.0 to 1.0).
+            Example: 0.25 = 25% of portfolio.
+        reasoning: Human-readable explanation of the decision rationale.
+            Should reference key data points or market conditions.
+        winning_persona: Identifier of which agent persona's logic dominated the decision.
+            One of: "Retail", "Institutional", "Whale", "Macro", or "Consensus".
+    
+    Example:
+        >>> signal = MarketSignal(
+        ...     decision="BUY",
+        ...     confidence=0.85,
+        ...     suggested_allocation=0.50,
+        ...     reasoning="Strong momentum with institutional support detected",
+        ...     winning_persona="Institutional"
+        ... )
+        >>> signal.decision
+        'BUY'
+    """
     decision: str = Field(description="BUY, SELL, or HOLD")
     confidence: float = Field(description="Confidence from 0 to 1")
     suggested_allocation: float = Field(description="Percentage of portfolio to allocate (0.0 to 1.0)")
     reasoning: str = Field(description="Concise rationale for the decision")
     winning_persona: str = Field(description="Which persona led this decision?")
+
 
 class AgentState(TypedDict):
     """The state of the cognitive debate graph."""
