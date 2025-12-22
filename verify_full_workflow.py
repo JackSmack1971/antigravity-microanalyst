@@ -85,5 +85,17 @@ async def assess_workflow():
     with open("DATA_QUALITY_REPORT.json", "w") as f:
         json.dump(report, f, indent=2)
 
+    # Export for Dashboard
+    export_path = "data_exports/latest_thesis.json"
+    with open(export_path, "w") as f:
+        # Merge coordinator output into the final export
+        export_data = result.get('final_result', {})
+        export_data['simulation_mode'] = result.get('simulation_mode', False)
+        export_data['component_metadata'] = result.get('component_metadata', {})
+        export_data['logs'] = result.get('logs', [])
+        export_data['execution_time'] = result.get('execution_time', 0.0)
+        json.dump(export_data, f, indent=2, default=str)
+    logger.info(f"Full intelligence thesis exported to {export_path}")
+
 if __name__ == "__main__":
     asyncio.run(assess_workflow())

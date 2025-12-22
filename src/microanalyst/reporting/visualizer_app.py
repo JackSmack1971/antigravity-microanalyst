@@ -305,6 +305,20 @@ def load_latest_data() -> dict:
 
 # --- UI Components ---
 
+def get_simulation_marker(component_key: str, data: dict) -> str:
+    \"\"\"Generates a styled simulation badge if a component is in fallback mode.\"\"\"
+    metadata = data.get('component_metadata', {})
+    comp = metadata.get(component_key, {})
+    
+    if comp.get('simulated', False):
+        reason = comp.get('reason', 'Unknown API Error')
+        return f\"\"\"
+            <span class=\"badge-stale\" style=\"margin-left: 10px; cursor: help;\" title=\"REASON: {reason}\">
+                ⚠️ SIMULATED
+            </span>
+        \"\"\"
+    return \"\"\"\"\"
+
 def render_header(data: dict):
     """Renders the 'Swarm Command' header and top-level neon metric grid.
 
@@ -374,7 +388,8 @@ def render_header(data: dict):
 
 def render_forecast_chart(data: dict):
     """Renders the ML Oracle T+24h forecast with enhanced visual cues."""
-    st.markdown('<div class="section-label">🔮 ML Oracle | T+24h Forecast</div>', unsafe_allow_html=True)
+    marker = get_simulation_marker(\"data_collector_01\", data) # Primary data source key
+    st.markdown(f'<div class=\"section-label\">🔮 ML Oracle | T+24h Forecast {marker}</div>', unsafe_allow_html=True)
     
     # Simulate a trend if data is flat/missing to show UX intention
     current_price = 88250.0
@@ -476,7 +491,8 @@ def render_reasoning_outcome(data: dict):
 
 def render_swarm_debate(data: dict):
     """Renders the adversarial debate stack with clean UX."""
-    st.markdown('<div class="section-label">💬 Adversarial Swarm Debate</div>', unsafe_allow_html=True)
+    marker = get_simulation_marker(\"decide_01\", data) # Final decision node key
+    st.markdown(f'<div class=\"section-label\">💬 Adversarial Swarm Debate {marker}</div>', unsafe_allow_html=True)
     
     # Priority Stack
     agents = [
@@ -615,13 +631,20 @@ if data:
         render_logs(data) # Populate sidebar
     else:
         # Full Screen log experience for Iteration 2
-        st.markdown('<h2 style="font-family: \'Rajdhani\', sans-serif; color: #00F0FF; margin-bottom: 20px;">INTELLIGENCE DEEP DIVE</h2>', unsafe_allow_html=True)
-        render_logs(data) # Also populate sidebar for consistency
+        st.markdown('<h2 style=\"font-family: \'Rajdhani\', sans-serif; color: #00F0FF; margin-bottom: 20px;\">INTELLIGENCE DEEP DIVE</h2>', unsafe_allow_html=True)
         
         # Main area logs (expanded)
         logs = data.get('logs', [])
-        for log in logs:
-            st.info(log)
+        if not logs:
+            st.info(\"No technical logs available for this session.\")
+        else:
+            for log in logs:
+                # Use a cleaner terminal-style monospace block
+                st.markdown(f'''
+                    <div style=\"background: rgba(0,240,255,0.05); border-left: 3px solid #00F0FF; padding: 10px 15px; margin-bottom: 5px; font-family: 'JetBrains Mono', monospace; font-size: 12px;\">
+                        <span style=\"color: #00F0FF; opacity: 0.5;\">TRC_OUT ></span> {log}
+                    </div>
+                ''', unsafe_allow_html=True)
 else:
     st.warning("⚓ Awaiting command signal... Ensure `AgentCoordinator` is active.")
     if st.button("Check Connectivity"):

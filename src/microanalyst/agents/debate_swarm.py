@@ -171,8 +171,10 @@ def retail_agent_node(state: AgentState) -> Dict[str, Any]:
     if not llm:
         # Fallback to simulation if no key
         return {
-            "retail_view": "[RETAIL (SIM)]: Bullish! (No API Key)",
-            "logs": ["Retail Agent used fallback logic."]
+            "retail_view": "[RETAIL (SIM)]: Bullish momentum cluster detected. (No API Key)",
+            "fallback_active": True,
+            "fallback_reason": "LLM_CONFIG: OpenRouter API Key missing or invalid.",
+            "logs": ["Retail Agent used fallback: LLM restricted."]
         }
 
     from langchain_core.prompts import ChatPromptTemplate
@@ -213,8 +215,10 @@ def institution_agent_node(state: AgentState) -> Dict[str, Any]:
     llm = get_openrouter_llm()
     if not llm:
         return {
-             "institution_view": "[INSTITUTION (SIM)]: Risk off. (No API Key)",
-             "logs": ["Institutional Agent used fallback logic."]
+             "institution_view": "[INSTITUTIONAL (SIM)]: Risk-on posture favored. (No API Key)",
+             "fallback_active": True,
+             "fallback_reason": "LLM_CONFIG: OpenRouter API Key missing or invalid.",
+             "logs": ["Institutional Agent used fallback: LLM restricted."]
         }
 
     from langchain_core.prompts import ChatPromptTemplate
@@ -285,8 +289,10 @@ def macro_agent_node(state: AgentState) -> Dict[str, Any]:
     llm = get_openrouter_llm()
     if not llm:
         return {
-             "macro_view": "[MACRO (SIM)]: Decoupling detected. (No API Key)",
-             "logs": ["Macro Agent used fallback logic."]
+             "macro_view": "[MACRO (SIM)]: CPI data suggests continued easing. (No API Key)",
+             "fallback_active": True,
+             "fallback_reason": "LLM_CONFIG: OpenRouter API Key missing or invalid.",
+             "logs": ["Macro Agent used fallback: LLM restricted."]
         }
 
     from langchain_core.prompts import ChatPromptTemplate

@@ -204,26 +204,36 @@ class AgentCoordinator:
         
         # 4. Final synthesis
         final_result = {}
+        component_metadata = {}
+        all_logs = []
+        
         for task_id, result in self.results.items():
+            if isinstance(result, dict):
+                # Aggregate logs if present
+                all_logs.extend(result.get('logs', []))
+                
+                # Capture component-level metadata
+                component_metadata[task_id] = {
+                    "simulated": result.get('fallback_active', False),
+                    "reason": result.get('fallback_reason', "None")
+                }
+                
             if task_id.startswith("decide"):
                 final_result = result
-                break
         
         total_time = (datetime.now() - start_time).total_seconds()
         
         # Check if any task explicitly flagged a simulation fallback
-        # or if critical data providers failed in DataCollector (not fully implemented yet, but adding flag)
-        simulation_mode = any(
-            isinstance(t.result, dict) and t.result.get('fallback_active') 
-            for t in tasks if t.status == "completed"
-        )
+        simulation_mode = any(m.get('simulated') for m in component_metadata.values())
 
         workflow_summary = {
             'objective': objective,
             'final_result': final_result,
             'tasks_executed': [t.task_id for t in tasks],
             'execution_time': total_time,
-            'simulation_mode': simulation_mode
+            'simulation_mode': simulation_mode,
+            'component_metadata': component_metadata,
+            'logs': all_logs
         }
         trace_collector.complete_trace(trace_id, workflow_summary)
         return workflow_summary
