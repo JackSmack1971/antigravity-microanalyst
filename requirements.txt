@@ -20,6 +20,8 @@ python-dotenv
 arch
 httpx
 loguru
+bleach>=6.1.0
+pdfminer.six>=20240706
 
 # API Server
 fastapi>=0.126.0

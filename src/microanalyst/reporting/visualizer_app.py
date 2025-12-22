@@ -9,6 +9,7 @@ from datetime import datetime
 import time
 from pathlib import Path
 from src.microanalyst.agents.agent_coordinator import AgentCoordinator
+import bleach
 
 # --- Configuration & Styling ---
 st.set_page_config(
@@ -303,21 +304,31 @@ def load_latest_data() -> dict:
         st.error(f"Error loading data: {e}")
         return None
 
+# --- Security Utilities ---
+
+def sanitize_content(text: str) -> str:
+    """Sanitizes agent-generated HTML content using an allow-list."""
+    if not isinstance(text, str):
+        return str(text)
+    allowed_tags = ['strong', 'em', 'code', 'b', 'i', 'p', 'br', 'span']
+    allowed_attrs = {'span': ['style']} # For inline highlight styling if needed
+    return bleach.clean(text, tags=allowed_tags, attributes=allowed_attrs, strip=True)
+
 # --- UI Components ---
 
 def get_simulation_marker(component_key: str, data: dict) -> str:
-    \"\"\"Generates a styled simulation badge if a component is in fallback mode.\"\"\"
+    """Generates a styled simulation badge if a component is in fallback mode."""
     metadata = data.get('component_metadata', {})
     comp = metadata.get(component_key, {})
     
     if comp.get('simulated', False):
         reason = comp.get('reason', 'Unknown API Error')
-        return f\"\"\"
-            <span class=\"badge-stale\" style=\"margin-left: 10px; cursor: help;\" title=\"REASON: {reason}\">
+        return f"""
+            <span class="badge-stale" style="margin-left: 10px; cursor: help;" title="REASON: {reason}">
                 ⚠️ SIMULATED
             </span>
-        \"\"\"
-    return \"\"\"\"\"
+        """
+    return ""
 
 def render_header(data: dict):
     """Renders the 'Swarm Command' header and top-level neon metric grid.
@@ -388,8 +399,8 @@ def render_header(data: dict):
 
 def render_forecast_chart(data: dict):
     """Renders the ML Oracle T+24h forecast with enhanced visual cues."""
-    marker = get_simulation_marker(\"data_collector_01\", data) # Primary data source key
-    st.markdown(f'<div class=\"section-label\">🔮 ML Oracle | T+24h Forecast {marker}</div>', unsafe_allow_html=True)
+    marker = get_simulation_marker("data_collector_01", data) # Primary data source key
+    st.markdown(f'<div class="section-label">🔮 ML Oracle | T+24h Forecast {marker}</div>', unsafe_allow_html=True)
     
     # Simulate a trend if data is flat/missing to show UX intention
     current_price = 88250.0
@@ -484,15 +495,15 @@ def render_reasoning_outcome(data: dict):
                 DECRYPTED REASONING OUTCOME
             </div>
             <p style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.95); margin: 0; line-height: 1.6; position: relative; z-index: 1;">
-                {reasoning}
+                {sanitize_content(reasoning)}
             </p>
         </div>
     """, unsafe_allow_html=True)
 
 def render_swarm_debate(data: dict):
     """Renders the adversarial debate stack with clean UX."""
-    marker = get_simulation_marker(\"decide_01\", data) # Final decision node key
-    st.markdown(f'<div class=\"section-label\">💬 Adversarial Swarm Debate {marker}</div>', unsafe_allow_html=True)
+    marker = get_simulation_marker("decide_01", data) # Final decision node key
+    st.markdown(f'<div class="section-label">💬 Adversarial Swarm Debate {marker}</div>', unsafe_allow_html=True)
     
     # Priority Stack
     agents = [
@@ -517,7 +528,7 @@ def render_swarm_debate(data: dict):
         with st.expander(f"{a['avatar']} {a['name'].upper()}", expanded=True):
             st.markdown(f"""
                 <div style="font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.8); padding: 5px 0;">
-                    {text}
+                    {sanitize_content(text)}
                 </div>
             """, unsafe_allow_html=True)
 
@@ -601,8 +612,9 @@ def render_logs(data: dict):
         ])
         for log in logs:
             # Modernized logs: Larger font, better contrast, muted prefix
+            sanitized_log = sanitize_content(log)
             st.markdown(f'<div style="font-family: \'JetBrains Mono\', monospace; font-size: 13px; color: rgba(255,255,255,0.7); padding: 8px 0; border-bottom: 1px solid rgba(0,240,255,0.05);">'
-                        f'<span style="color: #00F0FF; opacity: 0.5; margin-right: 8px;">>></span>{log}</div>', unsafe_allow_html=True)
+                        f'<span style="color: #00F0FF; opacity: 0.5; margin-right: 8px;">>></span>{sanitized_log}</div>', unsafe_allow_html=True)
 
 # --- Main Execution ---
 
@@ -631,18 +643,18 @@ if data:
         render_logs(data) # Populate sidebar
     else:
         # Full Screen log experience for Iteration 2
-        st.markdown('<h2 style=\"font-family: \'Rajdhani\', sans-serif; color: #00F0FF; margin-bottom: 20px;\">INTELLIGENCE DEEP DIVE</h2>', unsafe_allow_html=True)
+        st.markdown('<h2 style="font-family: \'Rajdhani\', sans-serif; color: #00F0FF; margin-bottom: 20px;">INTELLIGENCE DEEP DIVE</h2>', unsafe_allow_html=True)
         
         # Main area logs (expanded)
         logs = data.get('logs', [])
         if not logs:
-            st.info(\"No technical logs available for this session.\")
+            st.info("No technical logs available for this session.")
         else:
             for log in logs:
                 # Use a cleaner terminal-style monospace block
                 st.markdown(f'''
-                    <div style=\"background: rgba(0,240,255,0.05); border-left: 3px solid #00F0FF; padding: 10px 15px; margin-bottom: 5px; font-family: 'JetBrains Mono', monospace; font-size: 12px;\">
-                        <span style=\"color: #00F0FF; opacity: 0.5;\">TRC_OUT ></span> {log}
+                    <div style="background: rgba(0,240,255,0.05); border-left: 3px solid #00F0FF; padding: 10px 15px; margin-bottom: 5px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">
+                        <span style="color: #00F0FF; opacity: 0.5;">TRC_OUT ></span> {sanitize_content(log)}
                     </div>
                 ''', unsafe_allow_html=True)
 else:

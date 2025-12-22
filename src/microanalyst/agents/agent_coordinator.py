@@ -167,40 +167,49 @@ class AgentCoordinator:
         execution_order = self._compute_execution_order(tasks)
         logger.info(f"Executing multi-agent workflow for objective: {objective}")
         
-        # 3. Execute in stages
-        for stage_idx, stage_tasks in enumerate(execution_order):
-            stage_name = f"Stage {stage_idx + 1}/{len(execution_order)}"
-            logger.info(f"Starting {stage_name} ({len(stage_tasks)} tasks)")
-            
-            if status_callback:
-                task_summaries = ", ".join([str(t.role.value).split('.')[-1] for t in stage_tasks])
-                status_callback(f"Initiating {stage_name}: {task_summaries}")
+        # 3. Execute in stages with 45s security timeout
+        try:
+            async with asyncio.timeout(45.0):
+                for stage_idx, stage_tasks in enumerate(execution_order):
+                    stage_name = f"Stage {stage_idx + 1}/{len(execution_order)}"
+                    logger.info(f"Starting {stage_name} ({len(stage_tasks)} tasks)")
+                    
+                    if status_callback:
+                        task_summaries = ", ".join([str(t.role.value).split('.')[-1] for t in stage_tasks])
+                        status_callback(f"Initiating {stage_name}: {task_summaries}")
 
-            # Parallel execution within stage
-            stage_results = await asyncio.gather(*[
-                self._execute_agent_task(task, trace_id) for task in stage_tasks
-            ], return_exceptions=True)
-            
-            # Store results
-            for task, result in zip(stage_tasks, stage_results):
-                if isinstance(result, Exception):
-                    logger.error(f"Task {task.task_id} failed: {result}")
-                    task.status = "failed"
-                    task.error = str(result)
-                    trace_collector.record_event(
-                        trace_id, "error", f"Task {task.task_id} failed",
-                        inputs=task.inputs, outputs={'error': str(result)},
-                        role=task.role.value
-                    )
-                else:
-                    self.results[task.task_id] = result
-                    task.status = "completed"
-                    task.result = result
-                    trace_collector.record_event(
-                        trace_id, "decision", f"Task {task.task_id} completed",
-                        inputs=task.inputs, outputs=result,
-                        role=task.role.value
-                    )
+                    # Parallel execution within stage
+                    stage_results = await asyncio.gather(*[
+                        self._execute_agent_task(task, trace_id) for task in stage_tasks
+                    ], return_exceptions=True)
+                    
+                    # Store results
+                    for task, result in zip(stage_tasks, stage_results):
+                        if isinstance(result, Exception):
+                            logger.error(f"Task {task.task_id} failed: {result}")
+                            task.status = "failed"
+                            task.error = str(result)
+                            trace_collector.record_event(
+                                trace_id, "error", f"Task {task.task_id} failed",
+                                inputs=task.inputs, outputs={'error': str(result)},
+                                role=task.role.value
+                            )
+                        else:
+                            self.results[task.task_id] = result
+                            task.status = "completed"
+                            task.result = result
+                            trace_collector.record_event(
+                                trace_id, "decision", f"Task {task.task_id} completed",
+                                inputs=task.inputs, outputs=result,
+                                role=task.role.value
+                            )
+        except (asyncio.TimeoutError, TimeoutError):
+            logger.error(f"Workflow timeout exceeded (45s) for objective: {objective}")
+            self.results['global_timeout'] = {
+                'logs': ["CRITICAL: Intelligence synthesis exceeded 45s safety limit. Returning partial results."],
+                'fallback_active': True,
+                'fallback_reason': "TIMEOUT_EXCEEDED: Workflow blocked > 45s."
+            }
         
         # 4. Final synthesis
         final_result = {}
