@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { TrendingUp, Activity, AlertTriangle, ShieldCheck, Target } from "lucide-react";
 import { motion } from "framer-motion";
 import clsx from "clsx";
+import { useI18n } from "../hooks/useI18n";
 
 interface Thesis {
     decision: string;
@@ -15,6 +16,7 @@ interface Thesis {
 }
 
 export default function MarketStatus() {
+    const { t } = useI18n();
     const [thesis, setThesis] = useState<Thesis | null>(null);
 
     useEffect(() => {
@@ -51,7 +53,7 @@ export default function MarketStatus() {
         <div className="glass-panel p-6 border-t-4 border-t-cyan-500 transition-all duration-300 hover:shadow-[0_0_40px_rgba(6,182,212,0.15)] group">
             <div className="flex flex-col md:flex-row justify-between items-start gap-6 mb-8">
                 <div>
-                    <h2 className="text-gray-500 text-[10px] uppercase tracking-[0.3em] font-bold mb-2">Live Market Directive</h2>
+                    <h2 className="text-gray-500 text-[10px] uppercase tracking-[0.3em] font-bold mb-2">{t("MarketStatus.SectionTitle")}</h2>
                     <div className="flex items-baseline gap-4">
                         <motion.div
                             animate={{
@@ -70,13 +72,13 @@ export default function MarketStatus() {
                             <span className="text-xl text-white/40 font-mono leading-none">
                                 {(thesis.confidence * 100).toFixed(0)}%
                             </span>
-                            <span className="text-[10px] text-white/20 uppercase tracking-widest font-bold">Confidence</span>
+                            <span className="text-[10px] text-white/20 uppercase tracking-widest font-bold">{t("MarketStatus.Confidence")}</span>
                         </div>
                     </div>
                 </div>
 
                 <div className="text-right bg-white/5 p-3 rounded-xl border border-white/5 min-w-[140px] transition-colors group-hover:bg-white/10">
-                    <div className="text-gray-500 text-[10px] uppercase tracking-widest font-bold mb-1">Target Allocation</div>
+                    <div className="text-gray-500 text-[10px] uppercase tracking-widest font-bold mb-1">{t("MarketStatus.TargetAllocation")}</div>
                     <div className="text-3xl font-black text-cyan-400 tracking-tighter">
                         {thesis.allocation_pct}%
                     </div>
@@ -93,18 +95,18 @@ export default function MarketStatus() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
                 <div className="p-4 bg-white/[0.03] rounded-xl border border-white/5 hover:bg-white/[0.05] transition-colors group/card">
                     <div className="flex items-center gap-2 text-green-400 text-xs font-black uppercase tracking-widest mb-3">
-                        <TrendingUp size={14} className="group-hover/card:translate-y-[-2px] transition-transform" /> Bull Thesis
+                        <TrendingUp size={14} className="group-hover/card:translate-y-[-2px] transition-transform" /> {t("MarketStatus.BullThesis")}
                     </div>
                     <p className="text-[13px] text-gray-400 leading-relaxed min-h-[60px]">
-                        {thesis.bull_case?.replace(/\[.*?\]/g, "") || "Analyzing market momentum..."}
+                        {thesis.bull_case?.replace(/\[.*?\]/g, "") || t("MarketStatus.BullPlaceholder")}
                     </p>
                 </div>
                 <div className="p-4 bg-white/[0.03] rounded-xl border border-white/5 hover:bg-white/[0.05] transition-colors group/card">
                     <div className="flex items-center gap-2 text-red-500 text-xs font-black uppercase tracking-widest mb-3">
-                        <Activity size={14} className="group-hover/card:scale-110 transition-transform" /> Bear Thesis
+                        <Activity size={14} className="group-hover/card:scale-110 transition-transform" /> {t("MarketStatus.BearThesis")}
                     </div>
                     <p className="text-[13px] text-gray-400 leading-relaxed min-h-[60px]">
-                        {thesis.bear_case?.replace(/\[.*?\]/g, "") || "Scanning for structural risks..."}
+                        {thesis.bear_case?.replace(/\[.*?\]/g, "") || t("MarketStatus.BearPlaceholder")}
                     </p>
                 </div>
             </div>
@@ -112,7 +114,7 @@ export default function MarketStatus() {
             <div className="relative p-5 bg-black/40 rounded-xl border border-white/10 overflow-hidden">
                 <div className="absolute top-0 left-0 w-1 h-full bg-yellow-500/50" />
                 <h3 className="text-yellow-500 text-[10px] font-black uppercase tracking-[0.2em] mb-3 flex items-center gap-2">
-                    <Target size={14} /> Cognitive Synthesis
+                    <Target size={14} /> {t("MarketStatus.SynthesisTitle")}
                 </h3>
                 <p className="text-[14px] text-gray-200 leading-relaxed font-medium">
                     {thesis.reasoning}

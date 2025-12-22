@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Terminal, Bot, Zap, Brain, Shield } from "lucide-react";
 import clsx from "clsx";
+import { useI18n } from "../hooks/useI18n";
 
 interface LogMessage {
     id: number;
@@ -13,6 +14,7 @@ interface LogMessage {
 }
 
 export default function AgentChat() {
+    const { t } = useI18n();
     const [logs, setLogs] = useState<LogMessage[]>([]);
     const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -79,16 +81,16 @@ export default function AgentChat() {
         <div className="glass-panel h-full flex flex-col p-4 transition-all duration-300 hover:border-white/20 hover:shadow-2xl">
             <header className="flex items-center justify-between mb-4 border-b border-white/5 pb-2">
                 <h2 className="text-xl font-bold flex items-center gap-2 text-white italic tracking-tight uppercase">
-                    <Terminal className="text-cyan-400" aria-hidden="true" /> Swarm Debate Protocol
+                    <Terminal className="text-cyan-400" aria-hidden="true" /> {t("AgentChat.SectionTitle")}
                 </h2>
-                <span className="text-[10px] font-mono opacity-40 uppercase tracking-[0.2em] hidden md:block">Live Stream</span>
+                <span className="text-[10px] font-mono opacity-40 uppercase tracking-[0.2em] hidden md:block">{t("Common.LiveStream")}</span>
             </header>
 
             <div
                 ref={scrollRef}
                 className="flex-1 overflow-y-auto space-y-3 pr-2 scrollbar-thin focus-visible:outline-none"
                 tabIndex={0}
-                aria-label="Agent conversation logs"
+                aria-label={t("AgentChat.AriaLabel")}
             >
                 <AnimatePresence initial={false}>
                     {logs.map((log) => (
@@ -125,7 +127,7 @@ export default function AgentChat() {
                             <Brain size={40} />
                         </motion.div>
                         <div className="text-sm font-mono animate-pulse uppercase tracking-widest">
-                            Syncing Neural Swarm...
+                            {t("AgentChat.EmptyState")}
                         </div>
                     </div>
                 )}

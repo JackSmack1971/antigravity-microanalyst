@@ -106,7 +106,34 @@ class MarketSignal(BaseModel):
 
 
 class AgentState(TypedDict):
-    """The state of the cognitive debate graph."""
+    """Shared state dictionary for the cognitive debate graph workflow.
+    
+    This TypedDict defines the complete state maintained throughout the multi-agent
+    debate process. State is passed between nodes in the LangGraph workflow, with
+    each agent reading from and writing to specific fields.
+    
+    Attributes:
+        symbol: Trading symbol being analyzed (e.g., "BTCUSDT").
+        regime: Current market regime classification (e.g., "bullish", "bearish", "volatile").
+        market_data: Dictionary containing all input data from retrieval pipeline:
+            - price_data: OHLCV and technical indicators
+            - order_flow: Exchange flow, liquidations, funding rates
+            - sentiment: Social media and news sentiment aggregation
+            - on_chain: Blockchain metrics (if applicable)
+        thinking_level: Adaptive cognitive mode for LLMs. One of:
+            - "QUICK": Fast heuristic analysis (low volatility)
+            - "BALANCED": Moderate depth (normal markets)
+            - "DEEP": Extensive reasoning (high volatility or uncertainty)
+        volatility_score: Current market volatility percentile (0-100).
+            Used to determine thinking_level and risk adjustments.
+        retail_view: Retail Momentum Analyst's perspective.
+        institution_view: Institutional Algo's statistical variance analysis.
+        whale_view: Whale Sniper's on-chain intent detection and flow analysis.
+        macro_view: Macro Economist's correlation analysis with TradFi.
+        synthesis: Intermediate MarketSignal from facilitator (pre-risk-check).
+        final_decision: Final MarketSignal after risk manager validation.
+        logs: Accumulated log messages documenting the debate flow.
+    """
     symbol: str
     regime: str
     market_data: Dict[str, Any]
@@ -197,7 +224,6 @@ def institution_agent_node(state: AgentState) -> Dict[str, Any]:
     except Exception as e:
         response = f"Error: {e}"
 
-    logger.info(f"[INSTITUTION] Derived variance: {analysis.get('variance_type')}")
     return {
         "institution_view": f"[INSTITUTION ({thinking_level})]: {response}",
         "logs": ["Institutional Agent calculated variances."]
@@ -225,6 +251,7 @@ def whale_agent_node(state: AgentState) -> Dict[str, Any]:
         "liquidation_clusters": state.get('market_data', {}).get('liquidation_clusters', [])
     }
 
+    analysis = {}
     try:
         analysis = engine.analyze_market_structure(market_context)
         
@@ -234,10 +261,10 @@ def whale_agent_node(state: AgentState) -> Dict[str, Any]:
     except Exception as e:
         response = f"Error: {e}"
         
-    logger.info(f"[WHALE] Intent detected: {analysis.get('intent')}")
+    logger.info(f"[WHALE] Intent detected: {analysis.get('intent', 'unknown')}")
     return {
         "whale_view": f"[WHALE ({thinking_level})]: {response}",
-        "logs": [f"Whale Agent analyzed intent: {analysis.get('intent')}"]
+        "logs": [f"Whale Agent analyzed intent: {analysis.get('intent', 'unknown')}"]
     }
 
 def macro_agent_node(state: AgentState) -> Dict[str, Any]:
@@ -273,7 +300,7 @@ def macro_agent_node(state: AgentState) -> Dict[str, Any]:
     }
 
 def facilitator_node(state: AgentState) -> Dict[str, Any]:
-    """Synthesizes the 3-way debate into a definitive decision."""
+    """Synthesizes the 4-way adversarial debate into a definitive consensus decision."""
     retail = state['retail_view']
     inst = state['institution_view']
     whale = state['whale_view']
@@ -335,13 +362,13 @@ def facilitator_node(state: AgentState) -> Dict[str, Any]:
         else:
              reasoning += f" (Fractal: {alignment_type} - Divergence noted)"
 
-    # P6: Extract Confidence from Prediction Oracle (if in debate)
-    oracle_conf = 0.5
-    if "Intent:" in whale: # Mapped to Whale/Bear slot in coordination
-         try:
-             # Heuristic check for confidence in logic string or just boost if high whale confidence
-             oracle_conf = conf # Use current logic's confidence as baseline
-         except: pass
+    # Intent Validation: Boost confidence if Whale detects clear intentional flow
+    if "Intent:" in whale and "unknown" not in whale.lower():
+         # Tactical adjustment for high-conviction whale signatures
+         if "accumulation" in whale.lower() and decision == "BUY":
+             conf = min(0.95, conf + 0.05)
+         elif "distribution" in whale.lower() and decision == "SELL":
+             conf = min(0.95, conf + 0.05)
 
     signal = MarketSignal(
         decision=decision,

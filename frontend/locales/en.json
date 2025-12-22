@@ -1,0 +1,29 @@
+{
+    "Common": {
+        "SystemOnline": "SYSTEM ONLINE",
+        "NeuralLinkActive": "NEURAL LINK ACTIVE",
+        "LiveStream": "Live Stream",
+        "ComingSoon": "Coming V5"
+    },
+    "Dashboard": {
+        "Title": "ANTIGRAVITY",
+        "Subtitle": "v4.0 // SWARM INTEL",
+        "PlaceholderChartTitle": "CHART",
+        "PlaceholderChartText": "Real-time Order Flow (Coming V5)"
+    },
+    "MarketStatus": {
+        "SectionTitle": "Live Market Directive",
+        "Confidence": "Confidence",
+        "TargetAllocation": "Target Allocation",
+        "BullThesis": "Bull Thesis",
+        "BearThesis": "Bear Thesis",
+        "BullPlaceholder": "Analyzing market momentum...",
+        "BearPlaceholder": "Scanning for structural risks...",
+        "SynthesisTitle": "Cognitive Synthesis"
+    },
+    "AgentChat": {
+        "SectionTitle": "Swarm Debate Protocol",
+        "AriaLabel": "Agent conversation logs",
+        "EmptyState": "Syncing Neural Swarm..."
+    }
+}
