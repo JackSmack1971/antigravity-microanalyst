@@ -128,22 +128,20 @@ def main():
             pm.log_state_to_db(db, user_id, current_price)
             if order:
                 print(f"Order Executed: {order.side} {order.quantity} BTC")
-                # Also log the trade itself
-                # We need to adapt the Order object to dict for the logger
-                order_dict = order.dict() if hasattr(order, 'dict') else order.__dict__
-                # Pydantic v2 use model_dump(), v1 use dict()
-                # Adapting manually to be safe
+                # Using Pydantic V2 model_dump() for standardized logging
+                order_data = order.model_dump()
+                
                 trade_record = {
-                    "order_id": order.order_id,
-                    "user_id": order.user_id,
-                    "symbol": order.symbol,
-                    "side": order.side,
-                    "quantity": order.quantity,
-                    "price": order.price or current_price,
-                    "filled_price": order.filled_price,
-                    "status": order.status
+                    "order_id": order_data["order_id"],
+                    "user_id": order_data["user_id"],
+                    "symbol": order_data["symbol"],
+                    "side": order_data["side"],
+                    "quantity": order_data["quantity"],
+                    "price": order_data["price"] or current_price,
+                    "filled_price": order_data["filled_price"],
+                    "status": order_data["status"]
                 }
-                db.log_paper_trade(trade_record) # Ensure this method exists in persistence
+                db.log_paper_trade(trade_record)
             else:
                print("No trade executed (HOLD or insufficient confidence).")
 

@@ -1,7 +1,9 @@
 import os
 import logging
 from dotenv import load_dotenv
-from langchain_openai import ChatOpenAI
+
+# Lazy loading langchain to prevent boot-time hangs on Python 3.13/Windows
+# from langchain_openai import ChatOpenAI
 
 # Load environment variables
 load_dotenv()
@@ -21,6 +23,9 @@ def get_openrouter_llm(model_name: str = None, temperature: float = 0.7):
     # Default to a cost-effective model if not specified in env or arg
     if not model_name:
         model_name = os.getenv("OPENROUTER_MODEL", "google/gemini-2.0-flash-exp:free")
+
+    # Final lazy import
+    from langchain_openai import ChatOpenAI
 
     return ChatOpenAI(
         base_url="https://openrouter.ai/api/v1",

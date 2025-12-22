@@ -1,6 +1,7 @@
 import json
 import logging
-from langchain_core.messages import HumanMessage, SystemMessage
+# Lazy loading to prevent hang on 3.13
+# from langchain_core.messages import HumanMessage, SystemMessage
 from src.microanalyst.intelligence.llm_config import get_openrouter_llm
 
 logger = logging.getLogger(__name__)
@@ -62,6 +63,7 @@ class WhaleIntentEngine:
         """
 
         try:
+            from langchain_core.messages import HumanMessage, SystemMessage
             messages = [
                 SystemMessage(content=system_prompt),
                 HumanMessage(content=user_prompt)

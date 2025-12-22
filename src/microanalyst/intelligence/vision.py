@@ -2,7 +2,7 @@ import base64
 import json
 import logging
 from pathlib import Path
-from langchain_core.messages import HumanMessage
+# from langchain_core.messages import HumanMessage
 from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 from src.microanalyst.intelligence.llm_config import get_openrouter_llm
 
@@ -43,6 +43,7 @@ class VisionParser:
             If exact price is hard to read, estimate based on the Y-axis labels.
             """
 
+            from langchain_core.messages import HumanMessage
             message = HumanMessage(
                 content=[
                     {"type": "text", "text": prompt},

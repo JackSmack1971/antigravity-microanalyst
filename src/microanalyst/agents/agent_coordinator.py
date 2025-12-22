@@ -210,11 +210,20 @@ class AgentCoordinator:
                 break
         
         total_time = (datetime.now() - start_time).total_seconds()
+        
+        # Check if any task explicitly flagged a simulation fallback
+        # or if critical data providers failed in DataCollector (not fully implemented yet, but adding flag)
+        simulation_mode = any(
+            isinstance(t.result, dict) and t.result.get('fallback_active') 
+            for t in tasks if t.status == "completed"
+        )
+
         workflow_summary = {
             'objective': objective,
             'final_result': final_result,
             'tasks_executed': [t.task_id for t in tasks],
-            'execution_time': total_time
+            'execution_time': total_time,
+            'simulation_mode': simulation_mode
         }
         trace_collector.complete_trace(trace_id, workflow_summary)
         return workflow_summary

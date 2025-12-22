@@ -317,7 +317,9 @@ def render_header(data: dict):
     
     sttime = data.get('_mtime', time.time())
     age_minutes = int((time.time() - sttime) / 60)
-    age_class = "delta-mint" if age_minutes < 60 else "neon-amber"
+    
+    # Simulation Mode Detection
+    is_simulation = data.get('simulation_mode', False)
     
     st.markdown(f"""
         <div class="command-header">
@@ -325,7 +327,8 @@ def render_header(data: dict):
                 <span style="color: {('#00FF9D' if age_minutes < 60 else '#FF9F1C')};">●</span>
                 LAST SYNC: {age_minutes}m AGO
             </div>
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0px;">
+            {f'<div class="tactical-alert-amber" style="margin-top: 10px; justify-content: center;">⚠️ SIMULATION MODE ACTIVE | API FALLBACK TRIGGERED</div>' if is_simulation else ''}
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-top: 10px; margin-bottom: 0px;">
                 <div style="text-align: left; font-family: 'Roboto Mono', monospace; font-size: 10px; color: rgba(0, 240, 255, 0.4); letter-spacing: 0.2em;">
                     NODE: MASTER_01<br>SWARM: 03/03 ACTIVE
                 </div>
@@ -554,8 +557,14 @@ def render_logs(data: dict):
                     # Save new results
                     save_path = Path("data_exports/latest_thesis.json")
                     save_path.parent.mkdir(parents=True, exist_ok=True)
+                    
+                    # Merge coordination metadata with final result
+                    final_data = result.get('final_result', {})
+                    final_data['simulation_mode'] = result.get('simulation_mode', False)
+                    final_data['execution_time'] = result.get('execution_time', 0.0)
+                    
                     with open(save_path, 'w') as f:
-                        json.dump(result.get('final_result', {}), f, indent=2, default=str)
+                        json.dump(final_data, f, indent=2, default=str)
                     
                     st.toast("Intelligence Resynced", icon="✅")
                     st.cache_data.clear()

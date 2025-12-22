@@ -50,8 +50,9 @@ from langgraph.graph import StateGraph, END
 import logging
 import json
 from src.microanalyst.intelligence.llm_config import get_openrouter_llm
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.output_parsers import StrOutputParser
+# Lazy loading to prevent boot-time hang on Python 3.13
+# from langchain_core.prompts import ChatPromptTemplate
+# from langchain_core.output_parsers import StrOutputParser
 from src.microanalyst.intelligence.prompts.personas import (
     RETAIL_AGENT_PROMPT, 
     INSTITUTIONAL_AGENT_PROMPT, 
@@ -174,6 +175,9 @@ def retail_agent_node(state: AgentState) -> Dict[str, Any]:
             "logs": ["Retail Agent used fallback logic."]
         }
 
+    from langchain_core.prompts import ChatPromptTemplate
+    from langchain_core.output_parsers import StrOutputParser
+
     prompt = ChatPromptTemplate.from_messages([
         ("system", RETAIL_AGENT_PROMPT),
         ("user", "Context: Regime={regime}, Data={data}, Thinking={thinking}. Analyze.")
@@ -212,6 +216,9 @@ def institution_agent_node(state: AgentState) -> Dict[str, Any]:
              "institution_view": "[INSTITUTION (SIM)]: Risk off. (No API Key)",
              "logs": ["Institutional Agent used fallback logic."]
         }
+
+    from langchain_core.prompts import ChatPromptTemplate
+    from langchain_core.output_parsers import StrOutputParser
 
     prompt = ChatPromptTemplate.from_messages([
         ("system", INSTITUTIONAL_AGENT_PROMPT),
@@ -281,6 +288,9 @@ def macro_agent_node(state: AgentState) -> Dict[str, Any]:
              "macro_view": "[MACRO (SIM)]: Decoupling detected. (No API Key)",
              "logs": ["Macro Agent used fallback logic."]
         }
+
+    from langchain_core.prompts import ChatPromptTemplate
+    from langchain_core.output_parsers import StrOutputParser
 
     prompt = ChatPromptTemplate.from_messages([
         ("system", MACRO_AGENT_PROMPT),
