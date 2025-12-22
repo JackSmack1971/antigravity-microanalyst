@@ -4,22 +4,25 @@ import asyncio
 import json
 import os
 from pathlib import Path
-from typing import Dict, Any
+from typing import Dict, Any, Union
+from src.microanalyst.server.schemas import HealthResponse, ThesisResponse
+
 
 router = APIRouter()
 
 # Paths
 PROJECT_ROOT = Path(__file__).parent.parent.parent.parent
 DATA_DIR = PROJECT_ROOT / "data_exports"
-LOG_FILE = PROJECT_ROOT / "logs" / "microanalyst.log" # Assuming this is the main log
+LOG_FILE = PROJECT_ROOT / "logs" / "async_retrieval.log"
 THESIS_FILE = DATA_DIR / "latest_thesis.json"
 
-@router.get("/health")
+@router.get("/health", response_model=HealthResponse)
 async def health_check():
     return {"status": "online", "service": "Antigravity Swarm API"}
 
-@router.get("/api/v1/latest/thesis")
+@router.get("/api/v1/latest/thesis", response_model=Union[ThesisResponse, Dict[str, Any]])
 async def get_latest_thesis():
+
     """Returns the most recent generated thesis."""
     if not THESIS_FILE.exists():
         return {"status": "waiting_for_swarm", "thesis": None}

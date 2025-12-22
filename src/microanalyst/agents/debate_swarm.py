@@ -89,6 +89,7 @@ def retail_agent_node(state: AgentState) -> Dict[str, Any]:
     except Exception as e:
         response = f"Error generating view: {e}"
 
+    logger.info(f"[RETAIL] Analyzing thinking level: {thinking_level}")
     return {
         "retail_view": f"[RETAIL ({thinking_level})]: {response}",
         "logs": [f"Retail Agent thinking at {thinking_level} level."]
@@ -122,6 +123,7 @@ def institution_agent_node(state: AgentState) -> Dict[str, Any]:
     except Exception as e:
         response = f"Error: {e}"
 
+    logger.info(f"[INSTITUTION] Derived variance: {analysis.get('variance_type')}")
     return {
         "institution_view": f"[INSTITUTION ({thinking_level})]: {response}",
         "logs": ["Institutional Agent calculated variances."]
@@ -158,6 +160,7 @@ def whale_agent_node(state: AgentState) -> Dict[str, Any]:
     except Exception as e:
         response = f"Error: {e}"
         
+    logger.info(f"[WHALE] Intent detected: {analysis.get('intent')}")
     return {
         "whale_view": f"[WHALE ({thinking_level})]: {response}",
         "logs": [f"Whale Agent analyzed intent: {analysis.get('intent')}"]
@@ -189,6 +192,7 @@ def macro_agent_node(state: AgentState) -> Dict[str, Any]:
     except Exception as e:
         response = f"Error: {e}"
 
+    logger.info(f"[MACRO] Regime analysis: {regime}")
     return {
         "macro_view": f"[MACRO ({thinking_level})]: {response}",
         "logs": ["Macro Agent analyzed global correlations."]
@@ -273,6 +277,7 @@ def facilitator_node(state: AgentState) -> Dict[str, Any]:
         winning_persona=winner
     )
     
+    logger.info(f"Facilitator sided with {winner}. Decision: {decision}")
     return {
         "synthesis": signal,
         "logs": [f"Facilitator sided with {winner}. Fractal: {confluence_check.get('type')}"]
@@ -297,6 +302,7 @@ def risk_manager_node(state: AgentState) -> Dict[str, Any]:
         winning_persona=signal.winning_persona
     )
     
+    logger.info(f"Risk Manager applied constraints. Final Allocation: {final_allocation}")
     return {
         "final_decision": final_signal,
         "logs": ["Risk Manager applied constraints."]
@@ -380,6 +386,7 @@ def run_adversarial_debate(dataset: Dict[str, Any]) -> Dict[str, Any]:
     # Transform result for AgentCoordinator compatibility
     return {
         "decision": result["final_decision"].decision,
+        "confidence": result["final_decision"].confidence,
         "allocation_pct": result["final_decision"].suggested_allocation * 100,
         "reasoning": result["final_decision"].reasoning,
         "bull_case": result["retail_view"], # Mapping Retail to 'Bull' slot for legacy UI compat

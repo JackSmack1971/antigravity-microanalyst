@@ -48,60 +48,73 @@ export default function MarketStatus() {
     const isSell = thesis.decision === "SELL";
 
     return (
-        <div className="glass-panel p-6 border-t-4 border-t-cyan-500">
-            <div className="flex justify-between items-start mb-6">
+        <div className="glass-panel p-6 border-t-4 border-t-cyan-500 transition-all duration-300 hover:shadow-[0_0_40px_rgba(6,182,212,0.15)] group">
+            <div className="flex flex-col md:flex-row justify-between items-start gap-6 mb-8">
                 <div>
-                    <h2 className="text-gray-400 text-sm uppercase tracking-wider mb-1">Current Directive</h2>
-                    <div className="flex items-center gap-3">
+                    <h2 className="text-gray-500 text-[10px] uppercase tracking-[0.3em] font-bold mb-2">Live Market Directive</h2>
+                    <div className="flex items-baseline gap-4">
                         <motion.div
-                            animate={{ scale: [1, 1.1, 1] }}
+                            animate={{
+                                opacity: [0.8, 1, 0.8],
+                                textShadow: isBuy ? "0 0 20px rgba(74,222,128,0.4)" : isSell ? "0 0 20px rgba(239,68,68,0.4)" : "none"
+                            }}
                             transition={{ duration: 2, repeat: Infinity }}
                             className={clsx(
-                                "text-4xl font-black tracking-tighter",
-                                isBuy ? "text-green-400 drop-shadow-[0_0_10px_rgba(74,222,128,0.5)]" :
-                                    isSell ? "text-red-500 drop-shadow-[0_0_10px_rgba(239,68,68,0.5)]" : "text-gray-200"
+                                "text-5xl md:text-6xl font-black tracking-tighter italic",
+                                isBuy ? "text-green-400" : isSell ? "text-red-500" : "text-gray-200"
                             )}
                         >
                             {thesis.decision}
                         </motion.div>
-                        <span className="text-2xl text-white/50 font-light">
-                            {(thesis.confidence * 100).toFixed(0)}% Conf.
-                        </span>
+                        <div className="flex flex-col">
+                            <span className="text-xl text-white/40 font-mono leading-none">
+                                {(thesis.confidence * 100).toFixed(0)}%
+                            </span>
+                            <span className="text-[10px] text-white/20 uppercase tracking-widest font-bold">Confidence</span>
+                        </div>
                     </div>
                 </div>
 
-                <div className="text-right">
-                    <div className="text-gray-400 text-xs uppercase mb-1">Start Allocation</div>
-                    <div className="text-2xl font-mono text-cyan-400">
+                <div className="text-right bg-white/5 p-3 rounded-xl border border-white/5 min-w-[140px] transition-colors group-hover:bg-white/10">
+                    <div className="text-gray-500 text-[10px] uppercase tracking-widest font-bold mb-1">Target Allocation</div>
+                    <div className="text-3xl font-black text-cyan-400 tracking-tighter">
                         {thesis.allocation_pct}%
                     </div>
+                    <div className="h-1.5 w-full bg-white/5 rounded-full mt-2 overflow-hidden">
+                        <motion.div
+                            initial={{ width: 0 }}
+                            animate={{ width: `${thesis.allocation_pct}%` }}
+                            className="h-full bg-cyan-500"
+                        />
+                    </div>
                 </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 mb-6">
-                <div className="p-3 bg-white/5 rounded-lg border border-white/5">
-                    <div className="flex items-center gap-2 text-green-400 text-sm font-bold mb-1">
-                        <TrendingUp size={14} /> Bull Case
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                <div className="p-4 bg-white/[0.03] rounded-xl border border-white/5 hover:bg-white/[0.05] transition-colors group/card">
+                    <div className="flex items-center gap-2 text-green-400 text-xs font-black uppercase tracking-widest mb-3">
+                        <TrendingUp size={14} className="group-hover/card:translate-y-[-2px] transition-transform" /> Bull Thesis
                     </div>
-                    <p className="text-xs text-gray-300 leading-relaxed max-h-20 overflow-y-auto">
-                        {thesis.bull_case?.replace(/\[.*?\]/g, "") || "Analyzing..."}
+                    <p className="text-[13px] text-gray-400 leading-relaxed min-h-[60px]">
+                        {thesis.bull_case?.replace(/\[.*?\]/g, "") || "Analyzing market momentum..."}
                     </p>
                 </div>
-                <div className="p-3 bg-white/5 rounded-lg border border-white/5">
-                    <div className="flex items-center gap-2 text-red-400 text-sm font-bold mb-1">
-                        <Activity size={14} /> Bear Case
+                <div className="p-4 bg-white/[0.03] rounded-xl border border-white/5 hover:bg-white/[0.05] transition-colors group/card">
+                    <div className="flex items-center gap-2 text-red-500 text-xs font-black uppercase tracking-widest mb-3">
+                        <Activity size={14} className="group-hover/card:scale-110 transition-transform" /> Bear Thesis
                     </div>
-                    <p className="text-xs text-gray-300 leading-relaxed max-h-20 overflow-y-auto">
-                        {thesis.bear_case?.replace(/\[.*?\]/g, "") || "Analyzing..."}
+                    <p className="text-[13px] text-gray-400 leading-relaxed min-h-[60px]">
+                        {thesis.bear_case?.replace(/\[.*?\]/g, "") || "Scanning for structural risks..."}
                     </p>
                 </div>
             </div>
 
-            <div className="p-4 bg-black/40 rounded-lg border-l-2 border-l-yellow-500">
-                <h3 className="text-yellow-500 text-xs font-bold uppercase mb-2 flex items-center gap-2">
-                    <Target size={14} /> Synthesis & Reasoning
+            <div className="relative p-5 bg-black/40 rounded-xl border border-white/10 overflow-hidden">
+                <div className="absolute top-0 left-0 w-1 h-full bg-yellow-500/50" />
+                <h3 className="text-yellow-500 text-[10px] font-black uppercase tracking-[0.2em] mb-3 flex items-center gap-2">
+                    <Target size={14} /> Cognitive Synthesis
                 </h3>
-                <p className="text-sm text-gray-200 leading-relaxed">
+                <p className="text-[14px] text-gray-200 leading-relaxed font-medium">
                     {thesis.reasoning}
                 </p>
             </div>
