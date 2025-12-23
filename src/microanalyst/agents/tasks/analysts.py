@@ -80,18 +80,40 @@ async def handle_risk_analysis(inputs: Dict[str, Any]) -> Dict[str, Any]:
 async def handle_macro_analysis(inputs: Dict[str, Any]) -> Dict[str, Any]:
     """Handler for ANALYST_MACRO role."""
     try:
-        history = inputs.get('raw_price_history', {})
-        df_price = pd.DataFrame(history)
-        macro_series = inputs.get('macro_series', {})
-        if not macro_series and not df_price.empty:
-            macro_series['dxy'] = df_price['close'] * 0.001 
+        from src.microanalyst.core.persistence import DatabaseManager
+        db = DatabaseManager()
+        
+        # 1. Get Price History (Ground Truth)
+        df_price = db.get_price_history(limit=60, interval="1d")
+        if df_price.empty and 'raw_price_history' in inputs:
+            df_price = pd.DataFrame(inputs['raw_price_history'])
+            
+        if df_price.empty:
+            return {"regime": "UNKNOWN", "confidence": 0.0, "reasoning": "Missing price history for correlation."}
+
+        # 2. Get Macro Series from DB
+        macro_series = {}
+        for asset in ['dxy', 'spy', 'gold']:
+            df_macro = db.get_macro_history(asset_id=asset, limit=60)
+            if not df_macro.empty:
+                # Use date as index for alignment
+                df_macro = df_macro.copy()
+                if 'date' in df_macro.columns:
+                    df_macro.set_index('date', inplace=True)
+                macro_series[asset] = df_macro['price']
+        
+        if not macro_series:
+             logger.warning("No macro data in DB. Falling back to empty analysis.")
         
         correlation_analyzer = CorrelationAnalyzer()
         macro_agent = MacroSpecialistAgent()
         
+        # Use close price series, indexed by date
+        df_price.set_index('date', inplace=True)
         correlations = correlation_analyzer.analyze_correlations(df_price['close'], macro_series)
         macro_signal = macro_agent.run_task({'correlations': correlations})
         return macro_signal
+
     except Exception as e:
         logger.error(f"Macro analysis failed: {e}")
         return {"regime": "UNKNOWN", "confidence": 0.0, "error": str(e)}

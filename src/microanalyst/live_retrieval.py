@@ -24,6 +24,23 @@ def main():
         if stats.get("success", 0) < 5: # Lowered threshold for dev
             print("WARNING: Low success rate.")
 
+        print("\n--- Phase 1.5: Macro Data Retrieval ---")
+        try:
+            from src.microanalyst.providers.macro_data import MacroDataProvider
+            macro_provider = MacroDataProvider()
+            macro_series = macro_provider.fetch_macro_series(lookback_days=60)
+            
+            if any(not s.empty for s in macro_series.values()):
+                norm_macro = normalizer.normalize_macro_data(macro_series)
+                from src.microanalyst.core.persistence import DatabaseManager
+                db_temp = DatabaseManager()
+                db_temp.upsert_macro_data(norm_macro)
+                print(f"Macro Data Updated: {list(macro_series.keys())}")
+            else:
+                print("WARNING: Macro data series empty.")
+        except Exception as e:
+            print(f"Macro Retrieval failed: {e}")
+
         print("\n--- Phase 2: Normalization & Persistence ---")
         # Normalize BTC Price (Intraday & Daily)
         # Note: In a real loop we might process specific files based on stats

@@ -351,15 +351,15 @@ def render_header(data: dict):
     metrics = [
         {"label": "Consensus Bias", "value": decision, "delta": f"↑ {confidence*100:.1f}% Conf", "delta_class": "delta-pos", "help": "The final distilled decision from the agent swarm."},
         {"label": "Portfolio ΔΤ", "value": f"{data.get('allocation_pct', 0.0):.1f}%", "delta": "↑ Stable", "delta_class": "", "help": "Suggested asset allocation adjustment based on treasury risk delta."},
-        {"label": "Volatility (GARCH)", "value": "12.4", "delta": "↓ 37.2% (Compression)", "delta_class": "delta-pos", "help": "Measures institutional-grade price compression. High value indicates impending regime shift."},
-        {"label": "DXY Correlation", "value": "DECOUPLED", "delta": "Institutional Shift", "delta_class": "delta-neg", "help": "Measures BTC relative strength against the US Dollar. Decoupling indicates Bitcoin-specific demand."}
+        {"label": "Volatility (GARCH)", "value": f"{data.get('market_data', {}).get('volatility_score', 0):.1f}", "delta": "↓ Compression", "delta_class": "delta-pos", "help": "Measures institutional-grade price compression. High value indicates impending regime shift."},
+        {"label": "DXY Momentum", "value": f"{data.get('macro_metrics', {}).get('dxy', {}).get('price', 104.2):.1f}", "delta": f"{data.get('macro_metrics', {}).get('dxy', {}).get('change_24h', 0):+.2f}%", "delta_class": "delta-pos" if data.get('macro_metrics', {}).get('dxy', {}).get('change_24h', 0) > 0 else "delta-neg", "help": "Live US Dollar Index (DXY) performance. Strong Dollar typically creates tailwinds for Bitcoin."}
     ]
     
     # Zone Labels
     st.markdown('<div style="display: flex; gap: 0; align-items: center; margin-bottom: 8px; opacity: 0.5; font-size: 10px; font-family: \'Roboto Mono\', monospace; letter-spacing: 0.1em;">'
                 '<div style="flex: 2; display: flex; align-items: center; gap: 10px;"><span>// ZONE_A: INTELLIGENCE_CORE</span><div style="flex-grow: 1; height: 1px; background: rgba(0,240,255,0.1);"></div></div>'
                 '<div style="width: 20px;"></div>'
-                '<div style="flex: 2; display: flex; align-items: center; gap: 10px;"><span>// ZONE_B: MARKET_DYNAMICS</span><div style="flex-grow: 1; height: 1px; background: rgba(0,240,255,0.1);"></div></div>'
+                '<div style="flex: 2; display: flex; align-items: center; gap: 10px;"><span>// ZONE_B: MACRO_LIQUIDITY</span><div style="flex-grow: 1; height: 1px; background: rgba(0,240,255,0.1);"></div></div>'
                 '</div>', unsafe_allow_html=True)
 
     cols = st.columns(4)

@@ -35,6 +35,11 @@
 - [x] **Agent Integration**: Upgraded Technical Analyst to leverage the full confluence engine.
 - [x] **UI Surface**: Implemented Institutional Confluence Breakdown Table in the Command Dashboard.
 
+### **PHASE 2.2: MACRO LIQUIDITY ENGINE [DONE]**
+- [x] **Real Data Feeds**: Replaced DXY/SPY simulations with `yfinance` integration.
+- [x] **Persistence**: Synced macro data to `macro_data_daily` SQL table.
+- [x] **Agent Intelligence**: Upgraded Macro Specialist to analyze ground-truth correlations.
+
 ### **ARCHIVED PRIORITIES (COMPLETED IN V5/V6)**
 - [x] Paper Trading Engine (Simulator)
 - [x] Agent Execution Router

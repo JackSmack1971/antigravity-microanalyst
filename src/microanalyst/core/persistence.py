@@ -220,6 +220,28 @@ class DatabaseManager:
         missing = sorted(list(expected_dates - existing_dates))
         return missing
 
+    def get_macro_history(self, asset_id: str, limit: int = 100) -> pd.DataFrame:
+        """
+        Fetches historical macro data for a specific asset.
+        
+        Args:
+            asset_id: The identifier for the macro asset (e.g., 'dxy', 'spy').
+            limit: Maximum number of rows to retrieve.
+            
+        Returns:
+            pd.DataFrame: A DataFrame containing the historical series with a DatetimeIndex.
+        """
+        query = "SELECT * FROM macro_data_daily WHERE asset_id=? ORDER BY date DESC LIMIT ?"
+        
+        with self._get_connection() as conn:
+            df = pd.read_sql_query(query, conn, params=(asset_id, limit))
+        
+        if not df.empty:
+            df["date"] = pd.to_datetime(df["date"])
+            df = df.sort_values("date", ascending=True).reset_index(drop=True)
+            
+        return df
+
     def get_price_history(self, limit: int = 1000, interval: str = "1d") -> pd.DataFrame:
         """
         Fetches price history as a DataFrame.

@@ -156,6 +156,30 @@ class DataNormalizer:
         
         return df_pivot
 
+    def normalize_macro_data(self, series_dict: dict) -> pd.DataFrame:
+        """
+        Standardizes macro series into [date, asset_id, price, change_pct].
+        """
+        all_data = []
+        for name, series in series_dict.items():
+            if series.empty:
+                continue
+                
+            df = series.to_frame(name='price').reset_index()
+            df.columns = ['date', 'price']
+            df['asset_id'] = name
+            
+            # Calculate 24h change
+            df['change_pct'] = df['price'].pct_change() * 100
+            df['change_pct'] = df['change_pct'].fillna(0)
+            
+            all_data.append(df)
+            
+        if not all_data:
+            return pd.DataFrame()
+            
+        return pd.concat(all_data, ignore_index=True)
+
     def normalize_price_history(self, df):
         """
         Standardizes columns to [date, open, high, low, close, volume]
