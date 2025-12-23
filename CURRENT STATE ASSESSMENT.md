@@ -28,13 +28,14 @@
 
 ---
 
-## **🎯 STRATEGIC PRIORITIES: TOWARDS V6 (PREDICTION)**
+## **🎯 STRATEGIC PRIORITIES: TOWARDS V7 (FLOW & LIQUIDITY)**
 
-### **PHASE 1: THE ORACLE (Prediction Agent) [DONE]**
-- [x] **Data Set**: Combine Vision, GARCH, On-Chain, and Technicals into a single ML-ready dataset.
-- [x] **Agent**: Build `PredictionAgent` specialized in T+24h price targeting.
+### **PHASE 2.1: INSTITUTIONAL CONFLUENCE [DONE]**
+- [x] **Modular Detectors**: Transitioned ETF Flow and OI logic from placeholders to Z-score and Clustering models.
+- [x] **Agent Integration**: Upgraded Technical Analyst to leverage the full confluence engine.
+- [x] **UI Surface**: Implemented Institutional Confluence Breakdown Table in the Command Dashboard.
 
-### **ARCHIVED PRIORITIES (COMPLETED IN V5)**
+### **ARCHIVED PRIORITIES (COMPLETED IN V5/V6)**
 - [x] Paper Trading Engine (Simulator)
 - [x] Agent Execution Router
 - [x] Synthetic Volatility (GARCH)
