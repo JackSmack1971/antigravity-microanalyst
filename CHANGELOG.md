@@ -369,3 +369,20 @@ Promotion\ vulnerability where models are updated without performance gating.
 
 ### 🖥️ Application Plane
 * **Confluence Breakdown UI**: Added a high-fidelity rendering table to the dashboard for institutional-grade confluence analysis.
+
+---
+
+## [Phase 60] - Macro Liquidity Engine
+
+### 🧬 Intelligence Plane
+* **Real-World Correlation Analysis**: Upgraded `MacroSpecialistAgent` and `CorrelationAnalyzer` to use ground-truth DXY and SPY data from Yahoo Finance.
+* **Institutional Macro Feed**: Integrated `MacroDataProvider` into the core pipeline, eliminating legacy price-based simulation hacks.
+* **Context Hydration**: Injected real-time macro momentum directly into the agent swarm perception layer for dashboard visibility.
+
+### 🛡️ Resilience & Security
+* **Concurrency Hardening**: Enabled SQLite Write-Ahead Logging (WAL) mode to prevent lock contention between agents and UI.
+* **SQL Indexing**: Optimized macro retrieval with `idx_macro_asset_date` for O(1) correlation lookups.
+* **Batch Performance**: Refactored persistence layer to use `executemany` for high-throughput macro data seeding.
+
+### 🖥️ Application Plane
+* **Live Macro HUD**: Surfaced real-time DXY/SPY performance and trends in the Technical Dashboard header.
