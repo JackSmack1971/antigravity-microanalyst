@@ -21,6 +21,8 @@ class DatabaseManager:
     def _init_db(self):
         """Create tables if they don't exist."""
         with self._get_connection() as conn:
+            # Enable WAL mode for concurrency
+            conn.execute("PRAGMA journal_mode=WAL;")
             cursor = conn.cursor()
             
             # BTC Price Daily
@@ -103,6 +105,12 @@ class DatabaseManager:
                 )
             ''')
             
+            # Optimization: Index for asset_id + date lookups
+            cursor.execute('''
+                CREATE INDEX IF NOT EXISTS idx_macro_asset_date 
+                ON macro_data_daily (asset_id, date)
+            ''')
+            
             # Commit changes
             conn.commit()
 
@@ -178,28 +186,33 @@ class DatabaseManager:
 
     def upsert_macro_data(self, df: pd.DataFrame):
         """
-        Upsert macro data into macro_data_daily.
+        Upsert macro data into macro_data_daily using bulk execution.
         Expects DF with columns: date, asset_id, price, change_pct.
         """
         if df.empty:
             return
 
+        query = '''
+            INSERT INTO macro_data_daily (date, asset_id, price, change_pct)
+            VALUES (?, ?, ?, ?)
+            ON CONFLICT(date, asset_id) DO UPDATE SET
+                price=excluded.price,
+                change_pct=excluded.change_pct
+        '''
+        
+        # Prepare records
+        records = []
+        for _, row in df.iterrows():
+            date_str = row['date'] if isinstance(row['date'], str) else row['date'].strftime('%Y-%m-%d')
+            records.append((date_str, row['asset_id'], row['price'], row['change_pct']))
+
         with self._get_connection() as conn:
-            cursor = conn.cursor()
-            for _, row in df.iterrows():
-                try:
-                    date_str = row['date'] if isinstance(row['date'], str) else row['date'].strftime('%Y-%m-%d')
-                    cursor.execute('''
-                        INSERT INTO macro_data_daily (date, asset_id, price, change_pct)
-                        VALUES (?, ?, ?, ?)
-                        ON CONFLICT(date, asset_id) DO UPDATE SET
-                            price=excluded.price,
-                            change_pct=excluded.change_pct
-                    ''', (date_str, row['asset_id'], row['price'], row['change_pct']))
-                except Exception as e:
-                    logger.error(f"Failed to upsert macro data for {row.get('date')} {row.get('asset_id')}: {e}")
-            conn.commit()
-            logger.info(f"Upserted {len(df)} macro data rows.")
+            try:
+                conn.executemany(query, records)
+                conn.commit()
+                logger.info(f"Upserted {len(records)} macro data rows using executemany.")
+            except Exception as e:
+                logger.error(f"Failed to bulk upsert macro data: {e}")
 
     def get_missing_dates(self, start_date: str, end_date: str) -> list[str]:
         """

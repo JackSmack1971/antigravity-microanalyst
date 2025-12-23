@@ -72,6 +72,13 @@ def main():
             chain_stats = chain_watcher.fetch_mempool_stats()
             print(f"On-Chain Stats: {chain_stats}")
             
+            # Fetch Latest Macro Metrics for UI
+            macro_metrics = {}
+            try:
+                macro_metrics = macro_provider.get_latest_metrics()
+            except Exception:
+                pass
+            
             # Fetch Latest Price (Intraday)
             latest_price = 0
             if not price_df.empty:
@@ -95,7 +102,8 @@ def main():
                     "funding_rate": 0.01,
                     "mempool_vbytes": chain_stats.get("mempool_vbytes", 0),
                     "network_fees": chain_stats.get("fastest_fee_sats", 0)
-                }
+                },
+                "macro_metrics": macro_metrics
             }
         except Exception as e:
             print(f"Context Hydration Failed: {e}. Using Mock.")
