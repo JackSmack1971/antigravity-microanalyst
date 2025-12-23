@@ -11,7 +11,7 @@
 
 ## 🏗️ System Architecture
 
-Antigravity is built on a decoupled, modular architecture designed for high-velocity data retrieval and sophisticated cognitive processing.
+Antigravity uses a decoupled, modular architecture with a pluggable intelligence layer.
 
 ```mermaid
 flowchart TD
@@ -25,13 +25,21 @@ flowchart TD
         C --> AC[Agent Coordinator]
         AC -->|Debate| S[Swarm Agents]
         AC -->|Forecast| O[ML Oracle]
-        S & O --> T[Final Thesis]
+        
+        subgraph "Refactored Core"
+            CC[Confluence Calculator] -->|Pluggable| FD[Factor Detectors]
+            FD --> SF[schemas.py]
+        end
+        S & O & CC --> T[Final Thesis]
     end
 
     subgraph "Application Plane"
         DB & T --> API[FastAPI Server]
         API --> NXT[Next.js Frontend]
         API --> STM[Streamlit Dashboard]
+        subgraph "UI Evolution"
+            STM --> CMP[Modular Components]
+        end
     end
 ```
 

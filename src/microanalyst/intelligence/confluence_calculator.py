@@ -8,109 +8,51 @@ from datetime import datetime, timedelta
 from scipy.cluster.hierarchy import linkage, fcluster
 from scipy.spatial.distance import pdist
 import logging
+from .factors.price_action import PriceActionDetector
+from .factors.indicators import VolumeProfileDetector, FibonacciDetector
 
 logger = logging.getLogger(__name__)
 
-class ConfluenceType(Enum):
-    """Classification of confluence factors"""
-    SUPPORT = "support"
-    RESISTANCE = "resistance"
-    PIVOT = "pivot"  # Can act as either
-    MAGNET = "magnet"  # Attracts price (OI clusters)
-
-class FactorType(Enum):
-    """Individual technical factors"""
-    HISTORICAL_SR = "historical_support_resistance"
-    VOLUME_PROFILE = "volume_profile_node"
-    FIBONACCI = "fibonacci_level"
-    MOVING_AVERAGE = "moving_average"
-    ROUND_NUMBER = "round_number"
-    ETF_FLOW_PIVOT = "etf_flow_pivot"
-    OPEN_INTEREST = "open_interest_cluster"
-    PIVOT_POINT = "pivot_point"
-    GAP_LEVEL = "gap_level"
-    SWING_POINT = "swing_high_low"
-
-@dataclass
-class ConfluenceFactor:
-    """Individual technical factor at a price level"""
-    price: float
-    factor_type: FactorType
-    strength: float  # 0-1 normalized strength
-    direction: ConfluenceType
-    metadata: Dict = field(default_factory=dict)
-    detected_at: datetime = field(default_factory=datetime.now)
-    
-    def __repr__(self):
-        return f"{self.factor_type.value}@{self.price:.2f}({self.strength:.2f})"
-
-@dataclass
-class ConfluenceZone:
-    """Cluster of confluence factors"""
-    price_level: float
-    confluence_score: float
-    factors: List[ConfluenceFactor]
-    zone_type: ConfluenceType
-    strength: str  # "weak", "moderate", "strong", "critical"
-    price_range: Tuple[float, float]  # (lower, upper) bounds
-    distance_to_current: float  # Percentage distance
-    historical_tests: int  # How many times tested
-    last_test_date: Optional[datetime]
-    breach_probability: float  # 0-1 probability of breakthrough
-    
-    def factor_count(self) -> int:
-        return len(self.factors)
-    
-    def factor_diversity(self) -> float:
-        """Measure of factor type diversity (0-1)"""
-        unique_types = len(set(f.factor_type for f in self.factors))
-        return unique_types / len(FactorType)
-    
-    def to_dict(self) -> Dict:
-        return {
-            "price_level": round(self.price_level, 2),
-            "confluence_score": round(self.confluence_score, 3),
-            "factor_count": self.factor_count(),
-            "factor_diversity": round(self.factor_diversity(), 3),
-            "zone_type": self.zone_type.value,
-            "strength": self.strength,
-            "price_range": [round(self.price_range[0], 2), round(self.price_range[1], 2)],
-            "distance_to_current_pct": round(self.distance_to_current, 2),
-            "factors": [
-                {
-                    "type": f.factor_type.value,
-                    "price": round(f.price, 2),
-                    "strength": round(f.strength, 3),
-                    "direction": f.direction.value,
-                    "metadata": f.metadata
-                } 
-                for f in self.factors
-            ],
-            "historical_tests": self.historical_tests,
-            "last_test_date": self.last_test_date.isoformat() if self.last_test_date else None,
-            "breach_probability": round(self.breach_probability, 3)
-        }
+from .schemas import ConfluenceType, FactorType, ConfluenceFactor, ConfluenceZone
 
 class ConfluenceCalculator:
     """
     Advanced confluence zone detection and scoring engine.
     
+    This engine identifies significant price levels by aggregating diverse
+    technical and fundamental factors. It uses a pluggable detector architecture
+    to scale across different analysis methodologies.
+    
     Features:
-    - Multi-factor detection (10+ technical factors)
-    - Hierarchical clustering for zone identification
-    - Weighted scoring with decay functions
-    - Historical validation and test counting
-    - Dynamic recalculation with market updates
+    - Modular Factor Detection: Pluggable registry of BaseFactorDetector instances.
+    - Hierarchical Clustering: Groups fragmented signals into cohesive zones.
+    - Score-Based Prioritization: Ranks zones based on strength, diversity, and recency.
+    - Breach Probability Analysis: Estimates the likelihood of zone invalidation.
     """
     
     def __init__(self, 
                  clustering_tolerance: float = 0.015,  # 1.5% clustering tolerance
                  min_factors_for_zone: int = 2,
                  lookback_days: int = 365):
+        """
+        Initializes the calculator with institutional-grade clustering logic.
+        
+        Args:
+            clustering_tolerance: Max distance (as % of price) to group factors.
+            min_factors_for_zone: Minimum factors required to form a valid zone.
+            lookback_days: Depth of historical data for factor validation.
+        """
         self.clustering_tolerance = clustering_tolerance
         self.min_factors = min_factors_for_zone
         self.lookback_days = lookback_days
         
+        # Pluggable Detectors
+        self.detectors = [
+            PriceActionDetector(),
+            VolumeProfileDetector(),
+            FibonacciDetector()
+        ]
+
         # Factor weights (sum to 1.0)
         self.factor_weights = {
             FactorType.HISTORICAL_SR: 0.18,
@@ -157,14 +99,17 @@ class ConfluenceCalculator:
         # Step 1: Detect all individual factors
         all_factors = []
         
-        all_factors.extend(self._detect_historical_sr(df_price))
-        all_factors.extend(self._detect_volume_profile_nodes(df_price))
-        all_factors.extend(self._detect_fibonacci_levels(df_price))
+        for detector in self.detectors:
+            try:
+                all_factors.extend(detector.detect(df_price))
+            except Exception as e:
+                logger.error(f"Detector {detector.__class__.__name__} failed: {e}")
+
+        # Legacy/Internal Detectors (yet to be modularized)
         all_factors.extend(self._detect_moving_averages(df_price))
         all_factors.extend(self._detect_round_numbers(df_price))
         all_factors.extend(self._detect_pivot_points(df_price))
         all_factors.extend(self._detect_gap_levels(df_price))
-        all_factors.extend(self._detect_swing_points(df_price))
         
         if df_flows is not None and not df_flows.empty:
             all_factors.extend(self._detect_etf_flow_pivots(df_flows))
@@ -215,171 +160,8 @@ class ConfluenceCalculator:
     # FACTOR DETECTION METHODS
     # ===================================================================
     
-    def _detect_historical_sr(self, df: pd.DataFrame) -> List[ConfluenceFactor]:
-        """
-        Detect historical support/resistance levels using swing points.
-        """
-        factors = []
-        
-        # Find swing highs (resistance candidates)
-        df['swing_high'] = (
-            (df['high'] > df['high'].shift(1)) &
-            (df['high'] > df['high'].shift(2)) &
-            (df['high'] > df['high'].shift(-1)) &
-            (df['high'] > df['high'].shift(-2))
-        )
-        
-        # Find swing lows (support candidates)
-        df['swing_low'] = (
-            (df['low'] < df['low'].shift(1)) &
-            (df['low'] < df['low'].shift(2)) &
-            (df['low'] < df['low'].shift(-1)) &
-            (df['low'] < df['low'].shift(-2))
-        )
-        
-        # Process swing highs
-        swing_highs = df[df['swing_high']]['high'].values
-        for price in swing_highs:
-            # Count nearby touches (within 1%)
-            touches = self._count_touches(df, price, tolerance=0.01)
-            recency_weight = self._calculate_recency_weight(
-                df[df['high'] == price].index[-1], len(df)
-            )
-            
-            strength = min(1.0, (touches / 5.0) * recency_weight)
-            
-            factors.append(ConfluenceFactor(
-                price=price,
-                factor_type=FactorType.HISTORICAL_SR,
-                strength=strength,
-                direction=ConfluenceType.RESISTANCE,
-                metadata={
-                    "touches": touches,
-                    "recency_weight": recency_weight
-                }
-            ))
-        
-        # Process swing lows
-        swing_lows = df[df['swing_low']]['low'].values
-        for price in swing_lows:
-            touches = self._count_touches(df, price, tolerance=0.01)
-            recency_weight = self._calculate_recency_weight(
-                df[df['low'] == price].index[-1], len(df)
-            )
-            
-            strength = min(1.0, (touches / 5.0) * recency_weight)
-            
-            factors.append(ConfluenceFactor(
-                price=price,
-                factor_type=FactorType.HISTORICAL_SR,
-                strength=strength,
-                direction=ConfluenceType.SUPPORT,
-                metadata={
-                    "touches": touches,
-                    "recency_weight": recency_weight
-                }
-            ))
-        
-        logger.debug(f"Detected {len(factors)} historical S/R levels")
-        return factors
     
-    def _detect_volume_profile_nodes(self, df: pd.DataFrame) -> List[ConfluenceFactor]:
-        """
-        Detect high-volume nodes (POC - Point of Control).
-        """
-        factors = []
-        
-        if 'volume' not in df.columns or df['volume'].sum() == 0:
-            logger.debug("No volume data available")
-            return factors
-        
-        # Create price bins (0.5% intervals)
-        price_min = df['low'].min()
-        price_max = df['high'].max()
-        if price_min == price_max: return []
-        
-        n_bins = int((price_max - price_min) / (price_min * 0.005))
-        n_bins = max(10, n_bins) # prevent zero or too small bins
-        
-        bins = np.linspace(price_min, price_max, n_bins)
-        
-        # Aggregate volume per bin
-        volume_profile = np.zeros(len(bins) - 1)
-        for _, row in df.iterrows():
-            # Distribute bar volume across price range
-            bar_bins = np.digitize([row['low'], row['high']], bins)
-            # Ensure indices are within bounds
-            start_idx = max(0, bar_bins[0]-1)
-            end_idx = min(len(volume_profile), bar_bins[1])
-            
-            for i in range(start_idx, end_idx):
-                volume_profile[i] += row['volume']
-        
-        # Find peaks (local maxima)
-        from scipy.signal import find_peaks
-        if len(volume_profile) > 0:
-             peaks, properties = find_peaks(volume_profile, prominence=np.std(volume_profile))
-             
-             for peak_idx in peaks:
-                price = (bins[peak_idx] + bins[peak_idx + 1]) / 2
-                volume_strength = volume_profile[peak_idx] / volume_profile.max()
-                
-                factors.append(ConfluenceFactor(
-                    price=price,
-                    factor_type=FactorType.VOLUME_PROFILE,
-                    strength=volume_strength,
-                    direction=ConfluenceType.PIVOT,
-                    metadata={
-                        "volume": volume_profile[peak_idx],
-                        "prominence": properties['prominences'][np.where(peaks == peak_idx)[0][0]]
-                    }
-                ))
-        
-        logger.debug(f"Detected {len(factors)} volume profile nodes")
-        return factors
     
-    def _detect_fibonacci_levels(self, df: pd.DataFrame) -> List[ConfluenceFactor]:
-        """
-        Calculate Fibonacci retracement levels from recent swing.
-        """
-        factors = []
-        
-        # Find recent significant swing (last 60 days)
-        recent = df.tail(60)
-        swing_high = recent['high'].max()
-        swing_low = recent['low'].min()
-        
-        fib_levels = [0.0, 0.236, 0.382, 0.5, 0.618, 0.786, 1.0]
-        current_price = df['close'].iloc[-1]
-        
-        # Calculate retracement levels
-        for level in fib_levels:
-            price = swing_low + (swing_high - swing_low) * (1 - level)
-            
-            # Weight by importance
-            if level in [0.5, 0.618]:
-                strength = 0.9
-            elif level in [0.382, 0.786]:
-                strength = 0.7
-            else:
-                strength = 0.5
-            
-            direction = ConfluenceType.SUPPORT if price < current_price else ConfluenceType.RESISTANCE
-            
-            factors.append(ConfluenceFactor(
-                price=price,
-                factor_type=FactorType.FIBONACCI,
-                strength=strength,
-                direction=direction,
-                metadata={
-                    "fib_level": level,
-                    "swing_high": swing_high,
-                    "swing_low": swing_low
-                }
-            ))
-        
-        logger.debug(f"Detected {len(factors)} Fibonacci levels")
-        return factors
     
     def _detect_moving_averages(self, df: pd.DataFrame) -> List[ConfluenceFactor]:
         """
@@ -582,39 +364,6 @@ class ConfluenceCalculator:
         logger.debug(f"Detected {len(factors)} gap levels")
         return factors
     
-    def _detect_swing_points(self, df: pd.DataFrame) -> List[ConfluenceFactor]:
-        """
-        Detect significant swing high/low points.
-        """
-        factors = []
-        window = 10
-        
-        df_swings = df.copy()
-        df_swings['major_swing_high'] = df_swings['high'] == df_swings['high'].rolling(window * 2 + 1, center=True).max()
-        df_swings['major_swing_low'] = df_swings['low'] == df_swings['low'].rolling(window * 2 + 1, center=True).min()
-        
-        swing_highs = df_swings[df_swings['major_swing_high']]['high'].dropna()
-        for price in swing_highs:
-            factors.append(ConfluenceFactor(
-                price=price,
-                factor_type=FactorType.SWING_POINT,
-                strength=0.6,
-                direction=ConfluenceType.RESISTANCE,
-                metadata={"window": window}
-            ))
-        
-        swing_lows = df_swings[df_swings['major_swing_low']]['low'].dropna()
-        for price in swing_lows:
-            factors.append(ConfluenceFactor(
-                price=price,
-                factor_type=FactorType.SWING_POINT,
-                strength=0.6,
-                direction=ConfluenceType.SUPPORT,
-                metadata={"window": window}
-            ))
-        
-        logger.debug(f"Detected {len(factors)} major swing points")
-        return factors
     
     # ===================================================================
     # CLUSTERING & SCORING METHODS
@@ -726,19 +475,6 @@ class ConfluenceCalculator:
     # HELPER METHODS
     # ===================================================================
     
-    def _count_touches(self, df: pd.DataFrame, price: float, tolerance: float = 0.01) -> int:
-        within_range = (
-            (df['high'] >= price * (1 - tolerance)) &
-            (df['high'] <= price * (1 + tolerance))
-        ) | (
-            (df['low'] >= price * (1 - tolerance)) &
-            (df['low'] <= price * (1 + tolerance))
-        )
-        return within_range.sum()
-    
-    def _calculate_recency_weight(self, touch_index: int, total_length: int) -> float:
-        recency = (touch_index + 1) / total_length
-        return 0.5 + (recency * 0.5)
     
     def _count_historical_tests(self, 
                                 zone: ConfluenceZone,

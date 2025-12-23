@@ -1,4 +1,5 @@
 from typing import Dict
+from loguru import logger
 from .paper_exchange import PaperExchange
 
 class PortfolioManager:
@@ -40,8 +41,22 @@ class PortfolioManager:
 
     def log_state_to_db(self, db_manager, user_id: str, current_price: float):
         """
-        Persist execution log to SQLite.
+        Persists the current paper portfolio state to the SQLite database.
+        
+        This method acts as a bridge between the local simulation state and
+        the institutional-grade persistence layer, ensuring that trading
+        history and equity curves are not lost on application reload.
+        
+        Args:
+            db_manager: The DatabaseManager instance for SQLite interaction.
+            user_id: The unique identifier for the user session.
+            current_price: The latest market price for mark-to-market valuation.
         """
         summary = self.get_portfolio_summary(user_id, current_price)
-        # TODO: Call db_manager.log_paper_portfolio(summary)
-        print(f"[PortfolioManager] Snapshot logged: {summary}")
+        try:
+            db_manager.log_paper_portfolio(user_id, summary)
+            logger.info(f"[PortfolioManager] Snapshot persisted to DB for {user_id}")
+        except Exception as e:
+            logger.error(f"[PortfolioManager] Failed to persist snapshot: {e}")
+            # Fallback to print
+            print(f"[PortfolioManager] Snapshot logged (not persisted): {summary}")

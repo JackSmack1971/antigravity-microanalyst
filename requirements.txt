@@ -21,7 +21,7 @@ arch
 httpx
 loguru
 bleach>=6.1.0
-pdfminer.six>=20240706
+marshmallow==3.26.2
 
 # API Server
 fastapi>=0.126.0

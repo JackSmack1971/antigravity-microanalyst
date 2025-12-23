@@ -9,7 +9,8 @@ from datetime import datetime
 import time
 from pathlib import Path
 from src.microanalyst.agents.agent_coordinator import AgentCoordinator
-import bleach
+from .components.ui_utils import sanitize_content, get_simulation_marker
+from .components.oracle_charts import render_forecast_chart
 
 # --- Configuration & Styling ---
 st.set_page_config(
@@ -306,29 +307,6 @@ def load_latest_data() -> dict:
 
 # --- Security Utilities ---
 
-def sanitize_content(text: str) -> str:
-    """Sanitizes agent-generated HTML content using an allow-list."""
-    if not isinstance(text, str):
-        return str(text)
-    allowed_tags = ['strong', 'em', 'code', 'b', 'i', 'p', 'br', 'span']
-    allowed_attrs = {'span': ['style']} # For inline highlight styling if needed
-    return bleach.clean(text, tags=allowed_tags, attributes=allowed_attrs, strip=True)
-
-# --- UI Components ---
-
-def get_simulation_marker(component_key: str, data: dict) -> str:
-    """Generates a styled simulation badge if a component is in fallback mode."""
-    metadata = data.get('component_metadata', {})
-    comp = metadata.get(component_key, {})
-    
-    if comp.get('simulated', False):
-        reason = comp.get('reason', 'Unknown API Error')
-        return f"""
-            <span class="badge-stale" style="margin-left: 10px; cursor: help;" title="REASON: {reason}">
-                ⚠️ SIMULATED
-            </span>
-        """
-    return ""
 
 def render_header(data: dict):
     """Renders the 'Swarm Command' header and top-level neon metric grid.
@@ -397,92 +375,6 @@ def render_header(data: dict):
             """, unsafe_allow_html=True)
     
 
-def render_forecast_chart(data: dict):
-    """Renders the ML Oracle T+24h forecast with enhanced visual cues."""
-    marker = get_simulation_marker("data_collector_01", data) # Primary data source key
-    st.markdown(f'<div class="section-label">🔮 ML Oracle | T+24h Forecast {marker}</div>', unsafe_allow_html=True)
-    
-    # Simulate a trend if data is flat/missing to show UX intention
-    current_price = 88250.0
-    hours = list(range(0, 25))
-    
-    # Detect if the data in visualizer_app is placeholder or real
-    # If placeholder (flat), inject some characteristic volatility for the 'Trust' iteration
-    forecast = [current_price - (i * 40) + (np.sin(i/2)*200) for i in hours]
-    target_price = forecast[-1]
-    
-    fig = go.Figure()
-    
-    # 1. Confidence Band (Glow Area)
-    fig.add_trace(go.Scatter(
-        x=hours + hours[::-1],
-        y=[p + (100 + i*50) for i, p in enumerate(forecast)] + [p - (100 + i*50) for i, p in enumerate(forecast)][::-1],
-        fill='toself',
-        fillcolor='rgba(0, 240, 255, 0.05)',
-        line=dict(color='rgba(255,255,255,0)'),
-        hoverinfo='skip',
-        showlegend=False,
-        name="Confidence"
-    ))
-
-    # 2. Main Trend Line
-    fig.add_trace(go.Scatter(
-        x=hours, y=forecast,
-        mode="lines",
-        name="Oracle Trend",
-        line=dict(color="#00F0FF", width=4, shape='spline'),
-        hovertemplate='<b>T+%{x}h</b><br>Price Est: $%{y:,.0f}<extra></extra>'
-    ))
-
-    # 3. Target Annotation
-    fig.add_annotation(
-        x=24, y=target_price,
-        text=f"🎯 ${target_price:,.0f}",
-        showarrow=True,
-        arrowhead=2,
-        ax=-60, ay=-40,
-        bgcolor="rgba(0, 240, 255, 0.9)",
-        font=dict(color="#050A14", size=12, family="Roboto Mono", weight="bold"),
-        bordercolor="#00F0FF",
-        borderwidth=1,
-        borderpad=4,
-        opacity=1
-    )
-    
-    fig.update_layout(
-        template="plotly_dark",
-        height=380,
-        margin=dict(l=50, r=50, t=10, b=50),
-        xaxis=dict(
-            title=dict(
-                text="Hours From Now",
-                font=dict(size=10, family="Roboto Mono", color="rgba(0, 240, 255, 0.4)")
-            ),
-            showgrid=True, 
-            gridcolor='rgba(255,255,255,0.02)',
-            zeroline=False,
-            tickfont=dict(family='Roboto Mono', size=10, color='rgba(255,255,255,0.3)')
-        ),
-        yaxis=dict(
-            title=dict(
-                text="Price Nexus ($)",
-                font=dict(size=10, family="Roboto Mono", color="rgba(0, 240, 255, 0.4)")
-            ),
-            showgrid=True, 
-            gridcolor='rgba(255,255,255,0.02)',
-            zeroline=False,
-            tickformat="$,.0f",
-            tickfont=dict(family='Roboto Mono', size=10, color='rgba(255,255,255,0.3)')
-        ),
-        hovermode="x unified",
-        paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(0,0,0,0)",
-        showlegend=False
-    )
-    
-    st.markdown('<div class="chart-container">', unsafe_allow_html=True)
-    st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
-    st.markdown('</div>', unsafe_allow_html=True)
 
 def render_reasoning_outcome(data: dict):
     """Renders the high-priority reasoning outcome at the top of the feed."""

@@ -264,6 +264,32 @@ class DatabaseManager:
             ))
             conn.commit()
 
+    def log_paper_portfolio(self, user_id: str, summary: dict):
+        """
+        Log a snapshot of the paper portfolio to the database.
+        
+        Persists total equity, PnL percentage, and timestamp for historical
+        performance tracking and session state recovery.
+        
+        Args:
+            user_id: The unique identifier for the portfolio owner.
+            summary: A dictionary containing 'total_equity' and 'pnl_pct'.
+        """
+        query = '''
+        INSERT OR REPLACE INTO paper_portfolio 
+        (timestamp, user_id, total_equity, pnl_pct)
+        VALUES (?, ?, ?, ?)
+        '''
+        with self._get_connection() as conn:
+            conn.execute(query, (
+                datetime.now().isoformat(),
+                user_id,
+                summary["total_equity"],
+                summary["pnl_pct"]
+            ))
+            conn.commit()
+        logger.info(f"Persisted paper portfolio for {user_id}: Equity={summary['total_equity']}")
+
     def close(self):
         # Connection is managed via context managers usually, but method kept for compat
         pass
