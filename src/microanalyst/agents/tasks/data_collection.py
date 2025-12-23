@@ -26,6 +26,7 @@ async def handle_data_collection(inputs: Dict[str, Any]) -> Dict[str, Any]:
     # 1. Fetch Price Data (Try Live, Fallback to Simulation)
     df_price = pd.DataFrame()
     fallback_active = False
+    fallback_reason = None
     
     try:
         # Attempt Live Fetch
@@ -43,6 +44,7 @@ async def handle_data_collection(inputs: Dict[str, Any]) -> Dict[str, Any]:
     except Exception as e:
         logger.warning(f"Live Data Fetch Failed ({e}). Falling back to Simulation.")
         fallback_active = True
+        fallback_reason = str(e)
         
         # Fallback Simulation
         dates = pd.date_range(datetime.now().date() - pd.Timedelta(days=30), periods=200, freq='4h')
@@ -118,6 +120,13 @@ async def handle_data_collection(inputs: Dict[str, Any]) -> Dict[str, Any]:
     # Pass the raw DF as well for downstream analysts who need history
     df_price.index = df_price.index.astype(str)
     dataset['raw_price_history'] = df_price.to_dict()
-    dataset['meta'] = {'source': 'live' if not fallback_active else 'simulation'}
+    
+    # Improved Metadata Signaling
+    dataset['fallback_active'] = fallback_active
+    dataset['fallback_reason'] = fallback_reason
+    dataset['meta'] = {
+        'source': 'live' if not fallback_active else 'simulation',
+        'provider': 'BinanceSpot' if not fallback_active else 'SyntheticPriceEngine'
+    }
     
     return dataset

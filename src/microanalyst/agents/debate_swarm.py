@@ -149,13 +149,17 @@ class AgentState(TypedDict):
     
     synthesis: MarketSignal
     final_decision: MarketSignal
+    simulation_mode: Annotated[bool, operator.or_]
     logs: Annotated[List[str], operator.add]
 
 # --- Nodes ---
 
 def orchestrator_node(state: AgentState) -> Dict[str, Any]:
     """Entry point for the cognitive swarm. Passes control to all analysts."""
-    return {"logs": ["Initiating high-concurrency cognitive debate..."]}
+    return {
+        "logs": ["Initiating high-concurrency cognitive debate..."],
+        "simulation_mode": False
+    }
 
 def retail_agent_node(state: AgentState) -> Dict[str, Any]:
     """Node representing the Retail Momentum Analyst."""
@@ -172,7 +176,7 @@ def retail_agent_node(state: AgentState) -> Dict[str, Any]:
         # Fallback to simulation if no key
         return {
             "retail_view": "[RETAIL (SIM)]: Bullish momentum cluster detected. (No API Key)",
-            "fallback_active": True,
+            "simulation_mode": True,
             "fallback_reason": "LLM_CONFIG: OpenRouter API Key missing or invalid.",
             "logs": ["Retail Agent used fallback: LLM restricted."]
         }
@@ -216,7 +220,7 @@ def institution_agent_node(state: AgentState) -> Dict[str, Any]:
     if not llm:
         return {
              "institution_view": "[INSTITUTIONAL (SIM)]: Risk-on posture favored. (No API Key)",
-             "fallback_active": True,
+             "simulation_mode": True,
              "fallback_reason": "LLM_CONFIG: OpenRouter API Key missing or invalid.",
              "logs": ["Institutional Agent used fallback: LLM restricted."]
         }
@@ -290,7 +294,7 @@ def macro_agent_node(state: AgentState) -> Dict[str, Any]:
     if not llm:
         return {
              "macro_view": "[MACRO (SIM)]: CPI data suggests continued easing. (No API Key)",
-             "fallback_active": True,
+             "simulation_mode": True,
              "fallback_reason": "LLM_CONFIG: OpenRouter API Key missing or invalid.",
              "logs": ["Macro Agent used fallback: LLM restricted."]
         }
@@ -509,5 +513,6 @@ def run_adversarial_debate(dataset: Dict[str, Any]) -> Dict[str, Any]:
         "bull_case": result["retail_view"], # Mapping Retail to 'Bull' slot for legacy UI compat
         "bear_case": result["whale_view"],  # Mapping Whale to 'Bear' slot for legacy UI compat
         "macro_thesis": result["macro_view"],
+        "simulation_mode": result.get("simulation_mode", False),
         "logs": result["logs"]
     }

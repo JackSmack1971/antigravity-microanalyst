@@ -308,6 +308,23 @@ def load_latest_data() -> dict:
 # --- Security Utilities ---
 
 
+def render_resilience_status(data: dict):
+    """
+    Displays a tactical alert if the system is in simulation mode.
+    """
+    if data.get('simulation_mode', False):
+        st.markdown(f'''
+            <div class="tactical-alert-amber" style="margin-bottom: 20px; border-color: #FF004D; background: rgba(255, 0, 77, 0.1); color: #FF004D;">
+                <span style="font-size: 20px;">⚠️</span>
+                <div style="display: flex; flex-direction: column;">
+                    <span style="font-size: 14px; letter-spacing: 2px;">SIMULATION MODE ACTIVE</span>
+                    <span style="font-size: 10px; opacity: 0.8; margin-top: 2px;">
+                        CRITICAL PROVIDER FAILURE DETECTED. AGENT SWARM OPERATING ON SYNTHETIC FALLBACK DATA.
+                    </span>
+                </div>
+            </div>
+        ''', unsafe_allow_html=True)
+
 def render_header(data: dict):
     """Renders the 'Swarm Command' header and top-level neon metric grid.
 
@@ -609,6 +626,7 @@ with st.spinner("Decoding swarm intelligence..."):
 
 if data:
     if page == "Tactical Command":
+        render_resilience_status(data)
         render_header(data)
         
         # Iteration 2: Multi-column layout with elevated reasoning

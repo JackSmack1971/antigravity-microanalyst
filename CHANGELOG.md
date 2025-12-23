@@ -386,3 +386,18 @@ Promotion\ vulnerability where models are updated without performance gating.
 
 ### 🖥️ Application Plane
 * **Live Macro HUD**: Surfaced real-time DXY/SPY performance and trends in the Technical Dashboard header.
+
+---
+
+## [Phase 61] - Resilience & UI Observability
+
+### 🧬 Intelligence Plane
+* **Explicit Fallback Signaling**: Enhanced `handle_data_collection` to provide granular `simulation_mode` and `fallback_reason` metadata.
+* **Swarm Propagation Logic**: Implemented a custom LangGraph reducer in `debate_swarm.py` to aggregate simulation flags across parallel agent execution.
+* **Metadata Integrity**: Ensured that the final intelligence thesis preserves system-level health status for end-user visibility.
+
+### 🛡️ Resilience & Security
+* **Automated Regression Defense**: Created `tests/test_resilience_metadata.py` to verify metadata safety across the entire coordinator and debate stack.
+
+### 🖥️ Application Plane
+* **Tactical Warning System**: Implemented a high-visibility Cyberpunk alert banner in the Dashboard that triggers during provider failures.
