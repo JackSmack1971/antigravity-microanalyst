@@ -357,3 +357,15 @@ Promotion\ vulnerability where models are updated without performance gating.
 ### 🛡️ Resilience & Security
 * **Portfolio Persistence**: Implemented SQLite-based state recovery for paper portfolios, preventing data loss on application restarts.
 * **Standardized Schemas**: Centralized confluence data structures in `schemas.py` to eliminate circular dependencies and ensure type safety.
+
+---
+
+## [Phase 59] - Flow & Liquidity Intelligence
+
+### 🧬 Intelligence Plane
+* **Institutional Flow Pivots**: Implemented `ETFFlowDetector` using statistical Z-score analysis to identify "Smart Money" entry/exit levels.
+* **Liquidity Magnet Detection**: Implemented `OpenInterestDetector` to identify price levels with heavy positioning concentration.
+* **Enhanced Technical Agent**: Integrated `ConfluenceCalculator` into the technical analysis workflow, enabling multi-factor level detection.
+
+### 🖥️ Application Plane
+* **Confluence Breakdown UI**: Added a high-fidelity rendering table to the dashboard for institutional-grade confluence analysis.
