@@ -4,6 +4,7 @@ import logging
 import pandas as pd
 from typing import Dict, Any
 
+from src.microanalyst.intelligence.confluence_calculator import ConfluenceCalculator
 from src.microanalyst.signals.library import SignalLibrary
 from src.microanalyst.synthetic.sentiment import FreeSentimentAggregator
 from src.microanalyst.intelligence.risk_manager import AdvancedRiskManager
@@ -18,12 +19,33 @@ async def handle_technical_analysis(inputs: Dict[str, Any]) -> Dict[str, Any]:
         df = pd.DataFrame(inputs['raw_price_history'])
         if not df.empty:
             lib = SignalLibrary()
+            calculator = ConfluenceCalculator()
+            
+            # Extract flows and OI from inputs if present
+            df_flows = pd.DataFrame(inputs.get('raw_flows', []))
+            df_oi = pd.DataFrame(inputs.get('raw_oi', []))
+            
             signals = lib.detect_all_signals(df)
+            zones = calculator.calculate_confluence_zones(df, df_flows=df_flows, df_oi=df_oi)
+            
+            # Key levels summarized for the agent
             key_levels = {
                 'support': float(df['low'].min()),
-                'resistance': float(df['high'].max())
+                'resistance': float(df['high'].max()),
+                'confluence_zones': [
+                    {
+                        'price': z.price_level,
+                        'strength': z.strength,
+                        'score': z.confluence_score,
+                        'factors': [f.factor_type.value for f in z.factors]
+                    } for z in zones[:3] # Top 3 zones
+                ]
             }
-            return {'technical_signals': signals, 'key_levels': key_levels}
+            return {
+                'technical_signals': signals, 
+                'key_levels': key_levels,
+                'confluence_full': [z.__dict__ for z in zones] # Passing full zones for UI
+            }
     return {'technical_signals': [], 'error': 'No price history provided'}
 
 async def handle_sentiment_analysis(inputs: Dict[str, Any]) -> Dict[str, Any]:

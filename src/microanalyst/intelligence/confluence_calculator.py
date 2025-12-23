@@ -10,6 +10,8 @@ from scipy.spatial.distance import pdist
 import logging
 from .factors.price_action import PriceActionDetector
 from .factors.indicators import VolumeProfileDetector, FibonacciDetector
+from .factors.flows import ETFFlowDetector
+from .factors.liquidity import OpenInterestDetector
 
 logger = logging.getLogger(__name__)
 
@@ -50,7 +52,9 @@ class ConfluenceCalculator:
         self.detectors = [
             PriceActionDetector(),
             VolumeProfileDetector(),
-            FibonacciDetector()
+            FibonacciDetector(),
+            ETFFlowDetector(),
+            OpenInterestDetector()
         ]
 
         # Factor weights (sum to 1.0)
@@ -101,7 +105,7 @@ class ConfluenceCalculator:
         
         for detector in self.detectors:
             try:
-                all_factors.extend(detector.detect(df_price))
+                all_factors.extend(detector.detect(df_price, df_flows=df_flows, df_oi=df_oi))
             except Exception as e:
                 logger.error(f"Detector {detector.__class__.__name__} failed: {e}")
 
@@ -111,11 +115,8 @@ class ConfluenceCalculator:
         all_factors.extend(self._detect_pivot_points(df_price))
         all_factors.extend(self._detect_gap_levels(df_price))
         
-        if df_flows is not None and not df_flows.empty:
-            all_factors.extend(self._detect_etf_flow_pivots(df_flows))
-        
-        if df_oi is not None and not df_oi.empty:
-            all_factors.extend(self._detect_oi_clusters(df_oi))
+        # New modular detectors handle df_flows and df_oi via the 'detectors' loop above
+        # The detect() calls pass kwargs which include df_flows and df_oi
         
         logger.info(f"Detected {len(all_factors)} individual factors")
         
@@ -248,51 +249,9 @@ class ConfluenceCalculator:
         logger.debug(f"Detected {len(factors)} round number levels")
         return factors
     
-    def _detect_etf_flow_pivots(self, df_flows: pd.DataFrame) -> List[ConfluenceFactor]:
-        """
-        Detect pivot points in ETF flow data.
-        """
-        factors = []
-        
-        if df_flows.empty:
-            return factors
-
-        # Determine Flow Column Name
-        flow_col = 'flow_usd'
-        if 'Net_Flow' in df_flows.columns:
-            flow_col = 'Net_Flow'
-        elif 'flow_usd' in df_flows.columns:
-            flow_col = 'flow_usd'
-        else:
-            # Try lowercase
-             cols_lower = {c.lower(): c for c in df_flows.columns}
-             if 'flow_usd' in cols_lower:
-                 flow_col = cols_lower['flow_usd']
-             elif 'net_flow' in cols_lower:
-                 flow_col = cols_lower['net_flow']
-             else:
-                 return []
-        
-        # Aggregate daily flows
-        daily_flows = df_flows.groupby('date')[flow_col].sum().reset_index()
-        daily_flows = daily_flows.sort_values('date')
-        
-        mean_flow = daily_flows[flow_col].mean()
-        std_flow = daily_flows[flow_col].std()
-        
-        threshold = 2 * std_flow
-        
-        extremes = daily_flows[np.abs(daily_flows[flow_col] - mean_flow) > threshold]
-        
-        # TODO: Join with price data to get price level. Returning placeholders for now.
-        
-        logger.debug(f"Detected {len(extremes)} ETF flow pivot points")
-        return factors
-    
-    def _detect_oi_clusters(self, df_oi: pd.DataFrame) -> List[ConfluenceFactor]:
-        factors = []
-        logger.debug(f"OI clustering detection (not implemented)")
-        return factors
+    # Decommissioned internal methods (replaced by modular detectors)
+    # _detect_etf_flow_pivots -> ETFFlowDetector
+    # _detect_oi_clusters -> OpenInterestDetector
     
     def _detect_pivot_points(self, df: pd.DataFrame) -> List[ConfluenceFactor]:
         """

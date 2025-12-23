@@ -424,6 +424,95 @@ def render_swarm_debate(data: dict):
                 </div>
             """, unsafe_allow_html=True)
 
+def render_confluence_breakdown(data: dict):
+    """Renders the institutional confluence breakdown table."""
+    st.markdown('<div class="section-label">🧱 Institutional Confluence Breakdown</div>', unsafe_allow_html=True)
+    
+    # Get confluence data from technical analyst result
+    # In the new implementation, it's stored in analyst_technical result
+    tech_result = data.get('analyst_technical', {})
+    zones = data.get('confluence_full', tech_result.get('confluence_full', []))
+    
+    if not zones:
+        st.info("No confluence zones detected in the current regime.")
+        return
+
+    # Modern Cyber-Noir Table
+    st.markdown("""
+        <style>
+        .confluence-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Inter', sans-serif;
+            margin-top: 15px;
+        }
+        .confluence-header {
+            background: rgba(0, 240, 255, 0.1);
+            color: #00F0FF;
+            font-family: 'Rajdhani', sans-serif;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+        }
+        .confluence-row {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: background 0.2s;
+        }
+        .confluence-row:hover {
+            background: rgba(0, 240, 255, 0.03);
+        }
+        .confluence-cell {
+            padding: 12px;
+            font-size: 13px;
+        }
+        .factor-tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-family: 'Roboto Mono', monospace;
+            margin-right: 5px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .strength-critical { color: #FF004D; font-weight: bold; }
+        .strength-strong { color: #FF9F1C; }
+        .strength-moderate { color: #00FF9D; }
+        </style>
+    """, unsafe_allow_html=True)
+
+    html = '<table class="confluence-table">'
+    html += '<tr><th class="confluence-header">Price Level</th><th class="confluence-header">Strength</th><th class="confluence-header">Factors</th><th class="confluence-header">Score</th></tr>'
+    
+    for z in zones[:5]: # Top 5 zones
+        # Ensure z is a dict (if it came from JSON) or object
+        price = z.get('price_level') if isinstance(z, dict) else z.price_level
+        strength = z.get('strength') if isinstance(z, dict) else z.strength
+        score = z.get('confluence_score') if isinstance(z, dict) else z.confluence_score
+        raw_factors = z.get('factors', []) if isinstance(z, dict) else z.factors
+        
+        factor_names = []
+        for f in raw_factors:
+            f_type = f.get('factor_type') if isinstance(f, dict) else (f.factor_type.value if hasattr(f, 'factor_type') else str(f))
+            # Clean up FactorType names
+            name = str(f_type).split('.')[-1].replace('_', ' ')
+            factor_names.append(f'<span class="factor-tag">{name}</span>')
+            
+        strength_class = f"strength-{strength.lower()}" if strength else ""
+        
+        html += f'<tr class="confluence-row">'
+        html += f'<td class="confluence-cell" style="font-family: \'Roboto Mono\', monospace; font-weight: 700;">${price:,.2f}</td>'
+        html += f'<td class="confluence-cell"><span class="{strength_class}">{strength.upper() if strength else "N/A"}</span></td>'
+        html += f'<td class="confluence-cell">{" ".join(factor_names)}</td>'
+        html += f'<td class="confluence-cell" style="color: #00F0FF;">{score:.2f}</td>'
+        html += '</tr>'
+        
+    html += '</table>'
+    st.markdown(html, unsafe_allow_html=True)
+
 def render_logs(data: dict):
     """Renders the Cyber-Noir Intelligence Logs and system safety badges.
 
@@ -527,6 +616,7 @@ if data:
         
         with m_col1:
             render_reasoning_outcome(data)
+            render_confluence_breakdown(data)
             render_forecast_chart(data)
         
         with m_col2:
